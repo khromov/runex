@@ -1,0 +1,29 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,24],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"popover-trigger","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/popover-trigger","rect":[24,24,97,24],"role":"button","scale":1}
+{"blur":0,"color":"#a0a0a0ff","expanded":true,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/popover-trigger/#0","rect":[24,24,97,24],"role":"text","scale":1,"text":"Toggle popover"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"popover-scrim","loopPhase":null,"opacity":1,"path":"kit-root/popover-scrim","rect":[0,0,720,480],"role":"none","scale":1}
+{"blur":0,"fill":"#191919ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"popover-content","label":"Controlled","loopPhase":null,"opacity":1,"path":"kit-root/popover-content","rect":[8,52,200,103.5],"role":"dialog","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/popover-content/header","rect":[8,52,200,36],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/popover-content/header/title","rect":[20,65.5,144,21],"role":"text","scale":1,"text":"Controlled"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"close","label":"Close","loopPhase":null,"opacity":1,"path":"kit-root/popover-content/header/close","rect":[172,64,24,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/popover-content/header/close/icon","rect":[176,68,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"description","loopPhase":null,"opacity":1,"path":"kit-root/popover-content/description","rect":[8,88,200,19.5],"role":"group","scale":1}
+{"blur":0,"color":"#a0a0a0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/popover-content/description/#0","rect":[20,88,146,19.5],"role":"text","scale":1,"text":"Open state is controlled"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"body","loopPhase":null,"opacity":1,"path":"kit-root/popover-content/body","rect":[8,107.5,200,48],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/popover-content/body/#0","rect":[20,119.5,176,24],"role":"text","scale":1,"text":"Controlled content"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","actions":["click"],"bounds":[24,24,97,24],"key":"popover-trigger","name":"Toggle popover","role":"button"}
+{"a11y":"0/0/0/0/0","bounds":[24,24,97,24],"name":"Toggle popover","role":"label","states":["expanded"]}
+{"a11y":"0/0/1","bounds":[8,52,200,103.5],"description":"Open state is controlled","key":"popover-content","name":"Controlled","role":"dialog"}
+{"a11y":"0/0/1/0","bounds":[8,52,200,36],"key":"header","role":"group"}
+{"a11y":"0/0/1/0/0","bounds":[20,65.5,144,21],"key":"title","name":"Controlled","role":"label"}
+{"a11y":"0/0/1/0/1","actions":["click","focus"],"bounds":[172,64,24,24],"key":"close","name":"Close","role":"button"}
+{"a11y":"0/0/1/1","bounds":[8,88,200,19.5],"key":"description","role":"group"}
+{"a11y":"0/0/1/1/0","bounds":[20,88,146,19.5],"name":"Open state is controlled","role":"label"}
+{"a11y":"0/0/1/2","bounds":[8,107.5,200,48],"key":"body","role":"group"}
+{"a11y":"0/0/1/2/0","bounds":[20,119.5,176,24],"name":"Controlled content","role":"label"}

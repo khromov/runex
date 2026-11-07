@@ -1,0 +1,399 @@
+name: Full
+
+# The slow checks ci.yml leaves out (docs/testing.md has the layers):
+#
+#   linux        in ci.yml's canonical container: every example compared 1:1 with its Rust original
+#                (scripts/compare.ts --all --strict, Bun and Node), every golden variant (--tier full,
+#                Bun and Node, pixels and trees), and the benchmarks and clippy as reports
+#   windows      every golden variant's trees, self-checked (no pixels yet)
+#   macos        compare and golden full on Metal; manual runs only (`platforms: macos`)
+#   rune-tests   Rune's own `cargo test --workspace` on the patched tree
+#
+# When: nightly (linux, windows); on a pull request that touches Rune, the patches, the generator
+# or the native code (linux, windows, and rune-tests when Rune or the patches move); and by hand
+# (Actions > Full > Run workflow), with the platforms and whether to run Rune's tests as inputs:
+#
+#   gh workflow run full.yml -f platforms=linux,windows,macos -f rune_tests=true
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      platforms:
+        description: "Platforms, comma-separated: linux, windows, macos"
+        type: string
+        default: linux,windows
+      rune_tests:
+        description: "Run Rune's own cargo test --workspace on the patched tree"
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - vendor/rune
+      - patches/**
+      - tools/bindgen/**
+      - src/**
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  # The same versions as docker/linux-arm64.Dockerfile, which recorded the golden baselines.
+  NODE_VERSION: "24.22.2"
+  BUN_VERSION: "1.4.4"
+  LINUX_BUILD_PACKAGES: libxkbcommon-dev
+  # The same pinned lavapipe as ci.yml's canonical smoke leg (see there).
+  LAVAPIPE_VERSION: 23.2.1-1ubuntu3.1~22.04.4
+
+jobs:
+  plan:
+    name: plan
+    runs-on: ubuntu-24.04-arm
+    outputs:
+      linux: ${{ steps.plan.outputs.linux }}
+      windows: ${{ steps.plan.outputs.windows }}
+      macos: ${{ steps.plan.outputs.macos }}
+      rune-tests: ${{ steps.plan.outputs.rune-tests }}
+    steps:
+      # A pull request's merge commit, to see whether it moves Rune or the patches.
+      - uses: actions/checkout@v5
+        if: github.event_name == 'pull_request'
+
+      - name: What runs
+        id: plan
+        env:
+          EVENT: ${{ github.event_name }}
+          PLATFORMS: ${{ inputs.platforms }}
+          RUNE_TESTS: ${{ inputs.rune_tests }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          case $EVENT in
+            schedule) platforms=linux,windows rune=false ;;
+            workflow_dispatch) platforms=$PLATFORMS rune=$RUNE_TESTS ;;
+            pull_request)
+              platforms=linux,windows
+              git fetch -q --depth=1 origin "$BASE"
+              if git diff --quiet "$BASE" HEAD -- vendor/rune patches; then rune=false; else rune=true; fi ;;
+            *) platforms='' rune=false ;;
+          esac
+          {
+            for p in linux windows macos; do
+              case ",${platforms// /}," in *",$p,"*) echo "$p=true" ;; *) echo "$p=false" ;; esac
+            done
+            echo "rune-tests=$rune"
+          } | tee -a "$GITHUB_OUTPUT"
+
+  linux:
+    name: linux (compare, golden full, bench, clippy)
+    needs: plan
+    if: needs.plan.outputs.linux == 'true'
+    runs-on: ubuntu-24.04-arm
+    container: ubuntu:22.04@sha256:076e7bf82319619f28dd0aa9c02ab34b055ad37100395b4f49a2ffba04fb5e11
+    timeout-minutes: 150
+    steps:
+      - name: Container basics
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates curl git build-essential pkg-config xz-utils unzip
+          git config --global --add safe.directory '*'
+
+      - name: Linux packages (build, lavapipe)
+        run: |
+          # shellcheck disable=SC2086 # a list of packages, split on purpose
+          apt-get install -y --no-install-recommends $LINUX_BUILD_PACKAGES "mesa-vulkan-drivers=$LAVAPIPE_VERSION" || {
+            echo "::error::mesa-vulkan-drivers $LAVAPIPE_VERSION isn't in the archive: update LAVAPIPE_VERSION (ci.yml, full.yml), then check the golden pixels"
+            exit 1
+          }
+          set -- /usr/share/vulkan/icd.d/lvp_icd*.json
+          echo "VK_ICD_FILENAMES=$1" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Patch Rune
+        id: rune
+        run: |
+          node scripts/prepare-rune.mjs
+          node scripts/prepare-rune.mjs --check
+          echo "rev=$(git -C vendor/rune rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Rust (rust-toolchain.toml)
+        run: |
+          curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain none
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.cargo/bin:$PATH"
+          rustup toolchain install # the channel and components (clippy) rust-toolchain.toml names
+          rustc -vV
+
+      # The addon's target/ and Rune's own (vendor/rune/target, where compare builds the Rust
+      # examples), keyed on Rune's revision as well as the lockfiles.
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: rune-${{ steps.rune.outputs.rev }}
+          workspaces: |
+            . -> target
+            vendor/rune -> target
+          cache-workspace-crates: true
+
+      - run: bun install --frozen-lockfile
+
+      - name: Build the addon (release) and the TypeScript
+        run: |
+          bun run build:native
+          bun run build:ts
+
+      - name: Compare with the Rust examples (bun, node)
+        run: bun scripts/compare.ts --all --release --strict --runtime bun,node --json out/compare/report.json
+
+      - name: Golden, full tier (bun, node)
+        if: ${{ !cancelled() }}
+        run: bun scripts/golden.ts --tier full --runtime bun,node --fetch-images --summary "$GITHUB_STEP_SUMMARY"
+
+      # Reports only: timings on a shared runner are too noisy to gate on.
+      - name: Benchmarks (report)
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          mkdir -p out/bench
+          {
+            bun bench/calls.ts
+            bun bench/rows.ts
+            node bench/rows.ts
+          } | tee out/bench/bench.txt
+          { echo '### Benchmarks'; echo '```'; cat out/bench/bench.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Clippy (report)
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: |
+          mkdir -p out/clippy
+          cargo clippy --release --message-format short 2>&1 | tee out/clippy/clippy.txt
+          echo "clippy: $(grep -c ': warning' out/clippy/clippy.txt || true) warnings" >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: full-linux
+          path: |
+            out/compare
+            out/golden
+            out/bench
+            out/clippy
+          if-no-files-found: ignore
+          retention-days: 7
+
+  windows:
+    name: windows (golden full, trees)
+    needs: plan
+    if: needs.plan.outputs.windows == 'true'
+    runs-on: windows-11-arm
+    timeout-minutes: 120
+    steps:
+      # GitHub's Windows images set core.autocrlf=true. .gitattributes keeps this repo LF, but it
+      # doesn't reach the vendor/rune submodule, whose theme.json the addon embeds byte for byte.
+      - name: LF checkouts
+        run: git config --global core.autocrlf false
+
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Patch Rune
+        run: |
+          node scripts/prepare-rune.mjs
+          node scripts/prepare-rune.mjs --check
+
+      - name: Install Rust (rust-toolchain.toml)
+        shell: bash
+        run: |
+          if ! command -v rustup >/dev/null; then
+            curl -sSfLo rustup-init.exe https://static.rust-lang.org/rustup/dist/aarch64-pc-windows-msvc/rustup-init.exe
+            ./rustup-init.exe -y --profile minimal --default-toolchain none
+            rm rustup-init.exe
+            cygpath -w "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+            export PATH="$HOME/.cargo/bin:$PATH"
+          fi
+          rustup set profile minimal
+          rustup set default-host aarch64-pc-windows-msvc
+          rustup toolchain install
+          rustup target add aarch64-pc-windows-msvc
+          rustc -vV
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: aarch64-pc-windows-msvc
+          cache-workspace-crates: true
+
+      - run: bun install --frozen-lockfile
+
+      - name: Build the addon (release) and the TypeScript
+        run: |
+          bun run build:native
+          bun run build:ts
+
+      # No GPU: WARP, D3D12's software rasterizer (see ci.yml).
+      # Advisory until Windows' tree overrides are blessed from the artifact below
+      # (docs/testing.md: adding a platform's manifest).
+      - name: Golden trees, full tier (bun, node; self-checked)
+        id: golden-trees
+        continue-on-error: true
+        shell: bash
+        env:
+          WGPU_ADAPTER_NAME: Microsoft Basic Render Driver
+        run: bun scripts/golden.ts --tier full --runtime bun,node --no-png --self-check --summary "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() && (failure() || steps.golden-trees.outcome == 'failure') }}
+        with:
+          name: full-windows-golden
+          path: out/golden
+          if-no-files-found: ignore
+          retention-days: 7
+
+  macos:
+    name: macos (compare, golden full; advisory)
+    needs: plan
+    if: needs.plan.outputs.macos == 'true'
+    runs-on: macos-26
+    # The runner's Metal device is paravirtual (see ci.yml): reported, never blocking.
+    continue-on-error: true
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Patch Rune
+        run: |
+          node scripts/prepare-rune.mjs
+          node scripts/prepare-rune.mjs --check
+
+      - name: Install Rust (rust-toolchain.toml)
+        run: |
+          if ! command -v rustup >/dev/null; then
+            curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain none
+            echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+            export PATH="$HOME/.cargo/bin:$PATH"
+          fi
+          rustup set profile minimal
+          rustup toolchain install
+          rustc -vV
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: aarch64-apple-darwin
+          workspaces: |
+            . -> target
+            vendor/rune -> target
+          cache-workspace-crates: true
+
+      - run: bun install --frozen-lockfile
+
+      - name: Build the addon (release) and the TypeScript
+        run: |
+          bun run build:native
+          bun run build:ts
+
+      - name: Compare with the Rust examples (bun, node)
+        run: bun scripts/compare.ts --all --release --strict --runtime bun,node --json out/compare/report.json
+
+      - name: Golden, full tier (bun, node)
+        if: ${{ !cancelled() }}
+        env:
+          RUNEX_GOLDEN_PLATFORM: darwin-arm64-metal-ci
+        run: bun scripts/golden.ts --tier full --runtime bun,node --fetch-images --summary "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: full-macos
+          path: |
+            out/compare
+            out/golden
+          if-no-files-found: ignore
+          retention-days: 7
+
+  rune-tests:
+    name: rune (cargo test --workspace, patched)
+    needs: plan
+    if: needs.plan.outputs.rune-tests == 'true'
+    runs-on: ubuntu-24.04-arm
+    container: ubuntu:22.04@sha256:076e7bf82319619f28dd0aa9c02ab34b055ad37100395b4f49a2ffba04fb5e11
+    timeout-minutes: 120
+    steps:
+      - name: Container basics
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates curl git build-essential pkg-config xz-utils unzip
+          git config --global --add safe.directory '*'
+
+      # Rune's GPU tests render on lavapipe, like the addon's.
+      - name: Linux packages (build, lavapipe)
+        run: |
+          # shellcheck disable=SC2086 # a list of packages, split on purpose
+          apt-get install -y --no-install-recommends $LINUX_BUILD_PACKAGES "mesa-vulkan-drivers=$LAVAPIPE_VERSION"
+          set -- /usr/share/vulkan/icd.d/lvp_icd*.json
+          echo "VK_ICD_FILENAMES=$1" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # The tree Rune's tests run on is the one the addon builds: the pin plus patches/.
+      - name: Patch Rune
+        run: |
+          node scripts/prepare-rune.mjs
+          node scripts/prepare-rune.mjs --check
+
+      - name: Install Rust (rust-toolchain.toml)
+        run: |
+          curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain none
+          echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          export PATH="$HOME/.cargo/bin:$PATH"
+          rustup toolchain install
+          rustc -vV
+
+      # Its own cache: test builds share nothing with the release builds above.
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: rune-tests
+          workspaces: vendor/rune -> target
+
+      - name: cargo test --workspace
+        working-directory: vendor/rune
+        run: cargo test --workspace --no-fail-fast

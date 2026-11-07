@@ -1,0 +1,32 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,228],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,360,36],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#0","rect":[24,24,360,20],"role":"text","scale":1,"text":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs"}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#1","rect":[24,44,360,16],"role":"text","scale":1,"text":"Middle, 360 pt"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[24,72,240,36],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#0","rect":[24,72,240,20],"role":"text","scale":1,"text":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs"}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#1","rect":[24,92,240,16],"role":"text","scale":1,"text":"Middle, 240 pt"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2","rect":[24,120,160,36],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/#0","rect":[24,120,160,20],"role":"text","scale":1,"text":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs"}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/#1","rect":[24,140,160,16],"role":"text","scale":1,"text":"Middle, 160 pt"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3","rect":[24,168,240,36],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/#0","rect":[24,168,240,20],"role":"text","scale":1,"text":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs"}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/#1","rect":[24,188,240,16],"role":"text","scale":1,"text":"End, 240 pt"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#4","rect":[24,216,240,36],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#4/#0","rect":[24,216,240,20],"role":"text","scale":1,"text":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs"}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#4/#1","rect":[24,236,240,16],"role":"text","scale":1,"text":"Head, 240 pt"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,360,20],"name":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs","role":"label"}
+{"a11y":"0/0/0/1","bounds":[24,44,360,16],"name":"Middle, 360 pt","role":"label"}
+{"a11y":"0/0/0/2","bounds":[24,72,240,20],"name":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs","role":"label"}
+{"a11y":"0/0/0/3","bounds":[24,92,240,16],"name":"Middle, 240 pt","role":"label"}
+{"a11y":"0/0/0/4","bounds":[24,120,160,20],"name":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs","role":"label"}
+{"a11y":"0/0/0/5","bounds":[24,140,160,16],"name":"Middle, 160 pt","role":"label"}
+{"a11y":"0/0/0/6","bounds":[24,168,240,20],"name":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs","role":"label"}
+{"a11y":"0/0/0/7","bounds":[24,188,240,16],"name":"End, 240 pt","role":"label"}
+{"a11y":"0/0/0/8","bounds":[24,216,240,20],"name":"~/Projects/rune/crates/rune-kit/src/components/settings/appearance_panel.rs","role":"label"}
+{"a11y":"0/0/0/9","bounds":[24,236,240,16],"name":"Head, 240 pt","role":"label"}

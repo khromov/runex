@@ -1,0 +1,5 @@
+{"events": [
+  {"t": 0.10, "type": "drag", "key": "paper", "dx": 140, "dy": 60, "dur": 0.5},
+  {"t": 0.80, "type": "drag", "x": 60, "y": 200, "dx": 200, "dy": -120, "dur": 0.4},
+  {"t": 1.50, "type": "mark", "name": "end"}
+]}

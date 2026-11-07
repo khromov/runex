@@ -1,0 +1,16 @@
+main
+  lamp
+  flashlight
+  gi
+  keys
+  godrays
+  glow
+  pulses
+  electric
+  fire
+  motion
+  lens
+  lens-frost
+  extras
+  motion-thrown
+  fire-reduced

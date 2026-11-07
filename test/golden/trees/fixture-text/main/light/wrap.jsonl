@@ -1,0 +1,25 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden text","viewport":[720,360],"warnings":[]}
+{"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,720,360],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"root/stage","rect":[20,20,680,198.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0","rect":[20,20,513.5,198.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0","rect":[20,20,220,133.5],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#0","rect":[20,20,220,14],"role":"text","scale":1,"text":"wrap, 220 pt"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#1","rect":[20,40,220,113.5],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#1/#0","rect":[28,48,204,97.5],"role":"text","scale":1,"text":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1","rect":[256,20,140,198.5],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#0","rect":[256,20,140,14],"role":"text","scale":1,"text":"wrap, 140 pt"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#1","rect":[256,40,140,178.5],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#1/#0","rect":[264,48,124,162.5],"role":"text","scale":1,"text":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2","rect":[412,20,121.5,133.5],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#0","rect":[412,20,121.5,14],"role":"text","scale":1,"text":"wrap_anywhere, 120 pt"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#1","rect":[412,40,120,113.5],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#1/#0","rect":[420,48,104,97.5],"role":"text","scale":1,"text":"a-very-long-file-name-without-any-spaces-that-must-break-somewhere.txt"}
+{"a11y":"0","bounds":[0,0,720,360],"name":"Golden text","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,360],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[20,20,680,198.5],"key":"stage","role":"group"}
+{"a11y":"0/0/0/0","bounds":[20,20,220,14],"name":"wrap, 220 pt","role":"label"}
+{"a11y":"0/0/0/1","bounds":[28,48,204,97.5],"name":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid.","role":"label"}
+{"a11y":"0/0/0/2","bounds":[256,20,140,14],"name":"wrap, 140 pt","role":"label"}
+{"a11y":"0/0/0/3","bounds":[264,48,124,162.5],"name":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid.","role":"label"}
+{"a11y":"0/0/0/4","bounds":[412,20,121.5,14],"name":"wrap_anywhere, 120 pt","role":"label"}
+{"a11y":"0/0/0/5","bounds":[420,48,104,97.5],"name":"a-very-long-file-name-without-any-spaces-that-must-break-somewhere.txt","role":"label"}

@@ -1,0 +1,3 @@
+main
+  strong
+  plain

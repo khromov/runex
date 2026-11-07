@@ -1,0 +1,13 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Matched","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[24,24,672,15],"role":"text","scale":1,"text":"1–4 pick    ↩ zoom    esc back"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"#0/stage","rect":[24,53,672,403],"role":"group","scale":1}
+{"blur":0,"fill":"#000000ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-1","loopPhase":null,"opacity":1,"path":"#0/stage/tile-1","rect":[24,53,672,403],"role":"button","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/tile-1/#0","rect":[24,53,672,403],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/tile-1/#1","rect":[42,67,74.5,27.5],"role":"text","scale":1,"text":"1  Dusk"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/tile-1/#2","rect":[24,53,672,403],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,720,480],"name":"Matched","role":"window"}
+{"a11y":"0/0","bounds":[24,24,672,15],"name":"1–4 pick    ↩ zoom    esc back","role":"label"}
+{"a11y":"0/1","bounds":[24,53,672,403],"key":"stage","role":"group"}
+{"a11y":"0/1/0","actions":["click"],"bounds":[24,53,672,403],"key":"tile-1","name":"1  Dusk","role":"button"}
+{"a11y":"0/1/0/0","bounds":[42,67,74.5,27.5],"name":"1  Dusk","role":"label"}

@@ -1,0 +1,31 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"opener","label":"Open confirmation","loopPhase":null,"opacity":1,"path":"kit-root/frame/opener","rect":[24,24,672,24],"role":"button","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/opener/label","rect":[302,26,116,20],"role":"text","scale":1,"text":"Open confirmation"}
+{"blur":0,"fill":"#00000066","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"dialog-fit-scrim","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-scrim","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"dialog-fit-layer","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#fafafaff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"dialog-fit-dialog","label":"Delete item?","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog","rect":[160,174,400,132],"role":"dialog","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/header","rect":[160,174,400,76],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/header/#0","rect":[176,190,350,44],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/header/#0/#0","rect":[176,190,350,20],"role":"text","scale":1,"text":"Delete item?"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/header/#0/#1","rect":[176,214,350,20],"role":"text","scale":1,"text":"This cannot be undone."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":true,"inert":false,"key":"close","label":"Close","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/header/close","rect":[526,188,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/header/close/icon","rect":[528,190,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"body","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/body","rect":[160,250,400,56],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/body/#0","rect":[160,250,400,56],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Cancel","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/body/#0/#0","rect":[404.5,266,67.5,24],"role":"button","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/body/#0/#0/label","rect":[416.5,268,43.5,20],"role":"text","scale":1,"text":"Cancel"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Delete","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/body/#0/#1","rect":[480,266,64,24],"role":"button","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/dialog-fit-layer/dialog-fit-dialog/body/#0/#1/label","rect":[492,268,40,20],"role":"text","scale":1,"text":"Delete"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"dialog-fit-layer","role":"group"}
+{"a11y":"0/0/0/0","bounds":[160,174,400,132],"description":"This cannot be undone.","key":"dialog-fit-dialog","name":"Delete item?","role":"dialog","states":["modal"]}
+{"a11y":"0/0/0/0/0","bounds":[160,174,400,76],"key":"header","role":"group"}
+{"a11y":"0/0/0/0/0/0","bounds":[176,190,350,20],"name":"Delete item?","role":"label"}
+{"a11y":"0/0/0/0/0/1","bounds":[176,214,350,20],"name":"This cannot be undone.","role":"label"}
+{"a11y":"0/0/0/0/0/2","actions":["click","focus"],"bounds":[526,188,20,20],"key":"close","name":"Close","role":"button","states":["focused"]}
+{"a11y":"0/0/0/0/1","bounds":[160,250,400,56],"key":"body","role":"group"}
+{"a11y":"0/0/0/0/1/0","actions":["click","focus"],"bounds":[404.5,266,67.5,24],"name":"Cancel","role":"button"}
+{"a11y":"0/0/0/0/1/1","actions":["click","focus"],"bounds":[480,266,64,24],"name":"Delete","role":"button"}

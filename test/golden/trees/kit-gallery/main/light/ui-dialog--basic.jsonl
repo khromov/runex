@@ -1,0 +1,26 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"opener","label":"Open dialog","loopPhase":null,"opacity":1,"path":"kit-root/frame/opener","rect":[24,24,672,24],"role":"button","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/opener/label","rect":[322.5,26,75,20],"role":"text","scale":1,"text":"Open dialog"}
+{"blur":0,"fill":"#00000066","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"dialog-scrim","loopPhase":null,"opacity":1,"path":"kit-root/dialog-scrim","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":true,"key":"dialog-layer","loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#fafafaff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"dialog-dialog","label":"Dialog","loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog","rect":[120,56,480,368],"role":"dialog","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/header","rect":[120,56,480,76],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/header/#0","rect":[136,72,430,44],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/header/#0/#0","rect":[136,72,430,20],"role":"text","scale":1,"text":"Dialog"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/header/#0/#1","rect":[136,96,430,20],"role":"text","scale":1,"text":"Description"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":true,"inert":false,"key":"close","label":"Close","loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/header/close","rect":[566,70,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/header/close/icon","rect":[568,72,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"body","loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/body","rect":[120,132,480,292],"role":"group","scale":1}
+{"blur":0,"color":"#6f6f6fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/dialog-layer/dialog-dialog/body/#0","rect":[120,132,480,24],"role":"text","scale":1,"text":"Dialog body content."}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"dialog-layer","role":"group"}
+{"a11y":"0/0/0/0","bounds":[120,56,480,368],"description":"Description","key":"dialog-dialog","name":"Dialog","role":"dialog","states":["modal"]}
+{"a11y":"0/0/0/0/0","bounds":[120,56,480,76],"key":"header","role":"group"}
+{"a11y":"0/0/0/0/0/0","bounds":[136,72,430,20],"name":"Dialog","role":"label"}
+{"a11y":"0/0/0/0/0/1","bounds":[136,96,430,20],"name":"Description","role":"label"}
+{"a11y":"0/0/0/0/0/2","actions":["click","focus"],"bounds":[566,70,20,20],"key":"close","name":"Close","role":"button","states":["focused"]}
+{"a11y":"0/0/0/0/1","bounds":[120,132,480,292],"key":"body","role":"group"}
+{"a11y":"0/0/0/0/1/0","bounds":[120,132,480,24],"name":"Dialog body content.","role":"label"}

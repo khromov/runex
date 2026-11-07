@@ -1,0 +1,13 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden text","viewport":[720,360],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,720,360],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"root/stage","rect":[20,20,680,99.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0","rect":[20,20,420,99.5],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0","rect":[20,20,420,55],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#0","rect":[28,28,404,39],"role":"text","scale":1,"text":"Bold, italic, mono, larger, coloured, highlighted and underlined spans in one paragraph."}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1","rect":[20,87,420,32.5],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#0","rect":[28,95,404,16.5],"role":"text","scale":1,"text":"Struck through, and a ringed word."}
+{"a11y":"0","bounds":[0,0,720,360],"name":"Golden text","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,360],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[20,20,680,99.5],"key":"stage","role":"group"}
+{"a11y":"0/0/0/0","bounds":[28,28,404,39],"name":"Bold, italic, mono, larger, coloured, highlighted and underlined spans in one paragraph.","role":"label"}
+{"a11y":"0/0/0/1","bounds":[28,95,404,16.5],"name":"Struck through, and a ringed word.","role":"label"}

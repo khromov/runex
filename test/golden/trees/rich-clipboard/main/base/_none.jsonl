@@ -1,0 +1,18 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Rich Clipboard","viewport":[560,420],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,560,420],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#1c1d20ff","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"field","loopPhase":null,"opacity":1,"path":"#0/field","rect":[24,24,512,80],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[24,116,512,31],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"#0/#1/copy","rect":[24,116,106,31],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/copy/#0","rect":[32,124,90,15],"role":"text","scale":1,"text":"Copy formatted"}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"read","loopPhase":null,"opacity":1,"path":"#0/#1/read","rect":[138,116,102.5,31],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/read/#0","rect":[146,124,86.5,15],"role":"text","scale":1,"text":"Read clipboard"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"summary","loopPhase":null,"opacity":1,"path":"#0/summary","rect":[24,159,512,16.5],"role":"text","scale":1,"text":"Paste formatted text into the field"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"preview","loopPhase":null,"opacity":1,"path":"#0/preview","rect":[24,187.5,512,15],"role":"text","scale":1,"text":""}
+{"a11y":"0","bounds":[0,0,560,420],"name":"Rich Clipboard","role":"window"}
+{"a11y":"0/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[24,24,512,80],"key":"field","role":"multiline-text-input","value":""}
+{"a11y":"0/1","actions":["click"],"bounds":[24,116,106,31],"key":"copy","name":"Copy formatted","role":"button"}
+{"a11y":"0/1/0","bounds":[32,124,90,15],"name":"Copy formatted","role":"label"}
+{"a11y":"0/2","actions":["click"],"bounds":[138,116,102.5,31],"key":"read","name":"Read clipboard","role":"button"}
+{"a11y":"0/2/0","bounds":[146,124,86.5,15],"name":"Read clipboard","role":"label"}
+{"a11y":"0/3","bounds":[24,159,512,16.5],"key":"summary","name":"Paste formatted text into the field","role":"label"}
+{"a11y":"0/4","bounds":[24,187.5,512,15],"key":"preview","name":"","role":"label"}

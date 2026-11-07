@@ -1,0 +1,12 @@
+main
+  word
+  card
+  deploy
+  glass
+  fire
+  pricing
+  ask
+  shock
+  keys
+  tabs
+  type

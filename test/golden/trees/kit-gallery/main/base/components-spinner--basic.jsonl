@@ -1,0 +1,21 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,18],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Loading","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,18,18],"role":"progressbar","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq1","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq1","rect":[28.8,24,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq2","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq2","rect":[33.6,24,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq4","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq4","rect":[24,28.8,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq5","loopPhase":0,"opacity":0.4000000059604645,"path":"kit-root/frame/#0/#0/sq5","rect":[28.8,28.8,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq6","loopPhase":0,"opacity":0.4000000059604645,"path":"kit-root/frame/#0/#0/sq6","rect":[33.6,28.8,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq7","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq7","rect":[38.4,28.8,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq8","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq8","rect":[24,33.6,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq9","loopPhase":0,"opacity":0.4000000059604645,"path":"kit-root/frame/#0/#0/sq9","rect":[28.8,33.6,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq10","loopPhase":0,"opacity":0.4000000059604645,"path":"kit-root/frame/#0/#0/sq10","rect":[33.6,33.6,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq11","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq11","rect":[38.4,33.6,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq13","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq13","rect":[28.8,38.4,3.6,3.6],"role":"group","scale":1}
+{"blur":0,"fill":"#a0a0a0ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sq14","loopPhase":0,"opacity":0.15000000596046448,"path":"kit-root/frame/#0/#0/sq14","rect":[33.6,38.4,3.6,3.6],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,18,18],"name":"Loading","role":"progress-indicator"}

@@ -1,0 +1,8 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Rooms overlay example","viewport":[960,540],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,960,540],"role":"button","scale":1}
+{"blur":0,"color":"#59edb3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stroke","loopPhase":null,"opacity":1,"path":"#0/stroke","rect":[80,80,240,240],"role":"icon","scale":1}
+{"blur":0,"fill":"#59edb3ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"remote-cursor","loopPhase":null,"opacity":1,"path":"#0/remote-cursor","rect":[120,90,12,18],"role":"group","scale":1,"target":[0,0,12,18]}
+{"a11y":"0","bounds":[0,0,960,540],"name":"Rooms overlay example","role":"window"}
+{"a11y":"0/0","actions":["click"],"bounds":[0,0,960,540],"role":"button"}
+{"a11y":"0/0/0","bounds":[80,80,240,240],"key":"stroke","role":"image"}
+{"a11y":"0/0/1","bounds":[120,90,12,18],"key":"remote-cursor","role":"group"}

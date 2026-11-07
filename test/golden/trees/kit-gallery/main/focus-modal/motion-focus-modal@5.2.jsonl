@@ -1,0 +1,30 @@
+{"anim_t":5.199999999999987,"animating":false,"dark_system":true,"reduced_motion":false,"scale":1,"t":5.2,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,140],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"opener","label":"Open dialog","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/opener","rect":[24,24,672,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/opener/label","rect":[322.5,26,75,20],"role":"text","scale":1,"text":"Open dialog"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"switch","label":"Sync","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/switch","rect":[24,64,672,16],"role":"switch","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/switch/label","rect":[24,64,27,16],"role":"text","scale":1,"text":"Sync"}
+{"blur":0,"fill":"#5c5c5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/switch/control","rect":[59,64,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#f2f2f2ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/switch/control/thumb","rect":[60,65,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"check","label":"Remember","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/check","rect":[24,96,672,24],"role":"checkbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/check/control","rect":[24,100,16,16],"role":"group","scale":1}
+{"blur":0,"color":"#7e7e7eff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"mark","loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/check/control/mark","rect":[27,103,10,10],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"content","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/check/content","rect":[52,96,67,24],"role":"group","scale":1}
+{"blur":0,"color":"#a0a0a0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/check/content/label","rect":[52,96,67,24],"role":"text","scale":1,"text":"Remember"}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3","rect":[24,136,232,28],"role":"radiogroup","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"indicator","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/indicator","rect":[24,136,116,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"itemSelected":true,"key":"segment0","label":"First","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/segment0","rect":[24,136,116,28],"role":"radio","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/segment0/label","rect":[68.5,143.5,27,13],"role":"text","scale":1,"text":"First"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"segment1","label":"Second","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/segment1","rect":[140,136,116,28],"role":"radio","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/segment1/label","rect":[174.5,143.5,47,13],"role":"text","scale":1,"text":"Second"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","actions":["click","focus"],"bounds":[24,24,672,24],"key":"opener","name":"Open dialog","role":"button"}
+{"a11y":"0/0/0/1","actions":["click","focus"],"bounds":[24,64,672,16],"key":"switch","name":"Sync","role":"switch","states":["unchecked"]}
+{"a11y":"0/0/0/2","actions":["click","focus"],"bounds":[24,96,672,24],"key":"check","name":"Remember","role":"check-box","states":["unchecked"]}
+{"a11y":"0/0/0/3","bounds":[24,136,232,28],"role":"radio-group","setSize":2}
+{"a11y":"0/0/0/3/0","actions":["click","focus"],"bounds":[24,136,116,28],"key":"segment0","name":"First","position":1,"role":"radio-button","states":["checked"]}
+{"a11y":"0/0/0/3/1","actions":["click","focus"],"bounds":[140,136,116,28],"key":"segment1","name":"Second","position":2,"role":"radio-button","states":["unchecked"]}

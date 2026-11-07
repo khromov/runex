@@ -1,0 +1,7 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Sketch","viewport":[560,420],"warnings":[]}
+{"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,560,420],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[24,24,512,16.5],"role":"text","scale":1,"text":"Drag to draw"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"paper","loopPhase":null,"opacity":1,"path":"#0/paper","rect":[24,52.5,512,343.5],"role":"image","scale":1}
+{"a11y":"0","bounds":[0,0,560,420],"name":"Sketch","role":"window"}
+{"a11y":"0/0","bounds":[24,24,512,16.5],"name":"Drag to draw","role":"label"}
+{"a11y":"0/1","bounds":[24,52.5,512,343.5],"key":"paper","role":"image"}

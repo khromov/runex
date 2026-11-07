@@ -1,0 +1,35 @@
+{"anim_t":1.5999999999999992,"animating":false,"dark_system":true,"reduced_motion":false,"scale":1,"t":1.6,"time_scale":1,"title":"Todo","viewport":[360,240],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,360,240],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff16","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"track","loopPhase":null,"opacity":1,"path":"#0/track","rect":[24,24,312,4],"role":"group","scale":1}
+{"blur":0,"fill":"#4392f7ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"bar","loopPhase":null,"opacity":1,"path":"#0/track/bar","rect":[24,24,0,4],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"list","loopPhase":null,"opacity":1,"path":"#0/list","rect":[24,40,312,116],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"todo-0","loopPhase":null,"opacity":1,"path":"#0/list/todo-0","rect":[24,40,312,36],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff16","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"check","loopPhase":null,"opacity":1,"path":"#0/list/todo-0/check","rect":[36,50,16,16],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/list/todo-0/#1","rect":[64,49.5,201,17],"role":"text","scale":1,"text":"Write the view"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/list/todo-0/#2","rect":[277,50.5,47,15],"role":"text","scale":1,"text":"Remove"}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"todo-2","loopPhase":null,"opacity":1,"path":"#0/list/todo-2","rect":[24,80,312,36],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff16","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"check","loopPhase":null,"opacity":1,"path":"#0/list/todo-2/check","rect":[36,90,16,16],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/list/todo-2/#1","rect":[64,89.5,201,17],"role":"text","scale":1,"text":"Ship it"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/list/todo-2/#2","rect":[277,90.5,47,15],"role":"text","scale":1,"text":"Remove"}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"todo-3","loopPhase":null,"opacity":1,"path":"#0/list/todo-3","rect":[24,120,312,36],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff16","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"check","loopPhase":null,"opacity":1,"path":"#0/list/todo-3/check","rect":[36,130,16,16],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/list/todo-3/#1","rect":[64,129.5,201,17],"role":"text","scale":1,"text":"Todo 4"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/list/todo-3/#2","rect":[277,130.5,47,15],"role":"text","scale":1,"text":"Remove"}
+{"blur":0,"color":"#4392f7ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"add","loopPhase":null,"opacity":1,"path":"#0/add","rect":[24,168,312,15],"role":"text","scale":1,"text":"Add a todo"}
+{"a11y":"0","bounds":[0,0,360,240],"name":"Todo","role":"window"}
+{"a11y":"0/0","bounds":[24,24,312,4],"key":"track","role":"group"}
+{"a11y":"0/0/0","bounds":[24,24,0,4],"key":"bar","role":"group"}
+{"a11y":"0/1","actions":["scroll-up","scroll-down","set-scroll-offset"],"bounds":[24,40,312,116],"key":"list","role":"scroll-view","scroll":[0,0,0],"states":["clips"]}
+{"a11y":"0/1/0","actions":["scroll-into-view"],"bounds":[24,40,312,36],"key":"todo-0","role":"group"}
+{"a11y":"0/1/0/0","actions":["click","scroll-into-view"],"bounds":[36,50,16,16],"key":"check","role":"button"}
+{"a11y":"0/1/0/1","actions":["scroll-into-view"],"bounds":[64,49.5,201,17],"name":"Write the view","role":"label"}
+{"a11y":"0/1/0/2","actions":["click","scroll-into-view"],"bounds":[277,50.5,47,15],"name":"Remove","role":"label"}
+{"a11y":"0/1/1","actions":["scroll-into-view"],"bounds":[24,80,312,36],"key":"todo-2","role":"group"}
+{"a11y":"0/1/1/0","actions":["click","scroll-into-view"],"bounds":[36,90,16,16],"key":"check","role":"button"}
+{"a11y":"0/1/1/1","actions":["scroll-into-view"],"bounds":[64,89.5,201,17],"name":"Ship it","role":"label"}
+{"a11y":"0/1/1/2","actions":["click","scroll-into-view"],"bounds":[277,90.5,47,15],"name":"Remove","role":"label"}
+{"a11y":"0/1/2","actions":["scroll-into-view"],"bounds":[24,120,312,36],"key":"todo-3","role":"group"}
+{"a11y":"0/1/2/0","actions":["click","scroll-into-view"],"bounds":[36,130,16,16],"key":"check","role":"button"}
+{"a11y":"0/1/2/1","actions":["scroll-into-view"],"bounds":[64,129.5,201,17],"name":"Todo 4","role":"label"}
+{"a11y":"0/1/2/2","actions":["click","scroll-into-view"],"bounds":[277,130.5,47,15],"name":"Remove","role":"label"}
+{"a11y":"0/2","actions":["click"],"bounds":[24,168,312,15],"key":"add","name":"Add a todo","role":"label"}

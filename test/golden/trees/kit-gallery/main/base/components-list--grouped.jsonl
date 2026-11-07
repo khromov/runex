@@ -1,0 +1,33 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,249],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search-wrapper","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper","rect":[24,24,672,36],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1c1cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search","rect":[24,24,672,36],"role":"group","scale":1}
+{"blur":0,"color":"#7e7e7eff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search/#0","rect":[32,34,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search/input","rect":[56,32,632,20],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"scroll","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll","rect":[24,76,672,197],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"group0","label":"Group A","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0","rect":[24,76,672,103],"role":"group","scale":1}
+{"blur":0,"fill":"#191919ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/header","rect":[24,76,672,37],"role":"group","scale":1}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/header/#0","rect":[32,84,55,21],"role":"text","scale":1,"text":"Group A"}
+{"blur":0,"fill":"#282828ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item0","label":"Alpha","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item0","rect":[24,113,672,33],"role":"listitem","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item0/#0","rect":[32,119,38.5,21],"role":"text","scale":1,"text":"Alpha"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item1","label":"Bravo","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item1","rect":[24,146,672,33],"role":"listitem","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item1/#0","rect":[32,152,39,21],"role":"text","scale":1,"text":"Bravo"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"group2","label":"Group B","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group2","rect":[24,191,672,82],"role":"group","scale":1}
+{"blur":0,"fill":"#191919ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group2/header","rect":[24,191,672,37],"role":"group","scale":1}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group2/header/#0","rect":[32,199,54.5,21],"role":"text","scale":1,"text":"Group B"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item2","label":"Delta","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group2/item2","rect":[24,228,672,33],"role":"listitem","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group2/item2/#0","rect":[32,234,35,21],"role":"text","scale":1,"text":"Delta"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,672,36],"key":"search-wrapper","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[24,24,672,36],"key":"search","role":"group"}
+{"a11y":"0/0/0/0/0/0","actions":["click"],"bounds":[56,32,632,20],"key":"input","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/1","bounds":[24,76,672,197],"key":"scroll","role":"list"}
+{"a11y":"0/0/0/1/0","bounds":[24,76,672,103],"key":"group0","name":"Group A","role":"group","setSize":2}
+{"a11y":"0/0/0/1/0/0","bounds":[24,113,672,33],"key":"item0","name":"Alpha","position":1,"role":"list-item"}
+{"a11y":"0/0/0/1/0/1","bounds":[24,146,672,33],"key":"item1","name":"Bravo","position":2,"role":"list-item"}
+{"a11y":"0/0/0/1/1","bounds":[24,191,672,82],"key":"group2","name":"Group B","role":"group","setSize":1}
+{"a11y":"0/0/0/1/1/0","bounds":[24,228,672,33],"key":"item2","name":"Delta","position":1,"role":"list-item"}

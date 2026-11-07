@@ -1,0 +1,6 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Showreel","viewport":[960,540],"warnings":[]}
+{"blur":0,"fill":"#000000ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,960,540],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[0,423,960,27.5],"role":"group","scale":1}
+{"blur":0,"color":"#b8bcc600","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#0","rect":[315,423,330,27.5],"role":"text","scale":1,"text":"github.com/anomalyco/rune"}
+{"a11y":"0","bounds":[0,0,960,540],"name":"Showreel","role":"window"}
+{"a11y":"0/0","bounds":[315,423,330,27.5],"name":"github.com/anomalyco/rune","role":"label"}

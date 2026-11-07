@@ -1,0 +1,8 @@
+main
+  default
+  light
+  dark
+  reduced-motion
+  toggles-off
+  accent-pink
+  slow

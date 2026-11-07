@@ -1,0 +1,8 @@
+main
+  wrap
+  elide
+  rich
+  align
+  line-height
+  weights
+  fonts

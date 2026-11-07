@@ -1,0 +1,109 @@
+{
+  "name": "runex-js",
+  "version": "0.1.0",
+  "description": "Node.js and Bun bindings for Rune, the GPU-rendered Rust UI framework",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "default": "./dist/vite.js"
+    },
+    "./kit": {
+      "types": "./dist/kit.d.ts",
+      "default": "./dist/kit.js"
+    },
+    "./fx": {
+      "types": "./dist/fx.d.ts",
+      "default": "./dist/fx.js"
+    },
+    "./light": {
+      "types": "./dist/light.d.ts",
+      "default": "./dist/light.js"
+    },
+    "./knobs": {
+      "types": "./dist/knobs.d.ts",
+      "default": "./dist/knobs.js"
+    },
+    "./motion": {
+      "types": "./dist/motion.d.ts",
+      "default": "./dist/motion.js"
+    },
+    "./theme-opencode": {
+      "types": "./dist/theme-opencode.d.ts",
+      "default": "./dist/theme-opencode.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "native.cjs",
+    "native.d.cts",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "napi": {
+    "binaryName": "runex",
+    "targets": [
+      "aarch64-apple-darwin",
+      "aarch64-unknown-linux-gnu",
+      "aarch64-pc-windows-msvc"
+    ],
+    "packageName": "@runex-js/binding"
+  },
+  "engines": {
+    "node": ">= 22.6",
+    "bun": ">= 1.2"
+  },
+  "scripts": {
+    "prepare:rune": "node scripts/prepare-rune.mjs",
+    "build": "bun run build:native && bun run build:ts",
+    "build:native": "napi build --platform --release --js native.cjs --dts native.d.cts && node scripts/fix-dts.mjs",
+    "build:debug": "napi build --platform --js native.cjs --dts native.d.cts && node scripts/fix-dts.mjs",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "bun run build:ts && bun run typecheck && bun test --timeout 60000 ./test/static ./test/unit ./test/pack/dist-fresh.test.ts ./test/golden.test.ts",
+    "test:unit": "bun test --timeout 60000 ./test/unit",
+    "test:golden": "bun scripts/golden.ts --tier standard",
+    "golden:update": "bun scripts/golden.ts --update --tier standard",
+    "test:windowed": "bun test --timeout 120000 ./test/windowed",
+    "test:dev": "bun test --timeout 120000 ./test/devflow ./test/pack",
+    "test:compare": "bun test ./test/examples.test.ts",
+    "test:full": "bun run test && bun scripts/golden.ts --tier full --runtime bun,node && bun run test:windowed && bun run test:dev && bun run test:compare",
+    "check:bindings": "bun tools/bindgen/main.ts --check",
+    "update:rune": "bun scripts/update-rune.ts",
+    "compare": "bun scripts/compare.ts",
+    "demos": "bun scripts/demos.ts",
+    "artifacts": "napi artifacts",
+    "prepublishOnly": "napi prepublish -t npm --no-gh-release",
+    "prepack": "node scripts/fix-dts.mjs --publish",
+    "postpack": "node scripts/fix-dts.mjs"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "3.10.12",
+    "@types/bun": "^1.3.0",
+    "@types/node": "^26.0.0",
+    "@types/pngjs": "^6.0.5",
+    "pngjs": "^7.0.0",
+    "typescript": "^5.9.0",
+    "vite": "^8.3.0"
+  },
+  "peerDependencies": {
+    "vite": ">= 6"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  }
+}

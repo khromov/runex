@@ -1,0 +1,60 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#0a0a0aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,560,508],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,560,508],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","level":1,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0","rect":[24,24,560,24],"role":"heading","scale":1,"text":"Rune markdown"}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1","rect":[24,60,560,45],"role":"text","scale":1,"text":"Paragraphs take strong, emphasis,   inline code   and links. Links are styled now and become clickable with rich-text spans."}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b2","level":2,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2","rect":[24,129,560,24],"role":"heading","scale":1,"text":"Lists"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3","rect":[24,163,560,49],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0","rect":[24,163,560,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a5a5a5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0/#0","rect":[24,163,32,22.5],"role":"text","scale":1,"text":"•"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0/#1","rect":[56,163,528,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0/#1/b0","rect":[56,163,528,22.5],"role":"text","scale":1,"text":"First item"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1","rect":[24,189.5,560,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a5a5a5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#0","rect":[24,189.5,32,22.5],"role":"text","scale":1,"text":"•"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1","rect":[56,189.5,528,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1/b0","rect":[56,189.5,528,22.5],"role":"text","scale":1,"text":"Second item with   code"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4","rect":[24,224,560,49],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0","rect":[24,224,560,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a5a5a5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0/#0","rect":[24,224,32,22.5],"role":"text","scale":1,"text":"1."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0/#1","rect":[56,224,528,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0/#1/b0","rect":[56,224,528,22.5],"role":"text","scale":1,"text":"One"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1","rect":[24,250.5,560,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a5a5a5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1/#0","rect":[24,250.5,32,22.5],"role":"text","scale":1,"text":"2."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1/#1","rect":[56,250.5,528,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1/#1/b0","rect":[56,250.5,528,22.5],"role":"text","scale":1,"text":"Two"}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b5","level":3,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b5","rect":[24,293,560,20],"role":"heading","scale":1,"text":"Quote and rule"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b6","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b6","rect":[24,329,560,22.5],"role":"blockquote","scale":1}
+{"blur":0,"fill":"#202020ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b6/#0","rect":[24,329,2,22.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b6/#1","rect":[26,329,558,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b6/#1/b0","rect":[38,329,546,22.5],"role":"text","scale":1,"text":"Quoted text sits behind a rule."}
+{"blur":0,"fill":"#ededed1c","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b7","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7","rect":[24,383.5,560,0.5],"role":"group","scale":1}
+{"blur":0,"color":"#a5a5a5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b8","level":4,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b8","rect":[24,416,560,20],"role":"heading","scale":1,"text":"A muted heading"}
+{"blur":0,"fill":"#131313ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b9","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b9","rect":[24,448,560,84],"role":"code","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b9/#0","rect":[36,460,536,60],"role":"text","scale":1,"text":"fn main() {\n    println!(\"hello\");\n}"}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"https://rune.dev","label":"links","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1#link-0","rect":[385.22,60,30.13,22.5],"role":"link","scale":1,"text":"links"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,560,24],"key":"b0","level":1,"name":"Rune markdown","role":"heading"}
+{"a11y":"0/0/0/1","actions":["focus"],"bounds":[24,60,560,45],"key":"b1","name":"Paragraphs take strong, emphasis,   inline code   and links. Links are styled now and become clickable with rich-text spans.","role":"label"}
+{"a11y":"0/0/0/1/0","actions":["click","focus"],"bounds":[385.2,60,30.1,22.5],"key":"https://rune.dev","name":"links","role":"link","url":"https://rune.dev"}
+{"a11y":"0/0/0/2","bounds":[24,129,560,24],"key":"b2","level":2,"name":"Lists","role":"heading"}
+{"a11y":"0/0/0/3","bounds":[24,163,560,49],"key":"b3","role":"list","setSize":2}
+{"a11y":"0/0/0/3/0","bounds":[24,163,560,22.5],"key":"i0","name":"First item","position":1,"role":"list-item"}
+{"a11y":"0/0/0/3/0/0","bounds":[56,163,528,22.5],"key":"b0","name":"First item","role":"label"}
+{"a11y":"0/0/0/3/1","bounds":[24,189.5,560,22.5],"key":"i1","name":"Second item with   code","position":2,"role":"list-item"}
+{"a11y":"0/0/0/3/1/0","bounds":[56,189.5,528,22.5],"key":"b0","name":"Second item with   code","role":"label"}
+{"a11y":"0/0/0/4","bounds":[24,224,560,49],"key":"b4","role":"list","setSize":2}
+{"a11y":"0/0/0/4/0","bounds":[24,224,560,22.5],"key":"i0","name":"One","position":1,"role":"list-item"}
+{"a11y":"0/0/0/4/0/0","bounds":[56,224,528,22.5],"key":"b0","name":"One","role":"label"}
+{"a11y":"0/0/0/4/1","bounds":[24,250.5,560,22.5],"key":"i1","name":"Two","position":2,"role":"list-item"}
+{"a11y":"0/0/0/4/1/0","bounds":[56,250.5,528,22.5],"key":"b0","name":"Two","role":"label"}
+{"a11y":"0/0/0/5","bounds":[24,293,560,20],"key":"b5","level":3,"name":"Quote and rule","role":"heading"}
+{"a11y":"0/0/0/6","bounds":[24,329,560,22.5],"key":"b6","role":"blockquote"}
+{"a11y":"0/0/0/6/0","bounds":[38,329,546,22.5],"key":"b0","name":"Quoted text sits behind a rule.","role":"label"}
+{"a11y":"0/0/0/7","bounds":[24,383.5,560,0.5],"key":"b7","role":"group"}
+{"a11y":"0/0/0/8","bounds":[24,416,560,20],"key":"b8","level":4,"name":"A muted heading","role":"heading"}
+{"a11y":"0/0/0/9","bounds":[24,448,560,84],"key":"b9","role":"code"}
+{"a11y":"0/0/0/9/0","bounds":[36,460,536,60],"name":"fn main() {\n    println!(\"hello\");\n}","role":"label"}

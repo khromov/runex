@@ -1,0 +1,20 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,184],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tip-trigger","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/tip-trigger","rect":[330,104,60,24],"role":"group","scale":1}
+{"blur":0,"color":"#6f6f6fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/tip-trigger/#0","rect":[330,104,60,24],"role":"text","scale":1,"text":"Hover me"}
+{"blur":0,"fill":"#fafafaff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tip-tooltip","loopPhase":null,"opacity":1,"path":"kit-root/tip-tooltip","rect":[296.5,132,127,22],"role":"tooltip","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/tip-tooltip/#0","rect":[302.5,137,115,12],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/tip-tooltip/#0/#0","rect":[302.5,137,68,12],"role":"text","scale":1,"text":"Components"}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/tip-tooltip/#0/#1","rect":[373.5,137,4.5,12],"role":"text","scale":1,"text":"/"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/tip-tooltip/#0/#2","rect":[381,137,36.5,12],"role":"text","scale":1,"text":"Tooltip"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[330,104,60,24],"key":"tip-trigger","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[330,104,60,24],"name":"Hover me","role":"label"}
+{"a11y":"0/0/1","bounds":[296.5,132,127,22],"key":"tip-tooltip","name":"Components / Tooltip","role":"tooltip"}
+{"a11y":"0/0/1/0","bounds":[302.5,137,68,12],"name":"Components","role":"label"}
+{"a11y":"0/0/1/1","bounds":[373.5,137,4.5,12],"name":"/","role":"label"}
+{"a11y":"0/0/1/2","bounds":[381,137,36.5,12],"name":"Tooltip","role":"label"}

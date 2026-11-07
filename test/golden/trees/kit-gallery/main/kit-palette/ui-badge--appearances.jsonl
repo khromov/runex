@@ -1,0 +1,13 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#0a0a0aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,18],"role":"group","scale":1}
+{"blur":0,"fill":"#131313ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Standard","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,68.5,18],"role":"status","scale":1}
+{"blur":0,"color":"#edededff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#0","rect":[30,23.25,56.5,19.5],"role":"text","scale":1,"text":"Standard"}
+{"blur":0,"fill":"#191919ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Compact","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[100.5,25,56,16],"role":"status","scale":1}
+{"blur":0,"color":"#a5a5a5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#0","rect":[104.5,27.5,48,11],"role":"text","scale":1,"text":"Compact"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,68.5,18],"name":"Standard","role":"status","states":["live-polite"]}
+{"a11y":"0/0/0/1","bounds":[100.5,25,56,16],"name":"Compact","role":"status","states":["live-polite"]}

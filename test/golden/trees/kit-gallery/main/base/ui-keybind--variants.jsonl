@@ -1,0 +1,15 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,14],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"⌘","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,19,14],"role":"group","scale":1}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"key0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/key0","rect":[24,24,19,14],"role":"group","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/key0/#0","rect":[28,25.5,11,11],"role":"text","scale":1,"text":"⌘"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"⌘","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[67,24,19,14],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"key0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/key0","rect":[67,24,19,14],"role":"group","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/key0/#0","rect":[71,25.5,11,11],"role":"text","scale":1,"text":"⌘"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,19,14],"name":"⌘","role":"group"}
+{"a11y":"0/0/0/1","bounds":[67,24,19,14],"name":"⌘","role":"group"}

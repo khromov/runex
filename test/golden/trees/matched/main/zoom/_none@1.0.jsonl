@@ -1,0 +1,13 @@
+{"anim_t":1.0000000000000013,"animating":true,"dark_system":true,"reduced_motion":false,"scale":1,"t":1,"time_scale":1,"title":"Matched","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[24,24,672,15],"role":"text","scale":1,"text":"1–4 pick    ↩ zoom    esc back"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"#0/stage","rect":[24,53,672,403],"role":"group","scale":1}
+{"blur":0,"fill":"#000000ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-2","loopPhase":null,"moving":true,"opacity":1,"path":"#0/stage/tile-2","rect":[27.7,53,668.3,400.75],"role":"button","scale":0.9944999814033508,"target":[24,53,672,403]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"moving":true,"opacity":1,"path":"#0/stage/tile-2/#0","rect":[27.7,52.98,668.3,400.78],"role":"group","scale":0.9944999814033508,"target":[24,53,672,403]}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"moving":true,"opacity":1,"path":"#0/stage/tile-2/#1","rect":[45.61,66.91,74.58,27.84],"role":"text","scale":0.9944999814033508,"target":[42,67,75,28],"text":"2  Lake"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"moving":true,"opacity":1,"path":"#0/stage/tile-2/#2","rect":[27.7,52.98,668.3,400.78],"role":"group","scale":0.9944999814033508,"target":[24,53,672,403]}
+{"a11y":"0","bounds":[0,0,720,480],"name":"Matched","role":"window"}
+{"a11y":"0/0","bounds":[24,24,672,15],"name":"1–4 pick    ↩ zoom    esc back","role":"label"}
+{"a11y":"0/1","bounds":[24,53,672,403],"key":"stage","role":"group"}
+{"a11y":"0/1/0","actions":["click"],"bounds":[27.7,53,668.3,400.8],"key":"tile-2","name":"2  Lake","role":"button"}
+{"a11y":"0/1/0/0","bounds":[45.6,66.9,74.6,27.8],"name":"2  Lake","role":"label"}

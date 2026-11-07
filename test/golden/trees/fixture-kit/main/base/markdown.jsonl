@@ -1,0 +1,94 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden kit","viewport":[640,640],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,640,640],"role":"group","scale":1}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,640,640],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[20,20,520,529],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[20,20,520,529],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","level":1,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0","rect":[20,20,520,24],"role":"heading","scale":1,"text":"Heading one"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1","rect":[20,56,520,22.5],"role":"text","scale":1,"text":"A paragraph with bold, italic,   inline code   and a link."}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b2","level":2,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2","rect":[20,102.5,520,24],"role":"heading","scale":1,"text":"Heading two"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3","rect":[20,136.5,520,83.5],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0","rect":[20,136.5,520,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0/#0","rect":[20,136.5,32,22.5],"role":"text","scale":1,"text":"•"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0/#1","rect":[52,136.5,488,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i0/#1/b0","rect":[52,136.5,488,22.5],"role":"text","scale":1,"text":"First item"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1","rect":[20,163,520,57],"role":"listitem","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#0","rect":[20,163,32,57],"role":"text","scale":1,"text":"•"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1","rect":[52,163,488,57],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1/b0","rect":[52,163,488,22.5],"role":"text","scale":1,"text":"Second item with more words"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1/b1","rect":[52,197.5,488,22.5],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1/b1/i0","rect":[52,197.5,488,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1/b1/i0/#0","rect":[52,197.5,32,22.5],"role":"text","scale":1,"text":"•"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1/b1/i0/#1","rect":[84,197.5,456,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/i1/#1/b1/i0/#1/b0","rect":[84,197.5,456,22.5],"role":"text","scale":1,"text":"Nested item"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4","rect":[20,232,520,49],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0","rect":[20,232,520,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0/#0","rect":[20,232,32,22.5],"role":"text","scale":1,"text":"1."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0/#1","rect":[52,232,488,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i0/#1/b0","rect":[52,232,488,22.5],"role":"text","scale":1,"text":"One"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"i1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1","rect":[20,258.5,520,22.5],"role":"listitem","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1/#0","rect":[20,258.5,32,22.5],"role":"text","scale":1,"text":"2."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1/#1","rect":[52,258.5,488,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/i1/#1/b0","rect":[52,258.5,488,22.5],"role":"text","scale":1,"text":"Two"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b5","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b5","rect":[20,297,520,22.5],"role":"blockquote","scale":1}
+{"blur":0,"fill":"#ffffff16","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b5/#0","rect":[20,297,2,22.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b5/#1","rect":[22,297,518,22.5],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b5/#1/b0","rect":[34,297,506,22.5],"role":"text","scale":1,"text":"A quote, set apart."}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b6","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b6","rect":[20,335.5,520,84],"role":"code","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b6/#0","rect":[32,347.5,496,60],"role":"text","scale":1,"text":"fn main() {\n    println!(\"hello\");\n}"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b7","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7","rect":[20,443.5,119,105.5],"role":"table","scale":1}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"th","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/th","rect":[20.5,444,118,34.5],"role":"row","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/th/c0","rect":[20.5,444,60,34.5],"role":"columnheader","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/th/c0/#0","rect":[30.5,450,40,22.5],"role":"text","scale":1,"text":"Name"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/th/c1","rect":[80.5,444,58,34.5],"role":"columnheader","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/th/c1/#0","rect":[90.5,450,38,22.5],"role":"text","scale":1,"text":"Value"}
+{"blur":0,"fill":"#ffffff0e","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"s0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/s0","rect":[20.5,478.5,118,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"r0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r0","rect":[20.5,479,118,34.5],"role":"row","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r0/c0","rect":[20.5,479,60,34.5],"role":"cell","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r0/c0/#0","rect":[30.5,485,40,22.5],"role":"text","scale":1,"text":"alpha"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r0/c1","rect":[80.5,479,58,34.5],"role":"cell","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r0/c1/#0","rect":[90.5,485,38,22.5],"role":"text","scale":1,"text":"1"}
+{"blur":0,"fill":"#ffffff0e","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"s1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/s1","rect":[20.5,513.5,118,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"r1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r1","rect":[20.5,514,118,34.5],"role":"row","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r1/c0","rect":[20.5,514,60,34.5],"role":"cell","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r1/c0/#0","rect":[30.5,520,40,22.5],"role":"text","scale":1,"text":"beta"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r1/c1","rect":[80.5,514,58,34.5],"role":"cell","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b7/r1/c1/#0","rect":[90.5,520,38,22.5],"role":"text","scale":1,"text":"22"}
+{"a11y":"0","bounds":[0,0,640,640],"name":"Golden kit","role":"window"}
+{"a11y":"0/0","bounds":[0,0,640,640],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,640,640],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[20,20,520,24],"key":"b0","level":1,"name":"Heading one","role":"heading"}
+{"a11y":"0/0/0/1","bounds":[20,56,520,22.5],"key":"b1","name":"A paragraph with bold, italic,   inline code   and a link.","role":"label"}
+{"a11y":"0/0/0/2","bounds":[20,102.5,520,24],"key":"b2","level":2,"name":"Heading two","role":"heading"}
+{"a11y":"0/0/0/3","bounds":[20,136.5,520,83.5],"key":"b3","role":"list","setSize":2}
+{"a11y":"0/0/0/3/0","bounds":[20,136.5,520,22.5],"key":"i0","name":"First item","position":1,"role":"list-item"}
+{"a11y":"0/0/0/3/0/0","bounds":[52,136.5,488,22.5],"key":"b0","name":"First item","role":"label"}
+{"a11y":"0/0/0/3/1","bounds":[20,163,520,57],"key":"i1","name":"Second item with more words Nested item","position":2,"role":"list-item"}
+{"a11y":"0/0/0/3/1/0","bounds":[52,163,488,22.5],"key":"b0","name":"Second item with more words","role":"label"}
+{"a11y":"0/0/0/3/1/1","bounds":[52,197.5,488,22.5],"key":"b1","role":"list","setSize":1}
+{"a11y":"0/0/0/3/1/1/0","bounds":[52,197.5,488,22.5],"key":"i0","name":"Nested item","position":1,"role":"list-item"}
+{"a11y":"0/0/0/3/1/1/0/0","bounds":[84,197.5,456,22.5],"key":"b0","name":"Nested item","role":"label"}
+{"a11y":"0/0/0/4","bounds":[20,232,520,49],"key":"b4","role":"list","setSize":2}
+{"a11y":"0/0/0/4/0","bounds":[20,232,520,22.5],"key":"i0","name":"One","position":1,"role":"list-item"}
+{"a11y":"0/0/0/4/0/0","bounds":[52,232,488,22.5],"key":"b0","name":"One","role":"label"}
+{"a11y":"0/0/0/4/1","bounds":[20,258.5,520,22.5],"key":"i1","name":"Two","position":2,"role":"list-item"}
+{"a11y":"0/0/0/4/1/0","bounds":[52,258.5,488,22.5],"key":"b0","name":"Two","role":"label"}
+{"a11y":"0/0/0/5","bounds":[20,297,520,22.5],"key":"b5","role":"blockquote"}
+{"a11y":"0/0/0/5/0","bounds":[34,297,506,22.5],"key":"b0","name":"A quote, set apart.","role":"label"}
+{"a11y":"0/0/0/6","bounds":[20,335.5,520,84],"key":"b6","role":"code"}
+{"a11y":"0/0/0/6/0","bounds":[32,347.5,496,60],"name":"fn main() {\n    println!(\"hello\");\n}","role":"label"}
+{"a11y":"0/0/0/7","bounds":[20,443.5,119,105.5],"key":"b7","role":"table"}
+{"a11y":"0/0/0/7/0","bounds":[20.5,444,118,34.5],"key":"th","name":"Name Value","role":"row"}
+{"a11y":"0/0/0/7/0/0","bounds":[20.5,444,60,34.5],"key":"c0","name":"Name","role":"column-header"}
+{"a11y":"0/0/0/7/0/0/0","bounds":[30.5,450,40,22.5],"name":"Name","role":"label"}
+{"a11y":"0/0/0/7/0/1","bounds":[80.5,444,58,34.5],"key":"c1","name":"Value","role":"column-header"}
+{"a11y":"0/0/0/7/0/1/0","bounds":[90.5,450,38,22.5],"name":"Value","role":"label"}
+{"a11y":"0/0/0/7/1","bounds":[20.5,479,118,34.5],"key":"r0","name":"alpha 1","role":"row"}
+{"a11y":"0/0/0/7/1/0","bounds":[20.5,479,60,34.5],"key":"c0","name":"alpha","role":"cell"}
+{"a11y":"0/0/0/7/1/0/0","bounds":[30.5,485,40,22.5],"name":"alpha","role":"label"}
+{"a11y":"0/0/0/7/1/1","bounds":[80.5,479,58,34.5],"key":"c1","name":"1","role":"cell"}
+{"a11y":"0/0/0/7/1/1/0","bounds":[90.5,485,38,22.5],"name":"1","role":"label"}
+{"a11y":"0/0/0/7/2","bounds":[20.5,514,118,34.5],"key":"r1","name":"beta 22","role":"row"}
+{"a11y":"0/0/0/7/2/0","bounds":[20.5,514,60,34.5],"key":"c0","name":"beta","role":"cell"}
+{"a11y":"0/0/0/7/2/0/0","bounds":[30.5,520,40,22.5],"name":"beta","role":"label"}
+{"a11y":"0/0/0/7/2/1","bounds":[80.5,514,58,34.5],"key":"c1","name":"22","role":"cell"}
+{"a11y":"0/0/0/7/2/1/0","bounds":[90.5,520,38,22.5],"name":"22","role":"label"}

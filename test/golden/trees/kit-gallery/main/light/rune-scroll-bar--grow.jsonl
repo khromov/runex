@@ -1,0 +1,93 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,292],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"more","label":"Change rows","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/more","rect":[24,24,672,24],"role":"button","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/more/label","rect":[319,26,82,20],"role":"text","scale":1,"text":"Change rows"}
+{"blur":0,"fill":"#fafafaff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"panel","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel","rect":[24,56,360,260],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"feed-scroll-area","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area","rect":[24,56,360,260],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"feed","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed","rect":[24,56,360,260],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-0","rect":[32,64,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-0/#0","rect":[42,72,78,16],"role":"text","scale":1,"text":"Build step 01"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-0/#1","rect":[335.5,74,30.5,12],"role":"text","scale":1,"text":"12 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-1","rect":[32,100,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-1/#0","rect":[42,108,80.5,16],"role":"text","scale":1,"text":"Build step 02"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-1/#1","rect":[335.5,110,30.5,12],"role":"text","scale":1,"text":"19 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-2","rect":[32,136,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-2/#0","rect":[42,144,80.5,16],"role":"text","scale":1,"text":"Build step 03"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-2/#1","rect":[333.5,146,32.5,12],"role":"text","scale":1,"text":"26 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-3","rect":[32,172,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-3/#0","rect":[42,180,81,16],"role":"text","scale":1,"text":"Build step 04"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-3/#1","rect":[333.5,182,32.5,12],"role":"text","scale":1,"text":"33 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-4","rect":[32,208,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-4/#0","rect":[42,216,80.5,16],"role":"text","scale":1,"text":"Build step 05"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-4/#1","rect":[333,218,33,12],"role":"text","scale":1,"text":"40 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-5","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-5","rect":[32,244,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-5/#0","rect":[42,252,80.5,16],"role":"text","scale":1,"text":"Build step 06"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-5/#1","rect":[333.5,254,32.5,12],"role":"text","scale":1,"text":"47 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-6","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-6","rect":[32,280,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-6/#0","rect":[42,288,79.5,16],"role":"text","scale":1,"text":"Build step 07"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-6/#1","rect":[333,290,33,12],"role":"text","scale":1,"text":"54 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-7","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-7","rect":[32,316,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-7/#0","rect":[42,324,80.5,16],"role":"text","scale":1,"text":"Build step 08"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-7/#1","rect":[335.5,326,30.5,12],"role":"text","scale":1,"text":"61 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-8","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-8","rect":[32,352,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-8/#0","rect":[42,360,80.5,16],"role":"text","scale":1,"text":"Build step 09"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-8/#1","rect":[333,362,33,12],"role":"text","scale":1,"text":"68 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-9","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-9","rect":[32,388,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-9/#0","rect":[42,396,78,16],"role":"text","scale":1,"text":"Build step 10"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-9/#1","rect":[334,398,32,12],"role":"text","scale":1,"text":"75 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-10","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-10","rect":[32,424,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-10/#0","rect":[42,432,75,16],"role":"text","scale":1,"text":"Build step 11"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-10/#1","rect":[333.5,434,32.5,12],"role":"text","scale":1,"text":"82 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item-11","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-11","rect":[32,460,344,32],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-11/#0","rect":[42,468,77.5,16],"role":"text","scale":1,"text":"Build step 12"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/item-11/#1","rect":[333,470,33,12],"role":"text","scale":1,"text":"89 ms"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tail","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/panel/feed-scroll-area/feed/tail","rect":[32,496,344,0],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"scroll-bar","loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/panel/feed-scroll-area/scroll-bar","rect":[370,58,14,256],"role":"group","scale":1,"target":[24,56,0,0]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb-slot","loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/panel/feed-scroll-area/scroll-bar/thumb-slot","rect":[372,58,10,151.27],"role":"group","scale":1,"target":[24,56,0,0]}
+{"blur":0,"fill":"#0000001a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/panel/feed-scroll-area/scroll-bar/thumb-slot/thumb","rect":[376,58,6,151.27],"role":"group","scale":1,"target":[24,56,0,0]}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","actions":["click","focus"],"bounds":[24,24,672,24],"key":"more","name":"Change rows","role":"button"}
+{"a11y":"0/0/0/1","bounds":[24,56,360,260],"key":"panel","role":"group"}
+{"a11y":"0/0/0/1/0","bounds":[24,56,360,260],"key":"feed-scroll-area","role":"group"}
+{"a11y":"0/0/0/1/0/0","actions":["scroll-up","scroll-down","set-scroll-offset"],"bounds":[24,56,360,260],"key":"feed","role":"scroll-view","scroll":[0,0,180],"states":["clips"]}
+{"a11y":"0/0/0/1/0/0/0","actions":["scroll-into-view"],"bounds":[32,64,344,32],"key":"item-0","role":"group"}
+{"a11y":"0/0/0/1/0/0/0/0","actions":["scroll-into-view"],"bounds":[42,72,78,16],"name":"Build step 01","role":"label"}
+{"a11y":"0/0/0/1/0/0/0/1","actions":["scroll-into-view"],"bounds":[335.5,74,30.5,12],"name":"12 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/1","actions":["scroll-into-view"],"bounds":[32,100,344,32],"key":"item-1","role":"group"}
+{"a11y":"0/0/0/1/0/0/1/0","actions":["scroll-into-view"],"bounds":[42,108,80.5,16],"name":"Build step 02","role":"label"}
+{"a11y":"0/0/0/1/0/0/1/1","actions":["scroll-into-view"],"bounds":[335.5,110,30.5,12],"name":"19 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/2","actions":["scroll-into-view"],"bounds":[32,136,344,32],"key":"item-2","role":"group"}
+{"a11y":"0/0/0/1/0/0/2/0","actions":["scroll-into-view"],"bounds":[42,144,80.5,16],"name":"Build step 03","role":"label"}
+{"a11y":"0/0/0/1/0/0/2/1","actions":["scroll-into-view"],"bounds":[333.5,146,32.5,12],"name":"26 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/3","actions":["scroll-into-view"],"bounds":[32,172,344,32],"key":"item-3","role":"group"}
+{"a11y":"0/0/0/1/0/0/3/0","actions":["scroll-into-view"],"bounds":[42,180,81,16],"name":"Build step 04","role":"label"}
+{"a11y":"0/0/0/1/0/0/3/1","actions":["scroll-into-view"],"bounds":[333.5,182,32.5,12],"name":"33 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/4","actions":["scroll-into-view"],"bounds":[32,208,344,32],"key":"item-4","role":"group"}
+{"a11y":"0/0/0/1/0/0/4/0","actions":["scroll-into-view"],"bounds":[42,216,80.5,16],"name":"Build step 05","role":"label"}
+{"a11y":"0/0/0/1/0/0/4/1","actions":["scroll-into-view"],"bounds":[333,218,33,12],"name":"40 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/5","actions":["scroll-into-view"],"bounds":[32,244,344,32],"key":"item-5","role":"group"}
+{"a11y":"0/0/0/1/0/0/5/0","actions":["scroll-into-view"],"bounds":[42,252,80.5,16],"name":"Build step 06","role":"label"}
+{"a11y":"0/0/0/1/0/0/5/1","actions":["scroll-into-view"],"bounds":[333.5,254,32.5,12],"name":"47 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/6","actions":["scroll-into-view"],"bounds":[32,280,344,32],"key":"item-6","role":"group"}
+{"a11y":"0/0/0/1/0/0/6/0","actions":["scroll-into-view"],"bounds":[42,288,79.5,16],"name":"Build step 07","role":"label"}
+{"a11y":"0/0/0/1/0/0/6/1","actions":["scroll-into-view"],"bounds":[333,290,33,12],"name":"54 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/7","actions":["scroll-into-view"],"bounds":[32,316,344,32],"key":"item-7","role":"group"}
+{"a11y":"0/0/0/1/0/0/7/0","actions":["scroll-into-view"],"bounds":[42,324,80.5,16],"name":"Build step 08","role":"label"}
+{"a11y":"0/0/0/1/0/0/7/1","actions":["scroll-into-view"],"bounds":[335.5,326,30.5,12],"name":"61 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/8","actions":["scroll-into-view"],"bounds":[32,352,344,32],"key":"item-8","role":"group"}
+{"a11y":"0/0/0/1/0/0/8/0","actions":["scroll-into-view"],"bounds":[42,360,80.5,16],"name":"Build step 09","role":"label"}
+{"a11y":"0/0/0/1/0/0/8/1","actions":["scroll-into-view"],"bounds":[333,362,33,12],"name":"68 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/9","actions":["scroll-into-view"],"bounds":[32,388,344,32],"key":"item-9","role":"group"}
+{"a11y":"0/0/0/1/0/0/9/0","actions":["scroll-into-view"],"bounds":[42,396,78,16],"name":"Build step 10","role":"label"}
+{"a11y":"0/0/0/1/0/0/9/1","actions":["scroll-into-view"],"bounds":[334,398,32,12],"name":"75 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/10","actions":["scroll-into-view"],"bounds":[32,424,344,32],"key":"item-10","role":"group"}
+{"a11y":"0/0/0/1/0/0/10/0","actions":["scroll-into-view"],"bounds":[42,432,75,16],"name":"Build step 11","role":"label"}
+{"a11y":"0/0/0/1/0/0/10/1","actions":["scroll-into-view"],"bounds":[333.5,434,32.5,12],"name":"82 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/11","actions":["scroll-into-view"],"bounds":[32,460,344,32],"key":"item-11","role":"group"}
+{"a11y":"0/0/0/1/0/0/11/0","actions":["scroll-into-view"],"bounds":[42,468,77.5,16],"name":"Build step 12","role":"label"}
+{"a11y":"0/0/0/1/0/0/11/1","actions":["scroll-into-view"],"bounds":[333,470,33,12],"name":"89 ms","role":"label"}
+{"a11y":"0/0/0/1/0/0/12","actions":["scroll-into-view"],"bounds":[32,496,344,0],"key":"tail","role":"group"}

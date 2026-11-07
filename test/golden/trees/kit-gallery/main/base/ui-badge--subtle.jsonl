@@ -1,0 +1,13 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,16],"role":"group","scale":1}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,13,16],"role":"status","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#0","rect":[28,26.5,5,11],"role":"text","scale":1,"text":"1"}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"12","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[45,24,19.5,16],"role":"status","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#0","rect":[49,26.5,11.5,11],"role":"text","scale":1,"text":"12"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,13,16],"name":"1","role":"status","states":["live-polite"]}
+{"a11y":"0/0/0/1","bounds":[45,24,19.5,16],"name":"12","role":"status","states":["live-polite"]}

@@ -1,0 +1,13 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,24],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Checkbox","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,90,24],"role":"checkbox","scale":1}
+{"blur":0,"fill":"#282727ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/control","rect":[24,28,16,16],"role":"group","scale":1}
+{"blur":0,"color":"#7e7e7eff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"mark","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/control/mark","rect":[27,31,10,10],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"content","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/content","rect":[52,24,62,24],"role":"group","scale":1}
+{"blur":0,"color":"#a0a0a0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/content/label","rect":[52,24,62,24],"role":"text","scale":1,"text":"Checkbox"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","actions":["click","focus"],"bounds":[24,24,90,24],"name":"Checkbox","role":"check-box","states":["checked"]}

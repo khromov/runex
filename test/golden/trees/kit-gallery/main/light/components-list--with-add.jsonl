@@ -1,0 +1,29 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,175],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search-wrapper","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper","rect":[24,24,672,36],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search","rect":[24,24,672,36],"role":"group","scale":1}
+{"blur":0,"color":"#8f8f8fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search/#0","rect":[32,34,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#171717ff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"input","label":"","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search/input","rect":[56,32,632,20],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"scroll","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll","rect":[24,76,672,123],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"group0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0","rect":[24,76,672,66],"role":"group","scale":1}
+{"blur":0,"fill":"#edededff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item0","label":"One","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item0","rect":[24,76,672,33],"role":"listitem","scale":1}
+{"blur":0,"color":"#171717ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item0/#0","rect":[32,82,27.5,21],"role":"text","scale":1,"text":"One"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"item1","label":"Two","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item1","rect":[24,109,672,33],"role":"listitem","scale":1}
+{"blur":0,"color":"#171717ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/group0/item1/#0","rect":[32,115,28.5,21],"role":"text","scale":1,"text":"Two"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"add","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/add","rect":[24,154,672,45],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/add/#0","rect":[24,154,672,33],"role":"group","scale":1}
+{"blur":0,"color":"#171717ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/add/#0/#0","rect":[32,160,60,21],"role":"text","scale":1,"text":"Add item"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,672,36],"key":"search-wrapper","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[24,24,672,36],"key":"search","role":"group"}
+{"a11y":"0/0/0/0/0/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[56,32,632,20],"key":"input","role":"text-input","value":""}
+{"a11y":"0/0/0/1","bounds":[24,76,672,123],"key":"scroll","role":"list"}
+{"a11y":"0/0/0/1/0","bounds":[24,76,672,66],"key":"group0","role":"group","setSize":2}
+{"a11y":"0/0/0/1/0/0","bounds":[24,76,672,33],"key":"item0","name":"One","position":1,"role":"list-item"}
+{"a11y":"0/0/0/1/0/1","bounds":[24,109,672,33],"key":"item1","name":"Two","position":2,"role":"list-item"}
+{"a11y":"0/0/0/1/1","bounds":[24,154,672,45],"key":"add","role":"group"}
+{"a11y":"0/0/0/1/1/0","bounds":[32,160,60,21],"name":"Add item","role":"label"}

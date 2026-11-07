@@ -1,0 +1,9 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Overlay lab","viewport":[680,160],"warnings":[]}
+{"blur":0,"fill":"#89c4ff0f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,680,160],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[24,24,187,16.5],"role":"text","scale":1,"text":"Drag an area · Escape to close"}
+{"blur":0,"fill":"#89c4ffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[160,100,8,8],"role":"group","scale":1,"target":[0,0,8,8]}
+{"blur":0,"fill":"#89c4ff1f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"selection","loopPhase":null,"opacity":1,"path":"#0/selection","rect":[140,100,560,320],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,680,160],"name":"Overlay lab","role":"window"}
+{"a11y":"0/0","bounds":[0,0,680,160],"name":"Drag an area · Escape to close","role":"button"}
+{"a11y":"0/0/0","bounds":[24,24,187,16.5],"name":"Drag an area · Escape to close","role":"label"}
+{"a11y":"0/0/1","bounds":[140,100,560,320],"key":"selection","role":"group"}

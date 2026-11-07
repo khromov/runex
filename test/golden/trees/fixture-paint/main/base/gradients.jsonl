@@ -1,0 +1,40 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden paint","viewport":[760,340],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,760,340],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0","rect":[24,24,560,173],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0","rect":[24,24,102.5,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"vertical","loopPhase":null,"opacity":1,"path":"root/#0/#0/vertical","rect":[27.25,24,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/#1","rect":[24,92,102.5,12.5],"role":"text","scale":1,"text":"gradient(top, bottom)"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1","rect":[138.5,24,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"lin0","loopPhase":null,"opacity":1,"path":"root/#0/#1/lin0","rect":[138.5,24,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#1","rect":[168.5,92,36,12.5],"role":"text","scale":1,"text":"linear 0"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#2","rect":[246.5,24,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"lin90","loopPhase":null,"opacity":1,"path":"root/#0/#2/lin90","rect":[246.5,24,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#2/#1","rect":[270.5,92,48,12.5],"role":"text","scale":1,"text":"linear pi/2"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#3","rect":[354.5,24,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"lin3","loopPhase":null,"opacity":1,"path":"root/#0/#3/lin3","rect":[354.5,24,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#3/#1","rect":[370.25,92,64.5,12.5],"role":"text","scale":1,"text":"linear 3 stops"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#4","rect":[462.5,24,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"radial","loopPhase":null,"opacity":1,"path":"root/#0/#4/radial","rect":[462.5,24,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#4/#1","rect":[497.25,92,26.5,12.5],"role":"text","scale":1,"text":"radial"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#5","rect":[24,116.5,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"ellipse","loopPhase":null,"opacity":1,"path":"root/#0/#5/ellipse","rect":[24,116.5,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#5/#1","rect":[42,184.5,60,12.5],"role":"text","scale":1,"text":"radial ellipse"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#6","rect":[132,116.5,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"border-gradient","loopPhase":null,"opacity":1,"path":"root/#0/#6/border-gradient","rect":[132,116.5,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#6/#1","rect":[141.75,184.5,76.5,12.5],"role":"text","scale":1,"text":"border_gradient"}
+{"a11y":"0","bounds":[0,0,760,340],"name":"Golden paint","role":"window"}
+{"a11y":"0/0","bounds":[0,0,760,340],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[27.3,24,96,64],"key":"vertical","role":"group"}
+{"a11y":"0/0/1","bounds":[24,92,102.5,12.5],"name":"gradient(top, bottom)","role":"label"}
+{"a11y":"0/0/2","bounds":[138.5,24,96,64],"key":"lin0","role":"group"}
+{"a11y":"0/0/3","bounds":[168.5,92,36,12.5],"name":"linear 0","role":"label"}
+{"a11y":"0/0/4","bounds":[246.5,24,96,64],"key":"lin90","role":"group"}
+{"a11y":"0/0/5","bounds":[270.5,92,48,12.5],"name":"linear pi/2","role":"label"}
+{"a11y":"0/0/6","bounds":[354.5,24,96,64],"key":"lin3","role":"group"}
+{"a11y":"0/0/7","bounds":[370.3,92,64.5,12.5],"name":"linear 3 stops","role":"label"}
+{"a11y":"0/0/8","bounds":[462.5,24,96,64],"key":"radial","role":"group"}
+{"a11y":"0/0/9","bounds":[497.3,92,26.5,12.5],"name":"radial","role":"label"}
+{"a11y":"0/0/10","bounds":[24,116.5,96,64],"key":"ellipse","role":"group"}
+{"a11y":"0/0/11","bounds":[42,184.5,60,12.5],"name":"radial ellipse","role":"label"}
+{"a11y":"0/0/12","bounds":[132,116.5,96,64],"key":"border-gradient","role":"group"}
+{"a11y":"0/0/13","bounds":[141.8,184.5,76.5,12.5],"name":"border_gradient","role":"label"}

@@ -1,0 +1,52 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,280,268],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/value","rect":[24,24,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/value/#0","rect":[24,38,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Default","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/value/input","rect":[32,30,264,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[24,72,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/value","rect":[24,72,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/value/#0","rect":[24,86,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"With value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/value/input","rect":[32,78,264,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2","rect":[24,120,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/value","rect":[24,120,244,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/value/#0","rect":[24,134,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"With copy","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/value/input","rect":[32,126,236,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"action","label":"Copy","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/action","rect":[276,124,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/action/#0","rect":[278,126,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3","rect":[24,168,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/value","rect":[24,168,244,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/value/#0","rect":[24,182,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#b82d35ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Invalid","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/value/input","rect":[32,174,236,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"action","label":"Copy","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/action","rect":[276,172,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/action/#0","rect":[278,174,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#4","rect":[24,216,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#4/value","rect":[24,216,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#4/value/#0","rect":[24,230,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Disabled","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#4/value/input","rect":[32,222,264,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#5","rect":[24,264,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#5/value","rect":[24,264,244,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#5/value/#0","rect":[24,278,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Disabled with value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#5/value/input","rect":[32,270,236,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"action","label":"Copy","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#5/action","rect":[276,268,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#5/action/#0","rect":[278,270,16,16],"role":"icon","scale":1}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/0/0","actions":["click"],"bounds":[32,30,264,16],"key":"input","name":"Default","placeholder":"Default","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/1","bounds":[24,72,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/1/0","actions":["click"],"bounds":[32,78,264,16],"key":"input","name":"With value","placeholder":"With value","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/2","bounds":[24,120,244,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/2/0","actions":["click"],"bounds":[32,126,236,16],"key":"input","name":"With copy","placeholder":"With copy","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/3","bounds":[276,124,20,20],"key":"action","name":"Copy","role":"button"}
+{"a11y":"0/0/0/4","bounds":[24,168,244,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/4/0","actions":["click"],"bounds":[32,174,236,16],"key":"input","name":"Invalid","placeholder":"Invalid","role":"text-input","states":["read-only","invalid"],"value":""}
+{"a11y":"0/0/0/5","bounds":[276,172,20,20],"key":"action","name":"Copy","role":"button"}
+{"a11y":"0/0/0/6","bounds":[24,216,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/6/0","bounds":[32,222,264,16],"key":"input","name":"Disabled","placeholder":"Disabled","role":"text-input","states":["disabled","read-only"],"value":""}
+{"a11y":"0/0/0/7","bounds":[24,264,244,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/7/0","bounds":[32,270,236,16],"key":"input","name":"Disabled with value","placeholder":"Disabled with value","role":"text-input","states":["disabled","read-only"],"value":""}
+{"a11y":"0/0/0/8","bounds":[276,268,20,20],"key":"action","name":"Copy","role":"button","states":["disabled"]}

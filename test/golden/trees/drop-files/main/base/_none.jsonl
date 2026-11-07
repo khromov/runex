@@ -1,0 +1,18 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Drop Files","viewport":[520,240],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,520,240],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[54,39.75,412,120],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"pictures","loopPhase":null,"opacity":1,"path":"#0/#0/pictures","rect":[54,39.75,200,120],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/pictures/#0","rect":[128,82,52,16.5],"role":"text","scale":1,"text":"Pictures"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/pictures/#1","rect":[86,102.5,136,15],"role":"text","scale":1,"text":"PNG, JPEG, GIF or HEIC"}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"anything","loopPhase":null,"opacity":1,"path":"#0/#0/anything","rect":[266,39.75,200,120],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/anything/#0","rect":[337.25,82,57.5,16.5],"role":"text","scale":1,"text":"Anything"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/anything/#1","rect":[344.25,102.5,43.5,15],"role":"text","scale":1,"text":"Any file"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"status","loopPhase":null,"opacity":1,"path":"#0/status","rect":[137.5,183.75,245,16.5],"role":"text","scale":1,"text":"Drag files from another app onto a zone"}
+{"a11y":"0","bounds":[0,0,520,240],"name":"Drop Files","role":"window"}
+{"a11y":"0/0","bounds":[54,39.8,200,120],"key":"pictures","role":"group"}
+{"a11y":"0/0/0","bounds":[128,82,52,16.5],"name":"Pictures","role":"label"}
+{"a11y":"0/0/1","bounds":[86,102.5,136,15],"name":"PNG, JPEG, GIF or HEIC","role":"label"}
+{"a11y":"0/1","bounds":[266,39.8,200,120],"key":"anything","role":"group"}
+{"a11y":"0/1/0","bounds":[337.3,82,57.5,16.5],"name":"Anything","role":"label"}
+{"a11y":"0/1/1","bounds":[344.3,102.5,43.5,15],"name":"Any file","role":"label"}
+{"a11y":"0/2","bounds":[137.5,183.8,245,16.5],"key":"status","name":"Drag files from another app onto a zone","role":"label"}

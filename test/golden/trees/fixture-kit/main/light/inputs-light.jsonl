@@ -1,0 +1,72 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden kit","viewport":[640,640],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,640,640],"role":"group","scale":1}
+{"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,640,640],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[20,20,600,270],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[20,20,280,218],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"empty","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/empty","rect":[20,20,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/empty/value","rect":[20,20,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/empty/value/#0","rect":[20,34,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Placeholder","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/empty/value/input","rect":[28,26,264,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/value","rect":[20,58,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/value/value","rect":[20,58,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/value/value/#0","rect":[20,72,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/value/value/input","rect":[28,64,264,16],"role":"textbox","scale":1,"text":"Some value"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"focus","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/focus","rect":[20,96,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/focus/value","rect":[20,96,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/focus/value/#0","rect":[20,110,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Focused","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/focus/value/input","rect":[28,102,264,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#f7f7f7ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"hover","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/hover","rect":[20,134,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/hover/value","rect":[20,134,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/hover/value/#0","rect":[20,148,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Hovered","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/hover/value/input","rect":[28,140,264,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"invalid","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/invalid","rect":[20,172,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/invalid/value","rect":[20,172,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/invalid/value/#0","rect":[20,186,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/invalid/value/input","rect":[28,178,264,16],"role":"textbox","scale":1,"text":"Bad value"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"disabled","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/disabled","rect":[20,210,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/disabled/value","rect":[20,210,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/disabled/value/#0","rect":[20,224,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/disabled/value/input","rect":[28,216,264,16],"role":"textbox","scale":1,"text":"Disabled"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[316,20,280,270],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"area","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/area","rect":[316,20,280,80],"role":"textbox","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/area/input","rect":[324,28,264,35],"role":"textbox","scale":1,"text":"Two lines\nof text"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"area-invalid","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/area-invalid","rect":[316,110,280,80],"role":"textbox","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Invalid","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/area-invalid/input","rect":[324,118,264,17.5],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2","rect":[316,200,280,90],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/label","rect":[316,200,280,16],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"text","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/label/text","rect":[316,200,34,16],"role":"text","scale":1,"text":"Label"}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"info","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/label/info","rect":[354,200,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"prefix","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/prefix","rect":[316,224,280,11],"role":"text","scale":1,"text":"Prefix"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/#2","rect":[316,243,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/#2/value","rect":[316,243,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/#2/value/#0","rect":[316,257,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"In a field","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/#2/value/input","rect":[324,249,264,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"suffix","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/#2/suffix","rect":[316,279,280,11],"role":"text","scale":1,"text":"Suffix"}
+{"a11y":"0","bounds":[0,0,640,640],"name":"Golden kit","role":"window"}
+{"a11y":"0/0","bounds":[0,0,640,640],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,640,640],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[20,20,280,28],"key":"empty","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[20,20,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/0/0/0","actions":["click"],"bounds":[28,26,264,16],"key":"input","name":"Placeholder","placeholder":"Placeholder","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/1","bounds":[20,58,280,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/1/0","bounds":[20,58,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/1/0/0","actions":["click"],"bounds":[28,64,264,16],"key":"input","role":"text-input","selection":[1,10,1,10],"states":["read-only"],"value":"Some value"}
+{"a11y":"0/0/0/2","bounds":[20,96,280,28],"key":"focus","role":"group"}
+{"a11y":"0/0/0/2/0","bounds":[20,96,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/2/0/0","actions":["click"],"bounds":[28,102,264,16],"key":"input","name":"Focused","placeholder":"Focused","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/3","bounds":[20,134,280,28],"key":"hover","role":"group"}
+{"a11y":"0/0/0/3/0","bounds":[20,134,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/3/0/0","actions":["click"],"bounds":[28,140,264,16],"key":"input","name":"Hovered","placeholder":"Hovered","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/4","bounds":[20,172,280,28],"key":"invalid","role":"group"}
+{"a11y":"0/0/0/4/0","bounds":[20,172,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/4/0/0","actions":["click"],"bounds":[28,178,264,16],"key":"input","role":"text-input","selection":[1,9,1,9],"states":["read-only","invalid"],"value":"Bad value"}
+{"a11y":"0/0/0/5","bounds":[20,210,280,28],"key":"disabled","role":"group"}
+{"a11y":"0/0/0/5/0","bounds":[20,210,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/5/0/0","bounds":[28,216,264,16],"key":"input","role":"text-input","selection":[1,8,1,8],"states":["disabled","read-only"],"value":"Disabled"}
+{"a11y":"0/0/0/6","bounds":[316,20,280,80],"key":"area","role":"group"}
+{"a11y":"0/0/0/6/0","actions":["click"],"bounds":[324,28,264,35],"key":"input","role":"multiline-text-input","selection":[2,7,2,7],"states":["read-only"],"value":"Two lines\nof text"}
+{"a11y":"0/0/0/7","bounds":[316,110,280,80],"key":"area-invalid","role":"group"}
+{"a11y":"0/0/0/7/0","actions":["click"],"bounds":[324,118,264,17.5],"key":"input","name":"Invalid","placeholder":"Invalid","role":"multiline-text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/8","bounds":[316,200,280,90],"description":"Prefix. Suffix","name":"Label","role":"group"}
+{"a11y":"0/0/0/8/0","bounds":[316,243,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/8/0/0","actions":["click"],"bounds":[324,249,264,16],"key":"input","name":"In a field","placeholder":"In a field","role":"text-input","states":["read-only"],"value":""}

@@ -1,0 +1,4 @@
+main
+  Sections/General
+  Sections/Sync paused
+  Lists/Many devices

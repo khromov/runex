@@ -1,0 +1,24 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Card title","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,102],"role":"group","scale":1}
+{"blur":0,"fill":"#dbdbdbff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rule","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/rule","rect":[24,32,2,86],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"body","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body","rect":[26,24,670,102],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/title","rect":[34,34,650,21],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/title/#0","rect":[34,36.5,16,16],"role":"group","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/title/#0/#0","rect":[35,37.5,14,14],"role":"icon","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/title/#1","rect":[58,34,61,21],"role":"text","scale":1,"text":"Card title"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"description","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/description","rect":[34,63,650,21],"role":"text","scale":1,"text":"Small supporting text."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"actions","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/actions","rect":[34,92,650,24],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Action","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/actions/#0","rect":[58,92,64,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/body/actions/#0/label","rect":[70,94,40,20],"role":"text","scale":1,"text":"Action"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,672,102],"name":"Card title","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[26,24,670,102],"key":"body","role":"group"}
+{"a11y":"0/0/0/0/0/0","bounds":[34,34,650,21],"key":"title","role":"group"}
+{"a11y":"0/0/0/0/0/0/0","bounds":[58,34,61,21],"name":"Card title","role":"label"}
+{"a11y":"0/0/0/0/0/1","bounds":[34,63,650,21],"key":"description","name":"Small supporting text.","role":"label"}
+{"a11y":"0/0/0/0/0/2","bounds":[34,92,650,24],"key":"actions","role":"group"}
+{"a11y":"0/0/0/0/0/2/0","actions":["focus"],"bounds":[58,92,64,24],"name":"Action","role":"button"}

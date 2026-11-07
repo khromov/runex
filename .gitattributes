@@ -1,0 +1,16 @@
+# LF everywhere, whatever the checkout's core.autocrlf: GitHub's Windows images set it to true, and
+# CRLF breaks `git apply` of patches/*.patch against LF blobs (prepare-rune --check) and the exact
+# text comparisons of golden trees and snapshots. (vendor/rune is a submodule that this file doesn't
+# reach; CI turns core.autocrlf off before checking it out on Windows.)
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ttf binary
+*.otf binary
+*.mp4 binary
+*.node binary
+*.metallib binary
+
+# Upstream's font license texts, kept byte for byte (CRLF as published).
+*-LICENSE.txt -text

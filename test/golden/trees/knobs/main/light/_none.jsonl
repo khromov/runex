@@ -1,0 +1,18 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Knobs","viewport":[820,520],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"knobs-frame","loopPhase":null,"opacity":1,"path":"knobs-frame","rect":[0,0,820,520],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"knobs-page","loopPhase":null,"opacity":1,"path":"knobs-frame/knobs-page","rect":[0,0,820,520],"role":"group","scale":1}
+{"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"page","loopPhase":null,"opacity":1,"path":"knobs-frame/knobs-page/page","rect":[0,0,820,520],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","loopPhase":null,"opacity":1,"path":"knobs-frame/knobs-page/page/card","rect":[290,216.5,240,87],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"knobs-frame/knobs-page/page/card/#0","rect":[314,240.5,192,16.5],"role":"text","scale":1,"text":"Tune me"}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"knobs-frame/knobs-page/page/card/#1","rect":[314,263,192,16.5],"role":"text","scale":1,"text":"⌘⇧K opens the knobs"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"knobs-over","loopPhase":null,"opacity":1,"path":"knobs-frame/knobs-page/knobs-over","rect":[0,0,820,520],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"knobs-side","loopPhase":null,"opacity":1,"path":"knobs-frame/knobs-side","rect":[820,0,0,520],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,820,520],"name":"Knobs","role":"window"}
+{"a11y":"0/0","bounds":[0,0,820,520],"key":"knobs-frame","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,820,520],"key":"knobs-page","role":"group"}
+{"a11y":"0/0/0/0","bounds":[0,0,820,520],"key":"page","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[290,216.5,240,87],"key":"card","role":"group"}
+{"a11y":"0/0/0/0/0/0","bounds":[314,240.5,192,16.5],"name":"Tune me","role":"label"}
+{"a11y":"0/0/0/0/0/1","bounds":[314,263,192,16.5],"name":"⌘⇧K opens the knobs","role":"label"}
+{"a11y":"0/0/0/1","bounds":[0,0,820,520],"key":"knobs-over","role":"group"}
+{"a11y":"0/0/1","bounds":[820,0,0,520],"key":"knobs-side","role":"group"}

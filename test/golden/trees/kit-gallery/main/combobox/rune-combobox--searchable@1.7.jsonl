@@ -1,0 +1,14 @@
+{"anim_t":1.6999999999999988,"animating":false,"dark_system":true,"reduced_motion":false,"scale":1,"t":1.7,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"model-trigger","loopPhase":null,"opacity":1,"path":"kit-root/frame/model-trigger","rect":[24,24,672,28],"role":"group","scale":1}
+{"blur":0,"expanded":false,"fill":"#161616ff","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"model-value-trigger","label":"Model","loopPhase":null,"opacity":1,"path":"kit-root/frame/model-trigger/model-value-trigger","rect":[24,24,280,28],"role":"combobox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/model-trigger/model-value-trigger/value","rect":[24,30,246,16],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/model-trigger/model-value-trigger/value/#0","rect":[32,30,67,16],"role":"text","scale":1,"text":"Model 099"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/model-trigger/model-value-trigger/#1","rect":[278,28,20,20],"role":"group","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"chevron","loopPhase":null,"opacity":1,"path":"kit-root/frame/model-trigger/model-value-trigger/#1/chevron","rect":[280,30,16,16],"role":"icon","scale":1}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,672,28],"key":"model-trigger","role":"group"}
+{"a11y":"0/0/0/0/0","actions":["click","focus","expand"],"bounds":[24,24,280,28],"key":"model-value-trigger","name":"Model","role":"combo-box","states":["collapsed"],"value":"Model 099"}

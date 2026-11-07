@@ -1,0 +1,185 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Showreel","viewport":[960,540],"warnings":[]}
+{"blur":0,"fill":"#120a1eff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,960,540],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[0,0,960,540],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[40,400,920,80],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#0","rect":[40,460.65,4,19.35],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#1","rect":[48,456.13,4,23.88],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#2","rect":[56,451.55,4,28.45],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#3","rect":[64,447.58,4,32.42],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#4","rect":[72,444.84,4,35.16],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#5","rect":[80,443.82,4,36.18],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#6","rect":[88,444.77,4,35.23],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#7","rect":[96,447.63,4,32.37],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#8","rect":[104,452,4,28],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#9","rect":[112,457.2,4,22.8],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#10","rect":[120,462.4,4,17.6],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#11","rect":[128,466.71,4,13.29],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#12","rect":[136,469.38,4,10.62],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#13","rect":[144,469.92,4,10.08],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#14","rect":[152,468.17,4,11.83],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#15","rect":[160,464.38,4,15.62],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#16","rect":[168,459.13,4,20.88],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#17","rect":[176,453.23,4,26.77],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#18","rect":[184,447.61,4,32.39],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#19","rect":[192,443.15,4,36.85],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#20","rect":[200,440.5,4,39.5],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#21","rect":[208,440.05,4,39.95],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#22","rect":[216,441.78,4,38.22],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#23","rect":[224,445.37,4,34.63],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#24","rect":[232,450.22,4,29.78],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#25","rect":[240,455.59,4,24.41],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#26","rect":[248,460.75,4,19.25],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#27","rect":[256,465.05,4,14.95],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#28","rect":[264,468.09,4,11.91],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#29","rect":[272,469.66,4,10.34],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#30","rect":[280,469.95,4,10.05],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#31","rect":[288,468.74,4,11.26],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#32","rect":[296,465.91,4,14.09],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#33","rect":[304,461.58,4,18.42],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#34","rect":[312,456.16,4,23.84],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#35","rect":[320,450.31,4,29.69],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#36","rect":[328,444.84,4,35.16],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#37","rect":[336,440.57,4,39.43],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#38","rect":[344,438.16,4,41.84],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#39","rect":[352,438.04,4,41.96],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#40","rect":[360,440.27,4,39.73],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#41","rect":[368,444.52,4,35.48],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#42","rect":[376,450.2,4,29.8],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffd9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#43","rect":[384,456.41,4,23.59],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#44","rect":[392,462.23,4,17.77],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#45","rect":[400,466.79,4,13.21],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#46","rect":[408,469.45,4,10.55],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#47","rect":[416,469.9,4,10.1],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#48","rect":[424,468.2,4,11.8],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#49","rect":[432,464.78,4,15.22],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#50","rect":[440,460.3,4,19.7],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#51","rect":[448,455.59,4,24.41],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#52","rect":[456,451.45,4,28.55],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#53","rect":[464,448.55,4,31.45],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#54","rect":[472,447.29,4,32.71],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#55","rect":[480,447.79,4,32.21],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#56","rect":[488,449.88,4,30.13],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#57","rect":[496,453.14,4,26.86],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#58","rect":[504,454.8,4,25.2],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#59","rect":[512,457.33,4,22.67],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#60","rect":[520,460.7,4,19.3],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#61","rect":[528,464.33,4,15.67],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#62","rect":[536,467.52,4,12.48],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#63","rect":[544,469.56,4,10.44],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#64","rect":[552,469.9,4,10.1],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#65","rect":[560,468.23,4,11.77],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#66","rect":[568,464.57,4,15.43],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#67","rect":[576,459.3,4,20.7],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#68","rect":[584,453.08,4,26.92],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#69","rect":[592,446.79,4,33.21],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#70","rect":[600,441.35,4,38.65],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#71","rect":[608,437.59,4,42.41],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#72","rect":[616,436.07,4,43.93],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#73","rect":[624,437.02,4,42.98],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#74","rect":[632,440.3,4,39.7],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#75","rect":[640,445.38,4,34.63],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#76","rect":[648,451.49,4,28.51],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#77","rect":[656,457.74,4,22.26],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#78","rect":[664,463.26,4,16.74],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#79","rect":[672,467.34,4,12.66],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#80","rect":[680,469.59,4,10.41],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#81","rect":[688,469.9,4,10.1],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#82","rect":[696,468.52,4,11.48],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#83","rect":[704,465.94,4,14.06],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#84","rect":[712,462.79,4,17.21],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#85","rect":[720,459.74,4,20.26],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#86","rect":[728,456.6,4,23.4],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#87","rect":[736,452.23,4,27.77],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#88","rect":[744,448.45,4,31.55],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#89","rect":[752,445.85,4,34.15],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#90","rect":[760,444.92,4,35.08],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#91","rect":[768,445.9,4,34.1],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#92","rect":[776,448.7,4,31.3],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#93","rect":[784,452.95,4,27.05],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#94","rect":[792,457.98,4,22.02],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#95","rect":[800,462.98,4,17.02],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#96","rect":[808,467.08,4,12.92],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#97","rect":[816,469.53,4,10.47],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#98","rect":[824,469.85,4,10.15],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#99","rect":[832,467.91,4,12.09],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#100","rect":[840,463.94,4,16.06],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#101","rect":[848,458.53,4,21.47],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#102","rect":[856,452.51,4,27.49],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#103","rect":[864,446.8,4,33.2],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#104","rect":[872,442.3,4,37.7],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#105","rect":[880,439.67,4,40.33],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#106","rect":[888,439.27,4,40.73],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#107","rect":[896,441.12,4,38.88],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#108","rect":[904,444.85,4,35.15],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#109","rect":[912,449.88,4,30.13],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#110","rect":[920,455.41,4,24.59],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff80","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#111","rect":[928,460.71,4,19.29],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#2","rect":[48,120,693,212],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffbf","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#2/#0","rect":[48,120,693,15],"role":"text","scale":1,"text":"NOW PLAYING"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#2/#1","rect":[48,141,693,160],"role":"text","scale":1,"text":"Night Drive"}
+{"blur":0,"color":"#ffffffcc","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#2/#2","rect":[48,307,693,25],"role":"text","scale":1,"text":"Kaito Hayes · Low Light Sessions"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#3","rect":[48,496,470,15],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#3/#0","rect":[48,496,29,15],"role":"text","scale":1,"text":"1:42"}
+{"blur":0,"fill":"#ffffff40","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#3/#1","rect":[89,501.5,380,4],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#3/#1/#0","rect":[89,501.5,144.4,4],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#3/#2","rect":[481,496,29,15],"role":"text","scale":1,"text":"3:58"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#4","rect":[970,0,422,540],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff59","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#5","rect":[970,0,1,540],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6","rect":[970,0,412,540],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#0","rect":[1004,64,344,27.5],"role":"group","scale":1,"target":[1004,54,344,27.5]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#0/#0","rect":[1004,64,82.5,27.5],"role":"text","scale":1,"target":[1004,54,82.5,27.5],"text":"Up next"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#0/#1","rect":[1086.5,64,217,27.5],"role":"group","scale":1,"target":[1086.5,54,217,27.5]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#0/#2","rect":[1303.5,64,44.5,27.5],"role":"text","scale":1,"target":[1303.5,54,44.5,27.5],"text":"Shuffle"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1","rect":[1028,99.5,344,68],"role":"group","scale":1,"target":[1004,99.5,344,68]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#0","rect":[1028,133.5,0,0],"role":"group","scale":1,"target":[1004,133.5,0,0]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1","rect":[1042,113.75,287,39.5],"role":"group","scale":1,"target":[1018,113.75,287,39.5]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1/#0","rect":[1042,113.75,287,19],"role":"text","scale":1,"target":[1018,113.75,287,19],"text":"Low Light"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1/#1","rect":[1042,136.75,287,16.5],"role":"text","scale":1,"target":[1018,136.75,287,16.5],"text":"Kaito Hayes"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#2","rect":[1343,126,29,15],"role":"text","scale":1,"target":[1319,126,29,15],"text":"3:41"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2","rect":[1028,171.5,344,68],"role":"group","scale":1,"target":[1004,171.5,344,68]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#0","rect":[1028,205.5,0,0],"role":"group","scale":1,"target":[1004,205.5,0,0]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1","rect":[1042,185.75,287,39.5],"role":"group","scale":1,"target":[1018,185.75,287,39.5]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1/#0","rect":[1042,185.75,287,19],"role":"text","scale":1,"target":[1018,185.75,287,19],"text":"Glass Hours"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1/#1","rect":[1042,208.75,287,16.5],"role":"text","scale":1,"target":[1018,208.75,287,16.5],"text":"Mira Sol"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#2","rect":[1343,198,29,15],"role":"text","scale":1,"target":[1319,198,29,15],"text":"4:02"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3","rect":[1028,243.5,344,68],"role":"group","scale":1,"target":[1004,243.5,344,68]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#0","rect":[1028,277.5,0,0],"role":"group","scale":1,"target":[1004,277.5,0,0]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1","rect":[1042,257.75,287,39.5],"role":"group","scale":1,"target":[1018,257.75,287,39.5]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1/#0","rect":[1042,257.75,287,19],"role":"text","scale":1,"target":[1018,257.75,287,19],"text":"Afterimage"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1/#1","rect":[1042,280.75,287,16.5],"role":"text","scale":1,"target":[1018,280.75,287,16.5],"text":"Sunday Static"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#2","rect":[1343,270,29,15],"role":"text","scale":1,"target":[1319,270,29,15],"text":"2:57"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4","rect":[1028,315.5,344,68],"role":"group","scale":1,"target":[1004,315.5,344,68]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#0","rect":[1028,349.5,0,0],"role":"group","scale":1,"target":[1004,349.5,0,0]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1","rect":[1042,329.75,287,39.5],"role":"group","scale":1,"target":[1018,329.75,287,39.5]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1/#0","rect":[1042,329.75,287,19],"role":"text","scale":1,"target":[1018,329.75,287,19],"text":"Paper Moons"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1/#1","rect":[1042,352.75,287,16.5],"role":"text","scale":1,"target":[1018,352.75,287,16.5],"text":"Kaito Hayes"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#2","rect":[1343,342,29,15],"role":"text","scale":1,"target":[1319,342,29,15],"text":"3:18"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5","rect":[1028,387.5,344,68],"role":"group","scale":1,"target":[1004,387.5,344,68]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#0","rect":[1028,421.5,0,0],"role":"group","scale":1,"target":[1004,421.5,0,0]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1","rect":[1042,401.75,287,39.5],"role":"group","scale":1,"target":[1018,401.75,287,39.5]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1/#0","rect":[1042,401.75,287,19],"role":"text","scale":1,"target":[1018,401.75,287,19],"text":"Slow Signal"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1/#1","rect":[1042,424.75,287,16.5],"role":"text","scale":1,"target":[1018,424.75,287,16.5],"text":"Ode Park"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#2","rect":[1343,414,29,15],"role":"text","scale":1,"target":[1319,414,29,15],"text":"5:06"}
+{"a11y":"0","bounds":[0,0,960,540],"name":"Showreel","role":"window"}
+{"a11y":"0/0","bounds":[48,120,693,15],"name":"NOW PLAYING","role":"label"}
+{"a11y":"0/1","bounds":[48,141,693,160],"name":"Night Drive","role":"label"}
+{"a11y":"0/2","bounds":[48,307,693,25],"name":"Kaito Hayes · Low Light Sessions","role":"label"}
+{"a11y":"0/3","bounds":[48,496,29,15],"name":"1:42","role":"label"}
+{"a11y":"0/4","bounds":[481,496,29,15],"name":"3:58","role":"label"}
+{"a11y":"0/5","bounds":[1004,64,82.5,27.5],"name":"Up next","role":"label"}
+{"a11y":"0/6","bounds":[1303.5,64,44.5,27.5],"name":"Shuffle","role":"label"}
+{"a11y":"0/7","bounds":[1042,113.8,287,19],"name":"Low Light","role":"label"}
+{"a11y":"0/8","bounds":[1042,136.8,287,16.5],"name":"Kaito Hayes","role":"label"}
+{"a11y":"0/9","bounds":[1343,126,29,15],"name":"3:41","role":"label"}
+{"a11y":"0/10","bounds":[1042,185.8,287,19],"name":"Glass Hours","role":"label"}
+{"a11y":"0/11","bounds":[1042,208.8,287,16.5],"name":"Mira Sol","role":"label"}
+{"a11y":"0/12","bounds":[1343,198,29,15],"name":"4:02","role":"label"}
+{"a11y":"0/13","bounds":[1042,257.8,287,19],"name":"Afterimage","role":"label"}
+{"a11y":"0/14","bounds":[1042,280.8,287,16.5],"name":"Sunday Static","role":"label"}
+{"a11y":"0/15","bounds":[1343,270,29,15],"name":"2:57","role":"label"}
+{"a11y":"0/16","bounds":[1042,329.8,287,19],"name":"Paper Moons","role":"label"}
+{"a11y":"0/17","bounds":[1042,352.8,287,16.5],"name":"Kaito Hayes","role":"label"}
+{"a11y":"0/18","bounds":[1343,342,29,15],"name":"3:18","role":"label"}
+{"a11y":"0/19","bounds":[1042,401.8,287,19],"name":"Slow Signal","role":"label"}
+{"a11y":"0/20","bounds":[1042,424.8,287,16.5],"name":"Ode Park","role":"label"}
+{"a11y":"0/21","bounds":[1343,414,29,15],"name":"5:06","role":"label"}

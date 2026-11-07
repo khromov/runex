@@ -1,0 +1,17 @@
+main
+  default
+  general
+  appearance
+  network
+  security
+  accessibility
+  developer
+  fire
+  fence
+  dark
+  spotlight
+  contrast
+  frosted
+  hot
+  flushed
+  reduced-fire

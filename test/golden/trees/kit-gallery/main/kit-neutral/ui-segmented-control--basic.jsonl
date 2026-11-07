@@ -1,0 +1,22 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,28],"role":"group","scale":1}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,232,28],"role":"radiogroup","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"indicator","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/indicator","rect":[24,24,58,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"itemSelected":true,"key":"segment0","label":"Label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment0","rect":[24,24,58,28],"role":"radio","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment0/label","rect":[36.25,31.5,33.5,13],"role":"text","scale":1,"text":"Label"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"segment1","label":"Label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment1","rect":[82,24,58,28],"role":"radio","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment1/label","rect":[94.25,31.5,33.5,13],"role":"text","scale":1,"text":"Label"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"segment2","label":"Label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment2","rect":[140,24,58,28],"role":"radio","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment2/label","rect":[152.25,31.5,33.5,13],"role":"text","scale":1,"text":"Label"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"segment3","label":"Label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment3","rect":[198,24,58,28],"role":"radio","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/segment3/label","rect":[210.25,31.5,33.5,13],"role":"text","scale":1,"text":"Label"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,232,28],"role":"radio-group","setSize":4}
+{"a11y":"0/0/0/0/0","actions":["click","focus"],"bounds":[24,24,58,28],"key":"segment0","name":"Label","position":1,"role":"radio-button","states":["checked"]}
+{"a11y":"0/0/0/0/1","actions":["click","focus"],"bounds":[82,24,58,28],"key":"segment1","name":"Label","position":2,"role":"radio-button","states":["unchecked"]}
+{"a11y":"0/0/0/0/2","actions":["click","focus"],"bounds":[140,24,58,28],"key":"segment2","name":"Label","position":3,"role":"radio-button","states":["unchecked"]}
+{"a11y":"0/0/0/0/3","actions":["click","focus"],"bounds":[198,24,58,28],"key":"segment3","name":"Label","position":4,"role":"radio-button","states":["unchecked"]}

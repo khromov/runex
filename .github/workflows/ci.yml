@@ -1,0 +1,503 @@
+name: CI
+
+# Builds the addon natively on GitHub's ARM64 runners, runs the test suite on each platform
+# (docs/testing.md has the layers and what each catches), and on a version tag (v*) publishes the
+# platform packages (@runex-js/binding-<platform>) and runex-js.
+#
+#   build   one leg per target: patch Rune and check it (prepare-rune --check, patch-lint), build
+#           the addon and dist/, upload them. The macOS leg also checks that the generated bindings
+#           match Rune (bindgen --rustdoc --check) when a change touches their inputs.
+#   smoke   one leg per platform, on the built artifacts:
+#           - linux (the ubuntu:22.04 container, pinned lavapipe): the canonical platform. The fast
+#             tier, golden pixels and trees (blocking), windowed under xvfb-run, dev workflow and
+#             packaging.
+#           - macos: the same suite, advisory: the runner's GPU is paravirtual, so its pixels have
+#             their own key (darwin-arm64-metal-ci), and the job may fail without failing the run.
+#           - ubuntu-24.04 and windows: unit tests and golden trees (no pixels yet). Windows also
+#             tries the windowed tests, advisory.
+#   publish on v* tags, after every build and every non-advisory smoke leg passed.
+#
+# full.yml runs the slow checks (compare against Rust, every golden variant, Rune's own tests).
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: "0"
+  # The same versions as docker/linux-arm64.Dockerfile, which recorded the golden baselines.
+  NODE_VERSION: "24.22.2"
+  BUN_VERSION: "1.4.4"
+  # Debian/Ubuntu packages Rune needs to build: its `xkbcommon` crate links libxkbcommon. That is
+  # the only system library the link needs (Wayland and X11 are dlopened), and the linker drops it
+  # again, so the finished addon needs only glibc.
+  LINUX_BUILD_PACKAGES: libxkbcommon-dev
+  # ...and to render headless without a GPU: Mesa's lavapipe software Vulkan driver (it pulls in
+  # libvulkan1). The golden pixels (test/golden/png/linux-arm64-lavapipe.json) are this Mesa's, so
+  # the canonical container pins it. If apt can't find it, Ubuntu has replaced it: update the
+  # version here and in full.yml, run the golden check, and re-bless if the pixels moved.
+  LAVAPIPE_VERSION: 23.2.1-1ubuntu3.1~22.04.4
+  # A window under Xvfb: the X server, and the X libraries winit loads at run time.
+  LINUX_WINDOWED_PACKAGES: xvfb xauth libxkbcommon-x11-0 libxcursor1 libxi6 libxrandr2
+
+jobs:
+  build:
+    name: build ${{ matrix.target }}
+    runs-on: ${{ matrix.host }}
+    # Empty for macOS and Windows, which build on the runner itself.
+    container: ${{ matrix.container }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - host: macos-26
+            target: aarch64-apple-darwin
+            platform: darwin-arm64
+          - host: ubuntu-24.04-arm
+            # Linked against Ubuntu 22.04's glibc 2.35, the addon loads on Ubuntu 22.04+, Debian 12+
+            # and Fedora 36+. Linked on the 24.04 runner itself it would need glibc 2.39 (Rust's std
+            # references pidfd_spawnp@GLIBC_2.39 there). The same image as the smoke leg, by digest.
+            container: ubuntu:22.04@sha256:076e7bf82319619f28dd0aa9c02ab34b055ad37100395b4f49a2ffba04fb5e11
+            target: aarch64-unknown-linux-gnu
+            platform: linux-arm64-gnu
+          - host: windows-11-arm
+            target: aarch64-pc-windows-msvc
+            platform: win32-arm64-msvc
+    steps:
+      - name: Container basics
+        if: matrix.container
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates curl git build-essential pkg-config xz-utils unzip
+          # The workspace is mounted from the host, owned by another user.
+          git config --global --add safe.directory '*'
+
+      - name: Linux packages
+        if: runner.os == 'Linux'
+        run: |
+          SUDO=$(command -v sudo || true) # container jobs run as root, without sudo
+          $SUDO apt-get update
+          # shellcheck disable=SC2086 # a list of packages, split on purpose
+          $SUDO apt-get install -y --no-install-recommends $LINUX_BUILD_PACKAGES
+
+      # GitHub's Windows images set core.autocrlf=true. .gitattributes keeps this repo LF, but it
+      # doesn't reach the vendor/rune submodule, whose theme.json the addon embeds byte for byte.
+      - name: LF checkouts
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+
+      - uses: actions/checkout@v5
+        with:
+          # vendor/rune, at the pinned revision; shallow like the checkout itself (fetch-depth 1).
+          submodules: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # On Windows ARM64 it installs Bun's native aarch64 build (setup-bun 2.1.3+, Bun 1.3.10+).
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      # --check: vendor/rune is exactly the pinned revision plus patches/, nothing else.
+      - name: Patch Rune
+        run: |
+          node scripts/prepare-rune.mjs
+          node scripts/prepare-rune.mjs --check
+
+      # Raw wakes that bypass the pump, and upstream functions the patch copies that changed.
+      - name: Lint the patch
+        run: bun scripts/patch-lint.ts
+
+      - name: Install Rust (rust-toolchain.toml)
+        shell: bash
+        run: |
+          if ! command -v rustup >/dev/null; then
+            if [ "$RUNNER_OS" = Windows ]; then
+              curl -sSfLo rustup-init.exe https://static.rust-lang.org/rustup/dist/aarch64-pc-windows-msvc/rustup-init.exe
+              ./rustup-init.exe -y --profile minimal --default-toolchain none
+              rm rustup-init.exe
+              cygpath -w "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+            else
+              curl -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal --default-toolchain none
+              echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+            fi
+            export PATH="$HOME/.cargo/bin:$PATH"
+          fi
+          rustup set profile minimal
+          # A native ARM64 toolchain, whichever host the image's rustup defaults to.
+          if [ "$RUNNER_OS" = Windows ]; then rustup set default-host ${{ matrix.target }}; fi
+          rustup toolchain install # the channel and components rust-toolchain.toml names
+          rustup target add ${{ matrix.target }}
+          rustc -vV
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+          # Keep local crates' build artifacts too: Rune (a path dependency) is the slowest to build.
+          cache-workspace-crates: true
+
+      - run: bun install --frozen-lockfile
+
+      - name: Build the addon (release)
+        run: bun run build:native
+
+      - name: Build the TypeScript
+        run: bun run build:ts
+
+      - name: Show the addon
+        shell: bash
+        run: ls -l runex.${{ matrix.platform }}.node
+
+      # Kept 7 days, not the default 90: GitHub Free includes 500 MB of artifact storage, and each
+      # addon is about 15 MB zipped.
+      - uses: actions/upload-artifact@v7
+        with:
+          name: bindings-${{ matrix.platform }}
+          path: runex.${{ matrix.platform }}.node
+          if-no-files-found: error
+          retention-days: 7
+
+      # The loader and types are the same from every platform's build; publish Linux's.
+      - uses: actions/upload-artifact@v7
+        if: matrix.platform == 'linux-arm64-gnu'
+        with:
+          name: js
+          path: |
+            dist
+            native.cjs
+            native.d.cts
+          if-no-files-found: error
+          retention-days: 7
+
+      # The committed bindings (src/gen, ts/gen, report.md, surface.txt) are generated from rustdoc
+      # JSON documented for aarch64-apple-darwin (tools/bindgen/config.ts docTarget), so only this
+      # leg can regenerate them. It does when the change touches what they're made from (about 3
+      # minutes of rustdoc), and always on manual runs and tags. After the uploads, so a stale
+      # binding doesn't keep the smoke legs from running.
+      - name: Changed binding inputs
+        id: changes
+        if: matrix.platform == 'darwin-arm64'
+        shell: bash
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          inputs=(vendor/rune patches tools/bindgen src/gen ts/gen Cargo.toml Cargo.lock rust-toolchain.toml .cargo)
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ] || [[ "$GITHUB_REF" == refs/tags/* ]] \
+            || [ -z "$BASE" ] || [ "$BASE" = 0000000000000000000000000000000000000000 ] \
+            || ! git fetch -q --depth=1 origin "$BASE"; then
+            changed=true # nothing to compare with
+          elif git diff --quiet "$BASE" HEAD -- "${inputs[@]}"; then
+            changed=false
+          else
+            changed=true
+          fi
+          echo "bindings=$changed" | tee -a "$GITHUB_OUTPUT"
+
+      - name: Bindings match Rune (bindgen --rustdoc --check)
+        if: steps.changes.outputs.bindings == 'true'
+        run: bun tools/bindgen/main.ts --rustdoc --check
+
+  smoke:
+    name: smoke ${{ matrix.name }}
+    needs: build
+    # Runs even when a build leg fails, so the other platforms still report: a leg whose
+    # artifacts are missing fails at its download step (every leg needs Linux's `js`). Publish
+    # needs every build and every smoke leg except macOS to succeed.
+    if: ${{ !cancelled() }}
+    runs-on: ${{ matrix.host }}
+    container: ${{ matrix.container }}
+    # GitHub's macOS runners are VMs whose GPU is Apple's paravirtual Metal device, which may be
+    # missing or reject one of Rune's pipelines, so a macOS failure is reported but doesn't fail
+    # the run or block a release. Linux renders with lavapipe and Windows with WARP (D3D12's
+    # software rasterizer), both GPU-free, so they must pass.
+    continue-on-error: ${{ matrix.allow-failure == true }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # full: the fast tier, golden (standard on Bun, quick on Node), windowed, dev and pack.
+          # Without it: unit tests and golden trees (quick, self-checked).
+          - name: linux
+            host: ubuntu-24.04-arm
+            # The canonical golden platform: this image, by digest, with LAVAPIPE_VERSION.
+            container: ubuntu:22.04@sha256:076e7bf82319619f28dd0aa9c02ab34b055ad37100395b4f49a2ffba04fb5e11
+            platform: linux-arm64-gnu
+            full: true
+          - name: macos
+            host: macos-26
+            platform: darwin-arm64
+            full: true
+            allow-failure: true
+            # Its own PNG manifest (test/golden/png/darwin-arm64-metal-ci.json), advisory even
+            # once the job is blocking.
+            golden-platform: darwin-arm64-metal-ci
+            golden-advisory: true
+          # A newer glibc and Mesa than the container's.
+          - name: ubuntu-24.04
+            host: ubuntu-24.04-arm
+            platform: linux-arm64-gnu
+          - name: windows
+            host: windows-11-arm
+            platform: win32-arm64-msvc
+    steps:
+      - name: Container basics
+        if: matrix.container
+        run: |
+          apt-get update
+          # git before the checkout, so it is a repository: the golden image store fetches from it.
+          apt-get install -y --no-install-recommends ca-certificates curl git unzip xz-utils
+          git config --global --add safe.directory '*'
+          # A runtime directory, or libwayland complains while winit probes for a display.
+          install -d -m 700 /tmp/xdg && echo "XDG_RUNTIME_DIR=/tmp/xdg" >> "$GITHUB_ENV"
+
+      - name: Software Vulkan (lavapipe)
+        if: runner.os == 'Linux'
+        env:
+          PINNED: ${{ matrix.container && 'yes' || '' }}
+        run: |
+          SUDO=$(command -v sudo || true)
+          $SUDO apt-get update
+          if [ -n "$PINNED" ]; then
+            $SUDO apt-get install -y --no-install-recommends "mesa-vulkan-drivers=$LAVAPIPE_VERSION" || {
+              echo "::error::mesa-vulkan-drivers $LAVAPIPE_VERSION isn't in the archive: update LAVAPIPE_VERSION (ci.yml, full.yml), then check the golden pixels"
+              exit 1
+            }
+          else
+            $SUDO apt-get install -y --no-install-recommends mesa-vulkan-drivers
+          fi
+          # Only lavapipe. Ubuntu 24.04 names it lvp_icd.json, 22.04 lvp_icd.aarch64.json.
+          set -- /usr/share/vulkan/icd.d/lvp_icd*.json
+          echo "VK_ICD_FILENAMES=$1" >> "$GITHUB_ENV"
+
+      - name: X server and libraries for windowed tests
+        if: matrix.container
+        run: |
+          # shellcheck disable=SC2086 # a list of packages, split on purpose
+          apt-get install -y --no-install-recommends $LINUX_WINDOWED_PACKAGES
+
+      # No GPU: ask for WARP, D3D12's software rasterizer, by name (Rune picks as usual if it's
+      # missing). Never set it empty: every adapter name contains "".
+      - name: Software D3D12 (WARP)
+        if: runner.os == 'Windows'
+        shell: bash
+        run: echo "WGPU_ADAPTER_NAME=Microsoft Basic Render Driver" >> "$GITHUB_ENV"
+
+      # GitHub's Windows images set core.autocrlf=true. .gitattributes keeps this repo LF, but it
+      # doesn't reach the vendor/rune submodule, whose theme.json the addon embeds byte for byte.
+      - name: LF checkouts
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+
+      - uses: actions/checkout@v5
+        with:
+          # vendor/rune: the static checks read it (patch integrity, example inventory), and golden
+          # finds the examples there (without it every example would drop out of the run).
+          submodules: true
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: bindings-${{ matrix.platform }}
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: js
+
+      # Both runtimes must be native ARM64 to load the addon (an emulated x64 one would look for
+      # an x64 build).
+      - name: Runtimes
+        shell: bash
+        run: |
+          check='console.log(process.versions.bun ? "bun " + process.versions.bun : "node " + process.version, process.platform, process.arch); if (process.arch !== "arm64") process.exit(1)'
+          bun -e "$check"
+          node -e "$check"
+
+      # TypeScript (build:ts, typecheck), pngjs, vite.
+      - id: install
+        run: bun install --frozen-lockfile
+
+      - name: Patch Rune
+        if: matrix.full
+        run: node scripts/prepare-rune.mjs
+
+      # build:ts, typecheck, test/static, test/unit, dist-fresh and golden quick on Bun. Where the
+      # pixels are advisory (macOS), its golden test checks trees only: the golden steps below
+      # report the pixels.
+      - name: Fast tier (bun run test)
+        if: matrix.full
+        env:
+          RUNEX_GOLDEN_NO_PNG: ${{ matrix.golden-advisory && '1' || '' }}
+        run: bun run test
+
+      - name: Unit tests
+        if: ${{ !matrix.full }}
+        run: bun run test:unit
+
+      # Later steps run after an earlier test step failed, so one run shows every layer's result.
+      - name: Golden, standard tier on Bun
+        id: golden-bun
+        if: ${{ !cancelled() && matrix.full && steps.install.outcome == 'success' }}
+        continue-on-error: ${{ matrix.golden-advisory == true }}
+        shell: bash
+        env:
+          RUNEX_GOLDEN_PLATFORM: ${{ matrix.golden-platform }}
+        run: bun scripts/golden.ts --tier standard --runtime bun --fetch-images --out out/golden/standard-bun --summary "$GITHUB_STEP_SUMMARY"
+
+      - name: Golden, quick tier on Node
+        id: golden-node
+        if: ${{ !cancelled() && matrix.full && steps.install.outcome == 'success' }}
+        continue-on-error: ${{ matrix.golden-advisory == true }}
+        shell: bash
+        env:
+          RUNEX_GOLDEN_PLATFORM: ${{ matrix.golden-platform }}
+        run: bun scripts/golden.ts --tier quick --runtime node --fetch-images --out out/golden/quick-node --summary "$GITHUB_STEP_SUMMARY"
+
+      # Windows' and 24.04's trees are checked against the shared baselines; their pixels aren't
+      # yet (docs/testing.md: adding a platform's manifest). Advisory on Windows until its tree
+      # overrides are blessed from this step's artifact (video, symbol fallbacks differ there).
+      - name: Golden trees, quick tier (self-checked)
+        id: golden-trees
+        if: ${{ !cancelled() && !matrix.full && steps.install.outcome == 'success' }}
+        continue-on-error: ${{ runner.os == 'Windows' }}
+        shell: bash
+        run: bun scripts/golden.ts --tier quick --runtime bun --no-png --self-check --out out/golden/quick-trees --summary "$GITHUB_STEP_SUMMARY"
+
+      # RUNEX_WINDOWED=1: a window that doesn't open fails instead of skipping.
+      - name: Windowed (Xvfb)
+        if: ${{ !cancelled() && matrix.full && runner.os == 'Linux' && steps.install.outcome == 'success' }}
+        env:
+          RUNEX_WINDOWED: "1"
+        run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:windowed
+
+      - name: Windowed
+        if: ${{ !cancelled() && matrix.full && runner.os == 'macOS' && steps.install.outcome == 'success' }}
+        env:
+          RUNEX_WINDOWED: "1"
+        run: bun run test:windowed
+
+      # Advisory until it has passed for a while: whether the runner's desktop session can show a
+      # window is unknown.
+      - name: Windowed (advisory)
+        if: ${{ !cancelled() && runner.os == 'Windows' && steps.install.outcome == 'success' }}
+        continue-on-error: true
+        timeout-minutes: 10
+        shell: bash
+        env:
+          RUNEX_WINDOWED: "1"
+        run: bun run test:windowed
+
+      # bun build --compile, vite build and dev, bun --hot; npm pack, a consumer project, exports.
+      - name: Dev workflow and packaging
+        if: ${{ !cancelled() && matrix.full && steps.install.outcome == 'success' }}
+        run: bun run test:dev
+
+      # actual/expected/diff PNGs, tree diffs, report.json, summary.md, and proposed/ for
+      # `bun scripts/golden.ts --accept <dir>/proposed` (docs/testing.md: blessing from CI).
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() && (failure() || steps.golden-bun.outcome == 'failure' || steps.golden-node.outcome == 'failure' || steps.golden-trees.outcome == 'failure') }}
+        with:
+          name: golden-${{ matrix.name }}
+          path: out/golden
+          if-no-files-found: ignore
+          retention-days: 7
+
+  publish:
+    name: publish
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build, smoke]
+    runs-on: ubuntu-24.04-arm
+    permissions:
+      contents: read
+      # For npm trusted publishing (OIDC). The publish steps use the NPM_TOKEN secret: a granular
+      # access token with read and write access (and Bypass 2FA if the account needs 2FA to
+      # publish). npm ends direct publishing with granular tokens in January 2027. Trusted
+      # publishing replaces it and works from a private repo: once the packages exist, make this
+      # workflow (khromov/runex, ci.yml) each one's trusted publisher on npmjs.com, allowed to
+      # `npm publish`; point package.json's `repository` at this repo; change the dry-run check.
+      # npm makes no provenance for private repos. Once the repo is public, trusted publishing
+      # adds it by itself.
+      id-token: write
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - run: bun install --frozen-lockfile
+
+      - name: Check the tag matches package.json
+        run: |
+          version=$(node -p 'require("./package.json").version')
+          [ "v$version" = "$GITHUB_REF_NAME" ] || { echo "::error::tag $GITHUB_REF_NAME, package.json $version"; exit 1; }
+
+      # Without an NPM_TOKEN secret every publish below is a dry run. Test the secret itself:
+      # setup-node exports a placeholder NODE_AUTH_TOKEN when it has none.
+      - name: Dry run?
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "npm_config_dry_run=true" >> "$GITHUB_ENV"
+            echo "::notice::No NPM_TOKEN secret: publishing as a dry run"
+          fi
+
+      # bindings-<platform>/runex.<platform>.node, one folder each.
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: bindings-*
+          path: artifacts
+
+      # dist/, native.cjs and native.d.cts.
+      - uses: actions/download-artifact@v8
+        with:
+          name: js
+
+      - name: Move the addons into npm/<platform>
+        run: |
+          bun x napi artifacts
+          for dir in npm/*/; do cp LICENSE THIRD_PARTY_NOTICES.md "$dir"; done
+          ls -l npm/*/
+
+      # Sets each npm/<platform> package's version, publishes it (`npm publish`, a dry run when
+      # npm_config_dry_run is set) and writes the matching optionalDependencies into package.json.
+      - name: Publish the platform packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: bun x napi prepublish -t npm --no-gh-release
+
+      - name: Publish runex-js
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          node -p 'JSON.stringify(require("./package.json").optionalDependencies, null, 2)'
+          # prepack's step: native.d.cts imports the facade types from dist/ instead of `any`.
+          node scripts/fix-dts.mjs --publish
+          # --ignore-scripts: prepublishOnly would run `napi prepublish` a second time. It skips
+          # prepack too, hence the line above.
+          npm publish --ignore-scripts

@@ -1,0 +1,8 @@
+main
+  fills
+  gradients
+  borders
+  shadows
+  blur
+  clip
+  shapes

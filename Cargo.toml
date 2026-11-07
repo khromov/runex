@@ -1,0 +1,50 @@
+[package]
+name = "runex"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Node.js and Bun bindings for Rune, the GPU-rendered Rust UI framework"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi = { version = "3.16", default-features = false, features = ["napi8"] }
+napi-derive = "3.7"
+rune = { path = "vendor/rune/crates/rune" }
+rune-motion = { path = "vendor/rune/crates/rune-motion" }
+rune-kit = { path = "vendor/rune/crates/rune-kit", features = ["markdown", "mermaid"] }
+rune-fx = { path = "vendor/rune/crates/rune-fx" }
+rune-light = { path = "vendor/rune/crates/rune-light" }
+rune-knobs = { path = "vendor/rune/crates/rune-knobs", features = ["panel"] }
+rune-theme-opencode = { path = "vendor/rune/themes/opencode" }
+# Memory for the performance overlay (src/perf.rs); Rune's own process-stats crate.
+procwatch = { path = "vendor/rune/crates/procwatch" }
+# The fx compositor's own passes (src/manual/compose). Rune's version and features, so wgpu
+# compiles once.
+wgpu = { version = "~30.0.1", default-features = false, features = ["std", "parking_lot", "metal", "wgsl"] }
+bytemuck = { version = "1.25", features = ["derive"] }
+
+# The idle check that spares a pump when AppKit has nothing queued (`src/idle.rs`). Same
+# versions as Rune's, so they compile once.
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.5.2"
+objc2-foundation = { version = "0.2.2", features = ["NSDate", "NSRunLoop", "NSString"] }
+objc2-app-kit = { version = "0.2.2", features = ["NSApplication", "NSEvent", "NSResponder"] }
+
+[build-dependencies]
+napi-build = "2.6"
+
+# Rune's own crates stay fast in debug builds of the addon; only runex compiles unoptimized.
+[profile.dev.package."*"]
+opt-level = 2
+debug = false
+
+[profile.release]
+lto = "thin"
+codegen-units = 16
+strip = "symbols"
+
+[workspace]
+exclude = ["vendor"]

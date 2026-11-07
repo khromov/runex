@@ -1,0 +1,8 @@
+{"anim_t":0.6000000000000002,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0.6,"time_scale":1,"title":"Video player","viewport":[520,340],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,520,340],"role":"button","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"video","loopPhase":null,"opacity":1,"path":"#0/video","rect":[20,20.75,480,270],"role":"group","scale":1,"video":{"duration":null,"error":"video playback isn't supported on this platform yet","kind":"video","looping":true,"muted":true,"rate":1,"size":null,"state":"failed","time":0}}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[104.25,302.75,311.5,16.5],"role":"text","scale":1,"text":"video playback isn't supported on this platform yet"}
+{"a11y":"0","bounds":[0,0,520,340],"name":"Video player","role":"window"}
+{"a11y":"0/0","actions":["click"],"bounds":[0,0,520,340],"name":"video playback isn't supported on this platform yet","role":"button"}
+{"a11y":"0/0/0","bounds":[20,20.8,480,270],"key":"video","role":"image"}
+{"a11y":"0/0/1","bounds":[104.3,302.8,311.5,16.5],"name":"video playback isn't supported on this platform yet","role":"label"}

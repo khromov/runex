@@ -1,0 +1,13 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,32],"role":"group","scale":1}
+{"blur":0,"expanded":false,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"trigger","label":"Ghost trigger","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/trigger","rect":[24,24,672,32],"role":"button","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/trigger/#0","rect":[24,28,114,24],"role":"group","scale":1}
+{"blur":0,"color":"#a0a0a0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/trigger/#0/title","rect":[24,30.25,82,19.5],"role":"text","scale":1,"text":"Ghost trigger"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"arrow","loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/trigger/#0/arrow","rect":[114,28,24,24],"role":"group","scale":1}
+{"blur":0,"color":"#a0a0a0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/trigger/#0/arrow/#0","rect":[119,33,14,14],"role":"icon","scale":1}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","actions":["click","focus","expand"],"bounds":[24,24,672,32],"key":"trigger","name":"Ghost trigger","role":"button","states":["collapsed"]}

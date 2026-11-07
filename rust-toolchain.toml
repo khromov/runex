@@ -1,0 +1,4 @@
+[toolchain]
+# Matches vendor/rune/rust-toolchain.toml: Rune pins its compiler.
+channel = "1.99.1"
+components = ["clippy", "rustfmt"]

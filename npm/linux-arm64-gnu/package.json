@@ -1,0 +1,27 @@
+{
+  "name": "@runex-js/binding-linux-arm64-gnu",
+  "version": "0.1.0",
+  "cpu": [
+    "arm64"
+  ],
+  "main": "runex.linux-arm64-gnu.node",
+  "files": [
+    "runex.linux-arm64-gnu.node",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "description": "Node.js and Bun bindings for Rune, the GPU-rendered Rust UI framework",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 22.6",
+    "bun": ">= 1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "os": [
+    "linux"
+  ],
+  "libc": [
+    "glibc"
+  ]
+}

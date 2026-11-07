@@ -1,0 +1,29 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Launcher","viewport":[560,220],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,560,220],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"panel","loopPhase":null,"opacity":1,"path":"#0/panel","rect":[0,0,560,219],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/panel/#0","rect":[0,0,560,56],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/panel/#0/#0","rect":[18,15,8.5,26],"role":"text","scale":1,"text":"⌕"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":true,"inert":false,"key":"query","loopPhase":null,"opacity":1,"path":"#0/panel/#0/query","rect":[38.5,15,503.5,26],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#ffffff0e","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/panel/#1","rect":[0,56,560,1],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"results","loopPhase":null,"opacity":1,"path":"#0/panel/results","rect":[0,57,560,162],"role":"group","scale":1}
+{"blur":0,"fill":"#4392f7d9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"result-0","loopPhase":null,"opacity":1,"path":"#0/panel/results/result-0","rect":[6,63,548,36],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/panel/results/result-0/#0","rect":[18,72.75,60,16.5],"role":"text","scale":1,"text":"Groceries"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"result-1","loopPhase":null,"opacity":1,"path":"#0/panel/results/result-1","rect":[6,101,548,36],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/panel/results/result-1/#0","rect":[18,110.75,84,16.5],"role":"text","scale":1,"text":"Trip to Lisbon"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"result-2","loopPhase":null,"opacity":1,"path":"#0/panel/results/result-2","rect":[6,139,548,36],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/panel/results/result-2/#0","rect":[18,148.75,71.5,16.5],"role":"text","scale":1,"text":"Reading list"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"result-3","loopPhase":null,"opacity":1,"path":"#0/panel/results/result-3","rect":[6,177,548,36],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/panel/results/result-3/#0","rect":[18,186.75,33.5,16.5],"role":"text","scale":1,"text":"Ideas"}
+{"a11y":"0","bounds":[0,0,560,220],"name":"Launcher","role":"window"}
+{"a11y":"0/0","bounds":[0,0,560,219],"key":"panel","role":"group"}
+{"a11y":"0/0/0","bounds":[18,15,8.5,26],"name":"⌕","role":"label"}
+{"a11y":"0/0/1","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[38.5,15,503.5,26],"key":"query","placeholder":"Search notes","role":"text-input","states":["focused"],"value":""}
+{"a11y":"0/0/2","bounds":[0,57,560,162],"key":"results","role":"group"}
+{"a11y":"0/0/2/0","bounds":[6,63,548,36],"key":"result-0","role":"group"}
+{"a11y":"0/0/2/0/0","bounds":[18,72.8,60,16.5],"name":"Groceries","role":"label"}
+{"a11y":"0/0/2/1","bounds":[6,101,548,36],"key":"result-1","role":"group"}
+{"a11y":"0/0/2/1/0","bounds":[18,110.8,84,16.5],"name":"Trip to Lisbon","role":"label"}
+{"a11y":"0/0/2/2","bounds":[6,139,548,36],"key":"result-2","role":"group"}
+{"a11y":"0/0/2/2/0","bounds":[18,148.8,71.5,16.5],"name":"Reading list","role":"label"}
+{"a11y":"0/0/2/3","bounds":[6,177,548,36],"key":"result-3","role":"group"}
+{"a11y":"0/0/2/3/0","bounds":[18,186.8,33.5,16.5],"name":"Ideas","role":"label"}

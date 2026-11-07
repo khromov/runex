@@ -1,0 +1,7 @@
+{"events": [
+  {"t": 0.10, "type": "tap", "key": "todo-0/check"},
+  {"t": 0.50, "type": "tap", "key": "add"},
+  {"t": 0.90, "type": "tap", "x": 300, "y": 98},
+  {"t": 1.00, "type": "mark", "name": "removed"},
+  {"t": 1.60, "type": "mark", "name": "end"}
+]}

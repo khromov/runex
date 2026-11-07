@@ -1,0 +1,265 @@
+runex carries this fix to Rune until upstream (github.com/anomalyco/rune) has one. Upstream's
+dev branch is still without it at d12581bc (2026-11-07): crates/rune/src/gpu and rune-light are
+unchanged there since d03349e2, and no branch calls setThreadgroupMemoryLength.
+
+The bug. Rune's own Metal backend (the macOS default) never sets the length of a compute
+pipeline's threadgroup arguments (setThreadgroupMemoryLength:atIndex:). naga makes each
+var<workgroup> global an entry point uses one of those arguments, so the kernel gets 0 bytes.
+rune-light's field pass (field.wgsl: local_ids, local_n) is the only built-in kernel with such
+globals: on macOS its tiles see no occluders or emitters, so there are no soft shadows and no
+GI, and god rays aren't masked. RUNE_GPU_BACKEND=wgpu, Linux and Windows are unaffected:
+wgpu-hal sets them (metal/device.rs collects wg_memory_sizes, metal/command.rs sets each).
+
+The fix. shader.rs translate() collects the size of each workgroup global the entry point
+uses, in global order, as wgpu-hal does, and compute.rs sets each length, rounded up to 16
+bytes, when a pass sets the pipeline. A precompiled built-in function (builtin_native.metallib)
+has no naga IR at hand, and parsing its module is what precompiling saves. So its pipeline is
+made with reflection (MTLPipelineOptionBindingInfo), which reports its threadgroup arguments,
+and so is a passthrough metallib's (create_shader_module_passthrough), which wgpu-hal leaves
+unset. Reflection adds about 0.1 ms to a pipeline's creation (measured on an M3) and leaves
+builtin_table.rs and the metallibs as upstream generated them. compute_tests.rs checks a kernel
+with a var<workgroup> array and an atomic against wgpu's.
+
+To drop it: once upstream fixes this, delete this file and run `node scripts/prepare-rune.mjs
+--reapply` (it rebuilds vendor/rune from the pin and the patches left, so the update's preflight
+check passes), move vendor/rune to a revision with the fix (bun scripts/update-rune.ts <rev>),
+and check that `light verify` (cargo run --release -p
+rune-light --example light -- verify) gives max |gpu - cpu| = 0.0226 on the default backend.
+
+diff --git a/crates/rune/src/gpu/metal/builtin.rs b/crates/rune/src/gpu/metal/builtin.rs
+index a55029ed..18f12805 100644
+--- a/crates/rune/src/gpu/metal/builtin.rs
++++ b/crates/rune/src/gpu/metal/builtin.rs
+@@ -78,7 +78,7 @@ pub(super) fn find(shared: &Shared, key: &str) -> Option<Compiled> {
+     let library = shared.builtin.get_or_init(|| library(shared, LIBRARY).ok()).as_ref()?;
+     let function = function(library, name).ok()?;
+     let sized = sized.iter().map(|&(group, binding)| naga::ResourceBinding { group, binding }).collect();
+-    Some(Compiled { function, sized, workgroup })
++    Some(Compiled { function, sized, workgroup, threadgroup: None })
+ }
+ 
+ /// How many pipelines compiled at runtime because the table lacked them.
+diff --git a/crates/rune/src/gpu/metal/compute.rs b/crates/rune/src/gpu/metal/compute.rs
+index 566151a9..4dc1ea1b 100644
+--- a/crates/rune/src/gpu/metal/compute.rs
++++ b/crates/rune/src/gpu/metal/compute.rs
+@@ -1,13 +1,19 @@
+ //! Compute pipelines and passes. As in render passes, bind groups apply at the next dispatch
+ //! against the pipeline bound then, and the sizes buffer and immediates travel as inline bytes.
+-//! A pass's timestamp writes sample at its start and end.
++//! Setting a pipeline sets the length of each of its `threadgroup` arguments (its workgroup
++//! globals), as wgpu-hal does. A pass's timestamp writes sample at its start and end.
+ 
+ use std::ptr::NonNull;
+ use std::sync::Arc;
+ use std::sync::atomic::Ordering;
+ 
+-use objc2_metal::{MTLCommandBuffer, MTLCommandEncoder, MTLComputeCommandEncoder, MTLComputePassDescriptor, MTLComputePipelineState, MTLDevice, MTLSize};
+-use objc2_video::rc::autoreleasepool;
++use objc2_metal::{
++    MTLBinding, MTLBindingType, MTLCommandBuffer, MTLCommandEncoder, MTLComputeCommandEncoder, MTLComputePassDescriptor,
++    MTLComputePipelineState, MTLDevice, MTLPipelineOption, MTLSize,
++};
++use objc2_foundation_video::NSError;
++use objc2_video::msg_send;
++use objc2_video::rc::{Retained, autoreleasepool};
+ use parking_lot::Mutex;
+ use wgpu::custom::*;
+ use wgpu::naga;
+@@ -15,7 +21,7 @@ use wgpu::naga;
+ use super::derive::{self, Use};
+ use super::encode::Rec;
+ use super::layout::{COMPUTE, GroupRaw, LayoutRaw, PipelineLayout};
+-use super::shader::{Stage, compile};
++use super::shader::{Compiled, Stage, compile};
+ use super::store::SWAPS;
+ use super::submit::Keep;
+ use super::{Obj, Shared, query, send_sync};
+@@ -34,6 +40,8 @@ pub(crate) struct ComputeRaw {
+     /// The storage bindings whose sizes the shader reads, in order.
+     sized: Vec<naga::ResourceBinding>,
+     workgroup: MTLSize,
++    /// The length of each `threadgroup` argument, by index, rounded up to 16 bytes as Metal asks.
++    threadgroup: Vec<usize>,
+ }
+ send_sync!(ComputeRaw);
+ 
+@@ -46,9 +54,37 @@ pub(super) fn create(shared: &Shared, desc: &wgpu::ComputePipelineDescriptor<'_>
+     let stage = Stage { module: desc.module, entry: desc.entry_point, constants: desc.compilation_options.constants,
+         kind: naga::ShaderStage::Compute };
+     let cs = compile(shared, &stage, &layout.stages[COMPUTE], false).unwrap_or_else(|e| panic!("{label}: {e}"));
+-    let state = shared.device.newComputePipelineStateWithFunction_error(&cs.function).unwrap_or_else(|e| panic!("{label}: {}", e.localizedDescription()));
++    let (state, threadgroup) = pipeline_state(shared, &cs).unwrap_or_else(|e| panic!("{label}: {e}"));
+     let [x, y, z] = cs.workgroup.map(|n| n as usize);
+-    ComputePipeline { raw: Arc::new(ComputeRaw { state, layout, sized: cs.sized, workgroup: MTLSize { width: x, height: y, depth: z } }) }
++    ComputePipeline { raw: Arc::new(ComputeRaw { state, layout, sized: cs.sized, workgroup: MTLSize { width: x, height: y, depth: z }, threadgroup }) }
++}
++
++/// The pipeline state for `cs`, and the length of each of its `threadgroup` arguments. A function
++/// translated here knows their sizes from naga. A precompiled one doesn't, and parsing its module
++/// for them is what precompiling saves, so its pipeline is made with reflection, which says.
++fn pipeline_state(shared: &Shared, cs: &Compiled) -> Result<(Obj<dyn MTLComputePipelineState>, Vec<usize>), String> {
++    let error = |e: Retained<NSError>| e.localizedDescription().to_string();
++    if let Some(sizes) = &cs.threadgroup {
++        let state = shared.device.newComputePipelineStateWithFunction_error(&cs.function).map_err(error)?;
++        return Ok((state, sizes.iter().map(|&size| (size as usize).next_multiple_of(16)).collect()));
++    }
++    let mut reflection = None;
++    // SAFETY: the function is a compute kernel from a library Metal loaded; the reflection is
++    // written to a local.
++    let state = unsafe {
++        shared.device.newComputePipelineStateWithFunction_options_reflection_error(&cs.function, MTLPipelineOption::BindingInfo, Some(&mut reflection))
++    }.map_err(error)?;
++    let mut lengths = Vec::new();
++    let Some(reflection) = reflection else { return Ok((state, lengths)) };
++    for binding in reflection.bindings().iter() {
++        if binding.r#type() != MTLBindingType::ThreadgroupMemory { continue }
++        // SAFETY: a binding of type ThreadgroupMemory is an MTLThreadgroupBinding.
++        let size: usize = unsafe { msg_send![&*binding, threadgroupMemoryDataSize] };
++        let index = binding.index();
++        if lengths.len() <= index { lengths.resize(index + 1, 0); }
++        lengths[index] = size.next_multiple_of(16);
++    }
++    Ok((state, lengths))
+ }
+ 
+ impl ComputePipelineInterface for ComputePipeline {
+@@ -173,6 +209,10 @@ impl ComputePassInterface for MetalComputePass {
+             self.immediates_dirty = true;
+         }
+         self.raw.setComputePipelineState(&next.state);
++        for (index, &length) in next.threadgroup.iter().enumerate().filter(|&(_, &length)| length > 0) {
++            // SAFETY: the length the pipeline's argument at `index` needs, a multiple of 16.
++            unsafe { self.raw.setThreadgroupMemoryLength_atIndex(length, index) };
++        }
+         self.sizes_dirty = true;
+         self.keep.push(next.clone());
+         self.pipeline = Some(next.clone());
+diff --git a/crates/rune/src/gpu/metal/compute_tests.rs b/crates/rune/src/gpu/metal/compute_tests.rs
+index 3861bcc5..941b7feb 100644
+--- a/crates/rune/src/gpu/metal/compute_tests.rs
++++ b/crates/rune/src/gpu/metal/compute_tests.rs
+@@ -120,6 +120,53 @@ fn steps(device: &wgpu::Device, queue: &wgpu::Queue) -> (Vec<u8>, Vec<u8>) {
+     (read(device, &pixels), read(device, &totals))
+ }
+ 
++const GATHER: &str = r#"
++var<workgroup> unused: u32;
++var<workgroup> tile: array<u32, 64>;
++var<workgroup> hits: atomic<u32>;
++@group(0) @binding(0) var<storage, read_write> sums: array<u32>;
++
++@compute @workgroup_size(64)
++fn gather(@builtin(local_invocation_index) i: u32, @builtin(workgroup_id) group: vec3<u32>) {
++    tile[i] = i * (group.x + 1u);
++    atomicAdd(&hits, 1u);
++    workgroupBarrier();
++    if i == 0u {
++        var sum = 0u;
++        for (var k = 0u; k < 64u; k++) { sum += tile[k]; }
++        sums[group.x] = sum + atomicLoad(&hits) * 100000u;
++    }
++}
++
++@compute @workgroup_size(1)
++fn other() { unused = 1u; }
++"#;
++
++const TILES: u32 = 8;
++
++/// Each workgroup's sum over its `var<workgroup>` array, plus its atomic's count: memory the
++/// encoder sizes for each threadgroup argument (an unused workgroup global takes no index).
++fn gathers(device: &wgpu::Device, queue: &wgpu::Queue) -> Vec<u8> {
++    let module = device.create_shader_module(wgpu::ShaderModuleDescriptor { label: Some("gather"), source: wgpu::ShaderSource::Wgsl(GATHER.into()) });
++    let pipeline = device.create_compute_pipeline(&wgpu::ComputePipelineDescriptor {
++        label: Some("gather"), layout: None, module: &module, entry_point: Some("gather"), compilation_options: Default::default(), cache: None,
++    });
++    let sums = buffer(device, u64::from(TILES * 4), wgpu::BufferUsages::STORAGE | wgpu::BufferUsages::COPY_SRC);
++    let group = device.create_bind_group(&wgpu::BindGroupDescriptor { label: None, layout: &pipeline.get_bind_group_layout(0),
++        entries: &[wgpu::BindGroupEntry { binding: 0, resource: sums.as_entire_binding() }] });
++    let out = buffer(device, u64::from(TILES * 4), wgpu::BufferUsages::COPY_DST | wgpu::BufferUsages::MAP_READ);
++    let mut encoder = device.create_command_encoder(&Default::default());
++    {
++        let mut pass = encoder.begin_compute_pass(&Default::default());
++        pass.set_pipeline(&pipeline);
++        pass.set_bind_group(0, &group, &[]);
++        pass.dispatch_workgroups(TILES, 1, 1);
++    }
++    encoder.copy_buffer_to_buffer(&sums, 0, &out, 0, u64::from(TILES * 4));
++    queue.submit([encoder.finish()]);
++    read(device, &out)
++}
++
+ /// `f32` to IEEE half bits, for values in [0, 1].
+ fn half_bits(v: f32) -> u16 {
+     if v == 0.0 { return 0 }
+@@ -140,6 +187,10 @@ fn compute_matches_wgpus_bit_for_bit() {
+     assert!(pixels.iter().any(|&b| b != 0), "the second dispatch stored");
+     assert!(pixels == want_pixels, "differs from wgpu's at {:?}", pixels.iter().zip(&want_pixels).position(|(a, b)| a != b));
+     assert_eq!(totals, bytemuck::cast_slice::<u8, u32>(&want_totals));
++    let (sums, want_sums) = (gathers(&device, &queue), gathers(&wgpu_device, &wgpu_queue));
++    let expected: Vec<u32> = (0..TILES).map(|g| (0..64).map(|i| i * (g + 1)).sum::<u32>() + 64 * 100_000).collect();
++    assert_eq!(bytemuck::cast_slice::<u8, u32>(&want_sums), expected, "wgpu's workgroup sums");
++    assert_eq!(bytemuck::cast_slice::<u8, u32>(&sums), expected, "workgroup memory holds each threadgroup's array and atomic");
+ }
+ 
+ /// wgpu promises a texture nothing wrote reads as zero, as a fill's backdrop does.
+diff --git a/crates/rune/src/gpu/metal/shader.rs b/crates/rune/src/gpu/metal/shader.rs
+index 39f21b93..9ebb3415 100644
+--- a/crates/rune/src/gpu/metal/shader.rs
++++ b/crates/rune/src/gpu/metal/shader.rs
+@@ -51,6 +51,9 @@ pub(super) struct Compiled {
+     pub(super) sized: Vec<naga::ResourceBinding>,
+     /// Threads per workgroup, for a compute entry point.
+     pub(super) workgroup: [u32; 3],
++    /// The byte size of each `threadgroup` argument, by index, for a compute entry point
++    /// translated here. `None` for a precompiled function: its pipeline's reflection says.
++    pub(super) threadgroup: Option<Vec<u32>>,
+ }
+ 
+ /// One stage of a pipeline, as `compile` needs it.
+@@ -74,6 +77,7 @@ pub(super) struct Msl {
+     pub(super) function: String,
+     pub(super) sized: Vec<naga::ResourceBinding>,
+     pub(super) workgroup: [u32; 3],
++    pub(super) threadgroup: Vec<u32>,
+ }
+ 
+ #[link(name = "System")]
+@@ -166,7 +170,7 @@ pub(super) fn compile(shared: &Shared, stage: &Stage<'_>, resources: &msl::Entry
+             let library = shared.device.newLibraryWithSource_options_error(&NSString::from_str(&msl.source), Some(&compile))
+                 .map_err(|e| format!("{}: Metal: {}", msl.function, e.localizedDescription()))?;
+             let function = function(&library, &msl.function)?;
+-            Ok(Compiled { function, sized: msl.sized, workgroup: msl.workgroup })
++            Ok(Compiled { function, sized: msl.sized, workgroup: msl.workgroup, threadgroup: Some(msl.threadgroup) })
+         }
+         ShaderModule::Library { library, entries } => {
+             let library = library.as_ref().map_err(|e| format!("metallib: {e}"))?;
+@@ -180,7 +184,7 @@ pub(super) fn compile(shared: &Shared, stage: &Stage<'_>, resources: &msl::Entry
+                     _ => return Err(format!("no single {:?} entry point", stage.kind)),
+                 },
+             };
+-            Ok(Compiled { function: function(library, name)?, sized: Vec::new(), workgroup: *workgroup })
++            Ok(Compiled { function: function(library, name)?, sized: Vec::new(), workgroup: *workgroup, threadgroup: None })
+         }
+     }
+ }
+@@ -252,6 +256,16 @@ pub(super) fn translate(ir: &Ir, point: &Point<'_>, resources: &msl::EntryPointR
+         .filter(|(_, g)| module.types[g.ty].inner.needs_host_buffer_byte_size(&module.types))
+         .filter_map(|(_, g)| g.binding)
+         .collect();
+-    let workgroup = module.entry_points.iter().find(|e| e.stage == point.kind && e.name == name).map_or([1; 3], |e| e.workgroup_size);
+-    Ok(Msl { source, function, sized, workgroup })
++    let entry = module.entry_points.iter().position(|e| e.stage == point.kind && e.name == name);
++    let workgroup = entry.map_or([1; 3], |i| module.entry_points[i].workgroup_size);
++    // naga makes each workgroup global the entry point uses a `threadgroup` argument, at indices
++    // 0.. in global order, whose size the encoder must set (wgpu-hal's `wg_memory_sizes`).
++    let threadgroup = entry.map_or_else(Vec::new, |i| {
++        let uses = info.get_entry_point(i);
++        module.global_variables.iter()
++            .filter(|&(handle, g)| g.space == naga::AddressSpace::WorkGroup && !uses[handle].is_empty())
++            .map(|(_, g)| module.types[g.ty].inner.size(module.to_ctx()))
++            .collect()
++    });
++    Ok(Msl { source, function, sized, workgroup, threadgroup })
+ }

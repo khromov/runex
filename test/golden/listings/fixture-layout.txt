@@ -1,0 +1,7 @@
+main
+  flex
+  grid
+  wrap
+  min-max
+  absolute
+  scroll

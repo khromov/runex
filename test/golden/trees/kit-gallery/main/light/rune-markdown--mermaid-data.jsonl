@@ -1,0 +1,95 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,560,1235.57],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,560,1235.57],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0","rect":[24,24,560,379.7],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","label":"XY chart","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card","rect":[24,24,560,379.7],"role":"figure","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/title","rect":[237.75,40,132.5,20],"role":"text","scale":1,"text":"Frame time by build"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram","rect":[40,72,528,315.7],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fit","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit","rect":[40,72,528,315.7],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"shape","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/shape","rect":[41,76,527,290.23],"role":"image","scale":1,"target":[40,72,527,290.22]}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t0","rect":[53.98,73,24.98,16],"role":"text","scale":0.9991000294685364,"target":[40,72,25,16],"text":"p50"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t1","rect":[106.94,73,24.98,16],"role":"text","scale":0.9991000294685364,"target":[40,72,25,16],"text":"p99"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t2","rect":[40,100.98,72.93,16],"role":"text","scale":0.9991000294685364,"target":[40,72,73,16],"text":"Milliseconds"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t3","rect":[48.99,356.73,10,16],"role":"text","scale":0.9991000294685364,"target":[40,72,10,16],"text":"0"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t4","rect":[48.99,296.79,10,16],"role":"text","scale":0.9991000294685364,"target":[40,72,10,16],"text":"5"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t5","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t5","rect":[44,236.84,15,16],"role":"text","scale":0.9991000294685364,"target":[40,72,15,16],"text":"10"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t6","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t6","rect":[45,176.9,14,16],"role":"text","scale":0.9991000294685364,"target":[40,72,14,16],"text":"15"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t7","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t7","rect":[42,116.96,16.98,16],"role":"text","scale":0.9991000294685364,"target":[40,72,17,16],"text":"20"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t8","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t8","rect":[109.06,370.72,38.96,16],"role":"text","scale":0.9991000294685364,"target":[40,72,39,16],"text":"debug"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t9","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t9","rect":[231.7,370.72,43.96,16],"role":"text","scale":0.9991000294685364,"target":[40,72,44,16],"text":"release"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t10","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t10","rect":[365.81,370.72,25.98,16],"role":"text","scale":0.9991000294685364,"target":[40,72,26,16],"text":"perf"}
+{"blur":0,"color":"#5c5c5cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t11","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram/fit/t11","rect":[485.95,370.72,35.97,16],"role":"text","scale":0.9991000294685364,"target":[40,72,36,16],"text":"wasm"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1","rect":[24,427.7,560,334],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","label":"Sankey diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card","rect":[24,427.7,560,334],"role":"figure","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram","rect":[40,443.7,528,302],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fit","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit","rect":[40,443.7,528,302],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"shape","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/shape","rect":[41,444.7,526,300],"role":"image","scale":1,"target":[40,443.7,526,300]}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/t0","rect":[56,586.7,49,16],"role":"text","scale":1,"target":[40,443.7,49,16],"text":"Input 65"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/t1","rect":[228,527.63,59,16],"role":"text","scale":1,"target":[40,443.7,59,16],"text":"Layout 40"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/t2","rect":[228,677.63,45,16],"role":"text","scale":1,"target":[40,443.7,45,16],"text":"Text 25"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/t3","rect":[400,586.7,48,16],"role":"text","scale":1,"target":[40,443.7,48,16],"text":"Paint 57"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/t4","rect":[518,453.69,34,16],"role":"text","scale":1,"target":[40,443.7,34,16],"text":"Idle 8"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t5","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/t5","rect":[506,588.83,46,16],"role":"text","scale":1,"target":[40,443.7,46,16],"text":"GPU 50"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t6","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/t6","rect":[503,721.84,49,16],"role":"text","scale":1,"target":[40,443.7,49,16],"text":"Cache 7"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2","rect":[24,785.7,560,473.87],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","label":"Block diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card","rect":[24,785.7,560,473.87],"role":"figure","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram","rect":[153,801.7,302,441.87],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fit","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit","rect":[153,801.7,302,441.87],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"shape","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/shape","rect":[153,801.7,302,441.87],"role":"image","scale":1}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t0","rect":[284.2,965.07,34,16],"role":"text","scale":1,"target":[153,801.7,34,16],"text":"reads"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t1","rect":[290.5,814.2,27,18],"role":"text","scale":1,"target":[153,801.7,27,18],"text":"App"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t2","rect":[181.5,906.63,39,18],"role":"text","scale":1,"target":[153,801.7,39,18],"text":"Views"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t3","rect":[287,911.97,34,18],"role":"text","scale":1,"target":[153,801.7,34,18],"text":"State"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t4","rect":[384.5,906.63,45,18],"role":"text","scale":1,"target":[153,801.7,45,18],"text":"Motion"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t5","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t5","rect":[184,1009.07,44,18],"role":"text","scale":1,"target":[153,801.7,44,18],"text":"Layout"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t6","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t6","rect":[284.5,1009.07,29,18],"role":"text","scale":1,"target":[153,801.7,29,18],"text":"Text"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t7","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t7","rect":[388.5,1009.07,37,18],"role":"text","scale":1,"target":[153,801.7,37,18],"text":"wgpu"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t8","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t8","rect":[281.5,1116.07,45,18],"role":"text","scale":1,"target":[153,801.7,45,18],"text":"frames"}
+{"blur":0,"color":"#161616ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t9","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/card/diagram/fit/t9","rect":[281,1213.07,46,18],"role":"text","scale":1,"target":[153,801.7,46,18],"text":"Screen"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,560,379.7],"key":"b0","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[24,24,560,379.7],"description":"xychart-beta\n    title \"Frame time by build\"\n    x-axis [debug, release, perf, wasm]\n    y-axis \"Milliseconds\" 0 --> 20\n    bar \"p50\" [16.2, 6.1, 5.8, 9.4]\n    line \"p99\" [19.1, 8.3, 7.9, 13.2]","key":"card","name":"XY chart","role":"figure"}
+{"a11y":"0/0/0/0/0/0","bounds":[237.8,40,132.5,20],"key":"title","name":"Frame time by build","role":"label"}
+{"a11y":"0/0/0/0/0/1","bounds":[40,72,528,315.7],"key":"diagram","role":"group"}
+{"a11y":"0/0/0/0/0/1/0","bounds":[40,72,528,315.7],"key":"fit","role":"group"}
+{"a11y":"0/0/0/0/0/1/0/0","bounds":[54,73,25,16],"key":"t0","name":"p50","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/1","bounds":[106.9,73,25,16],"key":"t1","name":"p99","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/2","bounds":[40,101,72.9,16],"key":"t2","name":"Milliseconds","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/3","bounds":[49,356.7,10,16],"key":"t3","name":"0","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/4","bounds":[49,296.8,10,16],"key":"t4","name":"5","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/5","bounds":[44,236.8,15,16],"key":"t5","name":"10","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/6","bounds":[45,176.9,14,16],"key":"t6","name":"15","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/7","bounds":[42,117,17,16],"key":"t7","name":"20","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/8","bounds":[109.1,370.7,39,16],"key":"t8","name":"debug","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/9","bounds":[231.7,370.7,44,16],"key":"t9","name":"release","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/10","bounds":[365.8,370.7,26,16],"key":"t10","name":"perf","role":"label"}
+{"a11y":"0/0/0/0/0/1/0/11","bounds":[486,370.7,36,16],"key":"t11","name":"wasm","role":"label"}
+{"a11y":"0/0/0/1","bounds":[24,427.7,560,334],"key":"b1","role":"group"}
+{"a11y":"0/0/0/1/0","bounds":[24,427.7,560,334],"description":"sankey-beta\nInput,Layout,40\nInput,Text,25\nLayout,Paint,32\nLayout,Idle,8\nText,Paint,25\nPaint,GPU,50\nPaint,Cache,7","key":"card","name":"Sankey diagram","role":"figure"}
+{"a11y":"0/0/0/1/0/0","bounds":[40,443.7,528,302],"key":"diagram","role":"group"}
+{"a11y":"0/0/0/1/0/0/0","bounds":[40,443.7,528,302],"key":"fit","role":"group"}
+{"a11y":"0/0/0/1/0/0/0/0","bounds":[56,586.7,49,16],"key":"t0","name":"Input 65","role":"label"}
+{"a11y":"0/0/0/1/0/0/0/1","bounds":[228,527.6,59,16],"key":"t1","name":"Layout 40","role":"label"}
+{"a11y":"0/0/0/1/0/0/0/2","bounds":[228,677.6,45,16],"key":"t2","name":"Text 25","role":"label"}
+{"a11y":"0/0/0/1/0/0/0/3","bounds":[400,586.7,48,16],"key":"t3","name":"Paint 57","role":"label"}
+{"a11y":"0/0/0/1/0/0/0/4","bounds":[518,453.7,34,16],"key":"t4","name":"Idle 8","role":"label"}
+{"a11y":"0/0/0/1/0/0/0/5","bounds":[506,588.8,46,16],"key":"t5","name":"GPU 50","role":"label"}
+{"a11y":"0/0/0/1/0/0/0/6","bounds":[503,721.8,49,16],"key":"t6","name":"Cache 7","role":"label"}
+{"a11y":"0/0/0/2","bounds":[24,785.7,560,473.9],"key":"b2","role":"group"}
+{"a11y":"0/0/0/2/0","bounds":[24,785.7,560,473.9],"description":"block-beta\n    columns 3\n    app[\"App\"]:3\n    view[\"Views\"] state[(\"State\")] motion([\"Motion\"])\n    block:core:2\n        columns 2\n        layout[\"Layout\"] text[\"Text\"]\n    end\n    gpu{{\"wgpu\"}}\n    arrow<[\"frames\"]>(down):3\n    screen[\"Screen\"]:3\n    view --> layout\n    state -- \"reads\" --> text","key":"card","name":"Block diagram","role":"figure"}
+{"a11y":"0/0/0/2/0/0","bounds":[153,801.7,302,441.9],"key":"diagram","role":"group"}
+{"a11y":"0/0/0/2/0/0/0","bounds":[153,801.7,302,441.9],"key":"fit","role":"group"}
+{"a11y":"0/0/0/2/0/0/0/0","bounds":[284.2,965.1,34,16],"key":"t0","name":"reads","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/1","bounds":[290.5,814.2,27,18],"key":"t1","name":"App","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/2","bounds":[181.5,906.6,39,18],"key":"t2","name":"Views","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/3","bounds":[287,912,34,18],"key":"t3","name":"State","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/4","bounds":[384.5,906.6,45,18],"key":"t4","name":"Motion","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/5","bounds":[184,1009.1,44,18],"key":"t5","name":"Layout","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/6","bounds":[284.5,1009.1,29,18],"key":"t6","name":"Text","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/7","bounds":[388.5,1009.1,37,18],"key":"t7","name":"wgpu","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/8","bounds":[281.5,1116.1,45,18],"key":"t8","name":"frames","role":"label"}
+{"a11y":"0/0/0/2/0/0/0/9","bounds":[281,1213.1,46,18],"key":"t9","name":"Screen","role":"label"}

@@ -1,0 +1,27 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden text","viewport":[720,360],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,720,360],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"root/stage","rect":[20,20,680,233],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0","rect":[20,20,265.5,233],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0","rect":[20,20,265.5,20],"role":"text","scale":1,"text":"Weight 100: The quick brown fox"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1","rect":[20,44,265.5,20],"role":"text","scale":1,"text":"Weight 300: The quick brown fox"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2","rect":[20,68,265.5,20],"role":"text","scale":1,"text":"Weight 400: The quick brown fox"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3","rect":[20,92,265.5,20],"role":"text","scale":1,"text":"Weight 500: The quick brown fox"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#4","rect":[20,116,265.5,20],"role":"text","scale":1,"text":"Weight 650: The quick brown fox"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#5","rect":[20,140,265.5,20],"role":"text","scale":1,"text":"Weight 800: The quick brown fox"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#6","rect":[20,164,265.5,20],"role":"text","scale":1,"text":"Weight 900: The quick brown fox"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#7","rect":[20,188,265.5,19],"role":"text","scale":1,"text":"Tracking 0.1 em, 15 pt"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#8","rect":[20,211,265.5,19],"role":"text","scale":1,"text":"Italic 15 pt"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#9","rect":[20,234,265.5,19],"role":"text","scale":1,"text":"Mono 15 pt: 0123456789 {}[]()"}
+{"a11y":"0","bounds":[0,0,720,360],"name":"Golden text","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,360],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[20,20,680,233],"key":"stage","role":"group"}
+{"a11y":"0/0/0/0","bounds":[20,20,265.5,20],"name":"Weight 100: The quick brown fox","role":"label"}
+{"a11y":"0/0/0/1","bounds":[20,44,265.5,20],"name":"Weight 300: The quick brown fox","role":"label"}
+{"a11y":"0/0/0/2","bounds":[20,68,265.5,20],"name":"Weight 400: The quick brown fox","role":"label"}
+{"a11y":"0/0/0/3","bounds":[20,92,265.5,20],"name":"Weight 500: The quick brown fox","role":"label"}
+{"a11y":"0/0/0/4","bounds":[20,116,265.5,20],"name":"Weight 650: The quick brown fox","role":"label"}
+{"a11y":"0/0/0/5","bounds":[20,140,265.5,20],"name":"Weight 800: The quick brown fox","role":"label"}
+{"a11y":"0/0/0/6","bounds":[20,164,265.5,20],"name":"Weight 900: The quick brown fox","role":"label"}
+{"a11y":"0/0/0/7","bounds":[20,188,265.5,19],"name":"Tracking 0.1 em, 15 pt","role":"label"}
+{"a11y":"0/0/0/8","bounds":[20,211,265.5,19],"name":"Italic 15 pt","role":"label"}
+{"a11y":"0/0/0/9","bounds":[20,234,265.5,19],"name":"Mono 15 pt: 0123456789 {}[]()","role":"label"}

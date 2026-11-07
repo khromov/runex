@@ -1,0 +1,41 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Showreel","viewport":[960,540],"warnings":[]}
+{"blur":0,"fill":"#09090bff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,960,540],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"greet","loopPhase":null,"opacity":1,"path":"#0/greet","rect":[0,150,960,37.5],"role":"group","scale":1}
+{"blur":0,"color":"#ededefff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/greet/#0","rect":[316,150,328,37.5],"role":"text","scale":1,"text":"What should we build?"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"chips","loopPhase":null,"opacity":1,"path":"#0/chips","rect":[0,364,960,32],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0d","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/chips/#0","rect":[274.75,364,130.5,32],"role":"group","scale":1}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/chips/#0/#0","rect":[288.75,371.75,102.5,16.5],"role":"text","scale":1,"text":"A springy toggle"}
+{"blur":0,"fill":"#ffffff0d","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/chips/#1","rect":[415.25,364,147.5,32],"role":"group","scale":1}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/chips/#1/#0","rect":[429.25,371.75,119.5,16.5],"role":"text","scale":1,"text":"Liquid metal button"}
+{"blur":0,"fill":"#ffffff0d","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/chips/#2","rect":[572.75,364,112.5,32],"role":"group","scale":1}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/chips/#2/#0","rect":[586.75,371.75,84.5,16.5],"role":"text","scale":1,"text":"Glass sidebar"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"aura","loopPhase":null,"opacity":1,"path":"#0/aura","rect":[160,214,640,128],"role":"group","scale":1}
+{"blur":0,"fill":"#131317ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"composer","loopPhase":null,"opacity":1,"path":"#0/composer","rect":[160,214,640,128],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#0","rect":[180,234,600,22],"role":"group","scale":1}
+{"blur":0,"color":"#5f5f68ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#0/#0","rect":[180,234.25,119,21.5],"role":"text","scale":1,"text":"Ask anything…"}
+{"blur":0,"fill":"#9fd4ffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#0/#1","rect":[300,234,2,22],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#1","rect":[180,256,600,30],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2","rect":[180,286,600,36],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#0","rect":[180,289,66,30],"role":"group","scale":1}
+{"blur":0,"fill":"#54b3fdff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#0/#0","rect":[192,301,6,6],"role":"group","scale":1}
+{"blur":0,"color":"#c9c9d0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#0/#1","rect":[204,296,30,16],"role":"text","scale":1,"text":"Build"}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#1","rect":[254,289,54,30],"role":"group","scale":1}
+{"blur":0,"color":"#c9c9d0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#1/#0","rect":[266,296,30,16],"role":"text","scale":1,"text":"opus"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#2","rect":[316,304,420,0],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff26","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#3","rect":[744,286,36,36],"role":"group","scale":1}
+{"blur":0,"color":"#0b0b0dff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/composer/#2/#3/#0","rect":[754,292.75,16,22.5],"role":"text","scale":1,"text":"↑"}
+{"blur":0,"fill":"#f4f4f6eb","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"pointer","loopPhase":null,"opacity":1,"path":"#0/pointer","rect":[751,461,18,18],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,960,540],"name":"Showreel","role":"window"}
+{"a11y":"0/0","bounds":[0,150,960,37.5],"key":"greet","role":"group"}
+{"a11y":"0/0/0","bounds":[316,150,328,37.5],"name":"What should we build?","role":"label"}
+{"a11y":"0/1","bounds":[0,364,960,32],"key":"chips","role":"group"}
+{"a11y":"0/1/0","bounds":[288.8,371.8,102.5,16.5],"name":"A springy toggle","role":"label"}
+{"a11y":"0/1/1","bounds":[429.3,371.8,119.5,16.5],"name":"Liquid metal button","role":"label"}
+{"a11y":"0/1/2","bounds":[586.8,371.8,84.5,16.5],"name":"Glass sidebar","role":"label"}
+{"a11y":"0/2","bounds":[160,214,640,128],"key":"aura","role":"group"}
+{"a11y":"0/3","bounds":[160,214,640,128],"key":"composer","role":"group"}
+{"a11y":"0/3/0","bounds":[180,234.3,119,21.5],"name":"Ask anything…","role":"label"}
+{"a11y":"0/3/1","bounds":[204,296,30,16],"name":"Build","role":"label"}
+{"a11y":"0/3/2","bounds":[266,296,30,16],"name":"opus","role":"label"}
+{"a11y":"0/3/3","bounds":[754,292.8,16,22.5],"name":"↑","role":"label"}
+{"a11y":"0/4","bounds":[751,461,18,18],"key":"pointer","role":"group"}

@@ -1,0 +1,166 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Settings","viewport":[960,660],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,960,660],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"window","loopPhase":null,"opacity":1,"path":"kit-root/window","rect":[0,0,960,660],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sidebar","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar","rect":[0,0,232,660],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search","rect":[12,20,208,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value","rect":[12,20,200,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"leading","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value/leading","rect":[12,26,24,16],"role":"group","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value/leading/#0","rect":[20,26,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"input","label":"Search","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value/input","rect":[42,26,170,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav","rect":[12,64,208,180],"role":"group","scale":1}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-sel","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-sel","rect":[12,64,208,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-general","label":"General","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-general","rect":[12,64,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#dbdbdbff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-general/icon","rect":[20,70,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-general/label","rect":[44,68,48,20],"role":"text","scale":1,"text":"General"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-appearance","label":"Appearance","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-appearance","rect":[12,94,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-appearance/icon","rect":[20,100,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-appearance/label","rect":[44,98,75,20],"role":"text","scale":1,"text":"Appearance"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-network","label":"Network","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-network","rect":[12,124,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-network/icon","rect":[20,130,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-network/label","rect":[44,128,52.5,20],"role":"text","scale":1,"text":"Network"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-security","label":"Security","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-security","rect":[12,154,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-security/icon","rect":[20,160,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-security/label","rect":[44,158,51.5,20],"role":"text","scale":1,"text":"Security"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-accessibility","label":"Accessibility","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-accessibility","rect":[12,184,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-accessibility/icon","rect":[20,190,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-accessibility/label","rect":[44,188,78,20],"role":"text","scale":1,"text":"Accessibility"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-developer","label":"Developer","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-developer","rect":[12,214,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-developer/icon","rect":[20,220,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-developer/label","rect":[44,218,63,20],"role":"text","scale":1,"text":"Developer"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/#2","rect":[12,260,208,344],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"restore","label":"Restore Defaults","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/restore","rect":[12,620,208,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/restore/label","rect":[64.75,622,102.5,20],"role":"text","scale":1,"text":"Restore Defaults"}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sidebar-edge","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar-edge","rect":[232,0,0.5,660],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"content","loopPhase":null,"opacity":1,"path":"kit-root/window/content","rect":[232.5,0,727.5,660],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"page-general","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general","rect":[232.5,0,727.5,576],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/header","rect":[272.5,32,647.5,44],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/header/title","rect":[272.5,32,647.5,22],"role":"text","scale":1,"text":"General"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/header/desc","rect":[272.5,56,647.5,20],"role":"text","scale":1,"text":"Startup, search and updates."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"startup","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup","rect":[272.5,100,647.5,164.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/head","rect":[272.5,100,647.5,24],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/head/title","rect":[272.5,104,46.5,16],"role":"text","scale":1,"text":"Startup"}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"startup-card","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card","rect":[272.5,134,647.5,130.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rows","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows","rect":[288.5,134,615.5,130.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"login","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/login","rect":[288.5,134,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/login/copy","rect":[288.5,146,563.5,41],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/login/copy/title","rect":[288.5,146,563.5,20],"role":"text","scale":1,"text":"Launch at login"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/login/copy/desc","rect":[288.5,167,563.5,20],"role":"text","scale":1,"text":"Open OpenCode when you log in."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"login-switch","label":"Launch at login","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/login/login-switch","rect":[868,158.5,36,16],"role":"switch","scale":1}
+{"blur":0,"fill":"#3b5cf6ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/login/login-switch/control","rect":[868,158.5,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#eeeeeeff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/login/login-switch/control/thumb","rect":[882,159.5,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep0","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/sep0","rect":[288.5,199,615.5,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fast","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/fast","rect":[288.5,199.5,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/fast/copy","rect":[288.5,211.5,563.5,41],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/fast/copy/title","rect":[288.5,211.5,563.5,20],"role":"text","scale":1,"text":"Lightning-fast startup"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/fast/copy/desc","rect":[288.5,232.5,563.5,20],"role":"text","scale":1,"text":"Skip the splash screen and open instantly."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"fast-switch","label":"Lightning-fast startup","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/fast/fast-switch","rect":[868,224,36,16],"role":"switch","scale":1}
+{"blur":0,"fill":"#5c5c5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/fast/fast-switch/control","rect":[868,224,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#f2f2f2ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/startup/startup-card/rows/fast/fast-switch/control/thumb","rect":[869,225,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search","rect":[272.5,288.5,647.5,164.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/head","rect":[272.5,288.5,647.5,24],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/head/title","rect":[272.5,292.5,44,16],"role":"text","scale":1,"text":"Search"}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search-card","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card","rect":[272.5,322.5,647.5,130.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rows","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows","rect":[288.5,322.5,615.5,130.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"spotlight","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/spotlight","rect":[288.5,322.5,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/spotlight/copy","rect":[288.5,334.5,563.5,41],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/spotlight/copy/title","rect":[288.5,334.5,563.5,20],"role":"text","scale":1,"text":"Show in Spotlight"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/spotlight/copy/desc","rect":[288.5,355.5,563.5,20],"role":"text","scale":1,"text":"Let Spotlight find your sessions and settings."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"spotlight-switch","label":"Show in Spotlight","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/spotlight/spotlight-switch","rect":[868,347,36,16],"role":"switch","scale":1}
+{"blur":0,"fill":"#5c5c5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/spotlight/spotlight-switch/control","rect":[868,347,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#f2f2f2ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/spotlight/spotlight-switch/control/thumb","rect":[869,348,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep0","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/sep0","rect":[288.5,387.5,615.5,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"language","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/language","rect":[288.5,388,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/language/copy","rect":[288.5,400,522,41],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/language/copy/title","rect":[288.5,400,522,20],"role":"text","scale":1,"text":"Language"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/language/copy/desc","rect":[288.5,421,522,20],"role":"text","scale":1,"text":"Used for menus and messages."}
+{"blur":0,"expanded":false,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"lang-trigger","label":"","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/language/lang-trigger","rect":[826.5,408.5,77.5,24],"role":"combobox","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/language/lang-trigger/value","rect":[834.5,412.5,45.5,16],"role":"text","scale":1,"text":"English"}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"chevron","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/search/search-card/rows/language/lang-trigger/chevron","rect":[884,412.5,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"updates","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates","rect":[272.5,477,647.5,99],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/head","rect":[272.5,477,647.5,24],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/head/title","rect":[272.5,481,52.5,16],"role":"text","scale":1,"text":"Updates"}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"updates-card","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card","rect":[272.5,511,647.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rows","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows","rect":[288.5,511,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"updates","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows/updates","rect":[288.5,511,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows/updates/copy","rect":[288.5,523,563.5,41],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows/updates/copy/title","rect":[288.5,523,563.5,20],"role":"text","scale":1,"text":"Automatic updates"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows/updates/copy/desc","rect":[288.5,544,563.5,20],"role":"text","scale":1,"text":"Download and install updates in the background."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"updates-switch","label":"Automatic updates","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows/updates/updates-switch","rect":[868,535.5,36,16],"role":"switch","scale":1}
+{"blur":0,"fill":"#3b5cf6ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows/updates/updates-switch/control","rect":[868,535.5,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#eeeeeeff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-general/updates/updates-card/rows/updates/updates-switch/control/thumb","rect":[882,536.5,21,14],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,960,660],"name":"Settings","role":"window"}
+{"a11y":"0/0","bounds":[0,0,960,660],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,960,660],"key":"window","role":"group"}
+{"a11y":"0/0/0/0","bounds":[0,0,232,660],"key":"sidebar","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[12,20,208,28],"key":"search","role":"group"}
+{"a11y":"0/0/0/0/0/0","bounds":[12,20,200,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/0/0/0/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[42,26,170,16],"key":"input","name":"Search","placeholder":"Search","role":"text-input","value":""}
+{"a11y":"0/0/0/0/1","bounds":[12,64,208,180],"key":"nav","role":"group"}
+{"a11y":"0/0/0/0/1/0","bounds":[12,64,208,28],"key":"nav-sel","role":"group"}
+{"a11y":"0/0/0/0/1/1","actions":["click"],"bounds":[12,64,208,28],"key":"nav-general","name":"General","role":"tab"}
+{"a11y":"0/0/0/0/1/1/0","bounds":[20,70,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/1/1","bounds":[44,68,48,20],"key":"label","name":"General","role":"label"}
+{"a11y":"0/0/0/0/1/2","actions":["click"],"bounds":[12,94,208,28],"key":"nav-appearance","name":"Appearance","role":"tab"}
+{"a11y":"0/0/0/0/1/2/0","bounds":[20,100,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/2/1","bounds":[44,98,75,20],"key":"label","name":"Appearance","role":"label"}
+{"a11y":"0/0/0/0/1/3","actions":["click"],"bounds":[12,124,208,28],"key":"nav-network","name":"Network","role":"tab"}
+{"a11y":"0/0/0/0/1/3/0","bounds":[20,130,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/3/1","bounds":[44,128,52.5,20],"key":"label","name":"Network","role":"label"}
+{"a11y":"0/0/0/0/1/4","actions":["click"],"bounds":[12,154,208,28],"key":"nav-security","name":"Security","role":"tab"}
+{"a11y":"0/0/0/0/1/4/0","bounds":[20,160,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/4/1","bounds":[44,158,51.5,20],"key":"label","name":"Security","role":"label"}
+{"a11y":"0/0/0/0/1/5","actions":["click"],"bounds":[12,184,208,28],"key":"nav-accessibility","name":"Accessibility","role":"tab"}
+{"a11y":"0/0/0/0/1/5/0","bounds":[20,190,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/5/1","bounds":[44,188,78,20],"key":"label","name":"Accessibility","role":"label"}
+{"a11y":"0/0/0/0/1/6","actions":["click"],"bounds":[12,214,208,28],"key":"nav-developer","name":"Developer","role":"tab"}
+{"a11y":"0/0/0/0/1/6/0","bounds":[20,220,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/6/1","bounds":[44,218,63,20],"key":"label","name":"Developer","role":"label"}
+{"a11y":"0/0/0/0/2","actions":["click","focus"],"bounds":[12,620,208,24],"key":"restore","name":"Restore Defaults","role":"button"}
+{"a11y":"0/0/0/1","bounds":[232,0,0.5,660],"key":"sidebar-edge","role":"group"}
+{"a11y":"0/0/0/2","bounds":[232.5,0,727.5,660],"key":"content","role":"group"}
+{"a11y":"0/0/0/2/0","bounds":[232.5,0,727.5,576],"key":"page-general","role":"group"}
+{"a11y":"0/0/0/2/0/0","bounds":[272.5,32,647.5,44],"key":"header","role":"group"}
+{"a11y":"0/0/0/2/0/0/0","bounds":[272.5,32,647.5,22],"key":"title","name":"General","role":"label"}
+{"a11y":"0/0/0/2/0/0/1","bounds":[272.5,56,647.5,20],"key":"desc","name":"Startup, search and updates.","role":"label"}
+{"a11y":"0/0/0/2/0/1","bounds":[272.5,100,647.5,164.5],"key":"startup","role":"group"}
+{"a11y":"0/0/0/2/0/1/0","bounds":[272.5,100,647.5,24],"key":"head","role":"group"}
+{"a11y":"0/0/0/2/0/1/0/0","bounds":[272.5,104,46.5,16],"key":"title","name":"Startup","role":"label"}
+{"a11y":"0/0/0/2/0/1/1","bounds":[272.5,134,647.5,130.5],"key":"startup-card","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0","bounds":[288.5,134,615.5,130.5],"key":"rows","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/0","bounds":[288.5,134,615.5,65],"key":"login","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/0/0","bounds":[288.5,146,563.5,41],"key":"copy","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/0/0/0","bounds":[288.5,146,563.5,20],"key":"title","name":"Launch at login","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/0/0/1","bounds":[288.5,167,563.5,20],"key":"desc","name":"Open OpenCode when you log in.","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/0/1","actions":["click","focus"],"bounds":[868,158.5,36,16],"key":"login-switch","name":"Launch at login","role":"switch","states":["checked"]}
+{"a11y":"0/0/0/2/0/1/1/0/1","bounds":[288.5,199,615.5,0.5],"key":"sep0","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/2","bounds":[288.5,199.5,615.5,65],"key":"fast","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/2/0","bounds":[288.5,211.5,563.5,41],"key":"copy","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/2/0/0","bounds":[288.5,211.5,563.5,20],"key":"title","name":"Lightning-fast startup","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/2/0/1","bounds":[288.5,232.5,563.5,20],"key":"desc","name":"Skip the splash screen and open instantly.","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/2/1","actions":["click","focus"],"bounds":[868,224,36,16],"key":"fast-switch","name":"Lightning-fast startup","role":"switch","states":["unchecked"]}
+{"a11y":"0/0/0/2/0/2","bounds":[272.5,288.5,647.5,164.5],"key":"search","role":"group"}
+{"a11y":"0/0/0/2/0/2/0","bounds":[272.5,288.5,647.5,24],"key":"head","role":"group"}
+{"a11y":"0/0/0/2/0/2/0/0","bounds":[272.5,292.5,44,16],"key":"title","name":"Search","role":"label"}
+{"a11y":"0/0/0/2/0/2/1","bounds":[272.5,322.5,647.5,130.5],"key":"search-card","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0","bounds":[288.5,322.5,615.5,130.5],"key":"rows","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/0","bounds":[288.5,322.5,615.5,65],"key":"spotlight","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/0/0","bounds":[288.5,334.5,563.5,41],"key":"copy","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/0/0/0","bounds":[288.5,334.5,563.5,20],"key":"title","name":"Show in Spotlight","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/0/0/1","bounds":[288.5,355.5,563.5,20],"key":"desc","name":"Let Spotlight find your sessions and settings.","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/0/1","actions":["click","focus"],"bounds":[868,347,36,16],"key":"spotlight-switch","name":"Show in Spotlight","role":"switch","states":["unchecked"]}
+{"a11y":"0/0/0/2/0/2/1/0/1","bounds":[288.5,387.5,615.5,0.5],"key":"sep0","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/2","bounds":[288.5,388,615.5,65],"key":"language","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/2/0","bounds":[288.5,400,522,41],"key":"copy","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/2/0/0","bounds":[288.5,400,522,20],"key":"title","name":"Language","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/2/0/1","bounds":[288.5,421,522,20],"key":"desc","name":"Used for menus and messages.","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/2/1","actions":["focus"],"bounds":[826.5,408.5,77.5,24],"key":"lang-trigger","role":"combo-box","states":["collapsed"],"value":"English"}
+{"a11y":"0/0/0/2/0/3","bounds":[272.5,477,647.5,99],"key":"updates","role":"group"}
+{"a11y":"0/0/0/2/0/3/0","bounds":[272.5,477,647.5,24],"key":"head","role":"group"}
+{"a11y":"0/0/0/2/0/3/0/0","bounds":[272.5,481,52.5,16],"key":"title","name":"Updates","role":"label"}
+{"a11y":"0/0/0/2/0/3/1","bounds":[272.5,511,647.5,65],"key":"updates-card","role":"group"}
+{"a11y":"0/0/0/2/0/3/1/0","bounds":[288.5,511,615.5,65],"key":"rows","role":"group"}
+{"a11y":"0/0/0/2/0/3/1/0/0","bounds":[288.5,511,615.5,65],"key":"updates","role":"group"}
+{"a11y":"0/0/0/2/0/3/1/0/0/0","bounds":[288.5,523,563.5,41],"key":"copy","role":"group"}
+{"a11y":"0/0/0/2/0/3/1/0/0/0/0","bounds":[288.5,523,563.5,20],"key":"title","name":"Automatic updates","role":"label"}
+{"a11y":"0/0/0/2/0/3/1/0/0/0/1","bounds":[288.5,544,563.5,20],"key":"desc","name":"Download and install updates in the background.","role":"label"}
+{"a11y":"0/0/0/2/0/3/1/0/0/1","actions":["click","focus"],"bounds":[868,535.5,36,16],"key":"updates-switch","name":"Automatic updates","role":"switch","states":["checked"]}

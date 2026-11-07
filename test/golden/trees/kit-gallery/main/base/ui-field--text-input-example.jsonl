@@ -1,0 +1,23 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,280,90],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,280,90],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/label","rect":[24,24,280,16],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"text","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/label/text","rect":[24,24,34,16],"role":"text","scale":1,"text":"Label"}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"info","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/label/info","rect":[62,24,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"prefix","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/prefix","rect":[24,48,280,11],"role":"text","scale":1,"text":"Prefix"}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#2","rect":[24,67,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#2/value","rect":[24,67,244,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#2/value/#0","rect":[24,81,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"input","label":"Text","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#2/value/input","rect":[32,73,236,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"action","label":"Copy","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#2/action","rect":[276,71,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/#2/action/#0","rect":[278,73,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"suffix","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/suffix","rect":[24,103,280,11],"role":"text","scale":1,"text":"Suffix"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,280,90],"description":"Prefix. Suffix","name":"Label","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[24,67,244,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/0/0/0","actions":["click"],"bounds":[32,73,236,16],"key":"input","name":"Text","placeholder":"Text","role":"text-input","states":["read-only"],"value":""}
+{"a11y":"0/0/0/0/1","bounds":[276,71,20,20],"key":"action","name":"Copy","role":"button"}

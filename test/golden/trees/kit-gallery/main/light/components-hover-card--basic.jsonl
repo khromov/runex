@@ -1,0 +1,19 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,24],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card-trigger","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/card-trigger","rect":[24,24,672,24],"role":"group","scale":1}
+{"blur":0,"color":"#6f6f6fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/card-trigger/#0","rect":[24,24,60,24],"role":"text","scale":1,"text":"Hover me"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card-card","loopPhase":null,"opacity":1,"path":"kit-root/card-card","rect":[260,52,200,62],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/card-card/#0","rect":[260,52,200,62],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/card-card/#0/#0","rect":[264,56,192,54],"role":"group","scale":1}
+{"blur":0,"color":"#6f6f6fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/card-card/#0/#0/#0","rect":[264,56,192,24],"role":"text","scale":1,"text":"Preview"}
+{"blur":0,"color":"#8f8f8fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/card-card/#0/#0/#1","rect":[264,86,192,24],"role":"text","scale":1,"text":"Short supporting text."}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,672,24],"key":"card-trigger","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[24,24,60,24],"name":"Hover me","role":"label"}
+{"a11y":"0/0/1","bounds":[260,52,200,62],"key":"card-card","role":"group"}
+{"a11y":"0/0/1/0","bounds":[264,56,192,24],"name":"Preview","role":"label"}
+{"a11y":"0/0/1/1","bounds":[264,86,192,24],"name":"Short supporting text.","role":"label"}

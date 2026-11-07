@@ -1,0 +1,24 @@
+{"anim_t":1.0000000000000013,"animating":false,"dark_system":true,"reduced_motion":false,"scale":1,"t":1,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,480,104],"role":"group","scale":1}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,480,24],"role":"text","scale":1,"text":"Run the server from a terminal"}
+{"blur":0,"fill":"#1c1c1cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"command-row","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/command-row","rect":[24,56,480,36],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"command","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/command-row/command","rect":[36,65,436,18],"role":"text","scale":1,"selected":"serve --port 4096","text":"opencode serve --port 4096 --hostname 0.0.0.0"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"help":"Copy command","inert":false,"key":"copy","label":"Copy command","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/command-row/copy","rect":[480,64,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/command-row/copy/icon","rect":[482,66,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2","rect":[24,100,280,28],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"field","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/field","rect":[24,100,280,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/field/value","rect":[24,100,272,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/field/value/#0","rect":[24,114,2,0],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"input","label":"Selected like a field","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/field/value/input","rect":[32,106,264,16],"role":"textbox","scale":1,"text":""}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,480,24],"name":"Run the server from a terminal","role":"label"}
+{"a11y":"0/0/0/1","bounds":[24,56,480,36],"key":"command-row","role":"group"}
+{"a11y":"0/0/0/1/0","bounds":[36,65,436,18],"key":"command","name":"opencode serve --port 4096 --hostname 0.0.0.0","role":"label"}
+{"a11y":"0/0/0/1/1","actions":["click","focus"],"bounds":[480,64,20,20],"key":"copy","name":"Copy command","role":"button"}
+{"a11y":"0/0/0/2","bounds":[24,100,280,28],"key":"field","role":"group"}
+{"a11y":"0/0/0/2/0","bounds":[24,100,272,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/2/0/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[32,106,264,16],"key":"input","name":"Selected like a field","placeholder":"Selected like a field","role":"text-input","value":""}

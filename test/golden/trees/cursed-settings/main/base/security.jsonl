@@ -1,0 +1,160 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Settings","viewport":[960,660],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,960,660],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"window","loopPhase":null,"opacity":1,"path":"kit-root/window","rect":[0,0,960,660],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sidebar","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar","rect":[0,0,232,660],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search","rect":[12,20,208,28],"role":"textbox","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value","rect":[12,20,200,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"leading","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value/leading","rect":[12,26,24,16],"role":"group","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value/leading/#0","rect":[20,26,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"input","label":"Search","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/search/value/input","rect":[42,26,170,16],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav","rect":[12,64,208,180],"role":"group","scale":1}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-sel","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-sel","rect":[12,154,208,28],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-general","label":"General","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-general","rect":[12,64,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-general/icon","rect":[20,70,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-general/label","rect":[44,68,48,20],"role":"text","scale":1,"text":"General"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-appearance","label":"Appearance","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-appearance","rect":[12,94,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-appearance/icon","rect":[20,100,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-appearance/label","rect":[44,98,75,20],"role":"text","scale":1,"text":"Appearance"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-network","label":"Network","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-network","rect":[12,124,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-network/icon","rect":[20,130,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-network/label","rect":[44,128,52.5,20],"role":"text","scale":1,"text":"Network"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-security","label":"Security","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-security","rect":[12,154,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#dbdbdbff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-security/icon","rect":[20,160,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-security/label","rect":[44,158,51.5,20],"role":"text","scale":1,"text":"Security"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-accessibility","label":"Accessibility","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-accessibility","rect":[12,184,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-accessibility/icon","rect":[20,190,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-accessibility/label","rect":[44,188,78,20],"role":"text","scale":1,"text":"Accessibility"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav-developer","label":"Developer","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-developer","rect":[12,214,208,28],"role":"tab","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-developer/icon","rect":[20,220,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/nav/nav-developer/label","rect":[44,218,63,20],"role":"text","scale":1,"text":"Developer"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/#2","rect":[12,260,208,344],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"restore","label":"Restore Defaults","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/restore","rect":[12,620,208,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar/restore/label","rect":[64.75,622,102.5,20],"role":"text","scale":1,"text":"Restore Defaults"}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sidebar-edge","loopPhase":null,"opacity":1,"path":"kit-root/window/sidebar-edge","rect":[232,0,0.5,660],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"content","loopPhase":null,"opacity":1,"path":"kit-root/window/content","rect":[232.5,0,727.5,660],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"page-security","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security","rect":[232.5,0,727.5,500],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/header","rect":[272.5,32,647.5,44],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/header/title","rect":[272.5,32,647.5,22],"role":"text","scale":1,"text":"Security"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/header/desc","rect":[272.5,56,647.5,20],"role":"text","scale":1,"text":"Locks, passwords and the perimeter."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"protection","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection","rect":[272.5,100,647.5,164.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/head","rect":[272.5,100,647.5,24],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/head/title","rect":[272.5,104,64.5,16],"role":"text","scale":1,"text":"Protection"}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"protection-card","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card","rect":[272.5,134,647.5,130.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rows","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows","rect":[288.5,134,615.5,130.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fence","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/fence","rect":[288.5,134,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/fence/copy","rect":[288.5,146,563.5,41],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/fence/copy/title","rect":[288.5,146,563.5,20],"role":"text","scale":1,"text":"Electric fence"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/fence/copy/desc","rect":[288.5,167,563.5,20],"role":"text","scale":1,"text":"Protect the perimeter of your network."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"fence-switch","label":"Electric fence","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/fence/fence-switch","rect":[868,158.5,36,16],"role":"switch","scale":1}
+{"blur":0,"fill":"#5c5c5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/fence/fence-switch/control","rect":[868,158.5,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#f2f2f2ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/fence/fence-switch/control/thumb","rect":[869,159.5,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep0","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sep0","rect":[288.5,199,615.5,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sleep","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sleep","rect":[288.5,199.5,615.5,65],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"copy","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sleep/copy","rect":[288.5,211.5,563.5,41],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sleep/copy/title","rect":[288.5,211.5,563.5,20],"role":"text","scale":1,"text":"Require password after sleep"}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"desc","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sleep/copy/desc","rect":[288.5,232.5,563.5,20],"role":"text","scale":1,"text":"Ask for your password when the display wakes."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"sleep-switch","label":"Require password after sleep","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sleep/sleep-switch","rect":[868,224,36,16],"role":"switch","scale":1}
+{"blur":0,"fill":"#3b5cf6ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sleep/sleep-switch/control","rect":[868,224,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#eeeeeeff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/protection/protection-card/rows/sleep/sleep-switch/control/thumb","rect":[882,225,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"perimeter","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter","rect":[272.5,288.5,647.5,211.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/head","rect":[272.5,288.5,647.5,24],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/head/title","rect":[272.5,292.5,61,16],"role":"text","scale":1,"text":"Perimeter"}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"perimeter-card","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card","rect":[272.5,322.5,647.5,177.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rows","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows","rect":[288.5,322.5,615.5,177.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"front","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/front","rect":[288.5,322.5,615.5,44],"role":"group","scale":1}
+{"blur":0,"fill":"#25ff18ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"dot","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/front/dot","rect":[295.5,340.5,8,8],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"name","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/front/name","rect":[320.5,334.5,526.5,20],"role":"text","scale":1,"text":"Front door"}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Locked","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/front/#2","rect":[857,336.5,47,16],"role":"status","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/front/#2/#0","rect":[861,339,39,11],"role":"text","scale":1,"text":"Locked"}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep0","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/sep0","rect":[288.5,366.5,615.5,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"back","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/back","rect":[288.5,367,615.5,44],"role":"group","scale":1}
+{"blur":0,"fill":"#25ff18ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"dot","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/back/dot","rect":[295.5,385,8,8],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"name","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/back/name","rect":[320.5,379,526.5,20],"role":"text","scale":1,"text":"Back door"}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Locked","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/back/#2","rect":[857,381,47,16],"role":"status","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/back/#2/#0","rect":[861,383.5,39,11],"role":"text","scale":1,"text":"Locked"}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep1","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/sep1","rect":[288.5,411,615.5,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"ssh","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/ssh","rect":[288.5,411.5,615.5,44],"role":"group","scale":1}
+{"blur":0,"fill":"#25ff18ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"dot","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/ssh/dot","rect":[295.5,429.5,8,8],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"name","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/ssh/name","rect":[320.5,423.5,528,20],"role":"text","scale":1,"text":"Port 22"}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Closed","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/ssh/#2","rect":[858.5,425.5,45.5,16],"role":"status","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/ssh/#2/#0","rect":[862.5,428,37.5,11],"role":"text","scale":1,"text":"Closed"}
+{"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep2","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/sep2","rect":[288.5,455.5,615.5,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"server","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/server","rect":[288.5,456,615.5,44],"role":"group","scale":1}
+{"blur":0,"fill":"#25ff18ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"dot","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/server/dot","rect":[295.5,474,8,8],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"name","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/server/name","rect":[320.5,468,482.5,20],"role":"text","scale":1,"text":"Port 4096"}
+{"blur":0,"fill":"#3a3a3aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"OpenCode only","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/server/#2","rect":[813,470,91,16],"role":"status","scale":1}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-security/perimeter/perimeter-card/rows/server/#2/#0","rect":[817,472.5,83,11],"role":"text","scale":1,"text":"OpenCode only"}
+{"a11y":"0","bounds":[0,0,960,660],"name":"Settings","role":"window"}
+{"a11y":"0/0","bounds":[0,0,960,660],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,960,660],"key":"window","role":"group"}
+{"a11y":"0/0/0/0","bounds":[0,0,232,660],"key":"sidebar","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[12,20,208,28],"key":"search","role":"group"}
+{"a11y":"0/0/0/0/0/0","bounds":[12,20,200,28],"key":"value","role":"group"}
+{"a11y":"0/0/0/0/0/0/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[42,26,170,16],"key":"input","name":"Search","placeholder":"Search","role":"text-input","value":""}
+{"a11y":"0/0/0/0/1","bounds":[12,64,208,180],"key":"nav","role":"group"}
+{"a11y":"0/0/0/0/1/0","bounds":[12,154,208,28],"key":"nav-sel","role":"group"}
+{"a11y":"0/0/0/0/1/1","actions":["click"],"bounds":[12,64,208,28],"key":"nav-general","name":"General","role":"tab"}
+{"a11y":"0/0/0/0/1/1/0","bounds":[20,70,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/1/1","bounds":[44,68,48,20],"key":"label","name":"General","role":"label"}
+{"a11y":"0/0/0/0/1/2","actions":["click"],"bounds":[12,94,208,28],"key":"nav-appearance","name":"Appearance","role":"tab"}
+{"a11y":"0/0/0/0/1/2/0","bounds":[20,100,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/2/1","bounds":[44,98,75,20],"key":"label","name":"Appearance","role":"label"}
+{"a11y":"0/0/0/0/1/3","actions":["click"],"bounds":[12,124,208,28],"key":"nav-network","name":"Network","role":"tab"}
+{"a11y":"0/0/0/0/1/3/0","bounds":[20,130,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/3/1","bounds":[44,128,52.5,20],"key":"label","name":"Network","role":"label"}
+{"a11y":"0/0/0/0/1/4","actions":["click"],"bounds":[12,154,208,28],"key":"nav-security","name":"Security","role":"tab"}
+{"a11y":"0/0/0/0/1/4/0","bounds":[20,160,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/4/1","bounds":[44,158,51.5,20],"key":"label","name":"Security","role":"label"}
+{"a11y":"0/0/0/0/1/5","actions":["click"],"bounds":[12,184,208,28],"key":"nav-accessibility","name":"Accessibility","role":"tab"}
+{"a11y":"0/0/0/0/1/5/0","bounds":[20,190,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/5/1","bounds":[44,188,78,20],"key":"label","name":"Accessibility","role":"label"}
+{"a11y":"0/0/0/0/1/6","actions":["click"],"bounds":[12,214,208,28],"key":"nav-developer","name":"Developer","role":"tab"}
+{"a11y":"0/0/0/0/1/6/0","bounds":[20,220,16,16],"key":"icon","role":"image"}
+{"a11y":"0/0/0/0/1/6/1","bounds":[44,218,63,20],"key":"label","name":"Developer","role":"label"}
+{"a11y":"0/0/0/0/2","actions":["click","focus"],"bounds":[12,620,208,24],"key":"restore","name":"Restore Defaults","role":"button"}
+{"a11y":"0/0/0/1","bounds":[232,0,0.5,660],"key":"sidebar-edge","role":"group"}
+{"a11y":"0/0/0/2","bounds":[232.5,0,727.5,660],"key":"content","role":"group"}
+{"a11y":"0/0/0/2/0","bounds":[232.5,0,727.5,500],"key":"page-security","role":"group"}
+{"a11y":"0/0/0/2/0/0","bounds":[272.5,32,647.5,44],"key":"header","role":"group"}
+{"a11y":"0/0/0/2/0/0/0","bounds":[272.5,32,647.5,22],"key":"title","name":"Security","role":"label"}
+{"a11y":"0/0/0/2/0/0/1","bounds":[272.5,56,647.5,20],"key":"desc","name":"Locks, passwords and the perimeter.","role":"label"}
+{"a11y":"0/0/0/2/0/1","bounds":[272.5,100,647.5,164.5],"key":"protection","role":"group"}
+{"a11y":"0/0/0/2/0/1/0","bounds":[272.5,100,647.5,24],"key":"head","role":"group"}
+{"a11y":"0/0/0/2/0/1/0/0","bounds":[272.5,104,64.5,16],"key":"title","name":"Protection","role":"label"}
+{"a11y":"0/0/0/2/0/1/1","bounds":[272.5,134,647.5,130.5],"key":"protection-card","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0","bounds":[288.5,134,615.5,130.5],"key":"rows","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/0","bounds":[288.5,134,615.5,65],"key":"fence","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/0/0","bounds":[288.5,146,563.5,41],"key":"copy","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/0/0/0","bounds":[288.5,146,563.5,20],"key":"title","name":"Electric fence","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/0/0/1","bounds":[288.5,167,563.5,20],"key":"desc","name":"Protect the perimeter of your network.","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/0/1","actions":["click","focus"],"bounds":[868,158.5,36,16],"key":"fence-switch","name":"Electric fence","role":"switch","states":["unchecked"]}
+{"a11y":"0/0/0/2/0/1/1/0/1","bounds":[288.5,199,615.5,0.5],"key":"sep0","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/2","bounds":[288.5,199.5,615.5,65],"key":"sleep","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/2/0","bounds":[288.5,211.5,563.5,41],"key":"copy","role":"group"}
+{"a11y":"0/0/0/2/0/1/1/0/2/0/0","bounds":[288.5,211.5,563.5,20],"key":"title","name":"Require password after sleep","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/2/0/1","bounds":[288.5,232.5,563.5,20],"key":"desc","name":"Ask for your password when the display wakes.","role":"label"}
+{"a11y":"0/0/0/2/0/1/1/0/2/1","actions":["click","focus"],"bounds":[868,224,36,16],"key":"sleep-switch","name":"Require password after sleep","role":"switch","states":["checked"]}
+{"a11y":"0/0/0/2/0/2","bounds":[272.5,288.5,647.5,211.5],"key":"perimeter","role":"group"}
+{"a11y":"0/0/0/2/0/2/0","bounds":[272.5,288.5,647.5,24],"key":"head","role":"group"}
+{"a11y":"0/0/0/2/0/2/0/0","bounds":[272.5,292.5,61,16],"key":"title","name":"Perimeter","role":"label"}
+{"a11y":"0/0/0/2/0/2/1","bounds":[272.5,322.5,647.5,177.5],"key":"perimeter-card","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0","bounds":[288.5,322.5,615.5,177.5],"key":"rows","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/0","bounds":[288.5,322.5,615.5,44],"key":"front","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/0/0","bounds":[295.5,340.5,8,8],"key":"dot","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/0/1","bounds":[320.5,334.5,526.5,20],"key":"name","name":"Front door","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/0/2","bounds":[857,336.5,47,16],"name":"Locked","role":"status","states":["live-polite"]}
+{"a11y":"0/0/0/2/0/2/1/0/1","bounds":[288.5,366.5,615.5,0.5],"key":"sep0","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/2","bounds":[288.5,367,615.5,44],"key":"back","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/2/0","bounds":[295.5,385,8,8],"key":"dot","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/2/1","bounds":[320.5,379,526.5,20],"key":"name","name":"Back door","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/2/2","bounds":[857,381,47,16],"name":"Locked","role":"status","states":["live-polite"]}
+{"a11y":"0/0/0/2/0/2/1/0/3","bounds":[288.5,411,615.5,0.5],"key":"sep1","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/4","bounds":[288.5,411.5,615.5,44],"key":"ssh","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/4/0","bounds":[295.5,429.5,8,8],"key":"dot","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/4/1","bounds":[320.5,423.5,528,20],"key":"name","name":"Port 22","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/4/2","bounds":[858.5,425.5,45.5,16],"name":"Closed","role":"status","states":["live-polite"]}
+{"a11y":"0/0/0/2/0/2/1/0/5","bounds":[288.5,455.5,615.5,0.5],"key":"sep2","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/6","bounds":[288.5,456,615.5,44],"key":"server","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/6/0","bounds":[295.5,474,8,8],"key":"dot","role":"group"}
+{"a11y":"0/0/0/2/0/2/1/0/6/1","bounds":[320.5,468,482.5,20],"key":"name","name":"Port 4096","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/6/2","bounds":[813,470,91,16],"name":"OpenCode only","role":"status","states":["live-polite"]}

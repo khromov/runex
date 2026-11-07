@@ -1,0 +1,25 @@
+target/
+node_modules/
+dist/
+*.node
+.DS_Store
+/out/
+/tmp/
+native.cjs
+native.d.cts
+# Release staging: CI downloads build artifacts here and copies the notices into each platform package.
+/artifacts/
+/npm/*/LICENSE
+/npm/*/THIRD_PARTY_NOTICES.md
+# Snapshots from the documented commands (`--snap hello.png`, CI's hello-*.png), root only:
+# examples keep their own image assets.
+/*.png
+examples/vite/out.png
+# Left by scripts/dev-install.sh if interrupted between its copy and rename; `npm pack` tarballs.
+*.new
+*.tgz
+# Editors and OS files.
+.vscode/
+.idea/
+*.swp
+Thumbs.db

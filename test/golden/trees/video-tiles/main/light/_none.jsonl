@@ -1,0 +1,14 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Video tiles","viewport":[664,384],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tiles","loopPhase":null,"opacity":1,"path":"tiles","rect":[0,0,664,384],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"tiles/#0","rect":[8,8,648,180],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-0-0","loopPhase":null,"opacity":1,"path":"tiles/#0/tile-0-0","rect":[8,8,320,180],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-1-0","loopPhase":null,"opacity":1,"path":"tiles/#0/tile-1-0","rect":[336,8,320,180],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"tiles/#1","rect":[8,196,648,180],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-0-1","loopPhase":null,"opacity":1,"path":"tiles/#1/tile-0-1","rect":[8,196,320,180],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-1-1","loopPhase":null,"opacity":1,"path":"tiles/#1/tile-1-1","rect":[336,196,320,180],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,664,384],"name":"Video tiles","role":"window"}
+{"a11y":"0/0","bounds":[0,0,664,384],"key":"tiles","role":"group"}
+{"a11y":"0/0/0","bounds":[8,8,320,180],"key":"tile-0-0","role":"image"}
+{"a11y":"0/0/1","bounds":[336,8,320,180],"key":"tile-1-0","role":"image"}
+{"a11y":"0/0/2","bounds":[8,196,320,180],"key":"tile-0-1","role":"image"}
+{"a11y":"0/0/3","bounds":[336,196,320,180],"key":"tile-1-1","role":"image"}

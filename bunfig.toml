@@ -1,0 +1,19 @@
+# Bun's settings for this repo.
+#
+# A bare `bun test` runs only test/unit: the binding-layer tests, headless, no cargo, no windows.
+# The other layers are package.json scripts, and docs/testing.md describes them:
+#
+#   bun run test             the fast tier (build:ts, typecheck, static, unit, dist-fresh, golden quick)
+#   bun run test:golden      golden baselines, standard tier
+#   bun run test:windowed    real windows through the JavaScript pump
+#   bun run test:dev         dev-workflow and packaging
+#   bun run test:compare     every example against its Rust original (builds 27 Rust binaries)
+#   bun run test:full        all of the above
+#
+# A path given on the command line (`bun test ./test/pack`) runs whatever the root is.
+#
+# test/preload.ts runs first in every one: it drops RUNEX_PERF and RUNEX_TITLEBAR from the
+# environment, so a shell's settings can't change what the tests render.
+[test]
+root = "test/unit"
+preload = ["./test/preload.ts"]

@@ -1,0 +1,14 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Progress","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,31.5],"role":"progressbar","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"header","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/header","rect":[24,24,672,19.5],"role":"group","scale":1}
+{"blur":0,"color":"#a0a0a0ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/header/label","rect":[24,24,55,19.5],"role":"text","scale":1,"text":"Progress"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/header/#1","rect":[87,33.75,571.5,0],"role":"group","scale":1}
+{"blur":0,"color":"#707070ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"value","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/header/value","rect":[666.5,24,29.5,19.5],"role":"text","scale":1,"text":"60%"}
+{"blur":0,"fill":"#1c1c1cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"track","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/track","rect":[24,47.5,672,8],"role":"group","scale":1}
+{"blur":0,"fill":"#5f5d5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fill","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/track/fill","rect":[24,47.5,403.2,8],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,672,31.5],"name":"Progress","range":[0.6,0,1,null],"role":"progress-indicator","value":"60%"}

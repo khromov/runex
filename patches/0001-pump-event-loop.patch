@@ -1,0 +1,434 @@
+diff --git a/crates/rune/src/app.rs b/crates/rune/src/app.rs
+index 3cee9f38..5f42126c 100644
+--- a/crates/rune/src/app.rs
++++ b/crates/rune/src/app.rs
+@@ -505,6 +505,26 @@ impl<S: 'static> App<S> {
+     }
+ }
+ 
++impl<S: 'static> App<S> {
++    /// `try_run` for a host that owns the thread's run loop (a JavaScript runtime): opens the
++    /// app's window and returns the [`Pump`](crate::Pump) the host turns between its own tasks.
++    /// Agent-tooling arguments render headless before returning `Ok(None)`.
++    #[cfg(not(target_arch = "wasm32"))]
++    pub fn start(mut self) -> Result<Option<crate::Pump>, String> {
++        let args = match self.argv.take() {
++            Some(argv) => Args::parse_from(argv),
++            None => Args::parse(),
++        };
++        if args.headless() {
++            crate::render::discard_prewarm();
++            return crate::tooling::try_headless(self, args).map(|()| None);
++        }
++        let accessory = self.accessory;
++        let factory = Box::new(move |_: &[crate::Display]| vec![crate::windows::WindowSpec::from_app("main", self).into()]);
++        crate::window::start_windows(factory, args, accessory).map(Some)
++    }
++}
++
+ impl<S: 'static> App<S> {
+     pub(crate) fn resolve_args(&mut self, inherited: Args) -> Args {
+         self.argv.take().map_or(inherited, Args::parse_from)
+diff --git a/crates/rune/src/lib.rs b/crates/rune/src/lib.rs
+index 2a77baac..52ebcbdf 100644
+--- a/crates/rune/src/lib.rs
++++ b/crates/rune/src/lib.rs
+@@ -322,6 +322,8 @@ pub use tooling::run_windows_with;
+ pub use tooling::run_windows_with_args;
+ pub use tooling::run_with;
+ pub use tooling::set_app_id;
++#[cfg(not(target_arch = "wasm32"))]
++pub use tooling::start_windows_with_args;
+ pub use tooling::try_run_windows_with;
+ pub use tooling::try_run_windows_with_args;
+ pub use tray::Tray;
+@@ -335,7 +337,11 @@ pub use video::MediaSource;
+ pub use video::Player;
+ pub use video::PlayerState;
+ pub use video::Video;
++#[cfg(not(target_arch = "wasm32"))]
++pub use window::Pump;
+ pub use window::WindowHandle;
++#[cfg(not(target_arch = "wasm32"))]
++pub use window::set_pump_wake;
+ pub use windows::AnyWindowSpec;
+ pub use windows::ConfiguredWindowOptions;
+ pub use windows::Display;
+diff --git a/crates/rune/src/tooling.rs b/crates/rune/src/tooling.rs
+index f9138193..64e1b91c 100644
+--- a/crates/rune/src/tooling.rs
++++ b/crates/rune/src/tooling.rs
+@@ -217,6 +217,20 @@ pub fn try_run_windows_with_args<I: IntoIterator<Item: Into<crate::AnyWindowSpec
+     run_window_factory(options, window_args(Some(args.into_iter().collect()), Args::parse), erase(factory))
+ }
+ 
++/// `try_run_windows_with_args` for a host that owns the thread's run loop: opens the windows and
++/// returns the [`Pump`](crate::Pump) the host turns. Headless arguments render before `Ok(None)`.
++#[cfg(not(target_arch = "wasm32"))]
++pub fn start_windows_with_args<I: IntoIterator<Item: Into<crate::AnyWindowSpec>>>(options: crate::RunOptions, args: impl IntoIterator<Item = String>, factory: impl FnOnce(&[crate::Display]) -> I + 'static) -> Result<Option<crate::Pump>, String> {
++    let args = window_args(Some(args.into_iter().collect()), Args::parse);
++    let factory = erase(factory);
++    if args.headless() {
++        crate::render::discard_prewarm();
++        let displays = desktop(&args, read_script(&args).as_ref()).displays();
++        return headless_window(factory(&displays), &displays, args, options).map(|()| None);
++    }
++    crate::window::start_windows(factory, args, options.accessory).map(Some)
++}
++
+ fn started(result: Result<(), String>) {
+     if let Err(error) = result { panic!("{error}"); }
+ }
+diff --git a/crates/rune/src/window.rs b/crates/rune/src/window.rs
+index c7046726..a95c2cb0 100644
+--- a/crates/rune/src/window.rs
++++ b/crates/rune/src/window.rs
+@@ -72,6 +72,14 @@ mod float_on_open;
+ #[cfg(not(target_arch = "wasm32"))]
+ pub use event_loop::run;
+ pub(crate) use event_loop::run_windows;
++#[cfg(not(target_arch = "wasm32"))]
++mod pump;
++#[cfg(not(target_arch = "wasm32"))]
++pub use pump::{Pump, set_pump_wake};
++#[cfg(not(target_arch = "wasm32"))]
++pub(crate) use pump::start_windows;
++pub(crate) use pump_wake::send_wake;
++mod pump_wake;
+ #[cfg(test)]
+ #[path = "window/covered_tests.rs"]
+ mod covered;
+@@ -142,6 +150,8 @@ struct Windows {
+     hosts: Vec<Option<Box<dyn AnyHost>>>,
+     // Weak pool preserves release_gpu_when_closed when the last GPU owner closes.
+     gpu: Rc<RefCell<Weak<Gpu>>>,
++    /// The control flow `about_to_wait` last asked for, which `Pump::next_wake` reports.
++    flow: ControlFlow,
+ }
+ impl Windows {
+     fn cleanup(&mut self, event_loop: &ActiveEventLoop) {
+@@ -253,15 +263,15 @@ impl ApplicationHandler<WakeEvent> for Windows {
+         for mut overlay in overlays {
+             let (slot, proxy) = (self.hosts.len(), self.proxy.clone());
+             let frame_proxy = proxy.clone();
+-            overlay.connect(Arc::new(move || { let _ = proxy.send_event(WakeEvent::App(slot)); }),
+-                Arc::new(move || { let _ = frame_proxy.send_event(WakeEvent::DisplayTick(slot)); }), self.gpu.clone());
++            overlay.connect(Arc::new(move || { let _ = send_wake(&proxy, WakeEvent::App(slot)); }),
++                Arc::new(move || { let _ = send_wake(&frame_proxy, WakeEvent::DisplayTick(slot)); }), self.gpu.clone());
+             overlay.resumed(event_loop);
+             self.hosts.push(Some(overlay));
+         }
+         #[cfg(target_os = "macos")]
+         {
+             let proxy = self.proxy.clone();
+-            crate::platform::reopen::install(move || proxy.send_event(WakeEvent::Reopen).is_ok());
++            crate::platform::reopen::install(move || send_wake(&proxy, WakeEvent::Reopen));
+         }
+         crate::open_url::incoming::settle();
+         // A window opened at launch took it; a GPU kept for a later one would sit idle until then.
+@@ -300,8 +310,8 @@ impl ApplicationHandler<WakeEvent> for Windows {
+         // Layer surfaces have no redraw events: keep turning while one animates (its vsync
+         // paces the loop). Hosts whose only motion is an ambient loop sleep until its next step.
+         let deadline = self.hosts.iter().flatten().filter_map(|host| host.wake_deadline()).min();
+-        event_loop.set_control_flow(if animating { ControlFlow::Poll }
+-            else { deadline.map_or(ControlFlow::Wait, ControlFlow::WaitUntil) });
++        self.flow = if animating { ControlFlow::Poll } else { deadline.map_or(ControlFlow::Wait, ControlFlow::WaitUntil) };
++        event_loop.set_control_flow(self.flow);
+     }
+     fn exiting(&mut self, event_loop: &ActiveEventLoop) {
+         // Rune didn't ask to exit, so the OS is ending the app: macOS Quit, Cmd-Q, the Dock's
+@@ -409,7 +419,7 @@ impl<S: 'static> Host<S> {
+         #[cfg(target_os = "macos")]
+         let frame_proxy = proxy.clone();
+         let waker: Waker = Arc::new(move || {
+-            let _ = proxy.send_event(WakeEvent::App(slot));
++            let _ = send_wake(&proxy, WakeEvent::App(slot));
+         });
+         let (open, keep_running, on_close, release_gpu) = (app.open, app.keep_running, app.on_close, app.release_gpu);
+         let on_reopen = app.on_reopen;
+@@ -459,7 +469,7 @@ impl<S: 'static> Host<S> {
+         crate::platform::scroll_bars::watch();
+         rt.set_system_scroll_bars_state(crate::platform::scroll_bars::current().with_override(args.scroll_bars));
+         rt.trace_channels = args.trace.as_ref().map(|_| Default::default());
+-        rt.set_live_waker(Arc::new(move || { let _ = live_proxy.send_event(WakeEvent::Live(slot)); }));
++        rt.set_live_waker(Arc::new(move || { let _ = send_wake(&live_proxy, WakeEvent::Live(slot)); }));
+         rt.set_live_visible(false);
+         rt.set_os_drag(crate::drag_out::SUPPORTED);
+         rt.transparent = options.transparent;
+@@ -531,7 +541,7 @@ impl<S: 'static> Host<S> {
+             #[cfg(target_os = "macos")]
+             present_log,
+             #[cfg(target_os = "macos")]
+-            frame_wake: Arc::new(move || { let _ = frame_proxy.send_event(WakeEvent::DisplayTick(slot)); }),
++            frame_wake: Arc::new(move || { let _ = send_wake(&frame_proxy, WakeEvent::DisplayTick(slot)); }),
+         }
+     }
+ }
+diff --git a/crates/rune/src/window/any_host.rs b/crates/rune/src/window/any_host.rs
+index 295da0eb..f4234d8f 100644
+--- a/crates/rune/src/window/any_host.rs
++++ b/crates/rune/src/window/any_host.rs
+@@ -157,7 +157,7 @@ impl<S: 'static> AnyHost for Host<S> {
+         self.fn_key();
+         self.flush_files(event_loop);
+         // Another window switched the font families (`Tx::set_font_families`).
+-        if self.rt.follow_font_families() && let Some(w) = &self.win { w.window.request_redraw(); }
++        if self.rt.follow_font_families() && let Some(w) = &self.win { super::pump_wake::redraw_next_pass(&w.window); }
+         // Process queued hide/close requests before completing a pending first reveal.
+         self.first_frame_ready(event_loop);
+         if !self.win.as_ref().is_some_and(|w| w.visible || w.first_frame.reveal) {
+diff --git a/crates/rune/src/window/draw.rs b/crates/rune/src/window/draw.rs
+index 72ec3b8c..24829651 100644
+--- a/crates/rune/src/window/draw.rs
++++ b/crates/rune/src/window/draw.rs
+@@ -344,7 +344,7 @@ impl<S: 'static> Host<S> {
+         #[cfg(target_os = "windows")]
+         if self.idle && steady {
+             l.steady_frame = true;
+-            l.window.request_redraw();
++            super::pump_wake::redraw_next_pass(&l.window);
+         }
+         if !hidden && (!self.idle || (self.trace.is_some() && self.args.frames.is_some())) {
+             // Without a running display link, macOS hands out drawables faster than the
+@@ -352,7 +352,7 @@ impl<S: 'static> Host<S> {
+             #[cfg(target_os = "macos")]
+             if !l.native.pacing.as_mut().is_some_and(|p| p.start()) { l.retry = Some(now + TIMER_FRAME); }
+             #[cfg(not(target_os = "macos"))]
+-            l.window.request_redraw();
++            super::pump_wake::redraw_next_pass(&l.window);
+             self.meter.set_pacing(l.pacing_state(true));
+         } else {
+             l.stop_pacing();
+diff --git a/crates/rune/src/window/event_loop.rs b/crates/rune/src/window/event_loop.rs
+index dac693c5..f4af0742 100644
+--- a/crates/rune/src/window/event_loop.rs
++++ b/crates/rune/src/window/event_loop.rs
+@@ -51,6 +51,15 @@ fn run_configured(_: Factory, _: Args, _: bool) -> Result<(), String> {
+ 
+ #[cfg(not(target_arch = "wasm32"))]
+ fn run_configured(factory: Factory, args: Args, accessory: bool) -> Result<(), String> {
++    let (event_loop, mut windows) = build(factory, args, accessory)?;
++    let result = event_loop.run_app(&mut windows);
++    finish();
++    result.map_err(|error| format!("run: {error}"))
++}
++
++/// The event loop and its windows, ready to run (`run_configured`) or pump (`Pump`).
++#[cfg(not(target_arch = "wasm32"))]
++pub(super) fn build(factory: Factory, args: Args, accessory: bool) -> Result<(EventLoop<WakeEvent>, Windows), String> {
+     let _ = accessory;
+     crate::tooling::perf_warn::launch::run_starts();
+     crate::platform::ready_signal::run_starts();
+@@ -77,15 +86,19 @@ fn run_configured(factory: Factory, args: Args, accessory: bool) -> Result<(), S
+     #[cfg(target_os = "macos")]
+     crate::platform::app_icon::launched();
+     let proxy = event_loop.create_proxy();
+-    let mut windows = Windows { factory: Some(factory), args, proxy, hosts: Vec::new(), gpu: Rc::default() };
++    let windows = Windows { factory: Some(factory), args, proxy, hosts: Vec::new(), gpu: Rc::default(), flow: ControlFlow::Wait };
+     crate::open_url::incoming::prepare();
+-    let result = event_loop.run_app(&mut windows);
+-    // The windows' interaction timing queued its last rollups as they closed.
++    Ok((event_loop, windows))
++}
++
++/// What ending the loop releases, whether it ran or was pumped.
++#[cfg(not(target_arch = "wasm32"))]
++pub(super) fn finish() {
++    // The windows' interaction timing queued their last rollups as they closed.
+     crate::tooling::interaction::flush();
+     crate::render::discard_prewarm();
+     crate::clipboard::shutdown(); // Also cover an event-loop error before `exiting`.
+     crate::platform::ready_signal::clear();
+-    result.map_err(|error| format!("run: {error}"))
+ }
+ 
+ #[test]
+diff --git a/crates/rune/src/window/events.rs b/crates/rune/src/window/events.rs
+index 961ba431..6f66a856 100644
+--- a/crates/rune/src/window/events.rs
++++ b/crates/rune/src/window/events.rs
+@@ -41,7 +41,7 @@ impl<S: 'static> Host<S> {
+                 key: winit::keyboard::KeyCode::Fn, mods: map_mods(self.mods), pressed, repeat: false,
+             }, None);
+         }
+-        if redraw { l.window.request_redraw(); }
++        if redraw { super::pump_wake::redraw_next_pass(&l.window); }
+     }
+ 
+     /// Hands the runtime the file drag winit reported since the last pass, in order: the files
+@@ -96,7 +96,7 @@ impl<S: 'static> Host<S> {
+             queued = self.rt.drag_files_to(Some(at));
+         }
+         if !queued { return; }
+-        if !l.occluded && !l.minimized() { l.window.request_redraw(); } else {
++        if !l.occluded && !l.minimized() { super::pump_wake::redraw_next_pass(&l.window); } else {
+             self.covered_frame();
+             self.shell(event_loop);
+         }
+diff --git a/crates/rune/src/window/handle.rs b/crates/rune/src/window/handle.rs
+index 70f4f02c..685bdaa0 100644
+--- a/crates/rune/src/window/handle.rs
++++ b/crates/rune/src/window/handle.rs
+@@ -28,7 +28,7 @@ impl WindowHandle {
+     /// Routes requests to the window's host, starting with those queued before it existed.
+     pub(super) fn bind(&self, proxy: EventLoopProxy<WakeEvent>, slot: usize) {
+         let mut route = self.native.route.lock().unwrap();
+-        for request in std::mem::take(&mut route.1) { let _ = proxy.send_event(request(slot)); }
++        for request in std::mem::take(&mut route.1) { let _ = super::send_wake(&proxy, request(slot)); }
+         route.0 = Some((proxy, slot));
+     }
+ 
+@@ -45,7 +45,7 @@ impl WindowHandle {
+     pub(super) fn send(&self, request: impl FnOnce(usize) -> WakeEvent + Send + 'static) {
+         let mut route = self.native.route.lock().unwrap();
+         match &route.0 {
+-            Some((proxy, slot)) => { let _ = proxy.send_event(request(*slot)); }
++            Some((proxy, slot)) => { let _ = super::send_wake(proxy, request(*slot)); }
+             None => route.1.push(Box::new(request)),
+         }
+     }
+diff --git a/crates/rune/src/window/lifecycle.rs b/crates/rune/src/window/lifecycle.rs
+index 15f21dd0..e74e41a7 100644
+--- a/crates/rune/src/window/lifecycle.rs
++++ b/crates/rune/src/window/lifecycle.rs
+@@ -211,8 +211,8 @@ impl<S: 'static> Host<S> {
+             }
+             let shown = self.win.as_ref().filter(|w| w.visible);
+             let window = shown.map(|w| &w.window);
+-            if self.popup.open(&mut self.rt, window, paints) && let Some(w) = window { w.request_redraw(); }
+-            if self.file_dialog.open(&mut self.rt, window.map(|w| &**w)) && let Some(w) = window { w.request_redraw(); }
++            if self.popup.open(&mut self.rt, window, paints) && let Some(w) = window { super::pump_wake::redraw_next_pass(w); }
++            if self.file_dialog.open(&mut self.rt, window.map(|w| &**w)) && let Some(w) = window { super::pump_wake::redraw_next_pass(w); }
+             // A callback that ran (a menu that couldn't open) may have asked to close, quit or
+             // minimize.
+             if self.rt.shell_request.is_none() && !self.rt.minimize_request { return; }
+diff --git a/crates/rune/src/window/pump.rs b/crates/rune/src/window/pump.rs
+new file mode 100644
+index 00000000..b5dd3a7a
+--- /dev/null
++++ b/crates/rune/src/window/pump.rs
+@@ -0,0 +1,72 @@
++//! The event loop turned by its host rather than run to the end: for an app embedded in a
++//! runtime that owns the main thread's run loop (a JavaScript engine), which calls `Pump::pump`
++//! between its own tasks. Same windows, input and frames as `App::run`.
++use std::time::Duration;
++
++use winit::event_loop::{ControlFlow, EventLoop};
++use winit::platform::pump_events::{EventLoopExtPumpEvents, PumpStatus};
++
++use super::event_loop::{build, finish};
++use super::{Factory, WakeEvent, Windows};
++use crate::tooling::Args;
++
++/// A started app whose event loop its host turns. `App::start` and `start_windows_with_args`
++/// build it; dropping it after the app exits releases what `App::run` releases on return.
++pub struct Pump {
++    event_loop: EventLoop<WakeEvent>,
++    windows: Windows,
++    exited: bool,
++    /// The last turn asked for a redraw that winit delivers on its next pass.
++    redraw: bool,
++}
++
++/// Runs `hook` on any thread whenever Rune wakes the event loop (a display-link frame, a
++/// handle's update, a live value): a pumping host turns the loop soon after. `None` clears it.
++pub fn set_pump_wake(hook: Option<std::sync::Arc<dyn Fn() + Send + Sync>>) {
++    super::pump_wake::set(hook);
++}
++
++impl Pump {
++    /// Dispatches the OS events and wakes that are pending, waiting at most `timeout` for one
++    /// (`Some(Duration::ZERO)` never blocks). False once the app has quit.
++    pub fn pump(&mut self, timeout: Option<Duration>) -> bool {
++        if self.exited { return false; }
++        let status = self.event_loop.pump_app_events(timeout, &mut self.windows);
++        // Only this turn's asks count. A redraw winit holds back (Wayland waits for the
++        // compositor's frame callback) or drops (a minimised window) draws nothing and asks for
++        // nothing, so the turn after it isn't due at once.
++        self.redraw = super::pump_wake::take_redraw_next_pass();
++        if let PumpStatus::Exit(_) = status {
++            self.exited = true;
++            finish();
++        }
++        !self.exited
++    }
++
++    /// How long until the loop next needs turning without an OS event: `Some(ZERO)` while it
++    /// animates or when the last turn asked for a redraw it couldn't deliver (a frame asking for
++    /// the next one), `Some(d)` for a timer or frame deadline, `None` until an event or wake.
++    pub fn next_wake(&self) -> Option<Duration> {
++        if self.exited { return None; }
++        if self.redraw { return Some(Duration::ZERO); }
++        match self.windows.flow {
++            ControlFlow::Poll => Some(Duration::ZERO),
++            ControlFlow::WaitUntil(at) => Some(at.saturating_duration_since(crate::time::Instant::now())),
++            ControlFlow::Wait => None,
++        }
++    }
++
++    /// Whether the app has quit.
++    pub fn exited(&self) -> bool { self.exited }
++}
++
++impl Drop for Pump {
++    fn drop(&mut self) {
++        if !self.exited { finish(); }
++    }
++}
++
++pub(crate) fn start_windows(factory: Factory, args: Args, accessory: bool) -> Result<Pump, String> {
++    let (event_loop, windows) = build(factory, args, accessory)?;
++    Ok(Pump { event_loop, windows, exited: false, redraw: false })
++}
+diff --git a/crates/rune/src/window/pump_wake.rs b/crates/rune/src/window/pump_wake.rs
+new file mode 100644
+index 00000000..0685412d
+--- /dev/null
++++ b/crates/rune/src/window/pump_wake.rs
+@@ -0,0 +1,46 @@
++//! Every wake sent to the event loop also tells a host that turns the loop itself (`Pump`) that
++//! it has work: its thread may be parked in its own run loop rather than winit's. A redraw asked
++//! for too late in a pass for winit to deliver in it makes the host's next turn due at once
++//! instead (`redraw_next_pass`).
++use std::cell::Cell;
++use std::sync::{Arc, Mutex};
++
++use winit::event_loop::EventLoopProxy;
++
++use super::WakeEvent;
++
++pub(crate) type PumpWake = Arc<dyn Fn() + Send + Sync>;
++
++static HOOK: Mutex<Option<PumpWake>> = Mutex::new(None);
++
++thread_local! {
++    /// A redraw asked for since `take_redraw_next_pass` that winit delivers on its next pass.
++    static NEXT_PASS: Cell<bool> = const { Cell::new(false) };
++}
++
++/// `request_redraw` too late in a pass for winit to deliver it in that pass: from a frame (the
++/// next frame, on Linux and Windows; macOS paces frames with its display link), from
++/// `about_to_wait`, or after a frame (`shell`). `run_app` makes that next pass at once. A pumping
++/// host makes it on its next turn, so `Pump::next_wake` makes that turn due now.
++pub(super) fn redraw_next_pass(window: &winit::window::Window) {
++    window.request_redraw();
++    NEXT_PASS.set(true);
++}
++
++/// Whether a redraw was asked for with `redraw_next_pass` since the last call.
++#[cfg(not(target_arch = "wasm32"))]
++pub(super) fn take_redraw_next_pass() -> bool {
++    NEXT_PASS.replace(false)
++}
++
++pub(super) fn set(hook: Option<PumpWake>) {
++    *HOOK.lock().unwrap_or_else(|e| e.into_inner()) = hook;
++}
++
++/// Sends `event` to the loop, then runs the pump's wake hook, if one is set.
++pub(crate) fn send_wake(proxy: &EventLoopProxy<WakeEvent>, event: WakeEvent) -> bool {
++    let sent = proxy.send_event(event).is_ok();
++    let hook = HOOK.lock().unwrap_or_else(|e| e.into_inner()).clone();
++    if let Some(hook) = hook { hook(); }
++    sent
++}

@@ -1,0 +1,4 @@
+# Link the MSVC C runtime statically, as napi-rs projects do, so `runex.win32-arm64-msvc.node`
+# loads on machines without the Visual C++ Redistributable (no VCRUNTIME140.dll import).
+[target.aarch64-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]

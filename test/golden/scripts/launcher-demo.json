@@ -1,0 +1,5 @@
+{"displays": [{"id": 1, "frame": [0, 0, 1280, 800], "scale": 2, "primary": true}],
+ "events": [
+  {"t": 0.50, "type": "tap", "key": "note-2"},
+  {"t": 1.20, "type": "mark", "name": "end"}
+]}

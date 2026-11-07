@@ -1,0 +1,19 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":1,"t":0,"time_scale":1,"title":"Golden text","viewport":[720,360],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,720,360],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"root/stage","rect":[20,20,680,140],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0","rect":[20,20,429,140],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0","rect":[20,20,429,17],"role":"text","scale":1,"text":"Inter 13/400: The quick brown fox jumps over the lazy dog"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1","rect":[20,43,429,25],"role":"text","scale":1,"text":"Inter 20/600: Sphinx of black quartz"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2","rect":[20,74,429,17],"role":"text","scale":1,"text":"IBM Plex Mono 13/400: fn main() { println!(\"{}\", 42); }"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3","rect":[20,97,429,17],"role":"text","scale":1,"text":"IBM Plex Mono 13/500: 0O 1lI |{}[] => != <="}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#4","rect":[20,120,429,17],"role":"text","scale":1,"text":"tok.type_ BODY, TITLE, CAPTION"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#5","rect":[20,143,429,17],"role":"text","scale":1,"text":"TITLE"}
+{"a11y":"0","bounds":[0,0,720,360],"name":"Golden text","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,360],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[20,20,680,140],"key":"stage","role":"group"}
+{"a11y":"0/0/0/0","bounds":[20,20,429,17],"name":"Inter 13/400: The quick brown fox jumps over the lazy dog","role":"label"}
+{"a11y":"0/0/0/1","bounds":[20,43,429,25],"name":"Inter 20/600: Sphinx of black quartz","role":"label"}
+{"a11y":"0/0/0/2","bounds":[20,74,429,17],"name":"IBM Plex Mono 13/400: fn main() { println!(\"{}\", 42); }","role":"label"}
+{"a11y":"0/0/0/3","bounds":[20,97,429,17],"name":"IBM Plex Mono 13/500: 0O 1lI |{}[] => != <=","role":"label"}
+{"a11y":"0/0/0/4","bounds":[20,120,429,17],"name":"tok.type_ BODY, TITLE, CAPTION","role":"label"}
+{"a11y":"0/0/0/5","bounds":[20,143,429,17],"name":"TITLE","role":"label"}

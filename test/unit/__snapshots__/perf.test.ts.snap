@@ -1,0 +1,30 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`PerfStats the keys the declaration promises (snapshot) 1`] = `
+[
+  "window",
+  "fps",
+  "input_frames_per_s",
+  "frame_ms",
+  "frame_p95_ms",
+  "frame_max_ms",
+  "work_ms",
+  "work_max_ms",
+  "rune_ms",
+  "bindings_ms",
+  "js_ms",
+  "update_ms",
+  "encode_ms",
+  "view_ms",
+  "views_per_s",
+  "unchanged_per_s",
+  "skipped_per_s",
+  "presents_per_s",
+  "pacing",
+  "loop_ms",
+  "ticks_per_s",
+  "turns_per_s",
+  "loop_busy_pct",
+  "memory_mb",
+]
+`;

@@ -1,0 +1,12 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden compose","viewport":[520,260],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,520,260],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","loopPhase":null,"opacity":1,"path":"root/card","rect":[112,70,200,120],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/card/#0","rect":[128,86,168,19],"role":"text","scale":1,"text":"Composited card"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/card/#1","rect":[128,111,168,14],"role":"text","scale":1,"text":"glow under it, or lit from above"}
+{"blur":0,"fill":"#ff7f4dff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"chip","loopPhase":null,"opacity":1,"path":"root/chip","rect":[352,102,56,56],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,520,260],"name":"Golden compose","role":"window"}
+{"a11y":"0/0","bounds":[0,0,520,260],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[112,70,200,120],"key":"card","role":"group"}
+{"a11y":"0/0/0/0","bounds":[128,86,168,19],"name":"Composited card","role":"label"}
+{"a11y":"0/0/0/1","bounds":[128,111,168,14],"name":"glow under it, or lit from above","role":"label"}
+{"a11y":"0/0/1","bounds":[352,102,56,56],"key":"chip","role":"group"}

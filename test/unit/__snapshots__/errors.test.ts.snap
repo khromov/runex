@@ -1,0 +1,23 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`conversion error messages one per conversion kind (snapshot) 1`] = `
+{
+  "array": "arg0: expected 4 items, got 2",
+  "bool": "enabled: Failed to convert napi value into rust type \`bool\`",
+  "bytes": "png: expected an array",
+  "class": "child: expected a El",
+  "data_enum": "curve: "Bogus" isn't a Curve variant (or lacks its value)",
+  "duration": "enter: cannot convert float seconds to Duration: value is either too big or NaN",
+  "enum_keys": "curve: a Curve object has exactly one key, its variant",
+  "enum_shape": "curve: expected a Curve (a variant name, or { Variant: value })",
+  "function": "f: expected a function",
+  "moved": "this El was moved (into a parent, or by a method that consumes it) and can't be used again",
+  "number": "w: expected a number",
+  "option": "left: expected a number",
+  "record_field": "value: Spring.bounce: expected a number",
+  "string": "text: Failed to convert JavaScript value \`Number 5 \` into rust type \`String\`",
+  "tuple": "strikes: [0]: expected a 3-item array, got 1",
+  "unit_enum": "cursor: "Sideways" isn't a Cursor variant (or lacks its value)",
+  "vec_element": "strikes: [1]: expected a number",
+}
+`;

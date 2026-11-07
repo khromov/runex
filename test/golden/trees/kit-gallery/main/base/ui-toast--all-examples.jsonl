@@ -1,0 +1,41 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,132],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Show download toast","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,157.5,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/label","rect":[36,26,133.5,20],"role":"text","scale":1,"text":"Show download toast"}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Show saved toast","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[24,60,133.5,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/label","rect":[36,62,109.5,20],"role":"text","scale":1,"text":"Show saved toast"}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Show saving toast","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2","rect":[24,96,137.5,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/label","rect":[36,98,113.5,20],"role":"text","scale":1,"text":"Show saving toast"}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Show unsaved changes toast","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3","rect":[24,132,206,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#3/label","rect":[36,134,182,20],"role":"text","scale":1,"text":"Show unsaved changes toast"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"toast-region","label":"Notifications","loopPhase":null,"opacity":1,"path":"kit-root/toast-region","rect":[368,328,320,104],"role":"region","scale":1}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"download","label":"Download started...","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download","rect":[368,328,320,104],"role":"status","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"top","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top","rect":[380,340,296,44],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"icon","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top/icon","rect":[380,340,16,20],"role":"group","scale":1}
+{"blur":0,"color":"#dbdbdbff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top/icon/#0","rect":[380,342,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"content","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top/content","rect":[408,340,236,44],"role":"group","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top/content/title","rect":[408,340,236,20],"role":"text","scale":1,"text":"Download started..."}
+{"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"description","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top/content/description","rect":[408,364,236,20],"role":"text","scale":1,"text":"23% · 2 min left"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"close","label":"Close","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top/close","rect":[656,340,20,20],"role":"button","scale":1}
+{"blur":0,"color":"#808080ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/top/close/#0","rect":[658,342,16,16],"role":"icon","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"actions","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/actions","rect":[380,396,296,24],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Run in background","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/actions/#0","rect":[408,396,140.5,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/actions/#0/label","rect":[420,398,116.5,20],"role":"text","scale":1,"text":"Run in background"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Cancel","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/actions/#1","rect":[556.5,396,67.5,24],"role":"button","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/toast-region/download/actions/#1/label","rect":[568.5,398,43.5,20],"role":"text","scale":1,"text":"Cancel"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","actions":["click","focus"],"bounds":[24,24,157.5,24],"name":"Show download toast","role":"button"}
+{"a11y":"0/0/0/1","actions":["focus"],"bounds":[24,60,133.5,24],"name":"Show saved toast","role":"button"}
+{"a11y":"0/0/0/2","actions":["focus"],"bounds":[24,96,137.5,24],"name":"Show saving toast","role":"button"}
+{"a11y":"0/0/0/3","actions":["focus"],"bounds":[24,132,206,24],"name":"Show unsaved changes toast","role":"button"}
+{"a11y":"0/0/1","bounds":[368,328,320,104],"key":"toast-region","name":"Notifications","role":"region"}
+{"a11y":"0/0/1/0","bounds":[368,328,320,104],"description":"23% · 2 min left","key":"download","name":"Download started...","role":"status","states":["live-polite"]}
+{"a11y":"0/0/1/0/0","bounds":[380,340,296,44],"key":"top","role":"group"}
+{"a11y":"0/0/1/0/0/0","actions":["focus"],"bounds":[656,340,20,20],"key":"close","name":"Close","role":"button"}
+{"a11y":"0/0/1/0/1","bounds":[380,396,296,24],"key":"actions","role":"group"}
+{"a11y":"0/0/1/0/1/0","actions":["click","focus"],"bounds":[408,396,140.5,24],"name":"Run in background","role":"button"}
+{"a11y":"0/0/1/0/1/1","actions":["click","focus"],"bounds":[556.5,396,67.5,24],"name":"Cancel","role":"button"}

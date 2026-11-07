@@ -1,0 +1,32 @@
+{"anim_t":0.3,"animating":false,"dark_system":true,"reduced_motion":false,"scale":1,"t":0.3,"time_scale":1,"title":"Notes","viewport":[520,320],"warnings":[]}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,520,320],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[0,0,520,12],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[0,12,520,308],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"list","loopPhase":null,"opacity":1,"path":"#0/#1/list","rect":[0,12,170,308],"role":"group","scale":1}
+{"blur":0,"fill":"#4392f7d9","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"note-0","loopPhase":null,"opacity":1,"path":"#0/#1/list/note-0","rect":[8,12,154,30],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/list/note-0/#0","rect":[18,18.5,60,17],"role":"text","scale":1,"text":"Groceries"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"note-1","loopPhase":null,"opacity":1,"path":"#0/#1/list/note-1","rect":[8,44,154,30],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/list/note-1/#0","rect":[18,50.5,84,17],"role":"text","scale":1,"text":"Trip to Lisbon"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"note-2","loopPhase":null,"opacity":1,"path":"#0/#1/list/note-2","rect":[8,76,154,30],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/list/note-2/#0","rect":[18,82.5,72,17],"role":"text","scale":1,"text":"Reading list"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"note-3","loopPhase":null,"opacity":1,"path":"#0/#1/list/note-3","rect":[8,108,154,30],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/list/note-3/#0","rect":[18,114.5,34,17],"role":"text","scale":1,"text":"Ideas"}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"page","loopPhase":null,"opacity":1,"path":"#0/#1/page","rect":[170,12,350,308],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/page/#0","rect":[190,32,310,22],"role":"text","scale":1,"text":"Groceries"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/page/#1","rect":[190,64,310,20],"role":"text","scale":1,"text":"Oat milk, lemons, basil, sourdough, two avocados."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/page/#2","rect":[190,94,310,181],"role":"group","scale":1}
+{"blur":0,"color":"#a2a5aab3","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/page/#3","rect":[190,285,310,15],"role":"text","scale":1,"text":"⌘Space to search"}
+{"a11y":"0","bounds":[0,0,520,320],"name":"Notes","role":"window"}
+{"a11y":"0/0","bounds":[0,12,170,308],"key":"list","role":"group"}
+{"a11y":"0/0/0","actions":["click"],"bounds":[8,12,154,30],"key":"note-0","name":"Groceries","role":"button"}
+{"a11y":"0/0/0/0","bounds":[18,18.5,60,17],"name":"Groceries","role":"label"}
+{"a11y":"0/0/1","actions":["click"],"bounds":[8,44,154,30],"key":"note-1","name":"Trip to Lisbon","role":"button"}
+{"a11y":"0/0/1/0","bounds":[18,50.5,84,17],"name":"Trip to Lisbon","role":"label"}
+{"a11y":"0/0/2","actions":["click"],"bounds":[8,76,154,30],"key":"note-2","name":"Reading list","role":"button"}
+{"a11y":"0/0/2/0","bounds":[18,82.5,72,17],"name":"Reading list","role":"label"}
+{"a11y":"0/0/3","actions":["click"],"bounds":[8,108,154,30],"key":"note-3","name":"Ideas","role":"button"}
+{"a11y":"0/0/3/0","bounds":[18,114.5,34,17],"name":"Ideas","role":"label"}
+{"a11y":"0/1","bounds":[170,12,350,308],"key":"page","role":"group"}
+{"a11y":"0/1/0","bounds":[190,32,310,22],"name":"Groceries","role":"label"}
+{"a11y":"0/1/1","bounds":[190,64,310,20],"name":"Oat milk, lemons, basil, sourdough, two avocados.","role":"label"}
+{"a11y":"0/1/2","bounds":[190,285,310,15],"name":"⌘Space to search","role":"label"}

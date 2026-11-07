@@ -1,0 +1,22 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#0a0a0aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,72],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Enabled","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,672,16],"role":"switch","scale":1}
+{"blur":0,"color":"#797979ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/label","rect":[24,24,42,16],"role":"text","scale":1,"text":"Enabled"}
+{"blur":0,"fill":"#e5484dff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/control","rect":[74,24,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#edededff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/control/thumb","rect":[88,25,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"label":"Disabled","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1","rect":[24,52,672,16],"role":"switch","scale":1}
+{"blur":0,"color":"#797979ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/label","rect":[24,52,45.5,16],"role":"text","scale":1,"text":"Disabled"}
+{"blur":0,"fill":"#282828ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/control","rect":[77.5,52,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#edededff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#1/control/thumb","rect":[78.5,53,21,14],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"label":"Disabled switch","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2","rect":[24,80,672,16],"role":"switch","scale":1}
+{"blur":0,"color":"#797979ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"label","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/label","rect":[24,80,82,16],"role":"text","scale":1,"text":"Disabled switch"}
+{"blur":0,"fill":"#282828ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"control","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/control","rect":[114,80,36,16],"role":"group","scale":1}
+{"blur":0,"fill":"#edededff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#2/control/thumb","rect":[115,81,21,14],"role":"group","scale":1}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","actions":["click","focus"],"bounds":[24,24,672,16],"name":"Enabled","role":"switch","states":["checked"]}
+{"a11y":"0/0/0/1","actions":["click","focus"],"bounds":[24,52,672,16],"name":"Disabled","role":"switch","states":["unchecked"]}
+{"a11y":"0/0/0/2","bounds":[24,80,672,16],"name":"Disabled switch","role":"switch","states":["disabled","unchecked"]}

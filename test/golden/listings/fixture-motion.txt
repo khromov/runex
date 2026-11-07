@@ -1,0 +1,3 @@
+main
+  springs
+  reduced

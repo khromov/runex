@@ -1,0 +1,17 @@
+// `bun run typecheck`: everything, against the built dist/ (examples, tests and scripts import
+// `runex-js`, which resolves to dist/*.d.ts), so run `bun run build:ts` first; `bun run test` does.
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2023"],
+    "types": ["node", "bun"],
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["ts", "examples", "test", "bench", "scripts", "tools"]
+}

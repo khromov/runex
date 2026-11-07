@@ -1,0 +1,9 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden paint","viewport":[760,340],"warnings":[]}
+{"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,760,340],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0","rect":[24,24,712,140.5],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"shapes","loopPhase":null,"opacity":1,"path":"root/#0/shapes","rect":[24,24,540,120],"role":"image","scale":1}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1","rect":[24,152,712,12.5],"role":"text","scale":1,"text":"Path, polygon, polyline, lines"}
+{"a11y":"0","bounds":[0,0,760,340],"name":"Golden paint","role":"window"}
+{"a11y":"0/0","bounds":[0,0,760,340],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[24,24,540,120],"key":"shapes","role":"image"}
+{"a11y":"0/0/1","bounds":[24,152,712,12.5],"name":"Path, polygon, polyline, lines","role":"label"}

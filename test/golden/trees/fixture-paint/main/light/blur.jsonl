@@ -1,0 +1,47 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden paint","viewport":[760,340],"warnings":[]}
+{"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,760,340],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0","rect":[24,24,712,214.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0","rect":[24,24,520,120],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stripes","loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes","rect":[24,24,520,120],"role":"group","scale":1}
+{"blur":0,"fill":"#eb6f9aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#0","rect":[24,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#f17264ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#1","rect":[64,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#e78022ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#2","rect":[104,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#cd9300ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#3","rect":[144,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#a2a700ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#4","rect":[184,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#63b650ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#5","rect":[224,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#00bd8bff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#6","rect":[264,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#00bbbfff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#7","rect":[304,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#00b1e7ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#8","rect":[344,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#49a2feff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#9","rect":[384,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#8d90ffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#10","rect":[424,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#ba80eaff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#11","rect":[464,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#da74c4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#0/stripes/#12","rect":[504,24,40,120],"role":"group","scale":1}
+{"blur":0,"fill":"#16161640","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"glass-4","loopPhase":null,"opacity":1,"path":"root/#0/#0/glass-4","rect":[44,44,120,80],"role":"group","scale":1}
+{"blur":0,"fill":"#16161640","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"glass-16","loopPhase":null,"opacity":1,"path":"root/#0/#0/glass-16","rect":[224,44,120,80],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1","rect":[24,158,712,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#0","rect":[24,158,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#f66e5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"blur0","loopPhase":null,"opacity":1,"path":"root/#0/#1/#0/blur0","rect":[24,158,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#0/#1","rect":[58,226,28,12.5],"role":"text","scale":1,"text":"blur 0"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#1","rect":[132,158,96,80.5],"role":"group","scale":1}
+{"blur":3,"fill":"#f66e5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"blur3","loopPhase":null,"opacity":1,"path":"root/#0/#1/#1/blur3","rect":[132,158,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#1/#1","rect":[166,226,28,12.5],"role":"text","scale":1,"text":"blur 3"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#2","rect":[240,158,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#f66e5cff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"op50","loopPhase":null,"opacity":0.5,"path":"root/#0/#1/#2/op50","rect":[240,158,96,64],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#2/#1","rect":[261.25,226,53.5,12.5],"role":"text","scale":1,"text":"opacity 0.5"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#3","rect":[348,158,96,80.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00bcc8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"op20","loopPhase":null,"opacity":0.20000000298023224,"path":"root/#0/#1/#3/op20","rect":[348,158,96,64],"role":"group","scale":1}
+{"blur":0,"fill":"#f8dc90ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0.20000000298023224,"path":"root/#0/#1/#3/op20/#0","rect":[348,158,40,40],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0/#1/#3/#1","rect":[353.75,226,84.5,12.5],"role":"text","scale":1,"text":"opacity 0.2 group"}
+{"a11y":"0","bounds":[0,0,760,340],"name":"Golden paint","role":"window"}
+{"a11y":"0/0","bounds":[0,0,760,340],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[24,24,520,120],"key":"stripes","role":"group"}
+{"a11y":"0/0/1","bounds":[44,44,120,80],"key":"glass-4","role":"group"}
+{"a11y":"0/0/2","bounds":[224,44,120,80],"key":"glass-16","role":"group"}
+{"a11y":"0/0/3","bounds":[24,158,96,64],"key":"blur0","role":"group"}
+{"a11y":"0/0/4","bounds":[58,226,28,12.5],"name":"blur 0","role":"label"}
+{"a11y":"0/0/5","bounds":[132,158,96,64],"key":"blur3","role":"group"}
+{"a11y":"0/0/6","bounds":[166,226,28,12.5],"name":"blur 3","role":"label"}
+{"a11y":"0/0/7","bounds":[240,158,96,64],"key":"op50","role":"group"}
+{"a11y":"0/0/8","bounds":[261.3,226,53.5,12.5],"name":"opacity 0.5","role":"label"}
+{"a11y":"0/0/9","bounds":[348,158,96,64],"key":"op20","role":"group"}
+{"a11y":"0/0/10","bounds":[353.8,226,84.5,12.5],"name":"opacity 0.2 group","role":"label"}

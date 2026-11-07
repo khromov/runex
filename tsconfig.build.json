@@ -1,0 +1,14 @@
+// `bun run build:ts`: ts/ to dist/, the JavaScript and declarations the package ships.
+// No source maps: they would point at ts/, which the package doesn't include.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
+    "rootDir": "ts",
+    "outDir": "dist",
+    "declaration": true,
+    "sourceMap": false
+  },
+  "include": ["ts"]
+}

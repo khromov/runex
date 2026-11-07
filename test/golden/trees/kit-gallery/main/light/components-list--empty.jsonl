@@ -1,0 +1,20 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,672,137],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search-wrapper","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper","rect":[24,24,672,36],"role":"group","scale":1}
+{"blur":0,"fill":"#f8f8f8ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"search","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search","rect":[24,24,672,36],"role":"group","scale":1}
+{"blur":0,"color":"#8f8f8fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search/#0","rect":[32,34,16,16],"role":"icon","scale":1}
+{"blur":0,"color":"#171717ff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"input","label":"","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/search-wrapper/search/input","rect":[56,32,632,20],"role":"textbox","scale":1,"text":""}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"scroll","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll","rect":[24,76,672,85],"role":"list","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"empty","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/empty","rect":[24,76,672,85],"role":"group","scale":1}
+{"blur":0,"color":"#8f8f8fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/scroll/empty/#0","rect":[326.25,108,67.5,21],"role":"text","scale":1,"text":"No results"}
+{"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
+{"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
+{"a11y":"0/0/0/0","bounds":[24,24,672,36],"key":"search-wrapper","role":"group"}
+{"a11y":"0/0/0/0/0","bounds":[24,24,672,36],"key":"search","role":"group"}
+{"a11y":"0/0/0/0/0/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[56,32,632,20],"key":"input","role":"text-input","value":""}
+{"a11y":"0/0/0/1","bounds":[24,76,672,85],"key":"scroll","role":"list"}
+{"a11y":"0/0/0/1/0","bounds":[24,76,672,85],"key":"empty","role":"group"}
+{"a11y":"0/0/0/1/0/0","bounds":[326.3,108,67.5,21],"name":"No results","role":"label"}

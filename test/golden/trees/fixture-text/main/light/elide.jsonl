@@ -1,0 +1,37 @@
+{"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Golden text","viewport":[720,360],"warnings":[]}
+{"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,720,360],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"root/stage","rect":[20,20,680,309],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0","rect":[20,20,260,309],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0","rect":[20,20,260,50.5],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#0","rect":[20,20,260,14],"role":"text","scale":1,"text":"truncate"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#1","rect":[20,38,260,32.5],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#1/#0","rect":[28,46,244,16.5],"role":"text","scale":1,"text":"/Users/someone/projects/runex/vendor/rune/crates/rune/src/text/layout.rs"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1","rect":[20,80.5,260,50.5],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#0","rect":[20,80.5,260,14],"role":"text","scale":1,"text":"truncate_middle"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#1","rect":[20,98.5,260,32.5],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#1/#0","rect":[28,106.5,244,16.5],"role":"text","scale":1,"text":"/Users/someone/projects/runex/vendor/rune/crates/rune/src/text/layout.rs"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2","rect":[20,141,260,50.5],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#0","rect":[20,141,260,14],"role":"text","scale":1,"text":"truncate_head"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#1","rect":[20,159,260,32.5],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#1/#0","rect":[28,167,244,16.5],"role":"text","scale":1,"text":"/Users/someone/projects/runex/vendor/rune/crates/rune/src/text/layout.rs"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3","rect":[20,201.5,260,67],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3/#0","rect":[20,201.5,260,14],"role":"text","scale":1,"text":"max_lines(2)"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3/#1","rect":[20,219.5,260,49],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3/#1/#0","rect":[28,227.5,244,33],"role":"text","scale":1,"text":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#4","rect":[20,278.5,260,50.5],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#4/#0","rect":[20,278.5,260,14],"role":"text","scale":1,"text":"single_line"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#4/#1","rect":[20,296.5,260,32.5],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#4/#1/#0","rect":[28,304.5,244,16.5],"role":"text","scale":1,"text":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid."}
+{"a11y":"0","bounds":[0,0,720,360],"name":"Golden text","role":"window"}
+{"a11y":"0/0","bounds":[0,0,720,360],"key":"root","role":"group"}
+{"a11y":"0/0/0","bounds":[20,20,680,309],"key":"stage","role":"group"}
+{"a11y":"0/0/0/0","bounds":[20,20,260,14],"name":"truncate","role":"label"}
+{"a11y":"0/0/0/1","bounds":[28,46,244,16.5],"name":"/Users/someone/projects/runex/vendor/rune/crates/rune/src/text/layout.rs","role":"label"}
+{"a11y":"0/0/0/2","bounds":[20,80.5,260,14],"name":"truncate_middle","role":"label"}
+{"a11y":"0/0/0/3","bounds":[28,106.5,244,16.5],"name":"/Users/someone/projects/runex/vendor/rune/crates/rune/src/text/layout.rs","role":"label"}
+{"a11y":"0/0/0/4","bounds":[20,141,260,14],"name":"truncate_head","role":"label"}
+{"a11y":"0/0/0/5","bounds":[28,167,244,16.5],"name":"/Users/someone/projects/runex/vendor/rune/crates/rune/src/text/layout.rs","role":"label"}
+{"a11y":"0/0/0/6","bounds":[20,201.5,260,14],"name":"max_lines(2)","role":"label"}
+{"a11y":"0/0/0/7","bounds":[28,227.5,244,33],"name":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid.","role":"label"}
+{"a11y":"0/0/0/8","bounds":[20,278.5,260,14],"name":"single_line","role":"label"}
+{"a11y":"0/0/0/9","bounds":[28,304.5,244,16.5],"name":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid.","role":"label"}
