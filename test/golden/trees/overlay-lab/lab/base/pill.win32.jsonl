@@ -1,0 +1,31 @@
+{"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Overlay lab","viewport":[680,160],"warnings":[]}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,680,160],"role":"group","scale":1}
+{"blur":0,"fill":"#424852f7","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"pill","loopPhase":null,"opacity":1,"path":"#0/pill","rect":[166,41.5,348,52.5],"role":"group","scale":1}
+{"blur":0,"fill":"#89c4ff29","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"Area","loopPhase":null,"opacity":1,"path":"#0/pill/Area","rect":[174,49.5,46.5,36.5],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/pill/Area/#0","rect":[184,59.5,26.5,16.5],"role":"text","scale":1,"text":"Area"}
+{"blur":0,"fill":"#89c4ff29","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"Window","loopPhase":null,"opacity":1,"path":"#0/pill/Window","rect":[224.5,49.5,67.5,36.5],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/pill/Window/#0","rect":[234.5,59.5,47.5,16.5],"role":"text","scale":1,"text":"Window"}
+{"blur":0,"fill":"#89c4ff29","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"Screen","loopPhase":null,"opacity":1,"path":"#0/pill/Screen","rect":[296,49.5,58.5,36.5],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/pill/Screen/#0","rect":[306,59.5,38.5,16.5],"role":"text","scale":1,"text":"Screen"}
+{"blur":0,"fill":"#89c4ff29","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"iPhone","loopPhase":null,"opacity":1,"path":"#0/pill/iPhone","rect":[358.5,49.5,60,36.5],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/pill/iPhone/#0","rect":[368.5,59.5,40,16.5],"role":"text","scale":1,"text":"iPhone"}
+{"blur":0,"fill":"#89c4ff29","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"Paste","loopPhase":null,"opacity":1,"path":"#0/pill/Paste","rect":[422.5,49.5,50.5,36.5],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/pill/Paste/#0","rect":[432.5,59.5,30.5,16.5],"role":"text","scale":1,"text":"Paste"}
+{"blur":0,"fill":"#89c4ff29","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"×","loopPhase":null,"opacity":1,"path":"#0/pill/×","rect":[477,49.5,29,36.5],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/pill/×/#0","rect":[487,59.5,9,16.5],"role":"text","scale":1,"text":"×"}
+{"blur":0,"color":"#89c4ffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[338,102,4,16.5],"role":"text","scale":1,"text":""}
+{"a11y":"0","bounds":[0,0,680,160],"name":"Overlay lab","role":"window"}
+{"a11y":"0/0","bounds":[166,41.5,348,52.5],"key":"pill","role":"group"}
+{"a11y":"0/0/0","actions":["click"],"bounds":[174,49.5,46.5,36.5],"key":"Area","name":"Area","role":"button"}
+{"a11y":"0/0/0/0","bounds":[184,59.5,26.5,16.5],"name":"Area","role":"label"}
+{"a11y":"0/0/1","actions":["click"],"bounds":[224.5,49.5,67.5,36.5],"key":"Window","name":"Window","role":"button"}
+{"a11y":"0/0/1/0","bounds":[234.5,59.5,47.5,16.5],"name":"Window","role":"label"}
+{"a11y":"0/0/2","actions":["click"],"bounds":[296,49.5,58.5,36.5],"key":"Screen","name":"Screen","role":"button"}
+{"a11y":"0/0/2/0","bounds":[306,59.5,38.5,16.5],"name":"Screen","role":"label"}
+{"a11y":"0/0/3","actions":["click"],"bounds":[358.5,49.5,60,36.5],"key":"iPhone","name":"iPhone","role":"button"}
+{"a11y":"0/0/3/0","bounds":[368.5,59.5,40,16.5],"name":"iPhone","role":"label"}
+{"a11y":"0/0/4","actions":["click"],"bounds":[422.5,49.5,50.5,36.5],"key":"Paste","name":"Paste","role":"button"}
+{"a11y":"0/0/4/0","bounds":[432.5,59.5,30.5,16.5],"name":"Paste","role":"label"}
+{"a11y":"0/0/5","actions":["click"],"bounds":[477,49.5,29,36.5],"key":"×","name":"×","role":"button"}
+{"a11y":"0/0/5/0","bounds":[487,59.5,9,16.5],"name":"×","role":"label"}
+{"a11y":"0/1","bounds":[338,102,4,16.5],"name":"","role":"label"}

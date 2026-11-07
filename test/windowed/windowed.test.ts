@@ -292,7 +292,9 @@ describe("bun --hot", () => {
   windowedTest(gate, "a saved edit swaps the new view into the open window, keeps the count and retitles it (bun)", async () => {
     const s = scratch()
     try {
-      // A temporary app: main.ts (the counter) and common.ts, with runex-js linked to this repo.
+      // A temporary app: main.ts (the counter) and common.ts, with runex-js linked to this repo. Its
+      // package.json makes the directory the project, whose files `bun --hot` watches.
+      writeFileSync(join(s.dir, "package.json"), JSON.stringify({ name: "hot-counter", private: true, type: "module" }))
       mkdirSync(join(s.dir, "node_modules"))
       symlinkSync(REPO, join(s.dir, "node_modules", "runex-js"), "dir")
       cpSync(fixture("hot-counter"), join(s.dir, "main.ts"))

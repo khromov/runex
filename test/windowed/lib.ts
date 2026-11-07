@@ -17,7 +17,7 @@
 //   Otherwise they are `test.todo`, printed as pending at the start (`bun test --todo` runs them
 //   too, and fails one that passes, as a reminder to delete its entry).
 import { test } from "bun:test"
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs"
+import { existsSync, mkdtempSync, readFileSync, realpathSync, rmSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { join, resolve } from "node:path"
 import { renderEnv } from "../../scripts/lib/env.ts"
@@ -107,9 +107,13 @@ export async function runFixture(runtime: string, script: string, args: string[]
 /** The fixture path for `name` (`fixtures/<name>.ts`). */
 export const fixture = (name: string) => join(FIXTURES, `${name}.ts`)
 
-/** A fresh temporary directory, removed by `cleanup()`. */
+/**
+ * A fresh temporary directory, removed by `cleanup()`. Its real path: on GitHub's Windows runners
+ * tmpdir() is an 8.3 short path (C:\Users\RUNNER~1\...), and `bun --hot` then sees the long path
+ * of a module as outside the project and doesn't watch it.
+ */
 export function scratch(): { dir: string; cleanup: () => void } {
-  const dir = mkdtempSync(join(tmpdir(), "runex-windowed-"))
+  const dir = realpathSync.native(mkdtempSync(join(tmpdir(), "runex-windowed-")))
   return { dir, cleanup: () => rmSync(dir, { recursive: true, force: true }) }
 }
 
