@@ -640,14 +640,20 @@ function sanity(o: GoldenOptions, cases: Case[], byId: Map<string, Slot>, report
     const rendered = list.map((c) => ({ c, r: byId.get(c.id)?.r })).filter((x) => x.r?.ok)
     if (list[0]!.groupKind === "scenes") {
       const named = rendered.filter((x) => x.c.scene !== NO_SCENE)
-      if (named.length >= 2 && new Set(named.map((x) => `${x.r!.tree}\0${x.r!.hash}`)).size === 1) {
+      // Without PNG hashes (--no-png) trees are all there is, and scenes that differ only in pixels
+      // (the compose fixture's lighting) have identical trees in their baselines too. So judge by
+      // trees only a group whose baseline trees tell its scenes apart.
+      const judged = named.every((x) => x.r!.hash !== undefined) || new Set(named.map((x) => expected(o, "trees", x.c.id).text)).size > 1
+      if (judged && named.length >= 2 && new Set(named.map((x) => `${x.r!.tree}\0${x.r!.hash}`)).size === 1) {
         report.sanity.push(`${group}: all ${named.length} scenes render identically; is ${o.config.sceneFlag} ignored?`)
       }
       continue
     }
     for (let i = 1; i < rendered.length; i++) {
       const a = rendered[i - 1]!, b = rendered[i]!
-      if (body(a.r!.tree) === body(b.r!.tree) && a.r!.hash === b.r!.hash) {
+      // As above: without hashes, only checkpoints whose baseline trees differ can be judged.
+      const judged = (a.r!.hash !== undefined && b.r!.hash !== undefined) || body(expected(o, "trees", a.c.id).text) !== body(expected(o, "trees", b.c.id).text)
+      if (judged && body(a.r!.tree) === body(b.r!.tree) && a.r!.hash === b.r!.hash) {
         report.sanity.push(`${group}: checkpoints ${a.c.checkpoint} and ${b.c.checkpoint} render identically; does the script still reach its targets?`)
       }
     }

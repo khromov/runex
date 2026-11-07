@@ -66,13 +66,20 @@ function miniRune(repo: string, patches: string) {
 }
 
 describe("prepare-rune --check on a throwaway repo", () => {
-  const repo = join(tmp, "rune")
-  const patches = join(tmp, "patches")
-  miniRune(repo, patches)
-  const check = () => run("node", ["scripts/prepare-rune.mjs", "--check", "--rune", repo, "--patches", patches])
+  // Each test builds its own throwaway Rune, so the tests pass in any order (bun test --randomize).
+  let n = 0
+  function fresh() {
+    const dir = join(tmp, `rune-${++n}`)
+    const repo = join(dir, "rune")
+    const patches = join(dir, "patches")
+    miniRune(repo, patches)
+    const prepare = (...args: string[]) => run("node", ["scripts/prepare-rune.mjs", ...args, "--rune", repo, "--patches", patches])
+    expect(prepare().status).toBe(0)
+    return { repo, prepare, check: () => prepare("--check") }
+  }
 
   test("passes once prepare-rune applied the patch, with ignored files about", () => {
-    expect(run("node", ["scripts/prepare-rune.mjs", "--rune", repo, "--patches", patches]).status).toBe(0)
+    const { repo, check } = fresh()
     mkdirSync(join(repo, "target"))
     writeFileSync(join(repo, "target", "build.out"), "ignored\n")
     const r = check()
@@ -81,6 +88,7 @@ describe("prepare-rune --check on a throwaway repo", () => {
   })
 
   test("fails with a stat after one blank line in a file the patch doesn't touch", () => {
+    const { repo, check } = fresh()
     writeFileSync(join(repo, "src", "other.rs"), "fn b() {}\n\n")
     const r = check()
     expect(r.status).toBe(1)
@@ -92,7 +100,9 @@ describe("prepare-rune --check on a throwaway repo", () => {
   })
 
   test("--reapply saves the edit, then rebuilds pin plus patches", () => {
-    const r = run("node", ["scripts/prepare-rune.mjs", "--reapply", "--rune", repo, "--patches", patches])
+    const { repo, prepare, check } = fresh()
+    writeFileSync(join(repo, "src", "other.rs"), "fn b() {}\n\n")
+    const r = prepare("--reapply")
     expect(r.status).toBe(0)
     expect(readFileSync(join(repo, "src", "other.rs"), "utf8")).toBe("fn b() {}\n")
     expect(readFileSync(join(repo, "src", "patched.rs"), "utf8")).toBe("fn a() { pumped() }\n")
@@ -106,18 +116,26 @@ describe("prepare-rune --check on a throwaway repo", () => {
 describe("prepare-rune --check on a copy without .git", () => {
   // Like linux-docker.sh's copy, but inside another repository: git must not use that one, or
   // `apply --check` takes the patch's paths relative to it and passes without checking anything.
-  const patches = join(tmp, "copy-patches")
-  const pinned = join(tmp, "copy-pin")
-  miniRune(pinned, patches)
-  const outer = join(tmp, "outer")
-  const copy = join(outer, "vendor", "rune")
-  mkdirSync(outer)
-  gitIn(outer, "init", "-q")
-  cpSync(pinned, copy, { recursive: true, filter: (src) => !src.split(/[\\/]/).includes(".git") })
-  const prepare = (env: Record<string, string> = {}, ...flags: string[]) =>
-    run("node", ["scripts/prepare-rune.mjs", ...flags, "--rune", copy, "--patches", patches], { CI: "", ...env })
+  // Each test makes its own copy, so the tests pass in any order (bun test --randomize).
+  let n = 0
+  function copied(apply: boolean) {
+    const dir = join(tmp, `copy-${++n}`)
+    const patches = join(dir, "patches")
+    const pinned = join(dir, "pin")
+    miniRune(pinned, patches)
+    const outer = join(dir, "outer")
+    const copy = join(outer, "vendor", "rune")
+    mkdirSync(outer)
+    gitIn(outer, "init", "-q")
+    cpSync(pinned, copy, { recursive: true, filter: (src) => !src.split(/[\\/]/).includes(".git") })
+    const prepare = (env: Record<string, string> = {}, ...flags: string[]) =>
+      run("node", ["scripts/prepare-rune.mjs", ...flags, "--rune", copy, "--patches", patches], { CI: "", ...env })
+    if (apply) expect(prepare().status).toBe(0)
+    return { copy, prepare }
+  }
 
   test("applies, then passes and says what it can't check", () => {
+    const { copy, prepare } = copied(false)
     expect(existsSync(join(copy, ".git"))).toBe(false)
     expect(prepare().status).toBe(0)
     expect(readFileSync(join(copy, "src", "patched.rs"), "utf8")).toBe("fn a() { pumped() }\n")
@@ -128,6 +146,7 @@ describe("prepare-rune --check on a copy without .git", () => {
   })
 
   test("fails when a patch isn't applied", () => {
+    const { copy, prepare } = copied(true)
     rmSync(join(copy, "src", "new.rs"))
     const r = prepare({}, "--check")
     expect(r.stdout).toContain("MISSING   0001-mini.patch")
@@ -137,6 +156,7 @@ describe("prepare-rune --check on a copy without .git", () => {
   })
 
   test("fails in CI, where the submodule must be checked out", () => {
+    const { prepare } = copied(true)
     const r = prepare({ CI: "true" }, "--check")
     expect(r.stdout).toContain("NO GIT")
     expect(r.status).toBe(1)

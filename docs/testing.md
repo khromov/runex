@@ -38,7 +38,7 @@ JavaScript instead. `cargo fmt --check` isn't gated (the code isn't rustfmt-form
 | --- | --- | --- |
 | `bun test` | test/unit only (bunfig.toml's `[test] root`): never cargo, never a window | 10–20 s |
 | `bun run test` | the **fast tier**: `build:ts`, `typecheck`, `test/static`, `test/unit`, `test/pack/dist-fresh.test.ts`, `test/golden.test.ts` (golden quick on Bun) | 45 s or less |
-| `bun run test:unit` | `bun test ./test/unit` | 10–20 s |
+| `bun run test:unit` | `bun test --randomize ./test/unit` (a random file and test order each run; a failure prints its `--seed=N`, and `bun test ./test/unit --seed=N` replays that order) | 10–20 s |
 | `bun run test:golden` | golden, standard tier on Bun | 1–2 min |
 | `bun scripts/golden.ts --tier full --runtime bun,node` | every golden variant, Bun and Node | 4–6 min |
 | `bun run test:windowed` | `test/windowed` (opens real windows; see gating below) | about 1 min |

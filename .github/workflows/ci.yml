@@ -373,12 +373,13 @@ jobs:
         run: bun scripts/golden.ts --tier quick --runtime node --fetch-images --out out/golden/quick-node --summary "$GITHUB_STEP_SUMMARY"
 
       # Windows' and 24.04's trees are checked against the shared baselines; their pixels aren't
-      # yet (docs/testing.md: adding a platform's manifest). Advisory on Windows until its tree
-      # overrides are blessed from this step's artifact (video, symbol fallbacks differ there).
+      # yet (docs/testing.md: adding a platform's manifest). Advisory there: Windows' tree overrides
+      # aren't blessed yet (video, symbol fallbacks differ), and on the 24.04 runner image symbol
+      # glyphs fall back to its system fonts (the blocking Linux check is the font-free 22.04 container).
       - name: Golden trees, quick tier (self-checked)
         id: golden-trees
         if: ${{ !cancelled() && !matrix.full && steps.install.outcome == 'success' }}
-        continue-on-error: ${{ runner.os == 'Windows' }}
+        continue-on-error: ${{ runner.os == 'Windows' || matrix.name == 'ubuntu-24.04' }}
         shell: bash
         run: bun scripts/golden.ts --tier quick --runtime bun --no-png --self-check --out out/golden/quick-trees --summary "$GITHUB_STEP_SUMMARY"
 

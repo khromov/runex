@@ -60,7 +60,10 @@ describe("classes", () => {
 describe("enums and modules", () => {
   test("unit variants are strings, modules are namespaces", () => {
     expect(() => row().child(el().cursor("Pointer"))).not.toThrow()
-    expect(tok.motion.SNAPPY).toMatchObject({ duration: expect.any(Number) })
+    // A copy: Bun 1.4's toMatchObject writes each asymmetric matcher (expect.any) into the object
+    // it checks, which would turn the process-wide SNAPPY.duration into a matcher for every later
+    // test file (and file order differs between machines).
+    expect({ ...tok.motion.SNAPPY }).toMatchObject({ duration: expect.any(Number) })
     expect(tok.type_.TITLE.line_px()).toBeGreaterThan(0)
   })
 })
