@@ -27,6 +27,14 @@ export const FIXTURES = join(import.meta.dir, "fixtures")
 export const RUNTIMES = (process.env.RUNEX_WINDOWED_RUNTIMES ?? "bun,node").split(",").map((r) => r.trim()).filter(Boolean)
 export const MAC = process.platform === "darwin"
 export const LINUX = process.platform === "linux"
+export const WINDOWS = process.platform === "win32"
+
+/**
+ * Windows only: how long Rune keeps presenting every refresh after a frame that drew something
+ * new (`STEADY` in vendor/rune/crates/rune/src/window/draw.rs: with G-SYNC or FreeSync, a
+ * window's lone presents would swing the display's refresh rate). Rust's windows do the same.
+ */
+export const STEADY_HOLD_MS = 1000
 
 /** Input polling slowed to once a second: frames must then come from Rune's wakes, not from input checks. */
 export const SLOW_POLL = { RUNEX_ACTIVE_MS: "1000", RUNEX_IDLE_MS: "1000" }

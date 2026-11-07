@@ -237,6 +237,13 @@ On Linux without a desktop:
 RUNEX_WINDOWED=1 xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:windowed
 ```
 
+On Windows a window that changed keeps presenting every refresh for a second (`STEADY` in
+vendor/rune/crates/rune/src/window/draw.rs, against G-SYNC and FreeSync refresh swings), in Rust
+as in the port. A poll that moves the picture on every frame (examples/shapes) or a change once a
+second (examples/background's ticker) therefore keeps the window drawing without a rest there,
+where macOS and Linux rest between changes: the two tests about resting windows check Windows
+against that (`STEADY_HOLD_MS` in test/windowed/lib.ts).
+
 The macOS run is the main guard for the idle peek in src/idle.rs, which exists only there. The
 peek runs in its own run-loop mode: in the default mode, notifications AppKit delivered while it
 peeked (occlusion above all) ran outside winit's handler and were lost, so a window uncovered

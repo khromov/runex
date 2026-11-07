@@ -26,7 +26,7 @@
 import { describe, expect } from "bun:test"
 import { cpSync, mkdirSync, readFileSync, symlinkSync, writeFileSync } from "node:fs"
 import { join } from "node:path"
-import { MAC, PENDING, REPO, RUNTIMES, SLOW_POLL, describeRun, fixture, maxGap, readTrace, report, runFixture, scratch, windowGate, windowedTest, within } from "./lib.ts"
+import { MAC, PENDING, REPO, RUNTIMES, SLOW_POLL, STEADY_HOLD_MS, WINDOWS, describeRun, fixture, maxGap, readTrace, report, runFixture, scratch, windowGate, windowedTest, within } from "./lib.ts"
 
 const gate = await windowGate()
 if (!gate.run) console.log(`  [windowed] every test skips: ${gate.reason}`)
@@ -114,20 +114,30 @@ describe("poll-driven frames without input", () => {
   // The poll returns true without asking for frames, as examples/shapes' does: Rune draws the
   // launch frames and then nothing ("an idle window draws nothing"). Rust's shapes draws 3
   // frames in its first 0.1 s and then none, so the port must not draw more.
+  //
+  // Windows differs, in Rust as in the port: after a frame that draws something new, Rune keeps
+  // presenting every refresh for STEADY_HOLD_MS (lib.ts), and each of those frames polls. A poll
+  // that moves the picture (`nowake`, and shapes) holds the window again on every frame, so it
+  // never rests: on the windows-11-arm runner (WARP, rendering on the CPU) Rust's shapes and the
+  // port's both drew 5 to 9 frames a second from 1 s to 4 s, each of them held. There the fixture runs `still` (the poll
+  // returns true and the picture stays), which rests once launch's hold has ended (Rust's hello
+  // drew its last frame at 0.7 s), and the window is measured from then.
   for (const rt of RUNTIMES) {
     windowedTest(gate, `a poll returning true without wake_after stops drawing after launch (${rt})`, async () => {
       const s = scratch()
       try {
         const trace = join(s.dir, "nowake.jsonl")
-        const run = await runFixture(rt, fixture("poll-frames"), ["nowake", "--native", "--trace", trace], { env: { FIXTURE_MS: "2300" }, timeoutMs: 20000 })
+        const [mode, from, to] = WINDOWS ? ["still", STEADY_HOLD_MS + 600, STEADY_HOLD_MS + 1900] : ["nowake", 1000, 2300]
+        const run = await runFixture(rt, fixture("poll-frames"), [mode, "--native", "--trace", trace], { env: { FIXTURE_MS: String(to) }, timeoutMs: 20000 })
         expect(run.code, describeRun(run)).toBe(0)
         const t = readTrace(trace)
         const polls: number[] = run.result.polls
-        const got = { framesTotal: t.frames.length, lateFrames: within(t.frames, 1000, 2300), latePolls: within(polls, 1000, 2300) }
-        report(`poll without wake_after (${rt})`, got)
+        const got = { framesTotal: t.frames.length, lateFrames: within(t.frames, from, to), latePolls: within(polls, from, to) }
+        report(`poll without wake_after, ${mode} (${rt})`, { ...got, from, to, hz: t.hz })
         expect(got.lateFrames).toBeLessThanOrEqual(2)
         expect(got.latePolls).toBeLessThanOrEqual(2)
-        expect(got.framesTotal).toBeLessThanOrEqual(12)
+        // Launch's frames; on Windows also the hold's, at the display's rate.
+        expect(got.framesTotal).toBeLessThanOrEqual(12 + (WINDOWS ? Math.ceil((t.hz || 60) * (STEADY_HOLD_MS / 1000) * 1.5) : 0))
       } finally {
         s.cleanup()
       }
@@ -175,9 +185,27 @@ describe("wakes", () => {
         const ticks = t.frames.filter((f) => f >= 500)
         const spaced = ticks.filter((f, i) => i === 0 || f - ticks[i - 1]! > 500).length
         const perf = run.stderr.split("\n").filter((l) => l.startsWith("runex perf"))
-        report(`background ticks (${rt})`, { frames: t.frames.map(Math.round), perfLines: perf.length })
+        const restMs = maxGap(t.frames, 500, Infinity)
+        report(`background ticks (${rt})`, WINDOWS
+          ? { frames: t.frames.length, lastMs: t.frames.at(-1) ?? 0, longestRestMs: restMs, perfLines: perf.length }
+          : { frames: t.frames.map(Math.round), perfLines: perf.length })
         expect(run.code, describeRun(run)).toBe(0)
-        expect(spaced).toBeGreaterThanOrEqual(3)
+        if (WINDOWS) {
+          // Each tick holds the window presenting for STEADY_HOLD_MS, and the next tick comes as
+          // the hold ends, so the window draws without a rest from launch until it quits, in Rust
+          // as in the port (on the runner both drew 24 to 26 frames a second throughout). A tick
+          // that stopped drawing would end the frames a hold later: the third tick (about 3 s)
+          // holds them until quit (about 3.8 s; 3815 to 3862 ms in 8 runner runs), while without
+          // it they'd end near 3 s.
+          expect(restMs).toBeLessThan(500)
+          expect(t.frames.at(-1) ?? 0).toBeGreaterThanOrEqual(3400)
+          // And it's the ticks that draw: a tick rebuilds the view, a held frame doesn't, so the
+          // perf lines' view calls (`view N ms × C/s`) count launch's view plus each tick.
+          const views = perf.reduce((n, l) => n + Number(/view [\d.]+ ms × (\d+)\/s/.exec(l)?.[1] ?? 0), 0)
+          expect(views).toBeGreaterThanOrEqual(2)
+        } else {
+          expect(spaced).toBeGreaterThanOrEqual(3)
+        }
         expect(perf.length).toBeGreaterThanOrEqual(2)
       } finally {
         s.cleanup()

@@ -42,6 +42,17 @@ describe("vendor/rune", () => {
     if (r.status !== 0) console.error(r.stdout + r.stderr)
     expect(r.status).toBe(0)
   }, 30_000)
+
+  // The Windows windowed tests time their windows by Rune's steady hold: a Rune update that
+  // changes it must change test/windowed/lib.ts's copy too.
+  const draw = join(ROOT, "vendor", "rune", "crates", "rune", "src", "window", "draw.rs")
+  test.skipIf(!existsSync(draw))("test/windowed's STEADY_HOLD_MS is Rune's STEADY", () => {
+    const steady = /const STEADY: Duration = Duration::from_(secs|millis)\((\d+)\)/.exec(readFileSync(draw, "utf8"))
+    expect(steady).not.toBeNull()
+    const ms = Number(steady![2]) * (steady![1] === "secs" ? 1000 : 1)
+    const copy = /export const STEADY_HOLD_MS = (\d+)/.exec(readFileSync(join(ROOT, "test", "windowed", "lib.ts"), "utf8"))
+    expect(Number(copy?.[1])).toBe(ms)
+  })
 })
 
 /** A miniature Rune in `repo` at its pin (one file the patch changes, one it doesn't), and its patch in `patches`. */

@@ -1,11 +1,15 @@
 // Frames a poll asks for, with nobody touching the window.
 //
-//   bun test/windowed/fixtures/poll-frames.ts wake|nowake [Rune's flags: --native --trace t.jsonl]
+//   bun test/windowed/fixtures/poll-frames.ts wake|nowake|still [Rune's flags: --native --trace t.jsonl]
 //
 // `wake`: the poll calls `tx.wake_after(0)` on every frame, as an animation stepped from the frame
 // clock does, so the window draws at the display's rate until it quits. `nowake`: the poll
 // returns true without asking, like examples/shapes; Rune then draws nothing more once launch
-// settles ("an idle window draws nothing"), and the Rust original behaves the same.
+// settles ("an idle window draws nothing"), and the Rust original behaves the same. `still`: the
+// same poll, but the picture stays as it is (the state keeps `t` at 0). On Windows Rune keeps
+// presenting for a second after a frame that drew something new (draw.rs's steady hold), and
+// `nowake`'s picture moves on every frame, so there it never rests; `still` rests once the hold
+// ends.
 //
 // The view is shapes' kind: a canvas drawn from `t` in a box of fixed size. A view whose layout
 // changes every frame (a text that counts) keeps Rune drawing by itself, poll or no poll.
@@ -37,7 +41,7 @@ const app = App.new({
     if (polls.length === 0) setTimeout(() => handle.quit(), RUN_MS)
     polls.push(now())
     if (which === "wake") tx.wake_after(0)
-    s.t = t
+    if (which !== "still") s.t = t
     return true
   },
 })
