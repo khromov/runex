@@ -115,6 +115,14 @@ as they do in Rust.
 
 [docs/dev-workflow.md](docs/dev-workflow.md) has the details and limits.
 
+## Svelte
+
+[`@runex-js/svelte`](packages/svelte) is a Svelte custom renderer for runex: components in
+`.svelte` files, Rune's `El` methods as attributes (`<row gap={8} w_full fill={t.card}>`), CSS in
+`<style>` blocks, rune_kit's controls as components, hot reload, and the same headless `--snap`,
+`--tree` and `--script` tooling. `npm create runex-svelte@latest my-app` scaffolds an app
+([packages/create-runex-svelte](packages/create-runex-svelte)). Its README has the details.
+
 ## Examples
 
 Every Rust example in Rune's `examples/` is ported to TypeScript in [examples/](examples), except
@@ -326,8 +334,13 @@ Releases go out from CI. Set the version, then tag:
 
 ```sh
 npm version 0.2.0 --no-git-tag-version   # package.json; CI sets the platform packages' versions
+(cd packages/svelte && npm version 0.2.0 --no-git-tag-version)
+(cd packages/create-runex-svelte && npm version 0.2.0 --no-git-tag-version)
 git commit -am "v0.2.0" && git tag -a v0.2.0 -m "v0.2.0" && git push --follow-tags
 ```
+
+`@runex-js/svelte` and `create-runex-svelte` release in lockstep with `runex-js`: the `publish`
+job fails when their versions differ from the tag.
 
 The tag must be annotated (`-a`): `--follow-tags` pushes only annotated tags.
 `git push origin v0.2.0` pushes a tag of either kind.
@@ -343,7 +356,10 @@ fail). It checks that the tag matches `package.json`, then:
    version) into `package.json`. Those entries exist only in the published manifest, never in the
    repository;
 4. runs `node scripts/fix-dts.mjs --publish` (the `prepack` step, which `--ignore-scripts` skips)
-   and `npm publish --ignore-scripts` for `runex-js`. `prepublishOnly` would run step 3 again.
+   and `npm publish --ignore-scripts` for `runex-js`. `prepublishOnly` would run step 3 again;
+5. publishes `@runex-js/svelte` with `packages/svelte/scripts/publish.ts` (TypeScript compiled to
+   `lib/`, the vendored Svelte build bundled, `runex-js` as a peer at this minor), then
+   `create-runex-svelte` (its `prepack` copies the starter into `template/`).
 
 **Without an `NPM_TOKEN` repository secret, every publish is a dry run.** CI sets
 `npm_config_dry_run=true`, and the logs show each tarball's contents. A dry run still asks the
@@ -362,7 +378,7 @@ To publish for real:
 npm will remove direct publishing with granular access tokens in January 2027. Trusted
 publishing (OIDC) avoids that: it needs no token and works from a private repository. A trusted
 publisher is set in each package's settings on npmjs.com, so the packages must exist first: publish
-once with a token, then add `khromov/runex` and `ci.yml` as the trusted publisher of all four
+once with a token, then add `khromov/runex` and `ci.yml` as the trusted publisher of all six
 packages, and allow it to run `npm publish` (new trusted publishers default to staged publishing
 only). Trusted publishing also needs npm 11.5.1 or later, a `repository` field in
 `package.json` whose URL matches the GitHub repository exactly, and a `Dry run?` step in `ci.yml`
@@ -378,6 +394,11 @@ What each package contains:
 - **@runex-js/binding-\<platform\>**: `runex.<platform>.node`, `LICENSE`, `THIRD_PARTY_NOTICES.md`,
   `README.md` and `package.json`. `npm/<platform>/package.json` sets `os`, `cpu` and, on Linux,
   `libc: ["glibc"]`.
+- **@runex-js/svelte**: `lib/` (compiled JS, declarations, the kit components as `.svelte`),
+  `bin/`, `README.md`, `LICENSE`, and the custom-renderer Svelte build bundled under
+  `node_modules/svelte`. `bun run pack` in `packages/svelte` makes the tarball;
+  `bun run test:pack` installs it into a scaffolded app.
+- **create-runex-svelte**: `index.js` and `template/` (the starter, `packages/svelte/starter`).
 
 **Names.** `name` in `package.json` (`runex-js`) names the main package. `napi.packageName`
 (`@runex-js/binding`) names the platform packages, which add the platform

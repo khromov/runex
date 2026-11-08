@@ -1,0 +1,2060 @@
+{
+  "accessibility": {
+    "bounds": [
+      0.0,
+      0.0,
+      760.0,
+      520.0
+    ],
+    "children": [
+      {
+        "bounds": [
+          0.0,
+          0.0,
+          760.0,
+          520.0
+        ],
+        "children": [
+          {
+            "bounds": [
+              0.0,
+              0.0,
+              760.0,
+              520.0
+            ],
+            "children": [
+              {
+                "bounds": [
+                  32.0,
+                  32.0,
+                  696.0,
+                  57.3
+                ],
+                "children": [
+                  {
+                    "bounds": [
+                      32.0,
+                      32.0,
+                      254.5,
+                      57.3
+                    ],
+                    "children": [
+                      {
+                        "bounds": [
+                          32.0,
+                          32.0,
+                          254.5,
+                          35.0
+                        ],
+                        "key": "n10",
+                        "name": "Pricing",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          32.0,
+                          73.0,
+                          254.5,
+                          16.3
+                        ],
+                        "key": "n14",
+                        "name": "Pick the plan that fits. Change it any time.",
+                        "role": "label"
+                      }
+                    ],
+                    "key": "n8",
+                    "role": "group"
+                  },
+                  {
+                    "actions": [
+                      "click"
+                    ],
+                    "bounds": [
+                      669.5,
+                      44.5,
+                      58.5,
+                      32.3
+                    ],
+                    "children": [
+                      {
+                        "bounds": [
+                          683.5,
+                          52.5,
+                          30.5,
+                          16.3
+                        ],
+                        "key": "n20",
+                        "name": "Light",
+                        "role": "label"
+                      }
+                    ],
+                    "key": "theme",
+                    "name": "Light",
+                    "role": "button"
+                  }
+                ],
+                "key": "n6",
+                "role": "group"
+              },
+              {
+                "bounds": [
+                  32.0,
+                  113.3,
+                  696.0,
+                  374.8
+                ],
+                "children": [
+                  {
+                    "actions": [
+                      "click"
+                    ],
+                    "bounds": [
+                      32.0,
+                      113.3,
+                      221.3,
+                      374.8
+                    ],
+                    "children": [
+                      {
+                        "bounds": [
+                          52.0,
+                          133.3,
+                          181.3,
+                          17.5
+                        ],
+                        "key": "n29",
+                        "name": "Hobby",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          52.0,
+                          160.8,
+                          181.3,
+                          45.0
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              52.0,
+                              160.8,
+                              47.5,
+                              45.0
+                            ],
+                            "key": "n35",
+                            "name": "$0",
+                            "role": "label"
+                          },
+                          {
+                            "bounds": [
+                              103.5,
+                              189.5,
+                              43.5,
+                              16.3
+                            ],
+                            "key": "n39",
+                            "name": "/month",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n33",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          52.0,
+                          215.8,
+                          181.3,
+                          16.3
+                        ],
+                        "key": "n43",
+                        "name": "For side projects",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          52.0,
+                          248.0,
+                          181.3,
+                          1.0
+                        ],
+                        "key": "n47",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          52.0,
+                          265.0,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              52.0,
+                              270.1,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n61",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              66.0,
+                              265.0,
+                              52.0,
+                              16.3
+                            ],
+                            "key": "n63",
+                            "name": "1 project",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n59",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          52.0,
+                          291.3,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              52.0,
+                              296.4,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n69",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              66.0,
+                              291.3,
+                              122.0,
+                              16.3
+                            ],
+                            "key": "n71",
+                            "name": "Community support",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n67",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          52.0,
+                          317.5,
+                          181.3,
+                          104.3
+                        ],
+                        "key": "n51",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          52.0,
+                          431.8,
+                          181.3,
+                          36.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              103.4,
+                              441.8,
+                              78.5,
+                              16.3
+                            ],
+                            "key": "n55",
+                            "name": "Current plan",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n53",
+                        "role": "group"
+                      }
+                    ],
+                    "key": "plan-0",
+                    "name": "Hobby For side projects",
+                    "role": "button"
+                  },
+                  {
+                    "actions": [
+                      "click"
+                    ],
+                    "bounds": [
+                      269.3,
+                      113.3,
+                      221.3,
+                      374.8
+                    ],
+                    "children": [
+                      {
+                        "bounds": [
+                          289.3,
+                          133.3,
+                          181.3,
+                          17.5
+                        ],
+                        "key": "n77",
+                        "name": "Pro",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          160.8,
+                          181.3,
+                          45.0
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              289.3,
+                              160.8,
+                              70.0,
+                              45.0
+                            ],
+                            "key": "n83",
+                            "name": "$20",
+                            "role": "label"
+                          },
+                          {
+                            "bounds": [
+                              363.3,
+                              189.5,
+                              43.5,
+                              16.3
+                            ],
+                            "key": "n87",
+                            "name": "/month",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n81",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          215.8,
+                          181.3,
+                          16.3
+                        ],
+                        "key": "n91",
+                        "name": "For professionals",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          248.0,
+                          181.3,
+                          1.0
+                        ],
+                        "key": "n95",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          265.0,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              289.3,
+                              270.1,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n109",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              303.3,
+                              265.0,
+                              111.5,
+                              16.3
+                            ],
+                            "key": "n111",
+                            "name": "Unlimited projects",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n107",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          291.3,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              289.3,
+                              296.4,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n117",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              303.3,
+                              291.3,
+                              84.5,
+                              16.3
+                            ],
+                            "key": "n119",
+                            "name": "Email support",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n115",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          317.5,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              289.3,
+                              322.6,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n125",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              303.3,
+                              317.5,
+                              56.5,
+                              16.3
+                            ],
+                            "key": "n127",
+                            "name": "Analytics",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n123",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          343.8,
+                          181.3,
+                          78.0
+                        ],
+                        "key": "n99",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          289.3,
+                          431.8,
+                          181.3,
+                          36.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              355.8,
+                              441.8,
+                              48.5,
+                              16.3
+                            ],
+                            "key": "n103",
+                            "name": "Choose",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n101",
+                        "role": "group"
+                      }
+                    ],
+                    "key": "plan-1",
+                    "name": "Pro For professionals",
+                    "role": "button"
+                  },
+                  {
+                    "actions": [
+                      "click"
+                    ],
+                    "bounds": [
+                      506.7,
+                      113.3,
+                      221.3,
+                      374.8
+                    ],
+                    "children": [
+                      {
+                        "bounds": [
+                          526.7,
+                          133.3,
+                          181.3,
+                          17.5
+                        ],
+                        "key": "n133",
+                        "name": "Team",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          160.8,
+                          181.3,
+                          45.0
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              526.7,
+                              160.8,
+                              69.5,
+                              45.0
+                            ],
+                            "key": "n139",
+                            "name": "$50",
+                            "role": "label"
+                          },
+                          {
+                            "bounds": [
+                              600.2,
+                              189.5,
+                              43.5,
+                              16.3
+                            ],
+                            "key": "n143",
+                            "name": "/month",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n137",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          215.8,
+                          181.3,
+                          16.3
+                        ],
+                        "key": "n147",
+                        "name": "For growing teams",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          248.0,
+                          181.3,
+                          1.0
+                        ],
+                        "key": "n151",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          265.0,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              526.7,
+                              270.1,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n165",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              540.7,
+                              265.0,
+                              105.0,
+                              16.3
+                            ],
+                            "key": "n167",
+                            "name": "Everything in Pro",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n163",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          291.3,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              526.7,
+                              296.4,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n173",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              540.7,
+                              291.3,
+                              27.0,
+                              16.3
+                            ],
+                            "key": "n175",
+                            "name": "SSO",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n171",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          317.5,
+                          181.3,
+                          16.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              526.7,
+                              322.6,
+                              6.0,
+                              6.0
+                            ],
+                            "key": "n181",
+                            "role": "group"
+                          },
+                          {
+                            "bounds": [
+                              540.7,
+                              317.5,
+                              55.0,
+                              16.3
+                            ],
+                            "key": "n183",
+                            "name": "Audit log",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n179",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          343.8,
+                          181.3,
+                          78.0
+                        ],
+                        "key": "n155",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          526.7,
+                          431.8,
+                          181.3,
+                          36.3
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              593.1,
+                              441.8,
+                              48.5,
+                              16.3
+                            ],
+                            "key": "n159",
+                            "name": "Choose",
+                            "role": "label"
+                          }
+                        ],
+                        "key": "n157",
+                        "role": "group"
+                      }
+                    ],
+                    "key": "plan-2",
+                    "name": "Team For growing teams",
+                    "role": "button"
+                  }
+                ],
+                "key": "n24",
+                "role": "group"
+              }
+            ],
+            "key": "n4",
+            "role": "group"
+          }
+        ],
+        "key": "runex-svelte-root",
+        "role": "group"
+      }
+    ],
+    "name": "Styles",
+    "role": "window"
+  },
+  "anim_t": 1.3833333333333333,
+  "animating": false,
+  "dark_system": true,
+  "elements": [
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "runex-svelte-root",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root",
+      "rect": [
+        0.0,
+        0.0,
+        760.0,
+        520.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#f4f5f8ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n4",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4",
+      "rect": [
+        0.0,
+        0.0,
+        760.0,
+        520.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n6",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6",
+      "rect": [
+        32.0,
+        32.0,
+        696.0,
+        57.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n8",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6/n8",
+      "rect": [
+        32.0,
+        32.0,
+        254.5,
+        57.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n10",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6/n8/n10",
+      "rect": [
+        32.0,
+        32.0,
+        254.5,
+        35.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Pricing"
+    },
+    {
+      "blur": 0.0,
+      "color": "#5d6578ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n14",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6/n8/n14",
+      "rect": [
+        32.0,
+        73.0,
+        254.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Pick the plan that fits. Change it any time."
+    },
+    {
+      "blur": 0.0,
+      "fill": "#ffffffff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "theme",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6/theme",
+      "rect": [
+        669.5,
+        44.5,
+        58.5,
+        32.25
+      ],
+      "role": "button",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n20",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6/theme/n20",
+      "rect": [
+        683.5,
+        52.5,
+        30.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Light"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n24",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24",
+      "rect": [
+        32.0,
+        113.25,
+        696.0,
+        374.75
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#ffffffff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "hover": 1.0,
+      "inert": false,
+      "key": "plan-0",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0",
+      "rect": [
+        32.0,
+        113.25,
+        221.34,
+        374.75
+      ],
+      "role": "button",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#0090d6ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n29",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n29",
+      "rect": [
+        52.0,
+        133.25,
+        181.34,
+        17.5
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Hobby"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n33",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n33",
+      "rect": [
+        52.0,
+        160.75,
+        181.34,
+        45.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n35",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n33/n35",
+      "rect": [
+        52.0,
+        160.75,
+        47.5,
+        45.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "$0"
+    },
+    {
+      "blur": 0.0,
+      "color": "#5d6578ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n39",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n33/n39",
+      "rect": [
+        103.5,
+        189.5,
+        43.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "/month"
+    },
+    {
+      "blur": 0.0,
+      "color": "#5d6578ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n43",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n43",
+      "rect": [
+        52.0,
+        215.75,
+        181.34,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "For side projects"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#e1e4ecff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n47",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n47",
+      "rect": [
+        52.0,
+        248.0,
+        181.34,
+        1.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n59",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n59",
+      "rect": [
+        52.0,
+        265.0,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#0090d6ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n61",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n59/n61",
+      "rect": [
+        52.0,
+        270.13,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n63",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n59/n63",
+      "rect": [
+        66.0,
+        265.0,
+        52.0,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "1 project"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n67",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n67",
+      "rect": [
+        52.0,
+        291.25,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#0090d6ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n69",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n67/n69",
+      "rect": [
+        52.0,
+        296.38,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n71",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n67/n71",
+      "rect": [
+        66.0,
+        291.25,
+        122.0,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Community support"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n51",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n51",
+      "rect": [
+        52.0,
+        317.5,
+        181.34,
+        104.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n53",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n53",
+      "rect": [
+        52.0,
+        431.75,
+        181.34,
+        36.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#ffffffff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n55",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-0/n53/n55",
+      "rect": [
+        103.41,
+        441.75,
+        78.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Current plan"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#ffffffff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "plan-1",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1",
+      "rect": [
+        269.34,
+        113.25,
+        221.34,
+        374.75
+      ],
+      "role": "button",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#0090d6ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n77",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n77",
+      "rect": [
+        289.34,
+        133.25,
+        181.34,
+        17.5
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Pro"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n81",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n81",
+      "rect": [
+        289.34,
+        160.75,
+        181.34,
+        45.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n83",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n81/n83",
+      "rect": [
+        289.34,
+        160.75,
+        70.0,
+        45.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "$20"
+    },
+    {
+      "blur": 0.0,
+      "color": "#5d6578ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n87",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n81/n87",
+      "rect": [
+        363.34,
+        189.5,
+        43.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "/month"
+    },
+    {
+      "blur": 0.0,
+      "color": "#5d6578ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n91",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n91",
+      "rect": [
+        289.34,
+        215.75,
+        181.34,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "For professionals"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#e1e4ecff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n95",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n95",
+      "rect": [
+        289.34,
+        248.0,
+        181.34,
+        1.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n107",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n107",
+      "rect": [
+        289.34,
+        265.0,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#5d6578ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n109",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n107/n109",
+      "rect": [
+        289.34,
+        270.13,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n111",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n107/n111",
+      "rect": [
+        303.34,
+        265.0,
+        111.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Unlimited projects"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n115",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n115",
+      "rect": [
+        289.34,
+        291.25,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#5d6578ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n117",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n115/n117",
+      "rect": [
+        289.34,
+        296.38,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n119",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n115/n119",
+      "rect": [
+        303.34,
+        291.25,
+        84.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Email support"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n123",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n123",
+      "rect": [
+        289.34,
+        317.5,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#5d6578ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n125",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n123/n125",
+      "rect": [
+        289.34,
+        322.63,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n127",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n123/n127",
+      "rect": [
+        303.34,
+        317.5,
+        56.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Analytics"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n99",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n99",
+      "rect": [
+        289.34,
+        343.75,
+        181.34,
+        78.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n101",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n101",
+      "rect": [
+        289.34,
+        431.75,
+        181.34,
+        36.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n103",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-1/n101/n103",
+      "rect": [
+        355.75,
+        441.75,
+        48.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Choose"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#ffffffff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "plan-2",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2",
+      "rect": [
+        506.66,
+        113.25,
+        221.34,
+        374.75
+      ],
+      "role": "button",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#0090d6ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n133",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n133",
+      "rect": [
+        526.66,
+        133.25,
+        181.34,
+        17.5
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Team"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n137",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n137",
+      "rect": [
+        526.66,
+        160.75,
+        181.34,
+        45.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n139",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n137/n139",
+      "rect": [
+        526.66,
+        160.75,
+        69.5,
+        45.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "$50"
+    },
+    {
+      "blur": 0.0,
+      "color": "#5d6578ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n143",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n137/n143",
+      "rect": [
+        600.16,
+        189.5,
+        43.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "/month"
+    },
+    {
+      "blur": 0.0,
+      "color": "#5d6578ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n147",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n147",
+      "rect": [
+        526.66,
+        215.75,
+        181.34,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "For growing teams"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#e1e4ecff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n151",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n151",
+      "rect": [
+        526.66,
+        248.0,
+        181.34,
+        1.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n163",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n163",
+      "rect": [
+        526.66,
+        265.0,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#5d6578ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n165",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n163/n165",
+      "rect": [
+        526.66,
+        270.13,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n167",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n163/n167",
+      "rect": [
+        540.66,
+        265.0,
+        105.0,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Everything in Pro"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n171",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n171",
+      "rect": [
+        526.66,
+        291.25,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#5d6578ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n173",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n171/n173",
+      "rect": [
+        526.66,
+        296.38,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n175",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n171/n175",
+      "rect": [
+        540.66,
+        291.25,
+        27.0,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "SSO"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n179",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n179",
+      "rect": [
+        526.66,
+        317.5,
+        181.34,
+        16.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#5d6578ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n181",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n179/n181",
+      "rect": [
+        526.66,
+        322.63,
+        6.0,
+        6.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n183",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n179/n183",
+      "rect": [
+        540.66,
+        317.5,
+        55.0,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Audit log"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n155",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n155",
+      "rect": [
+        526.66,
+        343.75,
+        181.34,
+        78.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n157",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n157",
+      "rect": [
+        526.66,
+        431.75,
+        181.34,
+        36.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#141824ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n159",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n24/plan-2/n157/n159",
+      "rect": [
+        593.09,
+        441.75,
+        48.5,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Choose"
+    }
+  ],
+  "reduced_motion": false,
+  "scale": 2.0,
+  "t": 1.3833333333333333,
+  "time_scale": 1.0,
+  "title": "Styles",
+  "viewport": [
+    760.0,
+    520.0
+  ],
+  "warnings": []
+}

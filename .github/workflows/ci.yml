@@ -412,6 +412,35 @@ jobs:
         if: ${{ !cancelled() && matrix.full && steps.install.outcome == 'success' }}
         run: bun run test:dev
 
+      # packages/svelte (@runex-js/svelte): typecheck, unit tests, golden (trees on every full leg,
+      # pixels where test/golden/png has the platform's manifest), then the packed packages in an
+      # app scaffolded by create-runex-svelte. Elsewhere, its unit tests.
+      - name: Svelte renderer
+        if: ${{ !cancelled() && matrix.full && steps.install.outcome == 'success' }}
+        working-directory: packages/svelte
+        env:
+          RUNEX_SVELTE_GOLDEN_PLATFORM: ${{ matrix.golden-platform }}
+        run: bun run test && bun run test:pack
+
+      - name: Svelte renderer, unit tests
+        if: ${{ !cancelled() && !matrix.full && steps.install.outcome == 'success' }}
+        working-directory: packages/svelte
+        run: bun run test:unit
+
+      - name: Svelte renderer, windowed (Xvfb)
+        if: ${{ !cancelled() && matrix.full && runner.os == 'Linux' && steps.install.outcome == 'success' }}
+        working-directory: packages/svelte
+        env:
+          RUNEX_WINDOWED: "1"
+        run: xvfb-run -a -s "-screen 0 1920x1080x24" bun run test:windowed
+
+      - name: Svelte renderer, windowed
+        if: ${{ !cancelled() && matrix.full && runner.os == 'macOS' && steps.install.outcome == 'success' }}
+        working-directory: packages/svelte
+        env:
+          RUNEX_WINDOWED: "1"
+        run: bun run test:windowed
+
       # actual/expected/diff PNGs, tree diffs, report.json, summary.md, and proposed/ for
       # `bun scripts/golden.ts --accept <dir>/proposed` (docs/testing.md: blessing from CI).
       - uses: actions/upload-artifact@v7
@@ -456,6 +485,11 @@ jobs:
         run: |
           version=$(node -p 'require("./package.json").version')
           [ "v$version" = "$GITHUB_REF_NAME" ] || { echo "::error::tag $GITHUB_REF_NAME, package.json $version"; exit 1; }
+          # @runex-js/svelte and create-runex-svelte release in lockstep with runex-js.
+          for pkg in packages/svelte packages/create-runex-svelte; do
+            v=$(node -p "require('./$pkg/package.json').version")
+            [ "$v" = "$version" ] || { echo "::error::$pkg is $v, runex-js is $version"; exit 1; }
+          done
 
       # Without an NPM_TOKEN secret every publish below is a dry run. Test the secret itself:
       # setup-node exports a placeholder NODE_AUTH_TOKEN when it has none.
@@ -502,3 +536,17 @@ jobs:
           # --ignore-scripts: prepublishOnly would run `napi prepublish` a second time. It skips
           # prepack too, hence the line above.
           npm publish --ignore-scripts
+
+      # After runex-js, which it peers on: compiled to lib/ with the custom-renderer svelte
+      # bundled (packages/svelte/scripts/publish.ts), then the scaffolder with its template synced.
+      - name: Publish @runex-js/svelte
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: packages/svelte
+        run: bun scripts/publish.ts publish
+
+      - name: Publish create-runex-svelte
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: packages/create-runex-svelte
+        run: npm publish --access public

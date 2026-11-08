@@ -1,0 +1,20 @@
+{
+  "name": "runex-svelte-starter",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "runex-svelte app.ts",
+    "snap": "runex-svelte app.ts --snap app.png",
+    "check": "tsc --noEmit && svelte-check --tsconfig ./tsconfig.json --diagnostic-sources js,svelte --output human"
+  },
+  "dependencies": {
+    "@runex-js/svelte": "^0.1.0",
+    "runex-js": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "svelte-check": "^4.7.8",
+    "typescript": "^5.9.3"
+  }
+}

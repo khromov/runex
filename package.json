@@ -4,6 +4,9 @@
   "description": "Node.js and Bun bindings for Rune, the GPU-rendered Rust UI framework",
   "license": "MIT",
   "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

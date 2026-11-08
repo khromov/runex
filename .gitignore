@@ -23,3 +23,6 @@ examples/vite/out.png
 .idea/
 *.swp
 Thumbs.db
+
+# The vendored Svelte build packages/svelte runs on (see packages/svelte/scripts/vendor-svelte.ts).
+!packages/svelte/vendor/*.tgz

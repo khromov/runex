@@ -1,0 +1,2284 @@
+{
+  "accessibility": {
+    "bounds": [
+      0.0,
+      0.0,
+      720.0,
+      560.0
+    ],
+    "children": [
+      {
+        "bounds": [
+          0.0,
+          0.0,
+          720.0,
+          560.0
+        ],
+        "children": [
+          {
+            "bounds": [
+              0.0,
+              0.0,
+              720.0,
+              560.0
+            ],
+            "children": [
+              {
+                "bounds": [
+                  24.0,
+                  24.0,
+                  672.0,
+                  27.5
+                ],
+                "key": "n6",
+                "name": "Kit",
+                "role": "label"
+              },
+              {
+                "bounds": [
+                  24.0,
+                  67.5,
+                  672.0,
+                  272.0
+                ],
+                "children": [
+                  {
+                    "bounds": [
+                      24.0,
+                      67.5,
+                      328.0,
+                      272.0
+                    ],
+                    "children": [
+                      {
+                        "bounds": [
+                          40.0,
+                          83.5,
+                          296.0,
+                          13.8
+                        ],
+                        "key": "n14",
+                        "name": "Toggles",
+                        "role": "label"
+                      },
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          40.0,
+                          109.3,
+                          296.0,
+                          16.0
+                        ],
+                        "key": "wifi",
+                        "name": "Wi-Fi",
+                        "role": "switch",
+                        "states": [
+                          "checked"
+                        ]
+                      },
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          40.0,
+                          137.3,
+                          296.0,
+                          16.0
+                        ],
+                        "description": "Off saves battery",
+                        "key": "bluetooth",
+                        "name": "Bluetooth",
+                        "role": "switch",
+                        "states": [
+                          "unchecked"
+                        ]
+                      },
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          40.0,
+                          165.3,
+                          296.0,
+                          24.0
+                        ],
+                        "key": "remember",
+                        "name": "Remember me",
+                        "role": "check-box",
+                        "states": [
+                          "checked"
+                        ]
+                      },
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          40.0,
+                          201.3,
+                          296.0,
+                          24.0
+                        ],
+                        "key": "newsletter",
+                        "name": "Send me the newsletter",
+                        "role": "check-box",
+                        "states": [
+                          "unchecked"
+                        ]
+                      }
+                    ],
+                    "key": "n12",
+                    "role": "group"
+                  },
+                  {
+                    "bounds": [
+                      368.0,
+                      67.5,
+                      328.0,
+                      272.0
+                    ],
+                    "children": [
+                      {
+                        "bounds": [
+                          384.0,
+                          83.5,
+                          296.0,
+                          13.8
+                        ],
+                        "key": "n28",
+                        "name": "Fields",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          384.0,
+                          109.3,
+                          296.0,
+                          58.0
+                        ],
+                        "children": [
+                          {
+                            "bounds": [
+                              384.0,
+                              135.3,
+                              296.0,
+                              32.0
+                            ],
+                            "children": [
+                              {
+                                "actions": [
+                                  "click",
+                                  "focus",
+                                  "set-value",
+                                  "replace-selected-text",
+                                  "set-text-selection"
+                                ],
+                                "bounds": [
+                                  396.0,
+                                  140.8,
+                                  272.0,
+                                  21.0
+                                ],
+                                "key": "input",
+                                "name": "Name",
+                                "placeholder": "Your name",
+                                "role": "text-input",
+                                "selection": [
+                                  1,
+                                  12,
+                                  1,
+                                  12
+                                ],
+                                "value": "Ada Lovelace"
+                              }
+                            ],
+                            "key": "wrapper",
+                            "role": "group"
+                          }
+                        ],
+                        "key": "name",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          384.0,
+                          179.3,
+                          296.0,
+                          16.3
+                        ],
+                        "key": "greeting",
+                        "name": "Hello, Ada Lovelace!",
+                        "role": "label"
+                      },
+                      {
+                        "bounds": [
+                          384.0,
+                          207.5,
+                          296.0,
+                          80.0
+                        ],
+                        "children": [
+                          {
+                            "actions": [
+                              "click",
+                              "focus",
+                              "set-value",
+                              "replace-selected-text",
+                              "set-text-selection"
+                            ],
+                            "bounds": [
+                              392.0,
+                              215.5,
+                              280.0,
+                              17.5
+                            ],
+                            "key": "input",
+                            "name": "Notes",
+                            "placeholder": "Notes",
+                            "role": "multiline-text-input",
+                            "value": ""
+                          }
+                        ],
+                        "key": "notes",
+                        "role": "group"
+                      },
+                      {
+                        "actions": [
+                          "click",
+                          "focus",
+                          "expand"
+                        ],
+                        "bounds": [
+                          384.0,
+                          299.5,
+                          296.0,
+                          24.0
+                        ],
+                        "key": "size-trigger",
+                        "name": "Size",
+                        "role": "combo-box",
+                        "states": [
+                          "collapsed"
+                        ],
+                        "value": "Medium"
+                      }
+                    ],
+                    "key": "n26",
+                    "role": "group"
+                  }
+                ],
+                "key": "n10",
+                "role": "group"
+              },
+              {
+                "bounds": [
+                  24.0,
+                  355.5,
+                  672.0,
+                  165.3
+                ],
+                "children": [
+                  {
+                    "bounds": [
+                      40.0,
+                      371.5,
+                      640.0,
+                      13.8
+                    ],
+                    "key": "n44",
+                    "name": "Actions",
+                    "role": "label"
+                  },
+                  {
+                    "bounds": [
+                      40.0,
+                      397.3,
+                      232.0,
+                      28.0
+                    ],
+                    "children": [
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          40.0,
+                          397.3,
+                          77.3,
+                          28.0
+                        ],
+                        "key": "segment0",
+                        "name": "List",
+                        "position": 1,
+                        "role": "radio-button",
+                        "states": [
+                          "unchecked"
+                        ]
+                      },
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          117.3,
+                          397.3,
+                          77.3,
+                          28.0
+                        ],
+                        "key": "segment1",
+                        "name": "Grid",
+                        "position": 2,
+                        "role": "radio-button",
+                        "states": [
+                          "checked"
+                        ]
+                      },
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          194.7,
+                          397.3,
+                          77.3,
+                          28.0
+                        ],
+                        "key": "segment2",
+                        "name": "Board",
+                        "position": 3,
+                        "role": "radio-button",
+                        "states": [
+                          "unchecked"
+                        ]
+                      }
+                    ],
+                    "key": "view",
+                    "role": "radio-group",
+                    "setSize": 3
+                  },
+                  {
+                    "bounds": [
+                      40.0,
+                      437.3,
+                      640.0,
+                      24.0
+                    ],
+                    "children": [
+                      {
+                        "actions": [
+                          "click",
+                          "focus"
+                        ],
+                        "bounds": [
+                          40.0,
+                          437.3,
+                          124.0,
+                          24.0
+                        ],
+                        "key": "press",
+                        "name": "Pressed 0 times",
+                        "role": "button"
+                      },
+                      {
+                        "bounds": [
+                          172.0,
+                          437.3,
+                          76.0,
+                          24.0
+                        ],
+                        "children": [
+                          {
+                            "actions": [
+                              "click",
+                              "focus"
+                            ],
+                            "bounds": [
+                              172.0,
+                              437.3,
+                              76.0,
+                              24.0
+                            ],
+                            "key": "delete",
+                            "name": "Delete…",
+                            "role": "button"
+                          }
+                        ],
+                        "key": "tooltip-c2-trigger",
+                        "role": "group"
+                      },
+                      {
+                        "bounds": [
+                          256.0,
+                          441.3,
+                          16.0,
+                          16.0
+                        ],
+                        "name": "Loading",
+                        "role": "progress-indicator"
+                      }
+                    ],
+                    "key": "n50",
+                    "role": "group"
+                  },
+                  {
+                    "bounds": [
+                      40.0,
+                      473.3,
+                      640.0,
+                      31.5
+                    ],
+                    "name": "Upload",
+                    "range": [
+                      0.62,
+                      0.0,
+                      1.0,
+                      null
+                    ],
+                    "role": "progress-indicator",
+                    "value": "62%"
+                  }
+                ],
+                "key": "n42",
+                "role": "group"
+              }
+            ],
+            "key": "n4",
+            "role": "group"
+          }
+        ],
+        "key": "runex-svelte-root",
+        "role": "group"
+      }
+    ],
+    "name": "Kit",
+    "role": "window"
+  },
+  "anim_t": 0.0,
+  "animating": false,
+  "dark_system": true,
+  "elements": [
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "runex-svelte-root",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root",
+      "rect": [
+        0.0,
+        0.0,
+        720.0,
+        560.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#121314ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n4",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4",
+      "rect": [
+        0.0,
+        0.0,
+        720.0,
+        560.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n6",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6",
+      "rect": [
+        24.0,
+        24.0,
+        672.0,
+        27.5
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Kit"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n10",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10",
+      "rect": [
+        24.0,
+        67.5,
+        672.0,
+        272.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#121314ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n12",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12",
+      "rect": [
+        24.0,
+        67.5,
+        328.0,
+        272.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n14",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/n14",
+      "rect": [
+        40.0,
+        83.5,
+        296.0,
+        13.75
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Toggles"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "wifi",
+      "label": "Wi-Fi",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/wifi",
+      "rect": [
+        40.0,
+        109.25,
+        296.0,
+        16.0
+      ],
+      "role": "switch",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aacc",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/wifi/label",
+      "rect": [
+        40.0,
+        109.25,
+        28.0,
+        16.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Wi-Fi"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#4392f7ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "control",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/wifi/control",
+      "rect": [
+        76.0,
+        109.25,
+        36.0,
+        16.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#fafafaff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "thumb",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/wifi/control/thumb",
+      "rect": [
+        90.0,
+        110.25,
+        21.0,
+        14.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "bluetooth",
+      "label": "Bluetooth",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/bluetooth",
+      "rect": [
+        40.0,
+        137.25,
+        296.0,
+        16.0
+      ],
+      "role": "switch",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aacc",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/bluetooth/label",
+      "rect": [
+        40.0,
+        137.25,
+        50.0,
+        16.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Bluetooth"
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "description",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/bluetooth/description",
+      "rect": [
+        98.0,
+        137.45,
+        97.5,
+        15.6
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Off saves battery"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#4e5053ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "control",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/bluetooth/control",
+      "rect": [
+        203.5,
+        137.25,
+        36.0,
+        16.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#fafafaff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "thumb",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/bluetooth/control/thumb",
+      "rect": [
+        204.5,
+        138.25,
+        21.0,
+        14.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "remember",
+      "label": "Remember me",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/remember",
+      "rect": [
+        40.0,
+        165.25,
+        296.0,
+        24.0
+      ],
+      "role": "checkbox",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#ffffff0d",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "control",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/remember/control",
+      "rect": [
+        40.0,
+        169.25,
+        16.0,
+        16.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "mark",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/remember/control/mark",
+      "rect": [
+        43.0,
+        172.25,
+        10.0,
+        10.0
+      ],
+      "role": "icon",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "content",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/remember/content",
+      "rect": [
+        68.0,
+        165.25,
+        89.5,
+        24.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/remember/content/label",
+      "rect": [
+        68.0,
+        165.25,
+        89.5,
+        24.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Remember me"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "newsletter",
+      "label": "Send me the newsletter",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/newsletter",
+      "rect": [
+        40.0,
+        201.25,
+        296.0,
+        24.0
+      ],
+      "role": "checkbox",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "control",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/newsletter/control",
+      "rect": [
+        40.0,
+        205.25,
+        16.0,
+        16.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "mark",
+      "loopPhase": null,
+      "opacity": 0.0,
+      "path": "runex-svelte-root/n4/n10/n12/newsletter/control/mark",
+      "rect": [
+        43.0,
+        208.25,
+        10.0,
+        10.0
+      ],
+      "role": "icon",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "content",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/newsletter/content",
+      "rect": [
+        68.0,
+        201.25,
+        145.5,
+        24.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n12/newsletter/content/label",
+      "rect": [
+        68.0,
+        201.25,
+        145.5,
+        24.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Send me the newsletter"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#121314ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n26",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26",
+      "rect": [
+        368.0,
+        67.5,
+        328.0,
+        272.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n28",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/n28",
+      "rect": [
+        384.0,
+        83.5,
+        296.0,
+        13.75
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Fields"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "name",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/name",
+      "rect": [
+        384.0,
+        109.25,
+        296.0,
+        58.0
+      ],
+      "role": "textbox",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/name/label",
+      "rect": [
+        384.0,
+        109.25,
+        296.0,
+        18.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Name"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "wrapper",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/name/wrapper",
+      "rect": [
+        384.0,
+        135.25,
+        296.0,
+        32.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "input",
+      "label": "Name",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/name/wrapper/input",
+      "rect": [
+        396.0,
+        140.75,
+        272.0,
+        21.0
+      ],
+      "role": "textbox",
+      "scale": 1.0,
+      "text": "Ada Lovelace"
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "greeting",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/greeting",
+      "rect": [
+        384.0,
+        179.25,
+        296.0,
+        16.25
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Hello, Ada Lovelace!"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#1c1d20ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "notes",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/notes",
+      "rect": [
+        384.0,
+        207.5,
+        296.0,
+        80.0
+      ],
+      "role": "textbox",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "input",
+      "label": "Notes",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/notes/input",
+      "rect": [
+        392.0,
+        215.5,
+        280.0,
+        17.5
+      ],
+      "role": "textbox",
+      "scale": 1.0,
+      "text": ""
+    },
+    {
+      "blur": 0.0,
+      "expanded": false,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "size-trigger",
+      "label": "Size",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/size-trigger",
+      "rect": [
+        384.0,
+        299.5,
+        296.0,
+        24.0
+      ],
+      "role": "combobox",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "value",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/size-trigger/value",
+      "rect": [
+        392.0,
+        303.5,
+        50.5,
+        16.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Medium"
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "chevron",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n10/n26/size-trigger/chevron",
+      "rect": [
+        446.5,
+        303.5,
+        16.0,
+        16.0
+      ],
+      "role": "icon",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#121314ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n42",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42",
+      "rect": [
+        24.0,
+        355.5,
+        672.0,
+        165.25
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n44",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n44",
+      "rect": [
+        40.0,
+        371.5,
+        640.0,
+        13.75
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Actions"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#121314ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "view",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view",
+      "rect": [
+        40.0,
+        397.25,
+        232.0,
+        28.0
+      ],
+      "role": "radiogroup",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#1c1d20ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "indicator",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view/indicator",
+      "rect": [
+        117.34,
+        397.25,
+        77.34,
+        28.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "segment0",
+      "label": "List",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view/segment0",
+      "rect": [
+        40.0,
+        397.25,
+        77.34,
+        28.0
+      ],
+      "role": "radio",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view/segment0/label",
+      "rect": [
+        67.66,
+        404.75,
+        22.0,
+        13.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "List"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "itemSelected": true,
+      "key": "segment1",
+      "label": "Grid",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view/segment1",
+      "rect": [
+        117.34,
+        397.25,
+        77.34,
+        28.0
+      ],
+      "role": "radio",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view/segment1/label",
+      "rect": [
+        143.0,
+        404.75,
+        26.0,
+        13.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Grid"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "segment2",
+      "label": "Board",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view/segment2",
+      "rect": [
+        194.66,
+        397.25,
+        77.34,
+        28.0
+      ],
+      "role": "radio",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/view/segment2/label",
+      "rect": [
+        215.09,
+        404.75,
+        36.5,
+        13.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Board"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n50",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50",
+      "rect": [
+        40.0,
+        437.25,
+        640.0,
+        24.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#1c1d20ff",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "press",
+      "label": "Pressed 0 times",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/press",
+      "rect": [
+        40.0,
+        437.25,
+        124.0,
+        24.0
+      ],
+      "role": "button",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/press/label",
+      "rect": [
+        52.0,
+        439.25,
+        100.0,
+        20.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Pressed 0 times"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "tooltip-c2-trigger",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/tooltip-c2-trigger",
+      "rect": [
+        172.0,
+        437.25,
+        76.0,
+        24.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#1c1d20ff",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "delete",
+      "label": "Delete…",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/tooltip-c2-trigger/delete",
+      "rect": [
+        172.0,
+        437.25,
+        76.0,
+        24.0
+      ],
+      "role": "button",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#ff847dff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/tooltip-c2-trigger/delete/label",
+      "rect": [
+        184.0,
+        439.25,
+        52.0,
+        20.0
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Delete…"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "label": "Loading",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/#2",
+      "rect": [
+        256.0,
+        441.25,
+        16.0,
+        16.0
+      ],
+      "role": "progressbar",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d0",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.5460000038146973,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d0",
+      "rect": [
+        257.0,
+        442.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d1",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.6140000224113464,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d1",
+      "rect": [
+        260.0,
+        442.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d2",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d2",
+      "rect": [
+        263.0,
+        442.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d3",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d3",
+      "rect": [
+        266.0,
+        442.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d4",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d4",
+      "rect": [
+        269.0,
+        442.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d5",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.42500001192092896,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d5",
+      "rect": [
+        257.0,
+        445.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d6",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.5460000038146973,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d6",
+      "rect": [
+        260.0,
+        445.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d7",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d7",
+      "rect": [
+        263.0,
+        445.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d8",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d8",
+      "rect": [
+        266.0,
+        445.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d9",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d9",
+      "rect": [
+        269.0,
+        445.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d10",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.29499998688697815,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d10",
+      "rect": [
+        257.0,
+        448.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d11",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.29499998688697815,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d11",
+      "rect": [
+        260.0,
+        448.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d12",
+      "loopPhase": null,
+      "opacity": 0.6399999856948853,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d12",
+      "rect": [
+        263.0,
+        448.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d13",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d13",
+      "rect": [
+        266.0,
+        448.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d14",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d14",
+      "rect": [
+        269.0,
+        448.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d15",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.23399999737739563,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d15",
+      "rect": [
+        257.0,
+        451.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d16",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.21400000154972076,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d16",
+      "rect": [
+        260.0,
+        451.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d17",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d17",
+      "rect": [
+        263.0,
+        451.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d18",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d18",
+      "rect": [
+        266.0,
+        451.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d19",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d19",
+      "rect": [
+        269.0,
+        451.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d20",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.21400000154972076,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d20",
+      "rect": [
+        257.0,
+        454.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d21",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20399999618530273,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d21",
+      "rect": [
+        260.0,
+        454.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d22",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d22",
+      "rect": [
+        263.0,
+        454.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d23",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d23",
+      "rect": [
+        266.0,
+        454.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#eff0f2ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "d24",
+      "loopPhase": 0.0,
+      "moving": true,
+      "opacity": 0.20000000298023224,
+      "path": "runex-svelte-root/n4/n42/n50/#2/d24",
+      "rect": [
+        269.0,
+        454.25,
+        2.0,
+        2.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "label": "Upload",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/#3",
+      "rect": [
+        40.0,
+        473.25,
+        640.0,
+        31.5
+      ],
+      "role": "progressbar",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "header",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/#3/header",
+      "rect": [
+        40.0,
+        473.25,
+        640.0,
+        19.5
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "label",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/#3/header/label",
+      "rect": [
+        40.0,
+        473.25,
+        44.0,
+        19.5
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Upload"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/#3/header/#1",
+      "rect": [
+        92.0,
+        483.0,
+        551.0,
+        0.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#a2a5aaff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "value",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/#3/header/value",
+      "rect": [
+        651.0,
+        473.25,
+        29.0,
+        19.5
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "62%"
+    },
+    {
+      "blur": 0.0,
+      "fill": "#ffffff0d",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "track",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/#3/track",
+      "rect": [
+        40.0,
+        496.75,
+        640.0,
+        8.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#4392f7ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "fill",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n42/#3/track/fill",
+      "rect": [
+        40.0,
+        496.75,
+        396.8,
+        8.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    }
+  ],
+  "reduced_motion": false,
+  "scale": 2.0,
+  "t": 0.0,
+  "time_scale": 1.0,
+  "title": "Kit",
+  "viewport": [
+    720.0,
+    560.0
+  ],
+  "warnings": []
+}

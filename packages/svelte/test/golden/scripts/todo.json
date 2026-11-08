@@ -1,0 +1,24 @@
+[
+  {
+    "t": 0.1,
+    "key": "draft"
+  },
+  {
+    "t": 0.2,
+    "type": "type",
+    "text": "Buy milk"
+  },
+  {
+    "t": 0.8,
+    "type": "key",
+    "name": "Enter"
+  },
+  {
+    "t": 1.0,
+    "key": "check-1"
+  },
+  {
+    "t": 1.2,
+    "key": "remove-0"
+  }
+]

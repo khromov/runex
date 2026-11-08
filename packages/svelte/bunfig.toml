@@ -1,0 +1,7 @@
+# For ad-hoc `bun file.ts` runs and `bun test`; examples and apps go through bin/runex-svelte.js,
+# which also sets the export conditions Svelte's custom renderer needs.
+preload = ["./src/plugin.ts"]
+
+[test]
+root = "test"
+preload = ["./src/plugin.ts", "./test/preload.ts"]

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["esnext"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "customConditions": ["custom-renderer", "development"],
+    "types": ["node", "@runex-js/svelte/html"],
+    "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "paths": {
+      "svelte": ["./node_modules/@runex-js/svelte/node_modules/svelte"],
+      "svelte/*": ["./node_modules/@runex-js/svelte/node_modules/svelte/*"]
+    }
+  },
+  "svelteOptions": { "namespace": "runexHTML" },
+  "include": ["*.ts", "*.svelte", "src"]
+}
