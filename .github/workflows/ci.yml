@@ -496,18 +496,6 @@ jobs:
             [ "$v" = "$version" ] || { echo "::error::$pkg is $v, runex-js is $version"; exit 1; }
           done
 
-      # Every publish below is a dry run until the repository variable NPM_TRUSTED_PUBLISHING is
-      # `true`: set it once all six packages exist on npm with this workflow as their trusted
-      # publisher (README "Publishing"; scripts/npm-bootstrap.mjs does both).
-      - name: Dry run?
-        env:
-          TRUSTED: ${{ vars.NPM_TRUSTED_PUBLISHING }}
-        run: |
-          if [ "$TRUSTED" != "true" ]; then
-            echo "npm_config_dry_run=true" >> "$GITHUB_ENV"
-            echo "::notice::NPM_TRUSTED_PUBLISHING isn't true: publishing as a dry run"
-          fi
-
       # bindings-<platform>/runex.<platform>.node, one folder each.
       - uses: actions/download-artifact@v8
         with:
@@ -525,8 +513,8 @@ jobs:
           for dir in npm/*/; do cp LICENSE THIRD_PARTY_NOTICES.md "$dir"; done
           ls -l npm/*/
 
-      # Sets each npm/<platform> package's version, publishes it (`npm publish`, a dry run when
-      # npm_config_dry_run is set) and writes the matching optionalDependencies into package.json.
+      # Sets each npm/<platform> package's version, publishes it (`npm publish`) and writes the
+      # matching optionalDependencies into package.json.
       - name: Publish the platform packages
         run: bun x napi prepublish -t npm --no-gh-release
 
