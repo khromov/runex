@@ -318,7 +318,7 @@ patches, tools/bindgen or src:
 | linux | nightly, PRs, by hand | compare `--all --strict` on Bun and Node, golden full (Bun and Node), benchmarks and clippy as reports; caches vendor/rune/target keyed on the Rune revision |
 | windows | nightly, PRs, by hand | golden full, trees only, self-checked |
 | macos | by hand (`platforms` input) | compare and golden full on Metal; advisory |
-| rune-tests | PRs that move vendor/rune or patches; by hand (`rune_tests` input) | Rune's `cargo test --workspace` on the patched tree (about 3000 tests), in the canonical container, with its own cache |
+| rune-tests | PRs that move vendor/rune or patches; by hand (`rune_tests` input) | Rune's `cargo test --workspace` on the patched tree (about 3000 tests), in the canonical container, with its own cache; line-table debug info and two build jobs, to fit the runner's memory |
 
 ```sh
 gh workflow run full.yml -f platforms=linux,windows,macos -f rune_tests=true

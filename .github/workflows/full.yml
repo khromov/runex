@@ -394,6 +394,12 @@ jobs:
           key: rune-tests
           workspaces: vendor/rune -> target
 
+      # At c762af14 the rune crate's test build, with full debug info and three other rustc
+      # processes beside it, ran the 16 GB runner out of memory (rustc killed, SIGKILL). Line
+      # tables keep a panic's file and line; two jobs keep the peak down.
       - name: cargo test --workspace
         working-directory: vendor/rune
+        env:
+          CARGO_PROFILE_DEV_DEBUG: line-tables-only
+          CARGO_BUILD_JOBS: 2
         run: cargo test --workspace --no-fail-fast
