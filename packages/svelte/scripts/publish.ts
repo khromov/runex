@@ -106,7 +106,9 @@ try {
     join(pkg, "package.json"),
     JSON.stringify({ name: "stage", private: true, dependencies: { svelte: `file:${join(ROOT, "vendor", vendored[0]!)}`, acorn: manifest.dependencies.acorn } }),
   )
-  run("npm", ["install", "--omit=dev", "--ignore-scripts", "--no-package-lock", "--no-audit", "--no-fund"], pkg)
+  // --no-dry-run: CI's dry-run release sets npm_config_dry_run for the whole job, which would make
+  // this install a no-op; only the `npm publish` below should be dry.
+  run("npm", ["install", "--no-dry-run", "--omit=dev", "--ignore-scripts", "--no-package-lock", "--no-audit", "--no-fund"], pkg)
   const installed = JSON.parse(readFileSync(join(pkg, "node_modules/svelte/package.json"), "utf8"))
   if (!installed.exports?.["./renderer"]) throw new Error("the staged svelte has no custom-renderer API")
   writeFileSync(join(pkg, "package.json"), JSON.stringify(published_manifest(), null, 2) + "\n")

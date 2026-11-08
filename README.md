@@ -361,30 +361,37 @@ fail). It checks that the tag matches `package.json`, then:
    `lib/`, the vendored Svelte build bundled, `runex-js` as a peer at this minor), then
    `create-runex-svelte` (its `prepack` copies the starter into `template/`).
 
-**Without an `NPM_TOKEN` repository secret, every publish is a dry run.** CI sets
-`npm_config_dry_run=true`, and the logs show each tarball's contents. A dry run still asks the
-registry whether the version exists, so it fails for a version that is already published.
+**Publishing uses npm trusted publishing (OIDC): there is no npm token.** The `publish` job has
+`id-token: write`, and `npm publish` trades that GitHub identity for a short-lived publish token,
+which npm grants because each package names `khromov/runex`'s `ci.yml` as its trusted publisher.
+It needs npm 11.5.1 or later (the job checks; Node 24 bundles npm 11) and a `repository.url` in
+every package's `package.json` that matches this repository exactly. npm makes no provenance for
+a private repository; once it is public, trusted publishing adds provenance by itself.
 
-To publish for real:
+**Until the repository variable `NPM_TRUSTED_PUBLISHING` is `true`, every publish is a dry run.**
+CI sets `npm_config_dry_run=true`, and the logs show each tarball's contents. A dry run still asks
+the registry whether the version exists, so it fails for a version that is already published.
 
-1. Create the free npm organization `runex-js` (see **Names** below).
-2. Add an npm granular access token as the `NPM_TOKEN` repository secret, with "Read and write
-   (publish and stage)" permission for all packages (`runex-js` can't be selected before it exists; afterwards,
-   narrow the token to `runex-js` and the `@runex-js` scope),
-   and Bypass 2FA if your account requires 2FA to publish. npm revoked all classic tokens,
-   automation tokens included, on 2025-12-09, and a token with write access lasts at most 90 days,
-   so renew the secret before it expires.
+A trusted publisher can only be added to a package that already exists, so the first release
+needs a one-time setup, by an owner of the npm organization `runex-js` (see **Names** below):
 
-npm will remove direct publishing with granular access tokens in January 2027. Trusted
-publishing (OIDC) avoids that: it needs no token and works from a private repository. A trusted
-publisher is set in each package's settings on npmjs.com, so the packages must exist first: publish
-once with a token, then add `khromov/runex` and `ci.yml` as the trusted publisher of all six
-packages, and allow it to run `npm publish` (new trusted publishers default to staged publishing
-only). Trusted publishing also needs npm 11.5.1 or later, a `repository` field in
-`package.json` whose URL matches the GitHub repository exactly, and a `Dry run?` step in `ci.yml`
-that no longer keys on `NPM_TOKEN`. The `publish` job already has `id-token: write`. npm generates
-no provenance for private repositories, so leave `NPM_CONFIG_PROVENANCE` unset while the
-repository is private.
+```sh
+npm login                                  # with 2FA; npm 11.15.0 or later for `npm trust`
+node scripts/npm-bootstrap.mjs --dry-run   # what it would do
+node scripts/npm-bootstrap.mjs
+gh variable set NPM_TRUSTED_PUBLISHING --body true --repo khromov/runex
+```
+
+`scripts/npm-bootstrap.mjs` goes through all six packages (`runex-js`, the three
+`@runex-js/binding-<platform>`, `@runex-js/svelte`, `create-runex-svelte`). It publishes a
+placeholder (`0.0.0-bootstrap.0`, dist-tag `bootstrap`, deprecated) for a name not on npm yet, then
+runs `npm trust github <package> --file ci.yml --repo khromov/runex --allow-publish`. It skips what
+is already done, so it is safe to run again. npm expires a new trusted publisher that hasn't
+published within 2 days, so run it when the release tag is ready, and push the tag within two days
+(the script prints the deadline). An expired one has to be revoked (`npm trust list <package>`,
+`npm trust revoke <package> --id <id>`) before the script can create it again. The trusted publishers can also be set by hand in
+each package's settings on npmjs.com; allow `npm publish` (new ones default to staged publishing
+only). Renaming `ci.yml` or moving the repository means updating every package's trusted publisher.
 
 What each package contains:
 

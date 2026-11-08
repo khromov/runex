@@ -458,28 +458,33 @@ jobs:
     runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
-      # For npm trusted publishing (OIDC). The publish steps use the NPM_TOKEN secret: a granular
-      # access token with read and write access (and Bypass 2FA if the account needs 2FA to
-      # publish). npm ends direct publishing with granular tokens in January 2027. Trusted
-      # publishing replaces it and works from a private repo: once the packages exist, make this
-      # workflow (khromov/runex, ci.yml) each one's trusted publisher on npmjs.com, allowed to
-      # `npm publish`; point package.json's `repository` at this repo; change the dry-run check.
-      # npm makes no provenance for private repos. Once the repo is public, trusted publishing
-      # adds it by itself.
+      # npm trusted publishing (OIDC): `npm publish` trades this job's GitHub identity token for a
+      # short-lived publish token, so there is no npm token secret. Every package names this
+      # workflow (khromov/runex, ci.yml) as its trusted publisher on npmjs.com, and its
+      # `repository.url` matches this repository exactly. npm makes no provenance for a private
+      # repository; once the repo is public, trusted publishing adds it by itself.
       id-token: write
     steps:
       - uses: actions/checkout@v5
 
+      # No `registry-url`: npm's default registry is the public one, and without it setup-node sets
+      # no placeholder NODE_AUTH_TOKEN, so a failed OIDC exchange reads as ENEEDAUTH rather than
+      # as a bad token.
       - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://registry.npmjs.org
 
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: ${{ env.BUN_VERSION }}
 
       - run: bun install --frozen-lockfile
+
+      # Trusted publishing needs npm 11.5.1 or later; Node 24 bundles npm 11.
+      - name: npm supports trusted publishing
+        run: |
+          npm --version
+          node -e 'const [a, b, c] = require("child_process").execSync("npm --version").toString().trim().split(".").map(Number); if (a < 11 || (a === 11 && (b < 5 || (b === 5 && c < 1)))) { console.error("::error::npm " + [a, b, c].join(".") + " is older than 11.5.1, which trusted publishing needs"); process.exit(1) }'
 
       - name: Check the tag matches package.json
         run: |
@@ -491,15 +496,16 @@ jobs:
             [ "$v" = "$version" ] || { echo "::error::$pkg is $v, runex-js is $version"; exit 1; }
           done
 
-      # Without an NPM_TOKEN secret every publish below is a dry run. Test the secret itself:
-      # setup-node exports a placeholder NODE_AUTH_TOKEN when it has none.
+      # Every publish below is a dry run until the repository variable NPM_TRUSTED_PUBLISHING is
+      # `true`: set it once all six packages exist on npm with this workflow as their trusted
+      # publisher (README "Publishing"; scripts/npm-bootstrap.mjs does both).
       - name: Dry run?
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          TRUSTED: ${{ vars.NPM_TRUSTED_PUBLISHING }}
         run: |
-          if [ -z "$NPM_TOKEN" ]; then
+          if [ "$TRUSTED" != "true" ]; then
             echo "npm_config_dry_run=true" >> "$GITHUB_ENV"
-            echo "::notice::No NPM_TOKEN secret: publishing as a dry run"
+            echo "::notice::NPM_TRUSTED_PUBLISHING isn't true: publishing as a dry run"
           fi
 
       # bindings-<platform>/runex.<platform>.node, one folder each.
@@ -522,13 +528,9 @@ jobs:
       # Sets each npm/<platform> package's version, publishes it (`npm publish`, a dry run when
       # npm_config_dry_run is set) and writes the matching optionalDependencies into package.json.
       - name: Publish the platform packages
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: bun x napi prepublish -t npm --no-gh-release
 
       - name: Publish runex-js
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           node -p 'JSON.stringify(require("./package.json").optionalDependencies, null, 2)'
           # prepack's step: native.d.cts imports the facade types from dist/ instead of `any`.
@@ -540,13 +542,9 @@ jobs:
       # After runex-js, which it peers on: compiled to lib/ with the custom-renderer svelte
       # bundled (packages/svelte/scripts/publish.ts), then the scaffolder with its template synced.
       - name: Publish @runex-js/svelte
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         working-directory: packages/svelte
         run: bun scripts/publish.ts publish
 
       - name: Publish create-runex-svelte
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         working-directory: packages/create-runex-svelte
         run: npm publish --access public
