@@ -1,0 +1,15 @@
+// scripts/publish.ts: src/*.ts to lib/*.js with declarations, for the npm package.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "src",
+    "outDir": "lib",
+    "allowJs": false,
+    "checkJs": false
+  },
+  "include": ["src", "types"],
+  "exclude": []
+}

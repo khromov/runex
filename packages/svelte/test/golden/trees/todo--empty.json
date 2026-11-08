@@ -1,0 +1,307 @@
+{
+  "accessibility": {
+    "bounds": [
+      0.0,
+      0.0,
+      360.0,
+      280.0
+    ],
+    "children": [
+      {
+        "bounds": [
+          0.0,
+          0.0,
+          360.0,
+          280.0
+        ],
+        "children": [
+          {
+            "bounds": [
+              0.0,
+              0.0,
+              360.0,
+              280.0
+            ],
+            "children": [
+              {
+                "bounds": [
+                  24.0,
+                  24.0,
+                  312.0,
+                  4.0
+                ],
+                "children": [
+                  {
+                    "bounds": [
+                      24.0,
+                      24.0,
+                      0.0,
+                      4.0
+                    ],
+                    "key": "n8",
+                    "role": "group"
+                  }
+                ],
+                "key": "n6",
+                "role": "group"
+              },
+              {
+                "actions": [
+                  "scroll-up",
+                  "scroll-down",
+                  "set-scroll-offset"
+                ],
+                "bounds": [
+                  24.0,
+                  40.0,
+                  312.0,
+                  0.0
+                ],
+                "key": "list",
+                "role": "scroll-view",
+                "scroll": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "states": [
+                  "clips"
+                ]
+              },
+              {
+                "bounds": [
+                  24.0,
+                  52.0,
+                  312.0,
+                  36.0
+                ],
+                "children": [
+                  {
+                    "actions": [
+                      "click",
+                      "focus",
+                      "set-value",
+                      "replace-selected-text",
+                      "set-text-selection"
+                    ],
+                    "bounds": [
+                      36.0,
+                      61.9,
+                      254.5,
+                      16.3
+                    ],
+                    "key": "draft",
+                    "placeholder": "Something to do",
+                    "role": "text-input",
+                    "value": ""
+                  },
+                  {
+                    "actions": [
+                      "click"
+                    ],
+                    "bounds": [
+                      302.5,
+                      63.1,
+                      21.5,
+                      13.8
+                    ],
+                    "key": "add",
+                    "name": "Add",
+                    "role": "label"
+                  }
+                ],
+                "key": "n12",
+                "role": "group"
+              }
+            ],
+            "key": "n4",
+            "role": "group"
+          }
+        ],
+        "key": "runex-svelte-root",
+        "role": "group"
+      }
+    ],
+    "name": "Todo",
+    "role": "window"
+  },
+  "anim_t": 0.0,
+  "animating": false,
+  "dark_system": true,
+  "elements": [
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "runex-svelte-root",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root",
+      "rect": [
+        0.0,
+        0.0,
+        360.0,
+        280.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#121314ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n4",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4",
+      "rect": [
+        0.0,
+        0.0,
+        360.0,
+        280.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#ffffff16",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n6",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6",
+      "rect": [
+        24.0,
+        24.0,
+        312.0,
+        4.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#4392f7ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n8",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n6/n8",
+      "rect": [
+        24.0,
+        24.0,
+        0.0,
+        4.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "list",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/list",
+      "rect": [
+        24.0,
+        40.0,
+        312.0,
+        0.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "fill": "#1c1d20ff",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "n12",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n12",
+      "rect": [
+        24.0,
+        52.0,
+        312.0,
+        36.0
+      ],
+      "role": "group",
+      "scale": 1.0
+    },
+    {
+      "blur": 0.0,
+      "color": "#eff0f2ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": true,
+      "focused": false,
+      "inert": false,
+      "key": "draft",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n12/draft",
+      "rect": [
+        36.0,
+        61.88,
+        254.5,
+        16.25
+      ],
+      "role": "textbox",
+      "scale": 1.0,
+      "text": ""
+    },
+    {
+      "blur": 0.0,
+      "color": "#4392f7ff",
+      "fill": "#00000000",
+      "focusVisible": false,
+      "focusable": false,
+      "focused": false,
+      "inert": false,
+      "key": "add",
+      "loopPhase": null,
+      "opacity": 1.0,
+      "path": "runex-svelte-root/n4/n12/add",
+      "rect": [
+        302.5,
+        63.13,
+        21.5,
+        13.75
+      ],
+      "role": "text",
+      "scale": 1.0,
+      "text": "Add"
+    }
+  ],
+  "reduced_motion": false,
+  "scale": 2.0,
+  "t": 0.0,
+  "time_scale": 1.0,
+  "title": "Todo",
+  "viewport": [
+    360.0,
+    280.0
+  ],
+  "warnings": []
+}

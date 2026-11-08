@@ -1,0 +1,37 @@
+{
+  "name": "create-runex-svelte",
+  "version": "0.1.0",
+  "description": "Scaffold a Svelte app rendered by Rune through runex: `npm create runex-svelte`",
+  "type": "module",
+  "license": "MIT",
+  "author": "Stanislav Khromov",
+  "bin": {
+    "create-runex-svelte": "index.js"
+  },
+  "files": [
+    "index.js",
+    "template"
+  ],
+  "scripts": {
+    "prepack": "node sync-template.js"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khromov/runex.git",
+    "directory": "packages/create-runex-svelte"
+  },
+  "keywords": [
+    "svelte",
+    "rune",
+    "runex",
+    "create",
+    "scaffold",
+    "desktop"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

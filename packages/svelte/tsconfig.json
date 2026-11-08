@@ -1,0 +1,23 @@
+// `bun run typecheck`: tsc over the TypeScript, then svelte-check over the components, against
+// runex-js's built dist/ (run `bun run build:ts` in the repo root first).
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["esnext"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "customConditions": ["custom-renderer", "development"],
+    "types": ["node", "bun"],
+    "strict": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true
+  },
+  "svelteOptions": { "namespace": "runexHTML" },
+  "include": ["types", "src", "bin", "scripts", "test", "examples"],
+  "exclude": ["**/node_modules", "vendor", "lib", ".tmp", "starter"]
+}

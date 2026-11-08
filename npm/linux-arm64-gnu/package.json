@@ -11,6 +11,11 @@
   ],
   "description": "Node.js and Bun bindings for Rune, the GPU-rendered Rust UI framework",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khromov/runex.git",
+    "directory": "npm/linux-arm64-gnu"
+  },
   "engines": {
     "node": ">= 22.6",
     "bun": ">= 1.2"

@@ -1,0 +1,82 @@
+{
+  "name": "@runex-js/svelte",
+  "version": "0.1.0",
+  "description": "Svelte custom renderer for runex: write Rune apps (GPU-rendered, native windows) as Svelte components",
+  "type": "module",
+  "license": "MIT",
+  "author": "Stanislav Khromov",
+  "main": "./src/index.ts",
+  "bin": {
+    "runex-svelte": "bin/runex-svelte.js"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./kit": "./src/kit.ts",
+    "./renderer": "./src/renderer.ts",
+    "./register": "./src/register.ts",
+    "./plugin": "./src/plugin.ts",
+    "./compile": "./src/compile.ts",
+    "./components/*": "./src/components/*",
+    "./html": {
+      "types": "./src/html.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "bin"
+  ],
+  "engines": {
+    "node": ">=24.0.0",
+    "bun": ">=1.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khromov/runex.git",
+    "directory": "packages/svelte"
+  },
+  "keywords": [
+    "svelte",
+    "rune",
+    "runex",
+    "custom-renderer",
+    "gpu",
+    "native",
+    "desktop",
+    "gui"
+  ],
+  "scripts": {
+    "gen": "bun scripts/gen-el.ts",
+    "typecheck": "tsc --noEmit && svelte-check --tsconfig ./tsconfig.json --diagnostic-sources js,svelte --fail-on-warnings --output human",
+    "test": "bun run typecheck && bun run test:unit && bun run test:golden",
+    "test:unit": "bun test --conditions custom-renderer --conditions development ./test/unit",
+    "test:golden": "bun test --conditions custom-renderer --conditions development --timeout 120000 ./test/golden",
+    "golden:update": "RUNEX_SVELTE_UPDATE=1 bun test --conditions custom-renderer --conditions development --timeout 120000 ./test/golden",
+    "demo": "bun scripts/demos.ts",
+    "vendor": "bun scripts/vendor-svelte.ts",
+    "pack": "bun scripts/publish.ts pack",
+    "publish:npm": "bun scripts/publish.ts publish",
+    "test:windowed": "bun test --conditions custom-renderer --conditions development --timeout 120000 ./test/windowed",
+    "test:pack": "bun test --conditions custom-renderer --conditions development --timeout 240000 ./test/pack"
+  },
+  "dependencies": {
+    "acorn": "^8.19.0",
+    "svelte": "file:vendor/svelte-5.57.3-7277a65.tgz"
+  },
+  "bundleDependencies": [
+    "svelte"
+  ],
+  "peerDependencies": {
+    "runex-js": ">=0.1.0 <0.2.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.0",
+    "@types/node": "^26.0.0",
+    "runex-js": "workspace:*",
+    "svelte-check": "^4.7.8",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

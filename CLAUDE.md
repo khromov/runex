@@ -105,6 +105,11 @@ in name order by `scripts/prepare-rune.mjs`. `--check` fails on any edit beyond 
 Rune bugs are carried as extra patches (for example `0002-metal-threadgroup-memory.patch`) until upstream fixes
 them. The Rust toolchain is pinned to Rune's (`rust-toolchain.toml`, 1.99.1).
 
+**packages/.** `packages/svelte` is `@runex-js/svelte`, a Svelte custom renderer on runex (its own
+CLAUDE.md and README), and `packages/create-runex-svelte` its scaffolder. They are Bun workspaces
+(root `package.json` `workspaces`), so `bun install` at the root links `runex-js` into them; the root
+tsconfig and tests don't reach into `packages/`. They release in lockstep with `runex-js`.
+
 ## Conventions and invariants
 
 - The TS API mirrors Rust **name for name, snake_case included** (`on_press`, `w_full`, `tok.motion.SNAPPY`).
