@@ -11,6 +11,9 @@ import { fileURLToPath } from "node:url"
 const PR = 18511
 const ROOT = fileURLToPath(new URL("..", import.meta.url))
 const VENDOR = join(ROOT, "vendor")
+// The repo root's vendor/ keeps a copy: bun.lock records the tarball's path relative to this
+// package, but `bun install --frozen-lockfile` resolves it from the root.
+const ROOT_VENDOR = join(ROOT, "../../vendor")
 
 async function get(url: string) {
   const res = await fetch(url)
@@ -29,8 +32,10 @@ if (current) {
 const { version } = (await (await get(`https://raw.githubusercontent.com/sveltejs/svelte/${sha}/packages/svelte/package.json`)).json()) as { version: string }
 const tarball = await (await get(`https://pkg.svelte.dev/svelte/c/${sha}`)).arrayBuffer()
 for (const f of readdirSync(VENDOR)) if (f.endsWith(".tgz")) rmSync(join(VENDOR, f))
+for (const f of readdirSync(ROOT_VENDOR)) if (/^svelte-.*\.tgz$/.test(f)) rmSync(join(ROOT_VENDOR, f))
 const name = `svelte-${version}-${short}.tgz`
 writeFileSync(join(VENDOR, name), Buffer.from(tarball))
+writeFileSync(join(ROOT_VENDOR, name), Buffer.from(tarball))
 
 const manifest = join(ROOT, "package.json")
 const json = JSON.parse(readFileSync(manifest, "utf8"))

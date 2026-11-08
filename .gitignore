@@ -24,5 +24,8 @@ examples/vite/out.png
 *.swp
 Thumbs.db
 
-# The vendored Svelte build packages/svelte runs on (see packages/svelte/scripts/vendor-svelte.ts).
+# The vendored Svelte build packages/svelte runs on (see packages/svelte/scripts/vendor-svelte.ts),
+# also at vendor/: Bun writes the lockfile's tarball path relative to packages/svelte, but a
+# frozen install resolves it from here. Git stores the two identical files as one blob.
 !packages/svelte/vendor/*.tgz
+!vendor/svelte-*.tgz
