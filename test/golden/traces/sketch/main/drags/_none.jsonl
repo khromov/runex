@@ -1,5 +1,5 @@
 {"clock":"virtual","height":420,"hz":60,"launch":"rune","platform":"rune","scale":1,"type":"header","units":"pt","width":560}
-{"e":[[1,24,53,512,343,1,12,0]],"m":[{"cls":"rune","host":"rune","id":1,"nm":"#0/paper","role":"image"}],"n":1,"t":0,"cm":[{"id":1,"name":"#0/paper.scale","kind":"position","owner":1,"unit":"ratio"},{"id":2,"name":"#0/paper.blur","kind":"position","owner":1,"unit":"pt"}],"c":[[1,1],[2,0]]}
+{"e":[[1,24,52.25,512,343.75,1,12,0]],"m":[{"cls":"rune","host":"rune","id":1,"nm":"#0/paper","role":"image"}],"n":1,"t":0,"cm":[{"id":1,"name":"#0/paper.scale","kind":"position","owner":1,"unit":"ratio"},{"id":2,"name":"#0/paper.blur","kind":"position","owner":1,"unit":"pt"}],"c":[[1,1],[2,0]]}
 {"n":1,"t":16.667}
 {"n":1,"t":33.333}
 {"n":1,"t":50}

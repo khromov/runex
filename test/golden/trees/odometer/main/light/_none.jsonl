@@ -16,8 +16,8 @@
 {"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"secs.1","loopPhase":null,"opacity":1,"path":"#0/#2/secs/secs.1","rect":[170,115,7.45,18],"role":"text","scale":1,"text":"9"}
 {"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"secs.2","loopPhase":null,"opacity":1,"path":"#0/#2/secs/secs.2","rect":[177.45,115,6.55,18],"role":"text","scale":1,"text":"s"}
 {"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head","loopPhase":null,"opacity":1,"path":"#0/head","rect":[24,149,300,32],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-crumbs","loopPhase":null,"opacity":1,"path":"#0/head/head-crumbs","rect":[34,156.75,168.5,16.5],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head/head-crumbs/#0","rect":[34,156.75,168.5,16.5],"role":"text","scale":1,"text":"Refactor the session list so pinned rows keep their place"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-crumbs","loopPhase":null,"opacity":1,"path":"#0/head/head-crumbs","rect":[34,156.88,168.5,16.25],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head/head-crumbs/#0","rect":[34,156.88,168.5,16.25],"role":"text","scale":1,"text":"Refactor the session list so pinned rows keep their place"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head/#1","rect":[210.5,165,0,0],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-usage","loopPhase":null,"opacity":1,"path":"#0/head/head-usage","rect":[218.5,157,95.5,16],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head/head-usage/#0","rect":[218.5,158,14,14],"role":"group","scale":1}
@@ -34,8 +34,8 @@
 {"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-cost.4","loopPhase":null,"opacity":1,"path":"#0/head/head-usage/head-cost/head-cost.4","rect":[298.25,157,7.77,16],"role":"text","scale":1,"text":"4"}
 {"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-cost.5","loopPhase":null,"opacity":1,"path":"#0/head/head-usage/head-cost/head-cost.5","rect":[306.02,157,7.98,16],"role":"text","scale":1,"text":"2"}
 {"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-lead","loopPhase":null,"opacity":1,"path":"#0/head-lead","rect":[24,197,300,32],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-lead-crumbs","loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-crumbs","rect":[34,204.75,168.5,16.5],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-crumbs/#0","rect":[34,204.75,168.5,16.5],"role":"text","scale":1,"text":"Refactor the session list so pinned rows keep their place"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-lead-crumbs","loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-crumbs","rect":[34,204.88,168.5,16.25],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-crumbs/#0","rect":[34,204.88,168.5,16.25],"role":"text","scale":1,"text":"Refactor the session list so pinned rows keep their place"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-lead/#1","rect":[210.5,213,0,0],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-lead-usage","loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-usage","rect":[218.5,205,95.5,16],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-usage/#0","rect":[218.5,206,14,14],"role":"group","scale":1}
@@ -52,8 +52,8 @@
 {"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-lead-cost.4","loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-usage/head-lead-cost/head-lead-cost.4","rect":[298.25,205,7.77,16],"role":"text","scale":1,"text":"4"}
 {"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-lead-cost.5","loopPhase":null,"opacity":1,"path":"#0/head-lead/head-lead-usage/head-lead-cost/head-lead-cost.5","rect":[306.02,205,7.98,16],"role":"text","scale":1,"text":"2"}
 {"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-plain","loopPhase":null,"opacity":1,"path":"#0/head-plain","rect":[24,245,300,32],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-plain-crumbs","loopPhase":null,"opacity":1,"path":"#0/head-plain/head-plain-crumbs","rect":[34,252.75,168.5,16.5],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-plain/head-plain-crumbs/#0","rect":[34,252.75,168.5,16.5],"role":"text","scale":1,"text":"Refactor the session list so pinned rows keep their place"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-plain-crumbs","loopPhase":null,"opacity":1,"path":"#0/head-plain/head-plain-crumbs","rect":[34,252.88,168.5,16.25],"role":"group","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-plain/head-plain-crumbs/#0","rect":[34,252.88,168.5,16.25],"role":"text","scale":1,"text":"Refactor the session list so pinned rows keep their place"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-plain/#1","rect":[210.5,261,0,0],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"head-plain-usage","loopPhase":null,"opacity":1,"path":"#0/head-plain/head-plain-usage","rect":[218.5,253,95.5,16],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/head-plain/head-plain-usage/#0","rect":[218.5,254,14,14],"role":"group","scale":1}
@@ -77,20 +77,20 @@
 {"a11y":"0/4","bounds":[15.6,59.8,388.8,43.4],"key":"count","name":"9","role":"label"}
 {"a11y":"0/5","bounds":[166.4,112.8,21.2,22.3],"key":"secs","name":"9s","role":"label"}
 {"a11y":"0/6","bounds":[24,149,300,32],"key":"head","role":"group"}
-{"a11y":"0/6/0","bounds":[34,156.8,168.5,16.5],"key":"head-crumbs","role":"group"}
-{"a11y":"0/6/0/0","bounds":[34,156.8,168.5,16.5],"name":"Refactor the session list so pinned rows keep their place","role":"label"}
+{"a11y":"0/6/0","bounds":[34,156.9,168.5,16.3],"key":"head-crumbs","role":"group"}
+{"a11y":"0/6/0/0","bounds":[34,156.9,168.5,16.3],"name":"Refactor the session list so pinned rows keep their place","role":"label"}
 {"a11y":"0/6/1","bounds":[218.5,157,95.5,16],"key":"head-usage","role":"group"}
 {"a11y":"0/6/1/0","bounds":[234.9,155.1,42.2,19.8],"key":"head-ctx","name":"12.3K","role":"label"}
 {"a11y":"0/6/1/1","bounds":[275.9,155.1,41.7,19.8],"key":"head-cost","name":"$0.42","role":"label"}
 {"a11y":"0/7","bounds":[24,197,300,32],"key":"head-lead","role":"group"}
-{"a11y":"0/7/0","bounds":[34,204.8,168.5,16.5],"key":"head-lead-crumbs","role":"group"}
-{"a11y":"0/7/0/0","bounds":[34,204.8,168.5,16.5],"name":"Refactor the session list so pinned rows keep their place","role":"label"}
+{"a11y":"0/7/0","bounds":[34,204.9,168.5,16.3],"key":"head-lead-crumbs","role":"group"}
+{"a11y":"0/7/0/0","bounds":[34,204.9,168.5,16.3],"name":"Refactor the session list so pinned rows keep their place","role":"label"}
 {"a11y":"0/7/1","bounds":[218.5,205,95.5,16],"key":"head-lead-usage","role":"group"}
 {"a11y":"0/7/1/0","bounds":[234.9,203.1,42.2,19.8],"key":"head-lead-ctx","name":"12.3K","role":"label"}
 {"a11y":"0/7/1/1","bounds":[275.9,203.1,41.7,19.8],"key":"head-lead-cost","name":"$0.42","role":"label"}
 {"a11y":"0/8","bounds":[24,245,300,32],"key":"head-plain","role":"group"}
-{"a11y":"0/8/0","bounds":[34,252.8,168.5,16.5],"key":"head-plain-crumbs","role":"group"}
-{"a11y":"0/8/0/0","bounds":[34,252.8,168.5,16.5],"name":"Refactor the session list so pinned rows keep their place","role":"label"}
+{"a11y":"0/8/0","bounds":[34,252.9,168.5,16.3],"key":"head-plain-crumbs","role":"group"}
+{"a11y":"0/8/0/0","bounds":[34,252.9,168.5,16.3],"name":"Refactor the session list so pinned rows keep their place","role":"label"}
 {"a11y":"0/8/1","bounds":[218.5,253,95.5,16],"key":"head-plain-usage","role":"group"}
 {"a11y":"0/8/1/0","bounds":[234.9,251.1,42.2,19.8],"key":"head-plain-ctx","name":"12.3K","role":"label"}
 {"a11y":"0/8/1/1","bounds":[275.9,251.1,41.7,19.8],"key":"head-plain-cost","name":"$0.42","role":"label"}

@@ -1,9 +1,9 @@
 {"anim_t":0.19999999999999998,"animating":true,"dark_system":true,"reduced_motion":false,"scale":1,"t":0.2,"time_scale":1,"title":"Hello","viewport":[320,200],"warnings":[]}
 {"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,320,200],"role":"group","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"moving":true,"opacity":1,"path":"#0/#0","rect":[130.77,72.5,58.47,17],"role":"text","scale":1,"target":[131,72.5,58,17],"text":"Lights on"}
-{"blur":0,"fill":"#4694f8db","focusVisible":false,"focusable":true,"focused":true,"inert":false,"key":"switch","label":"Lights","loopPhase":null,"opacity":1,"path":"#0/switch","rect":[141,105.5,38,22],"role":"switch","scale":1}
-{"blur":0,"fill":"#fafafaff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"knob","loopPhase":null,"moving":true,"opacity":1,"path":"#0/switch/knob","rect":[156.56,107.5,18,18],"role":"group","scale":1,"target":[159,107.5,18,18]}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"moving":true,"opacity":1,"path":"#0/#0","rect":[130.77,72.88,58.47,16.25],"role":"text","scale":1,"target":[131,72.88,58,16.25],"text":"Lights on"}
+{"blur":0,"fill":"#4694f8db","focusVisible":false,"focusable":true,"focused":true,"inert":false,"key":"switch","label":"Lights","loopPhase":null,"opacity":1,"path":"#0/switch","rect":[141,105.13,38,22],"role":"switch","scale":1}
+{"blur":0,"fill":"#fafafaff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"knob","loopPhase":null,"moving":true,"opacity":1,"path":"#0/switch/knob","rect":[156.56,107.13,18,18],"role":"group","scale":1,"target":[159,107.13,18,18]}
 {"a11y":"0","bounds":[0,0,320,200],"name":"Hello","role":"window"}
-{"a11y":"0/0","bounds":[130.8,72.5,58.5,17],"name":"Lights on","role":"label"}
-{"a11y":"0/1","actions":["click","focus"],"bounds":[141,105.5,38,22],"key":"switch","name":"Lights","role":"switch","states":["focused","checked"]}
-{"a11y":"0/1/0","bounds":[156.6,107.5,18,18],"key":"knob","role":"group"}
+{"a11y":"0/0","bounds":[130.8,72.9,58.5,16.3],"name":"Lights on","role":"label"}
+{"a11y":"0/1","actions":["click","focus"],"bounds":[141,105.1,38,22],"key":"switch","name":"Lights","role":"switch","states":["focused","checked"]}
+{"a11y":"0/1/0","bounds":[156.6,107.1,18,18],"key":"knob","role":"group"}

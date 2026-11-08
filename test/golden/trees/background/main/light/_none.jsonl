@@ -1,22 +1,22 @@
 {"anim_t":0,"animating":false,"dark_system":false,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Background","viewport":[480,420],"warnings":[]}
 {"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"window","loopPhase":null,"opacity":1,"path":"window","rect":[0,0,480,420],"role":"group","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"window/title","rect":[24,24,432,16.5],"role":"text","scale":1,"text":"Background app"}
-{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"ticks","loopPhase":null,"opacity":1,"path":"window/ticks","rect":[24,52.5,432,16.5],"role":"text","scale":1,"text":"0 ticks from a background thread, window closed 0 times"}
-{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"note-field","loopPhase":null,"opacity":1,"path":"window/note-field","rect":[24,81,432,32],"role":"group","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"note","loopPhase":null,"opacity":1,"path":"window/note-field/note","rect":[32,88.75,152.5,16.5],"role":"textbox","scale":1,"text":"Type here, close, reopen"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"actions","loopPhase":null,"opacity":1,"path":"window/actions","rect":[24,125,432,28],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"close","label":"Close window","loopPhase":null,"opacity":1,"path":"window/actions/close","rect":[24,125,104.5,28],"role":"button","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"window/actions/close/#0","rect":[36,131.5,80.5,15],"role":"text","scale":1,"text":"Close window"}
-{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"quit","label":"Quit","loopPhase":null,"opacity":1,"path":"window/actions/quit","rect":[136.5,125,48,28],"role":"button","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"window/actions/quit/#0","rect":[148.5,131.5,24,15],"role":"text","scale":1,"text":"Quit"}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"window/title","rect":[24,24,432,16.25],"role":"text","scale":1,"text":"Background app"}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"ticks","loopPhase":null,"opacity":1,"path":"window/ticks","rect":[24,52.25,432,16.25],"role":"text","scale":1,"text":"0 ticks from a background thread, window closed 0 times"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"note-field","loopPhase":null,"opacity":1,"path":"window/note-field","rect":[24,80.5,432,32],"role":"group","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"note","loopPhase":null,"opacity":1,"path":"window/note-field/note","rect":[32,88.38,152.5,16.25],"role":"textbox","scale":1,"text":"Type here, close, reopen"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"actions","loopPhase":null,"opacity":1,"path":"window/actions","rect":[24,124.5,432,28],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"close","label":"Close window","loopPhase":null,"opacity":1,"path":"window/actions/close","rect":[24,124.5,104.5,28],"role":"button","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"window/actions/close/#0","rect":[36,131,80.5,15],"role":"text","scale":1,"text":"Close window"}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"quit","label":"Quit","loopPhase":null,"opacity":1,"path":"window/actions/quit","rect":[136.5,124.5,48,28],"role":"button","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"window/actions/quit/#0","rect":[148.5,131,24,15],"role":"text","scale":1,"text":"Quit"}
 {"a11y":"0","bounds":[0,0,480,420],"name":"Background","role":"window"}
 {"a11y":"0/0","bounds":[0,0,480,420],"key":"window","role":"group"}
-{"a11y":"0/0/0","bounds":[24,24,432,16.5],"key":"title","name":"Background app","role":"label"}
-{"a11y":"0/0/1","bounds":[24,52.5,432,16.5],"key":"ticks","name":"0 ticks from a background thread, window closed 0 times","role":"label"}
-{"a11y":"0/0/2","bounds":[24,81,432,32],"key":"note-field","role":"group"}
-{"a11y":"0/0/2/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[32,88.8,152.5,16.5],"key":"note","role":"multiline-text-input","selection":[1,24,1,24],"value":"Type here, close, reopen"}
-{"a11y":"0/0/3","bounds":[24,125,432,28],"key":"actions","role":"group"}
-{"a11y":"0/0/3/0","actions":["click"],"bounds":[24,125,104.5,28],"key":"close","name":"Close window","role":"button"}
-{"a11y":"0/0/3/0/0","bounds":[36,131.5,80.5,15],"name":"Close window","role":"label"}
-{"a11y":"0/0/3/1","actions":["click"],"bounds":[136.5,125,48,28],"key":"quit","name":"Quit","role":"button"}
-{"a11y":"0/0/3/1/0","bounds":[148.5,131.5,24,15],"name":"Quit","role":"label"}
+{"a11y":"0/0/0","bounds":[24,24,432,16.3],"key":"title","name":"Background app","role":"label"}
+{"a11y":"0/0/1","bounds":[24,52.3,432,16.3],"key":"ticks","name":"0 ticks from a background thread, window closed 0 times","role":"label"}
+{"a11y":"0/0/2","bounds":[24,80.5,432,32],"key":"note-field","role":"group"}
+{"a11y":"0/0/2/0","actions":["click","focus","set-value","replace-selected-text","set-text-selection"],"bounds":[32,88.4,152.5,16.3],"key":"note","role":"multiline-text-input","selection":[1,24,1,24],"value":"Type here, close, reopen"}
+{"a11y":"0/0/3","bounds":[24,124.5,432,28],"key":"actions","role":"group"}
+{"a11y":"0/0/3/0","actions":["click"],"bounds":[24,124.5,104.5,28],"key":"close","name":"Close window","role":"button"}
+{"a11y":"0/0/3/0/0","bounds":[36,131,80.5,15],"name":"Close window","role":"label"}
+{"a11y":"0/0/3/1","actions":["click"],"bounds":[136.5,124.5,48,28],"key":"quit","name":"Quit","role":"button"}
+{"a11y":"0/0/3/1/0","bounds":[148.5,131,24,15],"name":"Quit","role":"label"}

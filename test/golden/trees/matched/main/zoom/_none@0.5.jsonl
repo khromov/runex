@@ -6,18 +6,18 @@
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"row-0","loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0","rect":[24,53,672,195.5],"role":"group","scale":1}
 {"blur":0,"fill":"#000000ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-1","loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-1","rect":[24,53,330,195.5],"role":"button","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-1/#0","rect":[24,53,330,195.5],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-1/#1","rect":[42,67,75,28],"role":"text","scale":1,"text":"1  Dusk"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-1/#1","rect":[42,67,75,27.5],"role":"text","scale":1,"text":"1  Dusk"}
 {"blur":0,"fill":"#000000ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-2","loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-2","rect":[366,53,330,195.5],"role":"button","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-2/#0","rect":[366,53,330,195.5],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-2/#1","rect":[384,67,75,28],"role":"text","scale":1,"text":"2  Lake"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-0/tile-2/#1","rect":[384,67,75,27.5],"role":"text","scale":1,"text":"2  Lake"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"moving":true,"opacity":0.9409999847412109,"path":"#0/stage/grid/row-0/tile-2/#2","rect":[366,53,330,195.5],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"row-2","loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2","rect":[24,260.5,672,195.5],"role":"group","scale":1}
 {"blur":0,"fill":"#000000ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-3","loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-3","rect":[24,260.5,330,195.5],"role":"button","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-3/#0","rect":[24,260.5,330,195.5],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-3/#1","rect":[42,274.5,80,28],"role":"text","scale":1,"text":"3  Haze"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-3/#1","rect":[42,274.5,80,27.5],"role":"text","scale":1,"text":"3  Haze"}
 {"blur":0,"fill":"#000000ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-4","loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-4","rect":[366,260.5,330,195.5],"role":"button","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-4/#0","rect":[366,260.5,330,195.5],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-4/#1","rect":[384,274.5,82,28],"role":"text","scale":1,"text":"4  Dune"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/stage/grid/row-2/tile-4/#1","rect":[384,274.5,82,27.5],"role":"text","scale":1,"text":"4  Dune"}
 {"blur":0,"exiting":true,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":true,"loopPhase":null,"moving":true,"opacity":0.023000000044703484,"path":"#0/stage/grid/row-0/tile-1/#2","rect":[24,53,330,195.5],"role":"group","scale":1}
 {"a11y":"0","bounds":[0,0,720,480],"name":"Matched","role":"window"}
 {"a11y":"0/0","bounds":[24,24,672,15],"name":"1–4 pick    ↩ zoom    esc back","role":"label"}
@@ -25,11 +25,11 @@
 {"a11y":"0/1/0","bounds":[24,53,672,403],"key":"grid","role":"group"}
 {"a11y":"0/1/0/0","bounds":[24,53,672,195.5],"key":"row-0","role":"group"}
 {"a11y":"0/1/0/0/0","actions":["click"],"bounds":[24,53,330,195.5],"key":"tile-1","name":"1  Dusk","role":"button"}
-{"a11y":"0/1/0/0/0/0","bounds":[42,67,75,28],"name":"1  Dusk","role":"label"}
+{"a11y":"0/1/0/0/0/0","bounds":[42,67,75,27.5],"name":"1  Dusk","role":"label"}
 {"a11y":"0/1/0/0/1","actions":["click"],"bounds":[366,53,330,195.5],"key":"tile-2","name":"2  Lake","role":"button"}
-{"a11y":"0/1/0/0/1/0","bounds":[384,67,75,28],"name":"2  Lake","role":"label"}
+{"a11y":"0/1/0/0/1/0","bounds":[384,67,75,27.5],"name":"2  Lake","role":"label"}
 {"a11y":"0/1/0/1","bounds":[24,260.5,672,195.5],"key":"row-2","role":"group"}
 {"a11y":"0/1/0/1/0","actions":["click"],"bounds":[24,260.5,330,195.5],"key":"tile-3","name":"3  Haze","role":"button"}
-{"a11y":"0/1/0/1/0/0","bounds":[42,274.5,80,28],"name":"3  Haze","role":"label"}
+{"a11y":"0/1/0/1/0/0","bounds":[42,274.5,80,27.5],"name":"3  Haze","role":"label"}
 {"a11y":"0/1/0/1/1","actions":["click"],"bounds":[366,260.5,330,195.5],"key":"tile-4","name":"4  Dune","role":"button"}
-{"a11y":"0/1/0/1/1/0","bounds":[384,274.5,82,28],"name":"4  Dune","role":"label"}
+{"a11y":"0/1/0/1/1/0","bounds":[384,274.5,82,27.5],"name":"4  Dune","role":"label"}

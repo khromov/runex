@@ -1,9 +1,9 @@
 {"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Rooms overlay example","viewport":[560,440],"warnings":[]}
 {"blur":0,"fill":"#242b30ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,560,440],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[40,40,480,16.5],"role":"text","scale":1,"text":"Display overlays"}
-{"blur":0,"fill":"#59edb326","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[40,76.5,480,48.5],"role":"button","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#0","rect":[56,92.5,109,16.5],"role":"text","scale":1,"text":"Test overlay input"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[40,40,480,16.25],"role":"text","scale":1,"text":"Display overlays"}
+{"blur":0,"fill":"#59edb326","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[40,76.25,480,48.25],"role":"button","scale":1}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1/#0","rect":[56,92.25,109,16.25],"role":"text","scale":1,"text":"Test overlay input"}
 {"a11y":"0","bounds":[0,0,560,440],"name":"Rooms overlay example","role":"window"}
-{"a11y":"0/0","bounds":[40,40,480,16.5],"name":"Display overlays","role":"label"}
-{"a11y":"0/1","actions":["click"],"bounds":[40,76.5,480,48.5],"name":"Test overlay input","role":"button"}
-{"a11y":"0/1/0","bounds":[56,92.5,109,16.5],"name":"Test overlay input","role":"label"}
+{"a11y":"0/0","bounds":[40,40,480,16.3],"name":"Display overlays","role":"label"}
+{"a11y":"0/1","actions":["click"],"bounds":[40,76.3,480,48.3],"name":"Test overlay input","role":"button"}
+{"a11y":"0/1/0","bounds":[56,92.3,109,16.3],"name":"Test overlay input","role":"label"}

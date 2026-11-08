@@ -2,36 +2,36 @@
 {"blur":0,"fill":"#f0f1f4ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,640,420],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"nav","loopPhase":null,"opacity":1,"path":"#0/nav","rect":[0,0,176,420],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"General","label":"General","loopPhase":null,"opacity":1,"path":"#0/nav/General","rect":[8,44,160,28],"role":"tab","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/nav/General/#0","rect":[18,49.75,48,16.5],"role":"text","scale":1,"text":"General"}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/nav/General/#0","rect":[18,49.88,48,16.25],"role":"text","scale":1,"text":"General"}
 {"blur":0,"fill":"#14161b21","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"Sync","label":"Sync","loopPhase":null,"opacity":1,"path":"#0/nav/Sync","rect":[8,74,160,28],"role":"tab","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/nav/Sync/#0","rect":[18,79.75,31,16.5],"role":"text","scale":1,"text":"Sync"}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/nav/Sync/#0","rect":[18,79.88,31,16.25],"role":"text","scale":1,"text":"Sync"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"Devices","label":"Devices","loopPhase":null,"opacity":1,"path":"#0/nav/Devices","rect":[8,104,160,28],"role":"tab","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/nav/Devices/#0","rect":[18,109.75,49.5,16.5],"role":"text","scale":1,"text":"Devices"}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/nav/Devices/#0","rect":[18,109.88,49.5,16.25],"role":"text","scale":1,"text":"Devices"}
 {"blur":0,"fill":"#00000021","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[176,0,1,420],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"content","loopPhase":null,"opacity":1,"path":"#0/content","rect":[177,0,463,420],"role":"group","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#0","rect":[201,24,415,16.5],"role":"text","scale":1,"text":"Sync"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1","rect":[201,56.5,415,120.5],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sync","label":"Sync across devices","loopPhase":null,"opacity":1,"path":"#0/content/#1/sync","rect":[201,56.5,415,44],"role":"switch","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/sync/#0","rect":[213,70.25,127,16.5],"role":"text","scale":1,"text":"Sync across devices"}
-{"blur":0,"fill":"#14161b3d","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/sync/#1","rect":[570,68.5,34,20],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/sync/#1/#0","rect":[572,70.5,16,16],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"wifi","label":"Only on Wi-Fi","loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi","rect":[201,108.5,415,44],"role":"switch","scale":1}
-{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi/#0","rect":[213,122.25,84,16.5],"role":"text","scale":1,"text":"Only on Wi-Fi"}
-{"blur":0,"fill":"#14161b3d","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi/#1","rect":[570,120.5,34,20],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi/#1/#0","rect":[572,122.5,16,16],"role":"group","scale":1}
-{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/#2","rect":[201,160.5,415,16.5],"role":"text","scale":1,"text":"Changes stay on this device until sync is back on."}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#0","rect":[201,24,415,16.25],"role":"text","scale":1,"text":"Sync"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1","rect":[201,56.25,415,120.25],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sync","label":"Sync across devices","loopPhase":null,"opacity":1,"path":"#0/content/#1/sync","rect":[201,56.25,415,44],"role":"switch","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/sync/#0","rect":[213,70.13,127,16.25],"role":"text","scale":1,"text":"Sync across devices"}
+{"blur":0,"fill":"#14161b3d","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/sync/#1","rect":[570,68.25,34,20],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/sync/#1/#0","rect":[572,70.25,16,16],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"wifi","label":"Only on Wi-Fi","loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi","rect":[201,108.25,415,44],"role":"switch","scale":1}
+{"blur":0,"color":"#1a1c1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi/#0","rect":[213,122.13,84,16.25],"role":"text","scale":1,"text":"Only on Wi-Fi"}
+{"blur":0,"fill":"#14161b3d","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi/#1","rect":[570,120.25,34,20],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0.5,"path":"#0/content/#1/wifi/#1/#0","rect":[572,122.25,16,16],"role":"group","scale":1}
+{"blur":0,"color":"#606369ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/content/#1/#2","rect":[201,160.25,415,16.25],"role":"text","scale":1,"text":"Changes stay on this device until sync is back on."}
 {"a11y":"0","bounds":[0,0,640,420],"name":"Preferences","role":"window"}
 {"a11y":"0/0","bounds":[0,0,176,420],"key":"nav","role":"group"}
 {"a11y":"0/0/0","actions":["click"],"bounds":[8,44,160,28],"key":"General","name":"General","role":"tab"}
-{"a11y":"0/0/0/0","bounds":[18,49.8,48,16.5],"name":"General","role":"label"}
+{"a11y":"0/0/0/0","bounds":[18,49.9,48,16.3],"name":"General","role":"label"}
 {"a11y":"0/0/1","actions":["click"],"bounds":[8,74,160,28],"key":"Sync","name":"Sync","role":"tab"}
-{"a11y":"0/0/1/0","bounds":[18,79.8,31,16.5],"name":"Sync","role":"label"}
+{"a11y":"0/0/1/0","bounds":[18,79.9,31,16.3],"name":"Sync","role":"label"}
 {"a11y":"0/0/2","actions":["click"],"bounds":[8,104,160,28],"key":"Devices","name":"Devices","role":"tab"}
-{"a11y":"0/0/2/0","bounds":[18,109.8,49.5,16.5],"name":"Devices","role":"label"}
+{"a11y":"0/0/2/0","bounds":[18,109.9,49.5,16.3],"name":"Devices","role":"label"}
 {"a11y":"0/1","bounds":[177,0,463,420],"key":"content","role":"group"}
-{"a11y":"0/1/0","bounds":[201,24,415,16.5],"name":"Sync","role":"label"}
-{"a11y":"0/1/1","actions":["click"],"bounds":[201,56.5,415,44],"key":"sync","name":"Sync across devices","role":"switch"}
-{"a11y":"0/1/1/0","bounds":[213,70.3,127,16.5],"name":"Sync across devices","role":"label"}
-{"a11y":"0/1/2","actions":["click"],"bounds":[201,108.5,415,44],"key":"wifi","name":"Only on Wi-Fi","role":"switch"}
-{"a11y":"0/1/2/0","bounds":[213,122.3,84,16.5],"name":"Only on Wi-Fi","role":"label"}
-{"a11y":"0/1/3","bounds":[201,160.5,415,16.5],"name":"Changes stay on this device until sync is back on.","role":"label"}
+{"a11y":"0/1/0","bounds":[201,24,415,16.3],"name":"Sync","role":"label"}
+{"a11y":"0/1/1","actions":["click"],"bounds":[201,56.3,415,44],"key":"sync","name":"Sync across devices","role":"switch"}
+{"a11y":"0/1/1/0","bounds":[213,70.1,127,16.3],"name":"Sync across devices","role":"label"}
+{"a11y":"0/1/2","actions":["click"],"bounds":[201,108.3,415,44],"key":"wifi","name":"Only on Wi-Fi","role":"switch"}
+{"a11y":"0/1/2/0","bounds":[213,122.1,84,16.3],"name":"Only on Wi-Fi","role":"label"}
+{"a11y":"0/1/3","bounds":[201,160.3,415,16.3],"name":"Changes stay on this device until sync is back on.","role":"label"}

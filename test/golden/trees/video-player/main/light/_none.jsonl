@@ -1,8 +1,8 @@
 {"anim_t":0.6000000000000002,"animating":true,"dark_system":false,"reduced_motion":false,"scale":2,"t":0.6,"time_scale":1,"title":"Video player","viewport":[520,340],"warnings":[]}
 {"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,520,340],"role":"button","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"video","loopPhase":null,"opacity":1,"path":"#0/video","rect":[20,20.75,480,270],"role":"group","scale":1,"video":{"duration":1,"kind":"video","looping":true,"muted":true,"rate":1,"size":[64,36],"state":"playing","time":0.6}}
-{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[195.75,302.75,128.5,16.5],"role":"text","scale":1,"text":"Playing, tap to pause"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"video","loopPhase":null,"opacity":1,"path":"#0/video","rect":[20,20.88,480,270],"role":"group","scale":1,"video":{"duration":1,"kind":"video","looping":true,"muted":true,"rate":1,"size":[64,36],"state":"playing","time":0.6}}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#1","rect":[195.75,302.88,128.5,16.25],"role":"text","scale":1,"text":"Playing, tap to pause"}
 {"a11y":"0","bounds":[0,0,520,340],"name":"Video player","role":"window"}
 {"a11y":"0/0","actions":["click"],"bounds":[0,0,520,340],"name":"Playing, tap to pause","role":"button"}
-{"a11y":"0/0/0","bounds":[20,20.8,480,270],"key":"video","role":"image"}
-{"a11y":"0/0/1","bounds":[195.8,302.8,128.5,16.5],"name":"Playing, tap to pause","role":"label"}
+{"a11y":"0/0/0","bounds":[20,20.9,480,270],"key":"video","role":"image"}
+{"a11y":"0/0/1","bounds":[195.8,302.9,128.5,16.3],"name":"Playing, tap to pause","role":"label"}

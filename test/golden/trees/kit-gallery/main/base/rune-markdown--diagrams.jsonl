@@ -1,8 +1,8 @@
 {"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"rune-kit gallery","viewport":[720,480],"warnings":[]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"kit-root","loopPhase":null,"opacity":1,"path":"kit-root","rect":[0,0,720,480],"role":"group","scale":1}
 {"blur":0,"fill":"#121212ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"frame","loopPhase":null,"opacity":1,"path":"kit-root/frame","rect":[0,0,720,480],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,520,1085.87],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,520,1085.87],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0","rect":[24,24,520,1085.66],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0","rect":[24,24,520,1085.66],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0","rect":[24,24,520,493.59],"role":"group","scale":1}
 {"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","label":"Flowchart","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card","rect":[24,24,520,493.59],"role":"figure","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b0/card/diagram","rect":[48.63,40,470.75,461.59],"role":"group","scale":1}
@@ -179,31 +179,31 @@
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"hover:n:f","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/hover:n:f","rect":[514.23,567.05,92.38,31.85],"role":"group","scale":1,"target":[-40,557.6,92.37,31.85]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/hover:n:f/#0","rect":[-40,557.59,648,50.77],"role":"group","scale":0.7962999939918518,"target":[-594.23,548.14,813.76,63.76]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"lit","loopPhase":null,"opacity":0,"path":"kit-root/frame/#0/#0/b1/card/diagram/fit/hover:n:f/#0/lit","rect":[-40,557.59,648,50.77],"role":"image","scale":0.7962999939918518,"target":[-594.23,548.14,813.76,63.76]}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2","rect":[24,648.37,466,70.5],"role":"table","scale":1}
-{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"th","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th","rect":[24.5,648.87,465,34.5],"role":"row","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c0","rect":[24.5,648.87,71,34.5],"role":"columnheader","scale":1}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c0/#0","rect":[34.5,654.87,51,22.5],"role":"text","scale":1,"text":"Narrow"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c1","rect":[95.5,648.87,394,34.5],"role":"columnheader","scale":1}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c1/#0","rect":[105.5,654.87,374,22.5],"role":"text","scale":1,"text":"Table"}
-{"blur":0,"fill":"#ffffff14","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"s0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/s0","rect":[24.5,683.37,465,0.5],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"r0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0","rect":[24.5,683.87,465,34.5],"role":"row","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c0","rect":[24.5,683.87,71,34.5],"role":"cell","scale":1}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c0/#0","rect":[34.5,689.87,51,22.5],"role":"text","scale":1,"text":"wraps"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c1","rect":[95.5,683.87,394,34.5],"role":"cell","scale":1}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c1/#0","rect":[105.5,689.87,374,22.5],"role":"text","scale":1,"text":"when its column runs out of room, like this long cell does"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3","rect":[24,734.87,520,266.99],"role":"group","scale":1}
-{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","label":"Pie chart","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card","rect":[24,734.87,520,266.99],"role":"figure","scale":1}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/title","rect":[269,750.87,30,20],"role":"text","scale":1,"text":"Pets"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram","rect":[140.51,782.87,286.98,202.99],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fit","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit","rect":[140.51,782.87,286.98,202.99],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"shape","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/shape","rect":[141.51,782.87,243.98,201.99],"role":"image","scale":1,"target":[140.51,782.87,243.98,201.99]}
-{"blur":0,"color":"#181b1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t0","rect":[261.94,932.55,30,16],"role":"text","scale":1,"target":[140.51,782.87,30,16],"text":"82%"}
-{"blur":0,"color":"#181b1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t1","rect":[192.55,821.2,27,16],"role":"text","scale":1,"target":[140.51,782.87,27,16],"text":"18%"}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t2","rect":[392.49,863.87,35,18],"role":"text","scale":1,"target":[140.51,782.87,35,18],"text":"Dogs"}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t3","rect":[392.49,887.87,30,18],"role":"text","scale":1,"target":[140.51,782.87,30,18],"text":"Cats"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4","rect":[24,1025.87,520,84],"role":"group","scale":1}
-{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"source","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/source","rect":[24,1025.87,520,84],"role":"code","scale":1}
-{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/source/#0","rect":[36,1037.87,496,60],"role":"text","scale":1,"text":"kanban\n    Todo\n        Write docs"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2","rect":[24,648.37,464.38,70.3],"role":"table","scale":1}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"th","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th","rect":[24.5,648.87,463.38,34.4],"role":"row","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c0","rect":[24.5,648.87,70.09,34.4],"role":"columnheader","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c0/#0","rect":[34.5,654.87,50.09,22.4],"role":"text","scale":1,"text":"Narrow"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c1","rect":[94.59,648.87,393.3,34.4],"role":"columnheader","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/th/c1/#0","rect":[104.59,654.87,373.3,22.4],"role":"text","scale":1,"text":"Table"}
+{"blur":0,"fill":"#ffffff14","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"s0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/s0","rect":[24.5,683.27,463.38,0.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"r0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0","rect":[24.5,683.77,463.38,34.4],"role":"row","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c0","rect":[24.5,683.77,70.09,34.4],"role":"cell","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c0/#0","rect":[34.5,689.77,50.09,22.4],"role":"text","scale":1,"text":"wraps"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"c1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c1","rect":[94.59,683.77,393.3,34.4],"role":"cell","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b2/r0/c1/#0","rect":[104.59,689.77,373.3,22.4],"role":"text","scale":1,"text":"when its column runs out of room, like this long cell does"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3","rect":[24,734.66,520,266.99],"role":"group","scale":1}
+{"blur":0,"fill":"#161616ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"card","label":"Pie chart","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card","rect":[24,734.66,520,266.99],"role":"figure","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"title","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/title","rect":[269,750.66,30,20],"role":"text","scale":1,"text":"Pets"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"diagram","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram","rect":[140.51,782.66,286.98,202.99],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"fit","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit","rect":[140.51,782.66,286.98,202.99],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"shape","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/shape","rect":[141.51,782.66,243.98,201.99],"role":"image","scale":1,"target":[140.51,782.67,243.98,201.99]}
+{"blur":0,"color":"#181b1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t0","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t0","rect":[261.94,932.34,30,16],"role":"text","scale":1,"target":[140.51,782.67,30,16],"text":"82%"}
+{"blur":0,"color":"#181b1fff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t1","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t1","rect":[192.55,820.99,27,16],"role":"text","scale":1,"target":[140.51,782.67,27,16],"text":"18%"}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t2","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t2","rect":[392.49,863.66,35,18],"role":"text","scale":1,"target":[140.51,782.67,35,18],"text":"Dogs"}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"t3","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b3/card/diagram/fit/t3","rect":[392.49,887.66,30,18],"role":"text","scale":1,"target":[140.51,782.67,30,18],"text":"Cats"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"b4","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4","rect":[24,1025.66,520,84],"role":"group","scale":1}
+{"blur":0,"fill":"#242424ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"source","loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/source","rect":[24,1025.66,520,84],"role":"code","scale":1}
+{"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"kit-root/frame/#0/#0/b4/source/#0","rect":[36,1037.66,496,60],"role":"text","scale":1,"text":"kanban\n    Todo\n        Write docs"}
 {"a11y":"0","bounds":[0,0,720,480],"name":"rune-kit gallery","role":"window"}
 {"a11y":"0/0","bounds":[0,0,720,480],"key":"kit-root","role":"group"}
 {"a11y":"0/0/0","bounds":[0,0,720,480],"key":"frame","role":"group"}
@@ -230,26 +230,26 @@
 {"a11y":"0/0/0/1/0/0/0/3","bounds":[308,575.8,45.4,14.3],"key":"n:d.t0","name":"Diamond","role":"label"}
 {"a11y":"0/0/0/1/0/0/0/4","bounds":[432.2,575.8,26.3,14.3],"key":"n:e.t0","name":"Lean","role":"label"}
 {"a11y":"0/0/0/1/0/0/0/5","bounds":[534.9,575.8,51,14.3],"key":"n:f.t0","name":"Trapezoid","role":"label"}
-{"a11y":"0/0/0/2","bounds":[24,648.4,466,70.5],"key":"b2","role":"table"}
-{"a11y":"0/0/0/2/0","bounds":[24.5,648.9,465,34.5],"key":"th","name":"Narrow Table","role":"row"}
-{"a11y":"0/0/0/2/0/0","bounds":[24.5,648.9,71,34.5],"key":"c0","name":"Narrow","role":"column-header"}
-{"a11y":"0/0/0/2/0/0/0","bounds":[34.5,654.9,51,22.5],"name":"Narrow","role":"label"}
-{"a11y":"0/0/0/2/0/1","bounds":[95.5,648.9,394,34.5],"key":"c1","name":"Table","role":"column-header"}
-{"a11y":"0/0/0/2/0/1/0","bounds":[105.5,654.9,374,22.5],"name":"Table","role":"label"}
-{"a11y":"0/0/0/2/1","bounds":[24.5,683.9,465,34.5],"key":"r0","name":"wraps when its column runs out of room, like this long cell does","role":"row"}
-{"a11y":"0/0/0/2/1/0","bounds":[24.5,683.9,71,34.5],"key":"c0","name":"wraps","role":"cell"}
-{"a11y":"0/0/0/2/1/0/0","bounds":[34.5,689.9,51,22.5],"name":"wraps","role":"label"}
-{"a11y":"0/0/0/2/1/1","bounds":[95.5,683.9,394,34.5],"key":"c1","name":"when its column runs out of room, like this long cell does","role":"cell"}
-{"a11y":"0/0/0/2/1/1/0","bounds":[105.5,689.9,374,22.5],"name":"when its column runs out of room, like this long cell does","role":"label"}
-{"a11y":"0/0/0/3","bounds":[24,734.9,520,267],"key":"b3","role":"group"}
-{"a11y":"0/0/0/3/0","bounds":[24,734.9,520,267],"description":"pie title Pets\n    \"Dogs\" : 386\n    \"Cats\" : 85","key":"card","name":"Pie chart","role":"figure"}
-{"a11y":"0/0/0/3/0/0","bounds":[269,750.9,30,20],"key":"title","name":"Pets","role":"label"}
-{"a11y":"0/0/0/3/0/1","bounds":[140.5,782.9,287,203],"key":"diagram","role":"group"}
-{"a11y":"0/0/0/3/0/1/0","bounds":[140.5,782.9,287,203],"key":"fit","role":"group"}
-{"a11y":"0/0/0/3/0/1/0/0","bounds":[261.9,932.6,30,16],"key":"t0","name":"82%","role":"label"}
-{"a11y":"0/0/0/3/0/1/0/1","bounds":[192.6,821.2,27,16],"key":"t1","name":"18%","role":"label"}
-{"a11y":"0/0/0/3/0/1/0/2","bounds":[392.5,863.9,35,18],"key":"t2","name":"Dogs","role":"label"}
-{"a11y":"0/0/0/3/0/1/0/3","bounds":[392.5,887.9,30,18],"key":"t3","name":"Cats","role":"label"}
-{"a11y":"0/0/0/4","bounds":[24,1025.9,520,84],"key":"b4","role":"group"}
-{"a11y":"0/0/0/4/0","bounds":[24,1025.9,520,84],"key":"source","role":"code"}
-{"a11y":"0/0/0/4/0/0","bounds":[36,1037.9,496,60],"name":"kanban\n    Todo\n        Write docs","role":"label"}
+{"a11y":"0/0/0/2","bounds":[24,648.4,464.4,70.3],"key":"b2","role":"table"}
+{"a11y":"0/0/0/2/0","bounds":[24.5,648.9,463.4,34.4],"key":"th","name":"Narrow Table","role":"row"}
+{"a11y":"0/0/0/2/0/0","bounds":[24.5,648.9,70.1,34.4],"key":"c0","name":"Narrow","role":"column-header"}
+{"a11y":"0/0/0/2/0/0/0","bounds":[34.5,654.9,50.1,22.4],"name":"Narrow","role":"label"}
+{"a11y":"0/0/0/2/0/1","bounds":[94.6,648.9,393.3,34.4],"key":"c1","name":"Table","role":"column-header"}
+{"a11y":"0/0/0/2/0/1/0","bounds":[104.6,654.9,373.3,22.4],"name":"Table","role":"label"}
+{"a11y":"0/0/0/2/1","bounds":[24.5,683.8,463.4,34.4],"key":"r0","name":"wraps when its column runs out of room, like this long cell does","role":"row"}
+{"a11y":"0/0/0/2/1/0","bounds":[24.5,683.8,70.1,34.4],"key":"c0","name":"wraps","role":"cell"}
+{"a11y":"0/0/0/2/1/0/0","bounds":[34.5,689.8,50.1,22.4],"name":"wraps","role":"label"}
+{"a11y":"0/0/0/2/1/1","bounds":[94.6,683.8,393.3,34.4],"key":"c1","name":"when its column runs out of room, like this long cell does","role":"cell"}
+{"a11y":"0/0/0/2/1/1/0","bounds":[104.6,689.8,373.3,22.4],"name":"when its column runs out of room, like this long cell does","role":"label"}
+{"a11y":"0/0/0/3","bounds":[24,734.7,520,267],"key":"b3","role":"group"}
+{"a11y":"0/0/0/3/0","bounds":[24,734.7,520,267],"description":"pie title Pets\n    \"Dogs\" : 386\n    \"Cats\" : 85","key":"card","name":"Pie chart","role":"figure"}
+{"a11y":"0/0/0/3/0/0","bounds":[269,750.7,30,20],"key":"title","name":"Pets","role":"label"}
+{"a11y":"0/0/0/3/0/1","bounds":[140.5,782.7,287,203],"key":"diagram","role":"group"}
+{"a11y":"0/0/0/3/0/1/0","bounds":[140.5,782.7,287,203],"key":"fit","role":"group"}
+{"a11y":"0/0/0/3/0/1/0/0","bounds":[261.9,932.3,30,16],"key":"t0","name":"82%","role":"label"}
+{"a11y":"0/0/0/3/0/1/0/1","bounds":[192.6,821,27,16],"key":"t1","name":"18%","role":"label"}
+{"a11y":"0/0/0/3/0/1/0/2","bounds":[392.5,863.7,35,18],"key":"t2","name":"Dogs","role":"label"}
+{"a11y":"0/0/0/3/0/1/0/3","bounds":[392.5,887.7,30,18],"key":"t3","name":"Cats","role":"label"}
+{"a11y":"0/0/0/4","bounds":[24,1025.7,520,84],"key":"b4","role":"group"}
+{"a11y":"0/0/0/4/0","bounds":[24,1025.7,520,84],"key":"source","role":"code"}
+{"a11y":"0/0/0/4/0/0","bounds":[36,1037.7,496,60],"name":"kanban\n    Todo\n        Write docs","role":"label"}
