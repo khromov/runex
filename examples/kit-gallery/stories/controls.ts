@@ -145,6 +145,23 @@ export function switch_sizes(s: G, k: Kit, _: El[]): El {
   }))
 }
 
+/**
+ * The compact switch as the web draws it (`Switch::web`): off and on, at rest, hovered,
+ * keyboard-focused and disabled.
+ */
+export function switch_web(s: G, k: Kit, _: El[]): El {
+  const states: [string, State][] = [["Rest", "Rest"], ["Hover", "Hover"], ["Focus", "Focus"], ["Disabled", "Disabled"]]
+  return col().gap(12.0)
+    .child(row().gap(12.0).center_y().child(caption(k, "Live").w(80.0))
+      .child(Switch.new(s.is("web")).web().label("Web").hide_label().on_toggle(flip("web")).build(k)))
+    .children(states.map(([name, st]) =>
+      row().gap(16.0).center_y()
+        .child(caption(k, name).w(80.0))
+        .child(Switch.new(false).web().state(st).build(k))
+        .child(Switch.new(true).web().state(st).build(k))
+    ))
+}
+
 export function switch_hidden_label(s: G, k: Kit, _: El[]): El {
   return row().child(Switch.new(on_by_default(s, "sw")).label("Hidden label").hide_label().on_toggle(flip("sw")).build(k))
 }

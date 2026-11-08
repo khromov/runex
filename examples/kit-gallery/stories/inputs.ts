@@ -1,7 +1,7 @@
 // TextInput, Textarea, Field and Select.
 
 import { type El, TextEdit, TextStyle, type Tx, col, row, text } from "runex-js"
-import { Field, type Kit, Select, TextArea, TextInput } from "runex-js/kit"
+import { Field, type Kit, Select, type State, TextArea, TextInput } from "runex-js/kit"
 
 import type { G } from "../main.ts"
 import { close, is_open, toggle } from "../stories.ts"
@@ -209,6 +209,28 @@ export function select_invalid(s: G, k: Kit, layer: El[]): El {
 
 export function select_disabled(_: G, k: Kit, layer: El[]): El {
   return row().child(Select.new("select", FRUITS).current("Cherry").disabled(true).build(k, layer))
+}
+
+/**
+ * Both triggers in every state, forced, and an open field with its listbox: the inline trigger's
+ * rest, hover, open and disabled; the 280 x 28 field's rest, hover, keyboard focus, open,
+ * invalid and disabled.
+ */
+export function select_states(s: G, k: Kit, layer: El[]): El {
+  const pick = (key: string, st: State) => Select.new(key, FRUITS).label("Fruit").placeholder("Pick a fruit").current("Banana").state(st)
+  const line = (name: string, e: El) => row().gap(16.0).center_y().child(text(name).font(k.ty.small).color(k.c.text_faint).w(72.0)).child(e)
+  const field = (key: string, st: State) => pick(key, st).appearance("Field")
+  return col().gap(10.0)
+    .child(line("Inline", pick("i1", "Rest").trigger(k)))
+    .child(line("Hover", pick("i2", "Hover").trigger(k)))
+    .child(line("Open", pick("i3", "Rest").open(true).trigger(k)))
+    .child(line("Disabled", pick("i4", "Rest").disabled(true).trigger(k)))
+    .child(line("Field", field("f1", "Rest").trigger(k)))
+    .child(line("Hover", field("f2", "Hover").trigger(k)))
+    .child(line("Focus", field("f3", "Focus").trigger(k)))
+    .child(line("Invalid", field("f4", "Rest").invalid(true).trigger(k)))
+    .child(line("Disabled", field("f5", "Rest").disabled(true).trigger(k)))
+    .child(line("Open", fruit_select(s, "select").appearance("Field").build(k, layer)))
 }
 
 export function select_with_field(s: G, k: Kit, layer: El[]): El {

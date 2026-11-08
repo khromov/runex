@@ -3,7 +3,7 @@
 import { Color, type El, type Icon, TextStyle, type Tx, col, row, text, theme } from "runex-js"
 import {
   Accordion, AccordionItem, Badge, Button, Card, Collapsible, Keybind, type KeybindVariant, type Kit, List, ListItem, Loader,
-  Progress, RollingText, SegmentedControl, Spinner,
+  Progress, RollingText, ScrollBarStyle, SegmentedControl, Spinner,
 } from "runex-js/kit"
 import { icons as ic } from "runex-js/theme-opencode"
 
@@ -358,6 +358,19 @@ export function rolling_text_basic(s: G, k: Kit, _: El[]): El {
     .child(line("Centred", row().w(260.0).center().child(RollingText.new("roll-centre", label).font(k.ty.body).build(k))))
     .child(line("Count", RollingText.new("count-sans", count).font(big).from("Top").build(k)))
     .child(line("", RollingText.new("count-mono", count).font(big.mono()).from("Top").build(k)))
+}
+
+/**
+ * `ScrollBarStyle::scroll_view`: the `@opencode/ui` ScrollView thumb, hidden at rest and shown while
+ * the pointer is over the list or it scrolls.
+ */
+export function scroll_view_thumb(_: G, k: Kit, __: El[]): El {
+  const rows = Array.from({ length: 24 }, (_, j) => j + 1).map((i) => row().key(`row${i}`).h(28.0).px(12.0).center_y()
+    .child(text(`Row ${i}`).font(k.ty.ui_compact).color(k.c.text_base)))
+  return col().key("list").w(240.0).h(180.0).radius(k.radius.md).fill(k.c.bg_base).border(1.0, k.c.border_weak)
+    .scroll({ stick_bottom: false })
+    .child(col().children(rows))
+    .scroll_bar_styled(ScrollBarStyle.scroll_view(k))
 }
 
 /** `str::parse::<u32>()`. */
