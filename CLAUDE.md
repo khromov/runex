@@ -47,6 +47,7 @@ bun scripts/compare.ts hello --runtime bun,node    # a port vs its Rust original
 bun run test:full                          # everything (10-15 min)
 bun run check:bindings                     # bindgen --check: generated code is deterministic and current
 bun run update:rune <rev|--tip>            # move vendor/rune and run every layer; writes out/update-rune/*/summary.md
+bun run clean                              # remove out/, temp folders and both cargo targets (--docker: the volumes too)
 ```
 
 Tests import `runex-js`, which resolves to `dist/` through the package's self-reference. After editing `ts/`,
@@ -123,6 +124,9 @@ them. The Rust toolchain is pinned to Rune's (`rust-toolchain.toml`, 1.99.1).
   files share one process, and the file order depends on the filesystem, so tests must not share state across
   `test()` calls.
 - Windowed tests run each scenario as its own process, because winit allows one event loop per process.
+- Tools clean up after themselves (docs/testing.md, Disk): a new script that builds or renders a lot deletes
+  its scratch output once it passes, builds Rune through `runeCargoEnv()` (scripts/lib/cargo.ts), and removes
+  its temp folders on every exit path (`process.exit` skips `finally`).
 - Files use LF everywhere (`.gitattributes`). CRLF breaks `git apply` of the patches and the exact golden and
   snapshot comparisons.
 - Changing package names or exports touches the snapshots and checks in `test/pack/` (`exports.test.ts`,

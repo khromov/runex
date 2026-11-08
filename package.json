@@ -80,6 +80,7 @@
     "test:unit": "bun test --randomize --timeout 60000 ./test/unit",
     "test:golden": "bun scripts/golden.ts --tier standard",
     "golden:update": "bun scripts/golden.ts --update --tier standard",
+    "clean": "bun scripts/clean.ts",
     "test:windowed": "bun test --timeout 120000 ./test/windowed",
     "test:dev": "bun test --timeout 120000 ./test/devflow ./test/pack",
     "test:compare": "bun test ./test/examples.test.ts",

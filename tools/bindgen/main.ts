@@ -111,6 +111,8 @@ if (flag("--check")) await check()
 async function check(): Promise<never> {
   const t0 = performance.now()
   const tmp = mkdtempSync(join(tmpdir(), "runex-bindgen-"))
+  // `process.exit` skips `finally`, so every way out removes the scratch runs first.
+  process.on("exit", () => rmSync(tmp, { recursive: true, force: true }))
   try {
     const pass = ["--rustdoc-dir", rustdocDir, "--rune", runeDir, ...(flag("--any-target") ? ["--any-target"] : [])]
     const [a, b] = [join(tmp, "a"), join(tmp, "b")]

@@ -47,6 +47,7 @@ JavaScript instead. `cargo fmt --check` isn't gated (the code isn't rustfmt-form
 | `bun run test:full` | the fast tier, golden full, windowed, dev, compare | 10–15 min |
 | `bun run check:bindings` | `bun tools/bindgen/main.ts --check`: bindings regenerate identically from the cached rustdoc JSON | 10 s |
 | `bun run update:rune <rev>` | the Rune update procedure (below) | 10–30 min |
+| `bun run clean` | removes out/, runex's temp folders, target/ and vendor/rune/target (`--outputs-only` keeps the builds, `--docker` adds linux-docker.sh's volumes and image) | seconds |
 
 Test files run against `dist/`, because examples and tests import `runex-js`, which resolves to
 `dist/` (the package refers to itself). `bun run test` builds it first. `typecheck` also reads
@@ -334,6 +335,17 @@ Planned changes, once stable: Windows gets pixels too, a `win32-arm64-warp` mani
 from a CI artifact once five or more nightly runs propose the same one (see Troubleshooting: a
 new platform's pixels); the windowed steps on Windows and macOS become blocking after two weeks
 without a failure.
+
+## Disk
+
+The tools clean up after themselves: compare.ts keeps only the scenes that didn't pass, golden.ts
+only failures and proposals, update-rune.ts removes its clone and a dry run's rustdoc target after
+a run with nothing failed or stopped, and the tests remove their temp folders. Builds of Rune
+that runex's tools start (compare, demos, update-rune) skip incremental caches and debug info
+(`scripts/lib/cargo.ts`). Cargo never deletes an artifact a newer build replaced, so update-rune's
+build step and linux-docker.sh (when vendor/rune moved) first `cargo clean -p` Rune's own crates
+in every profile they were built in. What stays is cargo's caches: a debug addon build is about
+2.5 GB, a cold `compare.ts` over every example several more. `bun run clean` removes all of it.
 
 ## Troubleshooting
 

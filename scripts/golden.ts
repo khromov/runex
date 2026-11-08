@@ -613,6 +613,9 @@ export async function runGolden(over: Partial<GoldenOptions> = {}): Promise<Gold
     }
     artifacts(o, slots, report, manifest, store)
   }
+  // Every render is in .work; what needs a look was copied out above (artifacts, the proposal,
+  // the image store), so the rest goes.
+  rmSync(work, { recursive: true, force: true })
   const summary = formatSummary(report, o)
   if (!report.ok) writeFileSync(join(o.out, "summary.md"), summary)
   if (o.summary) appendFileSync(o.summary, report.ok ? `golden (${o.platform}, ${o.tier}): ${report.cases.length} renders pass\n\n` : summary)

@@ -33,6 +33,7 @@ import { tmpdir } from "node:os"
 import { basename, dirname, join, relative, resolve } from "node:path"
 import { fileURLToPath } from "node:url"
 import { breaking, diffSurface, formatSurfaceDiff } from "../tools/bindgen/surface-diff.ts"
+import { cleanRuneCrates } from "./lib/cargo.ts"
 import { codeOnly, formatLint, lint } from "./patch-lint.ts"
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
@@ -487,7 +488,20 @@ class Run {
     const summary = join(this.dir, "summary.md")
     if (steps.includes("summary") && existsSync(summary)) console.log(`\n${readFileSync(summary, "utf8")}`)
     const bad = Object.values(this.state.steps).some((r) => r?.status === "failed" || r?.status === "stopped")
+    if (!bad) this.tidy()
     return bad ? 1 : 0
+  }
+
+  /**
+   * After a run with nothing failed or stopped: removes what only a rerun (`--from`) or a patch
+   * to rebase needs, the clone (a checkout of Rune) and a dry run's rustdoc target (gigabytes).
+   * The state, logs, summary and generated bindings stay. A later run clones again (it shares
+   * vendor/rune's objects, so that's quick).
+   */
+  tidy() {
+    const gone = [this.clone, join(this.dir, "rustdoc")].filter((p) => existsSync(p))
+    for (const p of gone) rmSync(p, { recursive: true, force: true })
+    if (gone.length) console.log(`removed ${gone.map((p) => relative(ROOT, p)).join(" and ")}`)
   }
 
   step(s: Step): Promise<Omit<StepResult, "at">> | Omit<StepResult, "at"> {
@@ -780,6 +794,9 @@ class Run {
     const log = this.log("build")
     const env = { RUNEX_RUNE_BUMP: this.state.new }
     const details: string[] = []
+    // The old revision's builds of Rune's crates, in runex's target and Rune's own (compare's).
+    const cleaned = [...cleanRuneCrates(ROOT, VENDOR), ...cleanRuneCrates(ROOT, VENDOR, join(ROOT, "target", "rustdoc")), ...cleanRuneCrates(VENDOR, VENDOR)]
+    for (const c of cleaned) details.push(`${c.cmd}: exit ${c.code}`)
     const install = sh(["./scripts/dev-install.sh", ...(this.state.release ? ["--release"] : [])], log, { env })
     details.push(`dev-install${this.state.release ? " --release" : ""}: exit ${install.code}`)
     if (install.code !== 0) return { status: "stopped", summary: "the addon doesn't build against the new Rune (logs/build.log)", details: [...details, ...tail(install.out, 40)] }
