@@ -1,6 +1,6 @@
 {
   "about": "sha256 of the upstream Rune functions patches/0001-pump-event-loop.patch duplicates, at rev. Written by `bun scripts/patch-lint.ts --accept-fingerprints` after comparing a change with the copy duplicatedBy names; see scripts/patch-lint.ts.",
-  "rev": "d03349e25189ce1edc8c26ada6bf6d4aac72c826",
+  "rev": "c762af1427930c90c845c260ef551397529c5eee",
   "functions": [
     {
       "name": "App::try_run",
@@ -28,7 +28,7 @@
       "file": "crates/rune/src/window/event_loop.rs",
       "fn": "run_configured",
       "duplicatedBy": "build and finish, which the patch splits it into (crates/rune/src/window/event_loop.rs)",
-      "sha256": "c1801b5180e583e95845b2dd4d1e6cb59117f58b96c628c949be3ba3ff31f34c"
+      "sha256": "0e48fd187fc9a98d4a56079bfbea6e2551c95daf81f9155218cb7f7c77a969e9"
     }
   ]
 }

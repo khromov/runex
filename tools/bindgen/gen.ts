@@ -165,7 +165,10 @@ export class Model {
         const key = crate.defKey(id)
         if (!key || this.bound.has(key)) continue
         const generics = (item.inner[kind].generics.params as Json[])
-        const lifetimes = generics.filter((g) => g.kind.lifetime).length
+        const owned = kind === "struct" && (crate.config.ownedLifetimes ?? []).includes(item.name)
+        const lifetimes = owned ? 0 : generics.filter((g) => g.kind.lifetime).length
+        // An owned builder's lifetime is 'static: its methods read as if written with it.
+        if (owned) for (const g of generics.filter((g) => g.kind.lifetime)) for (const m of crate.inherent(item)) staticLifetime(m, g.name)
         if (lifetimes > 1 || (lifetimes === 1 && kind !== "struct")) {
           this.skip(`${crate.name}::${path.join("::")}`, "has lifetime parameters")
           continue
@@ -344,6 +347,8 @@ export class Model {
         return inner ? { rust: `std::ops::Range<${inner.rust}>`, ts: `{ start: ${inner.ts}; end: ${inner.ts} }` } : null
       }
       if (r.std === "Arc" && a[0]?.slice?.primitive === "u8") return { rust: "std::sync::Arc<[u8]>", ts: "Uint8Array" }
+      if (r.std === "Rc" && a[0]?.primitive === "str") return { rust: "std::rc::Rc<str>", ts: "string" }
+      if (r.std === "Arc" && a[0]?.primitive === "str") return { rust: "std::sync::Arc<str>", ts: "string" }
       if (r.std === "Box" && a[0]) {
         const inner = this.value(ctx, a[0])
         return inner ? { ...inner, rust: `Box<${inner.rust}>` } : null
@@ -386,6 +391,19 @@ export interface ValueType {
 
 function wrapArray(ts: string) {
   return /[|&\s]/.test(ts) && !ts.startsWith("[") ? `(${ts})` : ts
+}
+
+/** Rewrites lifetime `name` (`'a`) to `'static` throughout a rustdoc item, in place. */
+function staticLifetime(json: Json, name: string): void {
+  if (Array.isArray(json)) {
+    json.forEach((v, i) => (v === name ? (json[i] = "'static") : staticLifetime(v, name)))
+  } else if (json && typeof json === "object") {
+    for (const k of Object.keys(json)) {
+      if (k === "docs") continue
+      if (json[k] === name) json[k] = "'static"
+      else staticLifetime(json[k], name)
+    }
+  }
 }
 
 /** How a bound type is named in TypeScript declarations (its unique name in the types hub). */

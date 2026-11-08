@@ -5552,6 +5552,11 @@ pub fn c_motion_flags__FILTERED() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_motion::flags::FILTERED.clone())?)))
 }
 
+#[napi(js_name = "__C_motion_flags__LOOPING", skip_typescript)]
+pub fn c_motion_flags__LOOPING() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_motion::flags::LOOPING.clone())?)))
+}
+
 #[napi(js_name = "__C_motion_flags__BLANK", skip_typescript)]
 pub fn c_motion_flags__BLANK() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_motion::flags::BLANK.clone())?)))

@@ -12,10 +12,15 @@ generated from Rune's own signatures by `tools/bindgen`, so a Rust program ports
 | `rune::tok::{self, motion, type_}` | `import { tok } from "runex-js"; const { motion, type_ } = tok` |
 | `rune::color::hex` | `import { color } from "runex-js"; color.hex(...)` (modules are namespaces, as in Rust) |
 | `use rune_kit::{Button, Kit};` | `import { Button, Kit } from "runex-js/kit"` |
-| `rune_fx`, `rune_light`, `rune_knobs`, `rune_motion`, `rune_theme_opencode` | `runex-js/fx`, `runex-js/light`, `runex-js/knobs`, `runex-js/motion`, `runex-js/theme-opencode` |
+| `rune_fx`, `rune_light`, `rune_knobs`, `rune_motion`, `rune_theme_opencode`, `rune_notify` | `runex-js/fx`, `runex-js/light`, `runex-js/knobs`, `runex-js/motion`, `runex-js/theme-opencode`, `runex-js/notify` |
+| `rune_kit::shell::{TabItem, TabOrientation, TabDragState}` | `import { shell } from "runex-js/kit"; shell.TabItem.new(..)` |
+| `rune::tooling::headless_run()` | `import { tooling } from "runex-js"; tooling.headless_run()` |
+| `rune::text::set_icon_swap(..)` | `import { set_icon_swap } from "runex-js"` (see below) |
 
 A Rust module that has the same name as a function (`rune::el` the module vs `rune::el()`):
-the function wins at that path; the module's items are re-exported at the crate root anyway.
+the function wins at that path; the module's items are re-exported at the crate root anyway. One exception:
+`rune::text` (the module) loses to `text()`, and Rune doesn't re-export its items, so `rune::text::measure` and
+the like aren't reachable; `set_icon_swap` is exported from `runex-js` itself.
 
 ## Apps
 
@@ -46,6 +51,7 @@ run({ ...AppSpec.new<State>("Hello", [320, 200], () => ({ on: false }), view), s
 | `Vec<T>`, `&[T]`, `[T; N]`, `impl IntoIterator<Item = T>` | arrays |
 | tuples `(f32, f32)` | `[number, number]` |
 | `Duration` | seconds (`number`) |
+| `Instant` (`FrameEncoded::started`, a meter's `Instant::now()`) | seconds on one monotonic clock (`number`): `instant_now()` reads it, and `a.duration_since(b)` is `a - b` |
 | `include_bytes!("x.png")` | `readFileSync(new URL("./x.png", import.meta.url))` (copy the asset next to the port) |
 | `format!("{}s", n)` | template string; `{:.1}` → `n.toFixed(1)`; `{:02}` → `String(n).padStart(2, "0")` |
 
@@ -80,7 +86,13 @@ state `0` doing `*s += 1` ports as `(s: number) => s + 1`. (Objects are mutated 
 - `App.new(spec)` has Rust's builder methods: `keep_running()`, `windowless()`, `accessory()`, `standard_menus()`,
   `release_gpu_when_closed()`, `chrome(..)`, `titlebar(..)`, `window_options(..)`, `configured_options(..)`,
   `macos_window(..)`, `font_smoothing(..)`, `gpu_backend(..)`, `on_close/on_focus/on_ime/on_reopen/on_open_url(f)`,
-  `on_window(f)`, `on_ready(f)`, `playground(pg)`, `args(argv)`, `handle()`, `run()`.
+  `on_modifiers(f)`, `open_inactive()`, `maximized(b)`, `on_window(f)`, `on_ready(f)`, `playground(pg)`, `args(argv)`,
+  `handle()`, `run()`.
+- `App.on_frame_encoded((f) => ..)`: `f` is a `FrameEncoded` with Rust's methods (`outcome()` is `"Drawn"`,
+  `"Unchanged"` or `"Skipped"`; `started()`, `at()` and `presents_at()` are instants, above). Headless runs report
+  every frame, as in Rust. It shares Rune's one hook with `App.perf`, so both can be on.
+- `open_window(WindowSpec.new(key, spec))` opens another window while the app runs (`rune::open_window`) and returns
+  its `WindowHandle`; `WindowSpec` has `.inactive()`, `.maximized(b)`, `.on_modifiers(f)` and `.on_frame_encoded(f)` too.
   `app.overlay(spec, state)` returns an `OverlayHandle` (show, hide, fade_in(secs), update((s, tx) => ..), place,
   set_edge, resize, ...). `app.window(windowSpec)` returns `[AppHandle, WindowHandle]`.
 - `AppHandle.update((s, tx) => ..)` replaces Rust's `handle.update(move |s, tx| ..)` (no threads needed: call it from
@@ -96,12 +108,28 @@ state `0` doing `*s += 1` ports as `(s: number) => s + 1`. (Objects are mutated 
   `.get()`, `.smooth(spring)` → `Binding` (`.rest(spring)`), `Tween.linear(from, to, secs)`, `LiveText.new(text)`.
   `El.live_opacity/live_blur/live_scale/live_offset/live_trim/live_fill/live_rect(live | binding | tween)`, `El.live_text(liveText)`.
 - `Player` (video/audio), `Playground`/`Story`/`Stage` are generated with Rust's names.
+- A record held in a class's field reads as a copy: `k.c.bg_accent = x` changes a copy of the kit's palette and
+  is lost. Read it, change it and assign it back: `const c = k.c; c.bg_accent = x; k.c = c`.
 - Struct update on a class (`ElectricParams { intensity: 0.5, ..ElectricParams::charged() }`): its fields are
   accessors, so spread copies nothing; write `Object.assign(ElectricParams.charged(), { intensity: 0.5 })`.
   Methods of an enum take it first: `Fx::glow(p).on(shape)` → `Fx.on(Fx.glow(p), shape)`. `impl Into<FillParams>`
   arguments take the `FillParams` itself: `Fx::fill(p)` → `Fx.fill(FillParams.new({ LiquidMetal: p }))`.
 - Tuple structs: `Rgb([r, g, b])` → `new Rgb([r, g, b])`, `c.0` → `c._0` (an index-like name crashes Bun on a
   Node-API object). `El::linear_gradient(angle, &[(0.0, a), (1.0, b)])` → `.linear_gradient(angle, [[0, a], [1, b]])`.
+- Trees (`runex-js/kit`, hand-written in src/manual/tree.rs and ts/tree.ts): `TreeModel<T>` holds any JavaScript
+  values as nodes, by reference, so `get` and `get_mut` return the same object. `Tree.new(get, get_mut, label)` takes
+  functions where Rust takes `fn` pointers (`|s: &G| &s.files` → `(s: G) => s.files`, `FileNode::label` →
+  `FileNode.label`); each distinct function takes one of 32 slots, so pass the same functions every build.
+  `FileTree.new().build(paths.map((p) => [p, data]))` lays files out with Rune's own `FileTree::build`; its nodes are
+  `FileNode` records. `TreeItem.file(node, row)` is there too.
+- `TabStrip` and `shell.TabItem` borrow their strings in Rust (`TabStrip<'a, S>`); here they're ordinary builders
+  that own them (tools/bindgen's `ownedLifetimes`). `drag_state(state, (s) => s.drag)` and `busy_indicator(f)` take
+  functions where Rust takes `fn` pointers, as above. `Note` is bound the same way.
+- `set_icon_swap((icon) => other | null)` draws `other` wherever `icon` would draw, in every window, until
+  `set_icon_swap(null)`. Icons a theme hands out by `&'static` reference (`file_icons.file(path)`, `icons.ALL`,
+  `tree_icons.CHEVRON`) are instances that refer to the theme's own icons.
+- `runex-js/notify` (`rune_notify`) posts system notifications: toasts on Windows; on macOS only from a bundled,
+  signed `.app`, so `available()` is false for a script run by `bun` or `node`. `on_click(f)` gets each `Click`.
 - `Animated` and `VelocityTracker` (`runex-js/motion`) are `rune_motion::Animated<T>`/`VelocityTracker<T>` for a number
   or a `Vec2`; `OneShots` (`runex-js/fx`) is `rune_fx::OneShots<T>` with any JavaScript payload (`live(t, life)` gives
   `[{ t0, data, seed }, k]`).
@@ -154,8 +182,11 @@ examples/showreel, examples/cursed-settings and examples/lab are complete ports 
   `#[cfg(test)]` tests of drag-out, drop-files, frosted-bar, hello, knobs, matched, rich-clipboard, settings and
   sketch. Check the same input with a `--script` run against the Rust binary instead.
 - `App` lacks some builders Rune has on every platform (the first five take effect only on web): `canvas_id`, `full_viewport`, `web_document`, `font_url`,
-  `same_tab_router`, `on_frame_encoded`, `on_frame_drawn`, `dev_stats` and `try_run`. `App.run()` returns a
+  `same_tab_router`, `on_frame_drawn`, `dev_stats` and `try_run`. `App.run()` returns a
   Promise that rejects when the app can't start, in place of `try_run`.
+- `rune-i18n` isn't bound: its catalogs are Rust code its build script generates (`codegen::generate`), its keys
+  are checked at compile time, and its formatting embeds ICU4X's data. In JavaScript, `Intl` (`PluralRules`,
+  `NumberFormat`, `ListFormat`, `navigator.languages`) covers the runtime half.
 - The addon builds `rune` with its default Cargo features. `frame-profile` (Rune's headless phase and allocation
   counters) and `native-file-dialog` (`FileDialogs.native()`) aren't available, and a Rust app's own
   `#[global_allocator]` has no JavaScript counterpart.
@@ -202,6 +233,12 @@ the comparison doesn't cover). These differences are outside that:
 - **knobs**: main.ts has a local `side_key` with the crate's body, in place of the unbound `rune_knobs.side_key`.
 - **live-values**: `--bench` throws (no `rune::Runtime`). f32 `sin` and `cos` (see Limits) move some `--trace`
   numbers, such as `quality.position_error_px`, by about 1.5e-5 px; `--snap` and `--tree` match.
+- **motion-bento**: the thermostat ring's 97 arc points use f32 `sin`/`cos` (see Limits). On macOS two of them
+  differ from Rust's in the last bit, which moves where `live_trim` ends the ring: seed 7 at `--at 2.5` and `--at 7`
+  has one pixel off by 1/255 (the tree is identical). The meter's CPU times come from `process.threadCpuUsage()`
+  and `process.cpuUsage()`, its resident memory from `process.memoryUsage()`; procwatch's physical footprint has
+  no binding, so `footprint_mb` is 0, as procwatch reports where it can't read it. Only the measured numbers in
+  `--metrics` and `--frames` differ; their format is Rust's.
 - **overlay**: Rust's `impl Drop for State` closes every overlay window when the controls window's state is
   dropped, and that ends the app. The port has no counterpart and adds no hook, so closing the controls window
   leaves the overlays open and the process running.

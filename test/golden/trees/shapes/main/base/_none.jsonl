@@ -1,19 +1,19 @@
 {"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Shapes","viewport":[820,360],"warnings":[]}
 {"blur":0,"fill":"#454850ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,820,360],"role":"group","scale":1}
-{"blur":0,"color":"#f6f7f9ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0","rect":[24,24,772,16.5],"role":"text","scale":1,"text":"Waveform: filled envelope, polyline, hairline"}
-{"blur":0,"fill":"#595d65ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"wave","loopPhase":null,"opacity":1,"path":"root/wave","rect":[24,56.5,520,96],"role":"image","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2","rect":[24,168.5,772,120.5],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#0","rect":[24,168.5,244,120.5],"role":"group","scale":1}
-{"blur":0,"color":"#f6f7f9ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#0/#0","rect":[24,168.5,244,16.5],"role":"text","scale":1,"text":"Meters"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"meters","loopPhase":null,"opacity":1,"path":"root/#2/#0/meters","rect":[24,193,244,68],"role":"image","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#1","rect":[292,168.5,490,120.5],"role":"group","scale":1}
-{"blur":0,"color":"#f6f7f9ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#1/#0","rect":[292,168.5,490,16.5],"role":"text","scale":1,"text":"Paths, a concave fill, line widths"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"curves","loopPhase":null,"opacity":1,"path":"root/#2/#1/curves","rect":[292,193,490,96],"role":"image","scale":1}
+{"blur":0,"color":"#f6f7f9ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#0","rect":[24,24,772,16.25],"role":"text","scale":1,"text":"Waveform: filled envelope, polyline, hairline"}
+{"blur":0,"fill":"#595d65ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"wave","loopPhase":null,"opacity":1,"path":"root/wave","rect":[24,56.25,520,96],"role":"image","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2","rect":[24,168.25,772,120.25],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#0","rect":[24,168.25,244,120.25],"role":"group","scale":1}
+{"blur":0,"color":"#f6f7f9ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#0/#0","rect":[24,168.25,244,16.25],"role":"text","scale":1,"text":"Meters"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"meters","loopPhase":null,"opacity":1,"path":"root/#2/#0/meters","rect":[24,192.5,244,68],"role":"image","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#1","rect":[292,168.25,490,120.25],"role":"group","scale":1}
+{"blur":0,"color":"#f6f7f9ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/#2/#1/#0","rect":[292,168.25,490,16.25],"role":"text","scale":1,"text":"Paths, a concave fill, line widths"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"curves","loopPhase":null,"opacity":1,"path":"root/#2/#1/curves","rect":[292,192.5,490,96],"role":"image","scale":1}
 {"a11y":"0","bounds":[0,0,820,360],"name":"Shapes","role":"window"}
 {"a11y":"0/0","bounds":[0,0,820,360],"key":"root","role":"group"}
-{"a11y":"0/0/0","bounds":[24,24,772,16.5],"name":"Waveform: filled envelope, polyline, hairline","role":"label"}
-{"a11y":"0/0/1","bounds":[24,56.5,520,96],"key":"wave","role":"image"}
-{"a11y":"0/0/2","bounds":[24,168.5,244,16.5],"name":"Meters","role":"label"}
-{"a11y":"0/0/3","bounds":[24,193,244,68],"key":"meters","role":"image"}
-{"a11y":"0/0/4","bounds":[292,168.5,490,16.5],"name":"Paths, a concave fill, line widths","role":"label"}
-{"a11y":"0/0/5","bounds":[292,193,490,96],"key":"curves","role":"image"}
+{"a11y":"0/0/0","bounds":[24,24,772,16.3],"name":"Waveform: filled envelope, polyline, hairline","role":"label"}
+{"a11y":"0/0/1","bounds":[24,56.3,520,96],"key":"wave","role":"image"}
+{"a11y":"0/0/2","bounds":[24,168.3,244,16.3],"name":"Meters","role":"label"}
+{"a11y":"0/0/3","bounds":[24,192.5,244,68],"key":"meters","role":"image"}
+{"a11y":"0/0/4","bounds":[292,168.3,490,16.3],"name":"Paths, a concave fill, line widths","role":"label"}
+{"a11y":"0/0/5","bounds":[292,192.5,490,96],"key":"curves","role":"image"}

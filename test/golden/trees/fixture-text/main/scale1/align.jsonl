@@ -1,19 +1,19 @@
 {"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":1,"t":0,"time_scale":1,"title":"Golden text","viewport":[720,360],"warnings":[]}
 {"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"root","loopPhase":null,"opacity":1,"path":"root","rect":[0,0,720,360],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"root/stage","rect":[20,20,680,204],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0","rect":[20,20,300,204],"role":"group","scale":1}
-{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0","rect":[20,20,300,33],"role":"group","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#0","rect":[28,28,284,17],"role":"text","scale":1,"text":"align Start: a short line"}
-{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1","rect":[20,61,300,33],"role":"group","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#0","rect":[28,69,284,17],"role":"text","scale":1,"text":"align Center: a short line"}
-{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2","rect":[20,102,300,33],"role":"group","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#0","rect":[28,110,284,17],"role":"text","scale":1,"text":"align End: a short line"}
-{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3","rect":[20,143,300,81],"role":"group","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3/#0","rect":[28,151,284,65],"role":"text","scale":1,"text":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid."}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"stage","loopPhase":null,"opacity":1,"path":"root/stage","rect":[20,20,680,201.75],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0","rect":[20,20,300,201.75],"role":"group","scale":1}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0","rect":[20,20,300,32.25],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#0/#0","rect":[28,28,284,16.25],"role":"text","scale":1,"text":"align Start: a short line"}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1","rect":[20,60.25,300,32.25],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#1/#0","rect":[28,68.25,284,16.25],"role":"text","scale":1,"text":"align Center: a short line"}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2","rect":[20,100.5,300,32.25],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#2/#0","rect":[28,108.5,284,16.25],"role":"text","scale":1,"text":"align End: a short line"}
+{"blur":0,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3","rect":[20,140.75,300,81],"role":"group","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"root/stage/#0/#3/#0","rect":[28,148.75,284,65],"role":"text","scale":1,"text":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid."}
 {"a11y":"0","bounds":[0,0,720,360],"name":"Golden text","role":"window"}
 {"a11y":"0/0","bounds":[0,0,720,360],"key":"root","role":"group"}
-{"a11y":"0/0/0","bounds":[20,20,680,204],"key":"stage","role":"group"}
-{"a11y":"0/0/0/0","bounds":[28,28,284,17],"name":"align Start: a short line","role":"label"}
-{"a11y":"0/0/0/1","bounds":[28,69,284,17],"name":"align Center: a short line","role":"label"}
-{"a11y":"0/0/0/2","bounds":[28,110,284,17],"name":"align End: a short line","role":"label"}
-{"a11y":"0/0/0/3","bounds":[28,151,284,65],"name":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid.","role":"label"}
+{"a11y":"0/0/0","bounds":[20,20,680,201.8],"key":"stage","role":"group"}
+{"a11y":"0/0/0/0","bounds":[28,28,284,16.3],"name":"align Start: a short line","role":"label"}
+{"a11y":"0/0/0/1","bounds":[28,68.3,284,16.3],"name":"align Center: a short line","role":"label"}
+{"a11y":"0/0/0/2","bounds":[28,108.5,284,16.3],"name":"align End: a short line","role":"label"}
+{"a11y":"0/0/0/3","bounds":[28,148.8,284,65],"name":"Rune lays out text with its own shaper: words wrap at the box edge, long words break only when nothing else fits, and every line keeps the paragraph's baseline grid.","role":"label"}

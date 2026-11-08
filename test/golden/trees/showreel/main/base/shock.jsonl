@@ -1,20 +1,20 @@
 {"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Showreel","viewport":[960,540],"warnings":[]}
 {"blur":0,"fill":"#08080aff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,960,540],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[28,28,904,49.5],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#0","rect":[28,28,146.5,49.5],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[28,28,904,49.25],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#0","rect":[28,28,146.5,49.25],"role":"group","scale":1}
 {"blur":0,"color":"#ededefff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#0/#0","rect":[28,28,146.5,30],"role":"text","scale":1,"text":"Library"}
-{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#0/#1","rect":[28,61,146.5,16.5],"role":"text","scale":1,"text":"1,284 photos · 3 albums"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#1","rect":[174.5,52.75,381.5,0],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2","rect":[556,35.75,376,34],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffff24","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#0","rect":[836,39.75,92,26],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#1","rect":[560,39.75,92,26],"role":"group","scale":1}
-{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#1/#0","rect":[588.25,44.5,35.5,16.5],"role":"text","scale":1,"text":"Years"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#2","rect":[652,39.75,92,26],"role":"group","scale":1}
-{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#2/#0","rect":[674.5,44.5,47,16.5],"role":"text","scale":1,"text":"Months"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#3","rect":[744,39.75,92,26],"role":"group","scale":1}
-{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#3/#0","rect":[774.25,44.5,31.5,16.5],"role":"text","scale":1,"text":"Days"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#4","rect":[836,39.75,92,26],"role":"group","scale":1}
-{"blur":0,"color":"#ededefff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#4/#0","rect":[850.75,44.5,62.5,16.5],"role":"text","scale":1,"text":"All Photos"}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#0/#1","rect":[28,61,146.5,16.25],"role":"text","scale":1,"text":"1,284 photos · 3 albums"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#1","rect":[174.5,52.63,381.5,0],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2","rect":[556,35.63,376,34],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff24","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#0","rect":[836,39.63,92,26],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#1","rect":[560,39.63,92,26],"role":"group","scale":1}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#1/#0","rect":[588.25,44.5,35.5,16.25],"role":"text","scale":1,"text":"Years"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#2","rect":[652,39.63,92,26],"role":"group","scale":1}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#2/#0","rect":[674.5,44.5,47,16.25],"role":"text","scale":1,"text":"Months"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#3","rect":[744,39.63,92,26],"role":"group","scale":1}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#3/#0","rect":[774.25,44.5,31.5,16.25],"role":"text","scale":1,"text":"Days"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#4","rect":[836,39.63,92,26],"role":"group","scale":1}
+{"blur":0,"color":"#ededefff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/#2/#4/#0","rect":[850.75,44.5,62.5,16.25],"role":"text","scale":1,"text":"All Photos"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-0","loopPhase":null,"opacity":1,"path":"#0/tile-0","rect":[28,92,172.8,134.66],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-1","loopPhase":null,"opacity":1,"path":"#0/tile-1","rect":[210.8,92,172.8,134.66],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile-2","loopPhase":null,"opacity":1,"path":"#0/tile-2","rect":[393.6,92,172.8,134.66],"role":"group","scale":1}
@@ -36,11 +36,11 @@
 {"blur":0,"fill":"#f4f4f6eb","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"pointer","loopPhase":null,"opacity":1,"path":"#0/pointer","rect":[691,491,18,18],"role":"group","scale":1}
 {"a11y":"0","bounds":[0,0,960,540],"name":"Showreel","role":"window"}
 {"a11y":"0/0","bounds":[28,28,146.5,30],"name":"Library","role":"label"}
-{"a11y":"0/1","bounds":[28,61,146.5,16.5],"name":"1,284 photos · 3 albums","role":"label"}
-{"a11y":"0/2","bounds":[588.3,44.5,35.5,16.5],"name":"Years","role":"label"}
-{"a11y":"0/3","bounds":[674.5,44.5,47,16.5],"name":"Months","role":"label"}
-{"a11y":"0/4","bounds":[774.3,44.5,31.5,16.5],"name":"Days","role":"label"}
-{"a11y":"0/5","bounds":[850.8,44.5,62.5,16.5],"name":"All Photos","role":"label"}
+{"a11y":"0/1","bounds":[28,61,146.5,16.3],"name":"1,284 photos · 3 albums","role":"label"}
+{"a11y":"0/2","bounds":[588.3,44.5,35.5,16.3],"name":"Years","role":"label"}
+{"a11y":"0/3","bounds":[674.5,44.5,47,16.3],"name":"Months","role":"label"}
+{"a11y":"0/4","bounds":[774.3,44.5,31.5,16.3],"name":"Days","role":"label"}
+{"a11y":"0/5","bounds":[850.8,44.5,62.5,16.3],"name":"All Photos","role":"label"}
 {"a11y":"0/6","bounds":[28,92,172.8,134.7],"key":"tile-0","role":"group"}
 {"a11y":"0/7","bounds":[210.8,92,172.8,134.7],"key":"tile-1","role":"group"}
 {"a11y":"0/8","bounds":[393.6,92,172.8,134.7],"key":"tile-2","role":"group"}

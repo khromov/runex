@@ -3,12 +3,23 @@ import native from "./native.js"
 import type * as N from "./native.js"
 import type { NativeApp, Pump, Waker } from "./native.js"
 import type { AppHandle } from "./index.js"
-import type { Chrome, ConfiguredWindowOptions, Cx, El, FontSmoothing, GpuBackend, Ime, KeyEvent, MacWindowOptions, Playground, Titlebar, Tx, WindowHandle, WindowOptions } from "./gen/types.js"
+import type { Chrome, ConfiguredWindowOptions, Cx, El, FontSmoothing, GpuBackend, Ime, KeyEvent, MacWindowOptions, Mods, Playground, Titlebar, Tx, WindowHandle, WindowOptions } from "./gen/types.js"
 import { drive } from "./loop.js"
 import type { PerfMode, PerfStats } from "./perf.js"
 import { ConfiguredOverlay, OverlaySpec } from "./overlay.js"
 import type { WindowSpec } from "./windows.js"
 import type { Compositor } from "./compose.js"
+
+/** One frame a window ran, as `App.on_frame_encoded` reports it (`rune::FrameEncoded`). */
+export type FrameEncoded = N.FrameEncoded
+/** What a frame came to (`rune::FrameOutcome`). */
+export type FrameOutcome = "Drawn" | "Unchanged" | "Skipped"
+
+/**
+ * The current instant (`Instant::now()`), as seconds on the monotonic clock that
+ * `FrameEncoded`'s instants use. Subtract two for a duration.
+ */
+export const instant_now: () => number = native.instant_now
 
 /** An app: its title, first size, state, view and optional hooks (`rune::AppSpec`). */
 export class AppSpec<S> {
@@ -231,6 +242,19 @@ export class App<S> {
   on_ime(f: (s: S, ime: Ime, tx: Tx) => boolean): this { return this.#step((a) => a.on_ime(f as any)) }
   on_reopen(f: (s: S, has_visible_windows: boolean, tx: Tx) => boolean): this { return this.#step((a) => a.on_reopen(f as any)) }
   on_open_url(f: (s: S, url: string, tx: Tx) => void): this { return this.#step((a) => a.on_open_url(f as any)) }
+  /** Runs whenever the held modifiers change, for an Alt-hold reveal (`App::on_modifiers`). */
+  on_modifiers(f: (s: S, mods: Mods, tx: Tx) => void): this { return this.#step((a) => a.on_modifiers(f as any)) }
+  /** The first open leaves focus where it is (`App::open_inactive`). */
+  open_inactive(): this { return this.#step((a) => a.open_inactive()) }
+  /** Opens the window maximized (`App::maximized`). */
+  maximized(maximized: boolean): this { return this.#step((a) => a.maximized(maximized)) }
+  /**
+   * Calls `f(frame)` with what each of the window's frames came to (`App::on_frame_encoded`):
+   * drawn, unchanged or skipped, when, and its update and encode times, for an app's own frame
+   * meter. Headless runs report every frame on their virtual clock as `Drawn`. Instants are
+   * seconds on `instant_now()`'s clock. It changes nothing about when or what the window draws.
+   */
+  on_frame_encoded(f: (frame: FrameEncoded) => void): this { return this.#step((a) => a.on_frame_encoded(f as any)) }
   /** Runs `f(handle)` after each native window creation. */
   on_window(f: (window: WindowHandle) => void): this { return this.#step((a) => a.on_window(f as any)) }
   /** Runs `f(handle)` once the window's first frame is ready. */
@@ -278,8 +302,10 @@ export class App<S> {
    * the panel to the app; its `?` button turns on explain mode, where a click on a number shows
    * what it measures, and `−` folds it to the headline (small windows start folded).
    * `"log"` prints the same once a second to stderr instead, `"overlay,log"` does both, and
-   * `"none"` neither. `on_stats`, if given, receives the numbers as one object a second.
-   * Everything is measured in Rust; nothing crosses into JavaScript per frame.
+   * `"none"` neither. `on_stats`, if given, receives the numbers as one object a second, from
+   * the first drawn frame on; headless runs (`--snap`, `--tree`, `--script`) report their frames
+   * too, as Rune reports them to `on_frame_encoded`. Everything is measured in Rust; nothing
+   * crosses into JavaScript per frame.
    *
    * Without calling this, `--perf` (or `--perf=log`, or `RUNEX_PERF=1`) turns it on at launch.
    */

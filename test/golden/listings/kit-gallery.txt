@@ -17,6 +17,7 @@ main
   ui-switch--appearances
   ui-switch--states
   ui-switch--hidden-label
+  rune-switch--web
   ui-checkbox--basic
   ui-checkbox--states
   ui-checkbox--custom-icon
@@ -43,6 +44,7 @@ main
   ui-select--invalid
   ui-select--disabled
   ui-select--with-field
+  rune-select--states
   components-popover--basic
   components-popover--controlled
   ui-menu--basic
@@ -94,6 +96,7 @@ main
   ui-segmented-control--controlled
   rune-keybind--symbols
   rune-switch--sizes
+  rune-scroll-view--thumb
   rune-rolling-text--basic
   rune-markdown--basic
   rune-markdown--streaming
@@ -118,3 +121,10 @@ main
   rune-popup-list--composer
   rune-scroll-bar--basic
   rune-scroll-bar--grow
+  components-file-icon--samples
+  components-file-icon--folder
+  ui-icon--gallery
+  rune-icon--catalog
+  rune-file-icon--catalog
+  rune-tree-icon--catalog
+  rune-tree--files

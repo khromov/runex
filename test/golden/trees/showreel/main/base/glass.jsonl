@@ -132,33 +132,33 @@
 {"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#0/#2","rect":[1303.5,64,44.5,27.5],"role":"text","scale":1,"target":[1303.5,54,44.5,27.5],"text":"Shuffle"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1","rect":[1028,99.5,344,68],"role":"group","scale":1,"target":[1004,99.5,344,68]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#0","rect":[1028,133.5,0,0],"role":"group","scale":1,"target":[1004,133.5,0,0]}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1","rect":[1042,113.75,287,39.5],"role":"group","scale":1,"target":[1018,113.75,287,39.5]}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1/#0","rect":[1042,113.75,287,19],"role":"text","scale":1,"target":[1018,113.75,287,19],"text":"Low Light"}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1/#1","rect":[1042,136.75,287,16.5],"role":"text","scale":1,"target":[1018,136.75,287,16.5],"text":"Kaito Hayes"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1","rect":[1042,114,287,39],"role":"group","scale":1,"target":[1018,114,287,39]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1/#0","rect":[1042,114,287,18.75],"role":"text","scale":1,"target":[1018,114,287,18.75],"text":"Low Light"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#1/#1","rect":[1042,136.75,287,16.25],"role":"text","scale":1,"target":[1018,136.75,287,16.25],"text":"Kaito Hayes"}
 {"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#1/#2","rect":[1343,126,29,15],"role":"text","scale":1,"target":[1319,126,29,15],"text":"3:41"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2","rect":[1028,171.5,344,68],"role":"group","scale":1,"target":[1004,171.5,344,68]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#0","rect":[1028,205.5,0,0],"role":"group","scale":1,"target":[1004,205.5,0,0]}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1","rect":[1042,185.75,287,39.5],"role":"group","scale":1,"target":[1018,185.75,287,39.5]}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1/#0","rect":[1042,185.75,287,19],"role":"text","scale":1,"target":[1018,185.75,287,19],"text":"Glass Hours"}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1/#1","rect":[1042,208.75,287,16.5],"role":"text","scale":1,"target":[1018,208.75,287,16.5],"text":"Mira Sol"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1","rect":[1042,186,287,39],"role":"group","scale":1,"target":[1018,186,287,39]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1/#0","rect":[1042,186,287,18.75],"role":"text","scale":1,"target":[1018,186,287,18.75],"text":"Glass Hours"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#1/#1","rect":[1042,208.75,287,16.25],"role":"text","scale":1,"target":[1018,208.75,287,16.25],"text":"Mira Sol"}
 {"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#2/#2","rect":[1343,198,29,15],"role":"text","scale":1,"target":[1319,198,29,15],"text":"4:02"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3","rect":[1028,243.5,344,68],"role":"group","scale":1,"target":[1004,243.5,344,68]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#0","rect":[1028,277.5,0,0],"role":"group","scale":1,"target":[1004,277.5,0,0]}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1","rect":[1042,257.75,287,39.5],"role":"group","scale":1,"target":[1018,257.75,287,39.5]}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1/#0","rect":[1042,257.75,287,19],"role":"text","scale":1,"target":[1018,257.75,287,19],"text":"Afterimage"}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1/#1","rect":[1042,280.75,287,16.5],"role":"text","scale":1,"target":[1018,280.75,287,16.5],"text":"Sunday Static"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1","rect":[1042,258,287,39],"role":"group","scale":1,"target":[1018,258,287,39]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1/#0","rect":[1042,258,287,18.75],"role":"text","scale":1,"target":[1018,258,287,18.75],"text":"Afterimage"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#1/#1","rect":[1042,280.75,287,16.25],"role":"text","scale":1,"target":[1018,280.75,287,16.25],"text":"Sunday Static"}
 {"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#3/#2","rect":[1343,270,29,15],"role":"text","scale":1,"target":[1319,270,29,15],"text":"2:57"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4","rect":[1028,315.5,344,68],"role":"group","scale":1,"target":[1004,315.5,344,68]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#0","rect":[1028,349.5,0,0],"role":"group","scale":1,"target":[1004,349.5,0,0]}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1","rect":[1042,329.75,287,39.5],"role":"group","scale":1,"target":[1018,329.75,287,39.5]}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1/#0","rect":[1042,329.75,287,19],"role":"text","scale":1,"target":[1018,329.75,287,19],"text":"Paper Moons"}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1/#1","rect":[1042,352.75,287,16.5],"role":"text","scale":1,"target":[1018,352.75,287,16.5],"text":"Kaito Hayes"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1","rect":[1042,330,287,39],"role":"group","scale":1,"target":[1018,330,287,39]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1/#0","rect":[1042,330,287,18.75],"role":"text","scale":1,"target":[1018,330,287,18.75],"text":"Paper Moons"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#1/#1","rect":[1042,352.75,287,16.25],"role":"text","scale":1,"target":[1018,352.75,287,16.25],"text":"Kaito Hayes"}
 {"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#4/#2","rect":[1343,342,29,15],"role":"text","scale":1,"target":[1319,342,29,15],"text":"3:18"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5","rect":[1028,387.5,344,68],"role":"group","scale":1,"target":[1004,387.5,344,68]}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#0","rect":[1028,421.5,0,0],"role":"group","scale":1,"target":[1004,421.5,0,0]}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1","rect":[1042,401.75,287,39.5],"role":"group","scale":1,"target":[1018,401.75,287,39.5]}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1/#0","rect":[1042,401.75,287,19],"role":"text","scale":1,"target":[1018,401.75,287,19],"text":"Slow Signal"}
-{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1/#1","rect":[1042,424.75,287,16.5],"role":"text","scale":1,"target":[1018,424.75,287,16.5],"text":"Ode Park"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1","rect":[1042,402,287,39],"role":"group","scale":1,"target":[1018,402,287,39]}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1/#0","rect":[1042,402,287,18.75],"role":"text","scale":1,"target":[1018,402,287,18.75],"text":"Slow Signal"}
+{"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#1/#1","rect":[1042,424.75,287,16.25],"role":"text","scale":1,"target":[1018,424.75,287,16.25],"text":"Ode Park"}
 {"blur":0,"color":"#ffffff00","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#6/#5/#2","rect":[1343,414,29,15],"role":"text","scale":1,"target":[1319,414,29,15],"text":"5:06"}
 {"a11y":"0","bounds":[0,0,960,540],"name":"Showreel","role":"window"}
 {"a11y":"0/0","bounds":[48,120,693,15],"name":"NOW PLAYING","role":"label"}
@@ -168,18 +168,18 @@
 {"a11y":"0/4","bounds":[481,496,29,15],"name":"3:58","role":"label"}
 {"a11y":"0/5","bounds":[1004,64,82.5,27.5],"name":"Up next","role":"label"}
 {"a11y":"0/6","bounds":[1303.5,64,44.5,27.5],"name":"Shuffle","role":"label"}
-{"a11y":"0/7","bounds":[1042,113.8,287,19],"name":"Low Light","role":"label"}
-{"a11y":"0/8","bounds":[1042,136.8,287,16.5],"name":"Kaito Hayes","role":"label"}
+{"a11y":"0/7","bounds":[1042,114,287,18.8],"name":"Low Light","role":"label"}
+{"a11y":"0/8","bounds":[1042,136.8,287,16.3],"name":"Kaito Hayes","role":"label"}
 {"a11y":"0/9","bounds":[1343,126,29,15],"name":"3:41","role":"label"}
-{"a11y":"0/10","bounds":[1042,185.8,287,19],"name":"Glass Hours","role":"label"}
-{"a11y":"0/11","bounds":[1042,208.8,287,16.5],"name":"Mira Sol","role":"label"}
+{"a11y":"0/10","bounds":[1042,186,287,18.8],"name":"Glass Hours","role":"label"}
+{"a11y":"0/11","bounds":[1042,208.8,287,16.3],"name":"Mira Sol","role":"label"}
 {"a11y":"0/12","bounds":[1343,198,29,15],"name":"4:02","role":"label"}
-{"a11y":"0/13","bounds":[1042,257.8,287,19],"name":"Afterimage","role":"label"}
-{"a11y":"0/14","bounds":[1042,280.8,287,16.5],"name":"Sunday Static","role":"label"}
+{"a11y":"0/13","bounds":[1042,258,287,18.8],"name":"Afterimage","role":"label"}
+{"a11y":"0/14","bounds":[1042,280.8,287,16.3],"name":"Sunday Static","role":"label"}
 {"a11y":"0/15","bounds":[1343,270,29,15],"name":"2:57","role":"label"}
-{"a11y":"0/16","bounds":[1042,329.8,287,19],"name":"Paper Moons","role":"label"}
-{"a11y":"0/17","bounds":[1042,352.8,287,16.5],"name":"Kaito Hayes","role":"label"}
+{"a11y":"0/16","bounds":[1042,330,287,18.8],"name":"Paper Moons","role":"label"}
+{"a11y":"0/17","bounds":[1042,352.8,287,16.3],"name":"Kaito Hayes","role":"label"}
 {"a11y":"0/18","bounds":[1343,342,29,15],"name":"3:18","role":"label"}
-{"a11y":"0/19","bounds":[1042,401.8,287,19],"name":"Slow Signal","role":"label"}
-{"a11y":"0/20","bounds":[1042,424.8,287,16.5],"name":"Ode Park","role":"label"}
+{"a11y":"0/19","bounds":[1042,402,287,18.8],"name":"Slow Signal","role":"label"}
+{"a11y":"0/20","bounds":[1042,424.8,287,16.3],"name":"Ode Park","role":"label"}
 {"a11y":"0/21","bounds":[1343,414,29,15],"name":"5:06","role":"label"}

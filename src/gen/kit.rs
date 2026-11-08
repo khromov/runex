@@ -264,55 +264,187 @@ impl conv::Record for rune_kit::Palette {
     }
 }
 
+/// Elevation tokens as box-shadow layers (outer and inset), painted in order. Build one from
+/// [`Elevation::default`], setting its fields, and [`Elevation::with_input`] for the fields'.
+#[napi(js_name = "kit_Elevation")]
+pub struct W_kit_Elevation {
+    pub(crate) slot: conv::Slot<rune_kit::Elevation>,
+}
+impl Class for W_kit_Elevation {
+    type Inner = rune_kit::Elevation;
+    const NAME: &'static str = "Elevation";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_Elevation { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
 impl FromJs for rune_kit::Elevation {
     fn from_js(v: conv::Value) -> conv::Result<Self> {
-        if conv::kind(v) != napi::sys::ValueType::napi_object {
-            return Err(conv::err(concat!("expected a ", "Elevation", " object")));
-        }
-        let d = <rune_kit::Elevation as Default>::default();
-        Ok(rune_kit::Elevation {
-            raised: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "raised", || d.raised.clone())?,
-            floating: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "floating", || d.floating.clone())?,
-            overlay: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "overlay", || d.overlay.clone())?,
-            button_neutral: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "button_neutral", || d.button_neutral.clone())?,
-            button_contrast: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "button_contrast", || d.button_contrast.clone())?,
-            elements: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "elements", || d.elements.clone())?,
-            switch_off: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "switch_off", || d.switch_off.clone())?,
-            switch_on: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "switch_on", || d.switch_on.clone())?,
-            md: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "md", || d.md.clone())?,
-            knob: conv::field_or::<Vec<rune::Shadow>>(v, "Elevation", "knob", || d.knob.clone())?,
-        })
+        conv::take_or_clone::<W_kit_Elevation>(v)
     }
 }
 impl ToJs for rune_kit::Elevation {
     fn to_js(self) -> conv::Result<conv::Value> {
-        let o = conv::records::new("kit_Elevation");
-        conv::set(o, "raised", self.raised.clone().to_js()?);
-        conv::set(o, "floating", self.floating.clone().to_js()?);
-        conv::set(o, "overlay", self.overlay.clone().to_js()?);
-        conv::set(o, "button_neutral", self.button_neutral.clone().to_js()?);
-        conv::set(o, "button_contrast", self.button_contrast.clone().to_js()?);
-        conv::set(o, "elements", self.elements.clone().to_js()?);
-        conv::set(o, "switch_off", self.switch_off.clone().to_js()?);
-        conv::set(o, "switch_on", self.switch_on.clone().to_js()?);
-        conv::set(o, "md", self.md.clone().to_js()?);
-        conv::set(o, "knob", self.knob.clone().to_js()?);
-        Ok(o)
+        conv::owned::<W_kit_Elevation>(self)
     }
 }
-impl conv::Record for rune_kit::Elevation {
-    fn write_back(self, o: conv::Value) -> conv::Result<()> {
-        conv::set(o, "raised", self.raised.clone().to_js()?);
-        conv::set(o, "floating", self.floating.clone().to_js()?);
-        conv::set(o, "overlay", self.overlay.clone().to_js()?);
-        conv::set(o, "button_neutral", self.button_neutral.clone().to_js()?);
-        conv::set(o, "button_contrast", self.button_contrast.clone().to_js()?);
-        conv::set(o, "elements", self.elements.clone().to_js()?);
-        conv::set(o, "switch_off", self.switch_off.clone().to_js()?);
-        conv::set(o, "switch_on", self.switch_on.clone().to_js()?);
-        conv::set(o, "md", self.md.clone().to_js()?);
-        conv::set(o, "knob", self.knob.clone().to_js()?);
-        Ok(())
+#[napi]
+impl W_kit_Elevation {
+/// Text fields' and field selects' own shadow, `--v2-elevation-input`: in OpenCode's dark
+/// theme lighter than a button's (no drop, a 16% light ring). Without it fields take
+/// [`Self::button_neutral`].
+    #[napi(js_name = "with_input", skip_typescript)]
+    pub fn m_with_input<'t>(&mut self, this: This<'t>, a_layers: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_layers: Vec<rune::Shadow> = conv::arg(a_layers.0, "layers")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_Elevation>(v.clone().with_input(a_layers))?));
+            }
+            let me = self.slot.take("Elevation")?;
+            self.slot.put(me.with_input(a_layers));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The shadow text fields and field selects draw ([`Self::with_input`]).
+    #[napi(js_name = "input", skip_typescript)]
+    pub fn m_input(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("Elevation")?;
+            let out = conv::ToJs::to_js(me.input().to_vec())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(getter, js_name = "raised", skip_typescript)]
+    pub fn g_raised(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.raised.clone())?)))
+    }
+    #[napi(setter, js_name = "raised", skip_typescript)]
+    pub fn p_raised(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "raised")?;
+            self.slot.get_mut("Elevation")?.raised = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "floating", skip_typescript)]
+    pub fn g_floating(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.floating.clone())?)))
+    }
+    #[napi(setter, js_name = "floating", skip_typescript)]
+    pub fn p_floating(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "floating")?;
+            self.slot.get_mut("Elevation")?.floating = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "overlay", skip_typescript)]
+    pub fn g_overlay(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.overlay.clone())?)))
+    }
+    #[napi(setter, js_name = "overlay", skip_typescript)]
+    pub fn p_overlay(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "overlay")?;
+            self.slot.get_mut("Elevation")?.overlay = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "button_neutral", skip_typescript)]
+    pub fn g_button_neutral(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.button_neutral.clone())?)))
+    }
+    #[napi(setter, js_name = "button_neutral", skip_typescript)]
+    pub fn p_button_neutral(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "button_neutral")?;
+            self.slot.get_mut("Elevation")?.button_neutral = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "button_contrast", skip_typescript)]
+    pub fn g_button_contrast(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.button_contrast.clone())?)))
+    }
+    #[napi(setter, js_name = "button_contrast", skip_typescript)]
+    pub fn p_button_contrast(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "button_contrast")?;
+            self.slot.get_mut("Elevation")?.button_contrast = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "elements", skip_typescript)]
+    pub fn g_elements(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.elements.clone())?)))
+    }
+    #[napi(setter, js_name = "elements", skip_typescript)]
+    pub fn p_elements(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "elements")?;
+            self.slot.get_mut("Elevation")?.elements = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "switch_off", skip_typescript)]
+    pub fn g_switch_off(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.switch_off.clone())?)))
+    }
+    #[napi(setter, js_name = "switch_off", skip_typescript)]
+    pub fn p_switch_off(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "switch_off")?;
+            self.slot.get_mut("Elevation")?.switch_off = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "switch_on", skip_typescript)]
+    pub fn g_switch_on(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.switch_on.clone())?)))
+    }
+    #[napi(setter, js_name = "switch_on", skip_typescript)]
+    pub fn p_switch_on(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "switch_on")?;
+            self.slot.get_mut("Elevation")?.switch_on = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "md", skip_typescript)]
+    pub fn g_md(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.md.clone())?)))
+    }
+    #[napi(setter, js_name = "md", skip_typescript)]
+    pub fn p_md(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "md")?;
+            self.slot.get_mut("Elevation")?.md = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "knob", skip_typescript)]
+    pub fn g_knob(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("Elevation")?.knob.clone())?)))
+    }
+    #[napi(setter, js_name = "knob", skip_typescript)]
+    pub fn p_knob(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Vec<rune::Shadow> = conv::arg(value.0, "knob")?;
+            self.slot.get_mut("Elevation")?.knob = value;
+            Ok(())
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_Elevation>(self.slot.get("Elevation")?.clone())?)))
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_Elevation>(<rune_kit::Elevation as Default>::default())?)))
     }
 }
 
@@ -1013,6 +1145,2863 @@ impl W_kit_Kit {
     #[napi(js_name = "clone", skip_typescript)]
     pub fn m___clone(&self) -> napi::Result<Raw> {
         conv::guard(|| Ok(Raw(conv::owned::<W_kit_Kit>(self.slot.get("Kit")?.clone())?)))
+    }
+}
+
+/// How side panes open and close: `PaneMotion::new().spring(Spring::new(0.3, 0.0))
+/// .scale_with_width(480.0, 0.15, 0.3).fade_tail(0.15)`. A `SplitView` gives both its panes the
+/// same motion, so they move as one.
+#[napi(js_name = "kit_shell__PaneMotion")]
+pub struct W_kit_shell__PaneMotion {
+    pub(crate) slot: conv::Slot<rune_kit::shell::PaneMotion>,
+}
+impl Class for W_kit_shell__PaneMotion {
+    type Inner = rune_kit::shell::PaneMotion;
+    const NAME: &'static str = "PaneMotion";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_shell__PaneMotion { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::shell::PaneMotion {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_kit_shell__PaneMotion>(v)
+    }
+}
+impl ToJs for rune_kit::shell::PaneMotion {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_shell__PaneMotion>(self)
+    }
+}
+#[napi]
+impl W_kit_shell__PaneMotion {
+/// The kit's disclosure spring at every width; contents fade out early in a close and
+/// in late in an open; Reduce Motion snaps.
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new() -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let out = conv::owned::<W_kit_shell__PaneMotion>(rune_kit::shell::PaneMotion::new())?;
+            Ok(Raw(out))
+        })
+    }
+/// The spring a pane's width moves on (by default the kit's disclosure spring).
+    #[napi(js_name = "spring", skip_typescript)]
+    pub fn m_spring(&mut self, a_s: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_s: rune_motion::Spring = conv::arg(a_s.0, "s")?;
+            let me = self.slot.get("PaneMotion")?.clone();
+            let out = conv::owned::<W_kit_shell__PaneMotion>(me.spring(a_s))?;
+            Ok(Raw(out))
+        })
+    }
+/// Scales the spring's duration by the square root of the pane's width over `reference`
+/// points, kept within `min..=max` seconds, so a narrow pane doesn't crawl and a wide one
+/// doesn't snap.
+    #[napi(js_name = "scale_with_width", skip_typescript)]
+    pub fn m_scale_with_width(&mut self, a_reference: Raw, a_min: Raw, a_max: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_reference: f32 = conv::arg(a_reference.0, "reference")?;
+            let a_min: f32 = conv::arg(a_min.0, "min")?;
+            let a_max: f32 = conv::arg(a_max.0, "max")?;
+            let me = self.slot.get("PaneMotion")?.clone();
+            let out = conv::owned::<W_kit_shell__PaneMotion>(me.scale_with_width(a_reference, a_min, a_max))?;
+            Ok(Raw(out))
+        })
+    }
+/// Fades contents only across the last `fraction` of the way to closed: solid through most
+/// of a close, and there almost at once in an open.
+    #[napi(js_name = "fade_tail", skip_typescript)]
+    pub fn m_fade_tail(&mut self, a_fraction: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_fraction: f32 = conv::arg(a_fraction.0, "fraction")?;
+            let me = self.slot.get("PaneMotion")?.clone();
+            let out = conv::owned::<W_kit_shell__PaneMotion>(me.fade_tail(a_fraction))?;
+            Ok(Raw(out))
+        })
+    }
+/// Under Reduce Motion the pane snaps; its contents fade over `seconds` (0 snaps them too).
+    #[napi(js_name = "reduced_motion_fade", skip_typescript)]
+    pub fn m_reduced_motion_fade(&mut self, a_seconds: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_seconds: f32 = conv::arg(a_seconds.0, "seconds")?;
+            let me = self.slot.get("PaneMotion")?.clone();
+            let out = conv::owned::<W_kit_shell__PaneMotion>(me.reduced_motion_fade(a_seconds))?;
+            Ok(Raw(out))
+        })
+    }
+/// The spring a pane `width` points wide moves on.
+    #[napi(js_name = "spring_for", skip_typescript)]
+    pub fn m_spring_for(&mut self, a_k: Raw, a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let me = self.slot.get("PaneMotion")?;
+            let out = conv::ToJs::to_js(me.spring_for(a_k, a_width))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__PaneMotion>(self.slot.get("PaneMotion")?.clone())?)))
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__PaneMotion>(<rune_kit::shell::PaneMotion as Default>::default())?)))
+    }
+}
+
+#[napi(js_name = "__C_kit_PaneState_MIN", skip_typescript)]
+pub fn c_kit_PaneState_MIN() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::PaneState::MIN.clone())?)))
+}
+
+#[napi(js_name = "__C_kit_PaneState_MAX", skip_typescript)]
+pub fn c_kit_PaneState_MAX() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::PaneState::MAX.clone())?)))
+}
+
+/// A side pane's width and whether it shows: a sidebar's or an inspector's. The app owns it
+/// (a field of its state), so it can save the width and restore it with [`PaneState::new`].
+/// Widths are whole points within the pane's range.
+#[napi(js_name = "kit_PaneState")]
+pub struct W_kit_PaneState {
+    pub(crate) slot: conv::Slot<rune_kit::PaneState>,
+}
+impl Class for W_kit_PaneState {
+    type Inner = rune_kit::PaneState;
+    const NAME: &'static str = "PaneState";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_PaneState { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::PaneState {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_kit_PaneState>(v)
+    }
+}
+impl ToJs for rune_kit::PaneState {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_PaneState>(self)
+    }
+}
+#[napi]
+impl W_kit_PaneState {
+/// An open pane `width` points wide, which double-clicking its edge also returns to.
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let out = conv::owned::<W_kit_PaneState>(rune_kit::PaneState::new(a_width))?;
+            Ok(Raw(out))
+        })
+    }
+/// Its width range. The width and the default clamp into it, from the values given to
+/// [`Self::new`] and [`Self::with_width`], so `new(640.0).range(360.0, 960.0)` is 640.
+    #[napi(js_name = "range", skip_typescript)]
+    pub fn m_range(&mut self, a_min: Raw, a_max: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_min: f32 = conv::arg(a_min.0, "min")?;
+            let a_max: f32 = conv::arg(a_max.0, "max")?;
+            let me = self.slot.get("PaneState")?.clone();
+            let out = conv::owned::<W_kit_PaneState>(me.range(a_min, a_max))?;
+            Ok(Raw(out))
+        })
+    }
+/// Starts collapsed (a saved state, or an inspector that opens on demand).
+    #[napi(js_name = "collapsed", skip_typescript)]
+    pub fn m_collapsed(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?.clone();
+            let out = conv::owned::<W_kit_PaneState>(me.collapsed())?;
+            Ok(Raw(out))
+        })
+    }
+/// A saved width, clamped and rounded (the width it starts with; the default stays).
+    #[napi(js_name = "with_width", skip_typescript)]
+    pub fn m_with_width(&mut self, a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let me = self.slot.get("PaneState")?.clone();
+            let out = conv::owned::<W_kit_PaneState>(me.with_width(a_width))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "width", skip_typescript)]
+    pub fn m_width(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.width())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "is_open", skip_typescript)]
+    pub fn m_is_open(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.is_open())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "min_width", skip_typescript)]
+    pub fn m_min_width(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.min_width())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "max_width", skip_typescript)]
+    pub fn m_max_width(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.max_width())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "default_width", skip_typescript)]
+    pub fn m_default_width(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.default_width())?;
+            Ok(Raw(out))
+        })
+    }
+/// Whether its edge is being dragged.
+    #[napi(js_name = "is_resizing", skip_typescript)]
+    pub fn m_is_resizing(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.is_resizing())?;
+            Ok(Raw(out))
+        })
+    }
+/// Points it takes in the layout: its width when open, else 0.
+    #[napi(js_name = "shown_width", skip_typescript)]
+    pub fn m_shown_width(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.shown_width())?;
+            Ok(Raw(out))
+        })
+    }
+/// Clamps to the range and rounds to a whole point. Doesn't open the pane.
+    #[napi(js_name = "set_width", skip_typescript)]
+    pub fn m_set_width(&mut self, a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let me = self.slot.get_mut("PaneState")?;
+            let out = { me.set_width(a_width); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Opening a peeking sidebar docks it where it floats; closing ends any peek.
+    #[napi(js_name = "set_open", skip_typescript)]
+    pub fn m_set_open(&mut self, a_open: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_open: bool = conv::arg(a_open.0, "open")?;
+            let me = self.slot.get_mut("PaneState")?;
+            let out = { me.set_open(a_open); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "toggle", skip_typescript)]
+    pub fn m_toggle(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("PaneState")?;
+            let out = { me.toggle(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Whether the closed sidebar floats over the content (a `SplitView` with
+/// [`SidebarPeek`]).
+    #[napi(js_name = "is_peeking", skip_typescript)]
+    pub fn m_is_peeking(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("PaneState")?;
+            let out = conv::ToJs::to_js(me.is_peeking())?;
+            Ok(Raw(out))
+        })
+    }
+/// Slides a peeking sidebar away (Escape, say). Leaving it with the pointer, or the window
+/// losing focus, ends a peek too.
+    #[napi(js_name = "end_peek", skip_typescript)]
+    pub fn m_end_peek(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("PaneState")?;
+            let out = { me.end_peek(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Shows the closed sidebar as a peek, over the content.
+    #[napi(js_name = "peek", skip_typescript)]
+    pub fn m_peek(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("PaneState")?;
+            let out = { me.peek(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Back to the width it was made with (double-clicking its edge).
+    #[napi(js_name = "reset_width", skip_typescript)]
+    pub fn m_reset_width(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("PaneState")?;
+            let out = { me.reset_width(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Where dragging its edge to `width` leaves it: clamped, or collapsed (keeping its last
+/// width) once dragged below half its minimum, as AppKit's split views do. Dragging back
+/// out opens it again.
+    #[napi(js_name = "drag_to", skip_typescript)]
+    pub fn m_drag_to(&mut self, a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let me = self.slot.get_mut("PaneState")?;
+            let out = { me.drag_to(a_width); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_PaneState>(self.slot.get("PaneState")?.clone())?)))
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_PaneState>(<rune_kit::PaneState as Default>::default())?)))
+    }
+}
+
+/// A closed sidebar that peeks: resting the pointer on the window's leading edge, or on the
+/// sidebar's toggle, slides the sidebar in over the content as a floating surface, without
+/// moving the layout. Leaving it closes it again; pressing the toggle docks it where it is.
+/// `SplitView::sidebar_peek(SidebarPeek::new().edge(16.0, ms(40)).toggle_delay(ms(80)))`.
+#[napi(js_name = "kit_shell__SidebarPeek")]
+pub struct W_kit_shell__SidebarPeek {
+    pub(crate) slot: conv::Slot<rune_kit::shell::SidebarPeek>,
+}
+impl Class for W_kit_shell__SidebarPeek {
+    type Inner = rune_kit::shell::SidebarPeek;
+    const NAME: &'static str = "SidebarPeek";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_shell__SidebarPeek { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::shell::SidebarPeek {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_kit_shell__SidebarPeek>(v)
+    }
+}
+impl ToJs for rune_kit::shell::SidebarPeek {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_shell__SidebarPeek>(self)
+    }
+}
+#[napi]
+impl W_kit_shell__SidebarPeek {
+/// A 16 point edge zone and a 12 point margin; 50 ms on the edge, 100 ms on the toggle, and
+/// 150 ms of grace before it closes; the kit's control spring.
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new() -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let out = conv::owned::<W_kit_shell__SidebarPeek>(rune_kit::shell::SidebarPeek::new())?;
+            Ok(Raw(out))
+        })
+    }
+/// The zone along the window's leading edge, `width` points into the content past the
+/// frame inset, and how long the pointer rests in it before the sidebar peeks.
+    #[napi(js_name = "edge", skip_typescript)]
+    pub fn m_edge(&mut self, a_width: Raw, a_delay: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let a_delay: std::time::Duration = conv::arg(a_delay.0, "delay")?;
+            let me = self.slot.get("SidebarPeek")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarPeek>(me.edge(a_width, a_delay))?;
+            Ok(Raw(out))
+        })
+    }
+/// How long the pointer rests on the closed sidebar's toggle before it peeks. The toggle is
+/// crossed on the way to other title bar controls, so this is usually longer than the edge's.
+    #[napi(js_name = "toggle_delay", skip_typescript)]
+    pub fn m_toggle_delay(&mut self, a_delay: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_delay: std::time::Duration = conv::arg(a_delay.0, "delay")?;
+            let me = self.slot.get("SidebarPeek")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarPeek>(me.toggle_delay(a_delay))?;
+            Ok(Raw(out))
+        })
+    }
+/// Where the edge zone starts, in points from the window's top (default: below the title
+/// bar band, which holds the traffic lights and the toggle).
+    #[napi(js_name = "below", skip_typescript)]
+    pub fn m_below(&mut self, a_y: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_y: f32 = conv::arg(a_y.0, "y")?;
+            let me = self.slot.get("SidebarPeek")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarPeek>(me.below(a_y))?;
+            Ok(Raw(out))
+        })
+    }
+/// How far past the sidebar and toggle the pointer may stray, and for how long, before the
+/// peek closes.
+    #[napi(js_name = "hold", skip_typescript)]
+    pub fn m_hold(&mut self, a_margin: Raw, a_grace: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_margin: f32 = conv::arg(a_margin.0, "margin")?;
+            let a_grace: std::time::Duration = conv::arg(a_grace.0, "grace")?;
+            let me = self.slot.get("SidebarPeek")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarPeek>(me.hold(a_margin, a_grace))?;
+            Ok(Raw(out))
+        })
+    }
+/// The spring the peek slides on (by default the kit's control spring).
+    #[napi(js_name = "spring", skip_typescript)]
+    pub fn m_spring(&mut self, a_s: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_s: rune_motion::Spring = conv::arg(a_s.0, "s")?;
+            let me = self.slot.get("SidebarPeek")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarPeek>(me.spring(a_s))?;
+            Ok(Raw(out))
+        })
+    }
+/// Under Reduce Motion the peek fades in place over `seconds` instead of sliding.
+    #[napi(js_name = "reduced_motion_fade", skip_typescript)]
+    pub fn m_reduced_motion_fade(&mut self, a_seconds: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_seconds: f32 = conv::arg(a_seconds.0, "seconds")?;
+            let me = self.slot.get("SidebarPeek")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarPeek>(me.reduced_motion_fade(a_seconds))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__SidebarPeek>(self.slot.get("SidebarPeek")?.clone())?)))
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__SidebarPeek>(<rune_kit::shell::SidebarPeek as Default>::default())?)))
+    }
+}
+
+/// A list's drag to reorder, owned by the app: `Reorder::new().gap(4.0)`. Pass it to each
+/// row's `SidebarRow::reorder`. Rows are taken to share one height.
+#[napi(js_name = "kit_shell__Reorder")]
+pub struct W_kit_shell__Reorder {
+    pub(crate) slot: conv::Slot<rune_kit::shell::Reorder>,
+}
+impl Class for W_kit_shell__Reorder {
+    type Inner = rune_kit::shell::Reorder;
+    const NAME: &'static str = "Reorder";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_shell__Reorder { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::shell::Reorder {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_kit_shell__Reorder>(v)
+    }
+}
+impl ToJs for rune_kit::shell::Reorder {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_shell__Reorder>(self)
+    }
+}
+#[napi]
+impl W_kit_shell__Reorder {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new() -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let out = conv::owned::<W_kit_shell__Reorder>(rune_kit::shell::Reorder::new())?;
+            Ok(Raw(out))
+        })
+    }
+/// Points between the rows (the list's gap), so a row steps aside by its height plus this.
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap(&mut self, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.get("Reorder")?.clone();
+            let out = conv::owned::<W_kit_shell__Reorder>(me.gap(a_points))?;
+            Ok(Raw(out))
+        })
+    }
+/// The row being dragged, by its index before the drag.
+    #[napi(js_name = "dragging", skip_typescript)]
+    pub fn m_dragging(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("Reorder")?;
+            let out = conv::ToJs::to_js(me.dragging())?;
+            Ok(Raw(out))
+        })
+    }
+/// Where the dragged row would land if dropped now.
+    #[napi(js_name = "target", skip_typescript)]
+    pub fn m_target(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("Reorder")?;
+            let out = conv::ToJs::to_js(me.target())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__Reorder>(self.slot.get("Reorder")?.clone())?)))
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__Reorder>(<rune_kit::shell::Reorder as Default>::default())?)))
+    }
+}
+
+impl FromJs for rune_kit::shell::RowStatus {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        let (tag, payload) = conv::enum_tag(v, "RowStatus")?;
+        match (tag.as_str(), payload) {
+            ("Busy", _) => Ok(rune_kit::shell::RowStatus::Busy),
+            ("Attention", _) => Ok(rune_kit::shell::RowStatus::Attention),
+            ("Unread", _) => Ok(rune_kit::shell::RowStatus::Unread),
+            ("Other", Some(p)) => Ok(rune_kit::shell::RowStatus::Other(conv::arg::<rune::El>(p, "RowStatus.Other")?)),
+            (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "RowStatus"))),
+        }
+    }
+}
+impl ToJs for rune_kit::shell::RowStatus {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        #[allow(unreachable_patterns)]
+        match self {
+            rune_kit::shell::RowStatus::Busy => conv::ToJs::to_js("Busy"),
+            rune_kit::shell::RowStatus::Attention => conv::ToJs::to_js("Attention"),
+            rune_kit::shell::RowStatus::Unread => conv::ToJs::to_js("Unread"),
+            rune_kit::shell::RowStatus::Other(a) => Ok(conv::tagged("Other", a.to_js()?)),
+            _ => Ok(conv::undefined()),
+        }
+    }
+}
+
+/// A sidebar's content: header, a scrolling list of sections and rows, and footer.
+/// `Sidebar::new().header(..).section(..).footer(..).build(&kit)`. The list is one Tab stop
+/// that lands on the selected row. Up and Down move the selection (it follows focus, as in a
+/// source list), Home and End go to the ends, typing a row's first letters jumps to it, and
+/// Return presses the focused row.
+#[napi(js_name = "kit_Sidebar")]
+pub struct W_kit_Sidebar {
+    pub(crate) slot: conv::Slot<rune_kit::Sidebar>,
+}
+impl Class for W_kit_Sidebar {
+    type Inner = rune_kit::Sidebar;
+    const NAME: &'static str = "Sidebar";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_Sidebar { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::Sidebar {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_Sidebar>(v)
+    }
+}
+impl ToJs for rune_kit::Sidebar {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_Sidebar>(self)
+    }
+}
+#[napi]
+impl W_kit_Sidebar {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new() -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let out = conv::owned::<W_kit_Sidebar>(rune_kit::Sidebar::new())?;
+            Ok(Raw(out))
+        })
+    }
+/// Points between the sidebar's sides and its rows, header and footer (default 8).
+    #[napi(js_name = "inset", skip_typescript)]
+    pub fn m_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.inset(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points between the header's items (default 2).
+    #[napi(js_name = "header_gap", skip_typescript)]
+    pub fn m_header_gap<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.header_gap(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points above the header and between it and the list (default 0 and 8).
+    #[napi(js_name = "header_padding", skip_typescript)]
+    pub fn m_header_padding<'t>(&mut self, this: This<'t>, a_top: Raw, a_bottom: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_top: f32 = conv::arg(a_top.0, "top")?;
+            let a_bottom: f32 = conv::arg(a_bottom.0, "bottom")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.header_padding(a_top, a_bottom));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points between the list's items (default 0). Virtualised rows don't take it: give them
+/// the space in their height.
+    #[napi(js_name = "row_gap", skip_typescript)]
+    pub fn m_row_gap<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.row_gap(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The height of [`Self::virtual_rows`]' rows (default [`ROW_HEIGHT`]). Give the rows the
+/// same height with [`SidebarRow::height`].
+    #[napi(js_name = "row_height", skip_typescript)]
+    pub fn m_row_height<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.row_height(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The list's accessible name.
+    #[napi(js_name = "label", skip_typescript)]
+    pub fn m_label<'t>(&mut self, this: This<'t>, a_l: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_l: String = conv::arg(a_l.0, "l")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.label(a_l));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Above the list, outside its scrolling: a "New" row or button, a search field.
+    #[napi(js_name = "header", skip_typescript)]
+    pub fn m_header<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.header(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Below the list: an account or settings row, a version line.
+    #[napi(js_name = "footer", skip_typescript)]
+    pub fn m_footer<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.footer(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "section", skip_typescript)]
+    pub fn m_section<'t>(&mut self, this: This<'t>, a_s: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_s: rune_kit::SidebarSection = conv::arg(a_s.0, "s")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.section(a_s));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Any element in the list: a built [`SidebarRow`] or [`SidebarHeader`], a divider.
+    #[napi(js_name = "child", skip_typescript)]
+    pub fn m_child<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Sidebar")?;
+            self.slot.put(me.child(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("Sidebar")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_Sidebar>(<rune_kit::Sidebar as Default>::default())?)))
+    }
+}
+
+/// A section's header row: its title, an optional count, a disclosure triangle and a trailing
+/// action (a small "+" button, say). Pressing it calls `on_toggle`; whether the section is
+/// collapsed is the app's state. [`SidebarSection`] pairs it with its rows; use it on its own
+/// in a virtualised list.
+#[napi(js_name = "kit_SidebarHeader")]
+pub struct W_kit_SidebarHeader {
+    pub(crate) slot: conv::Slot<rune_kit::SidebarHeader>,
+}
+impl Class for W_kit_SidebarHeader {
+    type Inner = rune_kit::SidebarHeader;
+    const NAME: &'static str = "SidebarHeader";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_SidebarHeader { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::SidebarHeader {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_SidebarHeader>(v)
+    }
+}
+impl ToJs for rune_kit::SidebarHeader {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_SidebarHeader>(self)
+    }
+}
+#[napi]
+impl W_kit_SidebarHeader {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_title: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_title: String = conv::arg(a_title.0, "title")?;
+            let out = conv::owned::<W_kit_SidebarHeader>(rune_kit::SidebarHeader::new(a_title))?;
+            Ok(Raw(out))
+        })
+    }
+/// Shows a disclosure triangle for this state. Without it, or `on_toggle`, the header is
+/// a plain label.
+    #[napi(js_name = "collapsed", skip_typescript)]
+    pub fn m_collapsed<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_c: bool = conv::arg(a_c.0, "c")?;
+            let me = self.slot.take("SidebarHeader")?;
+            self.slot.put(me.collapsed(a_c));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "count", skip_typescript)]
+    pub fn m_count<'t>(&mut self, this: This<'t>, a_n: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_n: usize = conv::arg(a_n.0, "n")?;
+            let me = self.slot.take("SidebarHeader")?;
+            self.slot.put(me.count(a_n));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A trailing element, such as a small "+" icon button.
+    #[napi(js_name = "action", skip_typescript)]
+    pub fn m_action<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("SidebarHeader")?;
+            self.slot.put(me.action(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "on_toggle", skip_typescript)]
+    pub fn m_on_toggle<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
+            let me = self.slot.take("SidebarHeader")?;
+            self.slot.put(me.on_toggle(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("SidebarHeader")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+}
+
+/// A selectable sidebar row: icon, label, then a trailing detail (a time), badge or element.
+/// `SidebarRow::new("Inbox").icon(&INBOX).badge("3").selected(sel).on_select(..).build(&kit)`.
+/// Key the built row by its item's id.
+///
+/// A taller row takes a second, muted line, an avatar and a status slot that turns into a
+/// close button under the pointer: `SidebarRow::new(title).height(45.0).avatar(..)
+/// .subtitle(project).status(RowStatus::Busy).on_close(..)`.
+#[napi(js_name = "kit_SidebarRow")]
+pub struct W_kit_SidebarRow {
+    pub(crate) slot: conv::Slot<rune_kit::SidebarRow>,
+}
+impl Class for W_kit_SidebarRow {
+    type Inner = rune_kit::SidebarRow;
+    const NAME: &'static str = "SidebarRow";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_SidebarRow { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::SidebarRow {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_SidebarRow>(v)
+    }
+}
+impl ToJs for rune_kit::SidebarRow {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_SidebarRow>(self)
+    }
+}
+#[napi]
+impl W_kit_SidebarRow {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_label: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_label: String = conv::arg(a_label.0, "label")?;
+            let out = conv::owned::<W_kit_SidebarRow>(rune_kit::SidebarRow::new(a_label))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "icon", skip_typescript)]
+    pub fn m_icon<'t>(&mut self, this: This<'t>, a_i: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_i_i = conv::instance::<crate::gen::rune::W_Icon>(a_i.0).map_err(|e| conv::err(format!("{}: {}", "i", e.reason)))?;
+            let a_i = a_i_i.slot().leak("Icon")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.icon(a_i));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A 16 point leading element in place of the icon: a project's avatar, an initial.
+    #[napi(js_name = "avatar", skip_typescript)]
+    pub fn m_avatar<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.avatar(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A second line under the label, smaller and fainter than it (11 point `caption` in
+/// `text_faint`, under a medium-weight 13 point label). The row's accessible name is then
+/// "Label, Subtitle". Give the row the height for it (default [`TWO_LINE_ROW_HEIGHT`]).
+    #[napi(js_name = "subtitle", skip_typescript)]
+    pub fn m_subtitle<'t>(&mut self, this: This<'t>, a_s: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_s: String = conv::arg(a_s.0, "s")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.subtitle(a_s));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The label's type, in place of the default (13 point; medium weight with a subtitle).
+/// It also sets the inline rename field's type.
+    #[napi(js_name = "title_style", skip_typescript)]
+    pub fn m_title_style<'t>(&mut self, this: This<'t>, a_style: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_style: rune::TextStyle = conv::arg(a_style.0, "style")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.title_style(a_style));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The subtitle's type, in place of the default (the kit's `caption`).
+    #[napi(js_name = "subtitle_style", skip_typescript)]
+    pub fn m_subtitle_style<'t>(&mut self, this: This<'t>, a_style: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_style: rune::TextStyle = conv::arg(a_style.0, "style")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.subtitle_style(a_style));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The subtitle's colour, in place of the default (`text_faint`).
+    #[napi(js_name = "subtitle_color", skip_typescript)]
+    pub fn m_subtitle_color<'t>(&mut self, this: This<'t>, a_color: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.subtitle_color(a_color));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A row that shows the selection but never takes focus: for a list driven from outside,
+/// such as one a search field filters and steers with its own keys. The row is out of the
+/// Tab order, Tab and Space don't act on it, and pressing it selects it (`on_select`)
+/// while a focused field stays focused (`El::preserve_focus_on_press`). Keyboard navigation
+/// of a select-only list (Up/Down and Return from the field) is the app's job. The selected
+/// row is still exposed as selected to assistive tech (`ElementInfo::item_selected`), and
+/// changing the selection never pulls focus to the row. Equivalent to
+/// `.focusable(false).focus_selected(..)` on the built row, plus the focus-preserving press.
+    #[napi(js_name = "select_only", skip_typescript)]
+    pub fn m_select_only<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.select_only());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The row's height (default [`ROW_HEIGHT`], or [`TWO_LINE_ROW_HEIGHT`] with a subtitle).
+    #[napi(js_name = "height", skip_typescript)]
+    pub fn m_height<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.height(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Faint trailing text: a time ("2m"), a count, a shortcut.
+    #[napi(js_name = "detail", skip_typescript)]
+    pub fn m_detail<'t>(&mut self, this: This<'t>, a_d: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_d: String = conv::arg(a_d.0, "d")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.detail(a_d));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A trailing pill (an unread count).
+    #[napi(js_name = "badge", skip_typescript)]
+    pub fn m_badge<'t>(&mut self, this: This<'t>, a_b: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_b: String = conv::arg(a_b.0, "b")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.badge(a_b));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Any trailing element (a status dot, a menu button), after the detail and badge.
+    #[napi(js_name = "trailing", skip_typescript)]
+    pub fn m_trailing<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.trailing(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A 20 point slot at the row's end, after everything else.
+    #[napi(js_name = "status", skip_typescript)]
+    pub fn m_status<'t>(&mut self, this: This<'t>, a_s: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_s: rune_kit::shell::RowStatus = conv::arg(a_s.0, "s")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.status(a_s));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A close button in the status slot, in place of the status while the pointer is on the
+/// row. It swaps at once, with no fade.
+    #[napi(js_name = "on_close", skip_typescript)]
+    pub fn m_on_close<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.on_close(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "selected", skip_typescript)]
+    pub fn m_selected<'t>(&mut self, this: This<'t>, a_s: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_s: bool = conv::arg(a_s.0, "s")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.selected(a_s));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Nesting level: each indents the row by [`INDENT`].
+    #[napi(js_name = "depth", skip_typescript)]
+    pub fn m_depth<'t>(&mut self, this: This<'t>, a_d: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_d: u8 = conv::arg(a_d.0, "d")?;
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.depth(a_d));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Called when the row is pressed, or reached with the arrow keys.
+    #[napi(js_name = "on_select", skip_typescript)]
+    pub fn m_on_select<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.on_select(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Called on a double click (rename, open in a new window).
+    #[napi(js_name = "on_double_click", skip_typescript)]
+    pub fn m_on_double_click<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.on_double_click(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Drags the row to a new place among the list's `count` rows, of which it is row `index`.
+/// It lifts above its neighbours and follows the pointer, and they step aside on springs.
+/// A drop calls `drop(s, from, to)` to move the item; Escape, or the window losing focus,
+/// puts it back. `access` finds the [`Reorder`] in the app's state. A press that doesn't
+/// move is still a select.
+    #[napi(js_name = "reorder", skip_typescript)]
+    pub fn m_reorder<'t>(&mut self, this: This<'t>, a_state: Raw, a_index: Raw, a_count: Raw, a_access: Raw, a_drop: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_state_i = conv::instance::<crate::gen::kit::W_kit_shell__Reorder>(a_state.0).map_err(|e| conv::err(format!("{}: {}", "state", e.reason)))?;
+            let a_state = a_state_i.slot().get("Reorder")?;
+            let a_index: usize = conv::arg(a_index.0, "index")?;
+            let a_count: usize = conv::arg(a_count.0, "count")?;
+            let a_access = crate::gen::tramp::t5_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
+            let a_drop_h = conv::arg::<conv::JsFn>(a_drop.0, "drop")?.0;
+            let a_drop = move |c0: &mut crate::state::JsState, c1: usize, c2: usize| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); { let v2 = conv::arg_js(c2); let r = a_drop_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () } } } }) };
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.reorder(a_state, a_index, a_count, a_access, a_drop));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Edits the label in place, in the field bound to `edit` (`access` finds it in the app's
+/// state). Set `edit.focused` and its text when renaming starts. Return calls `commit`,
+/// Escape calls `cancel`; both should end the rename.
+    #[napi(js_name = "renaming", skip_typescript)]
+    pub fn m_renaming<'t>(&mut self, this: This<'t>, a_edit: Raw, a_access: Raw, a_commit: Raw, a_cancel: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_edit_i = conv::instance::<crate::gen::rune::W_TextEdit>(a_edit.0).map_err(|e| conv::err(format!("{}: {}", "edit", e.reason)))?;
+            let a_edit = a_edit_i.slot().get("TextEdit")?;
+            let a_access = crate::gen::tramp::t6_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
+            let a_commit_h = conv::arg::<conv::JsFn>(a_commit.0, "commit")?.0;
+            let a_commit = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_commit_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
+            let a_cancel_h = conv::arg::<conv::JsFn>(a_cancel.0, "cancel")?.0;
+            let a_cancel = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_cancel_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
+            let me = self.slot.take("SidebarRow")?;
+            self.slot.put(me.renaming(a_edit, a_access, a_commit, a_cancel));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("SidebarRow")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+}
+
+/// A titled group of rows that collapses: `SidebarSection::new("Today").collapsed(..)
+/// .on_toggle(..).row(..)`. Rows below it move on the kit's disclosure spring as it opens.
+#[napi(js_name = "kit_SidebarSection")]
+pub struct W_kit_SidebarSection {
+    pub(crate) slot: conv::Slot<rune_kit::SidebarSection>,
+}
+impl Class for W_kit_SidebarSection {
+    type Inner = rune_kit::SidebarSection;
+    const NAME: &'static str = "SidebarSection";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_SidebarSection { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::SidebarSection {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_SidebarSection>(v)
+    }
+}
+impl ToJs for rune_kit::SidebarSection {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_SidebarSection>(self)
+    }
+}
+#[napi]
+impl W_kit_SidebarSection {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_title: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_title: String = conv::arg(a_title.0, "title")?;
+            let out = conv::owned::<W_kit_SidebarSection>(rune_kit::SidebarSection::new(a_title))?;
+            Ok(Raw(out))
+        })
+    }
+/// Its key among the list's children (default: the title).
+    #[napi(js_name = "key", skip_typescript)]
+    pub fn m_key<'t>(&mut self, this: This<'t>, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_k: String = conv::arg(a_k.0, "k")?;
+            let me = self.slot.take("SidebarSection")?;
+            self.slot.put(me.key(a_k));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "collapsed", skip_typescript)]
+    pub fn m_collapsed<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_c: bool = conv::arg(a_c.0, "c")?;
+            let me = self.slot.take("SidebarSection")?;
+            self.slot.put(me.collapsed(a_c));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "count", skip_typescript)]
+    pub fn m_count<'t>(&mut self, this: This<'t>, a_n: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_n: usize = conv::arg(a_n.0, "n")?;
+            let me = self.slot.take("SidebarSection")?;
+            self.slot.put(me.count(a_n));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "action", skip_typescript)]
+    pub fn m_action<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("SidebarSection")?;
+            self.slot.put(me.action(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "on_toggle", skip_typescript)]
+    pub fn m_on_toggle<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
+            let me = self.slot.take("SidebarSection")?;
+            self.slot.put(me.on_toggle(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A row: a built [`SidebarRow`], keyed by the app.
+    #[napi(js_name = "row", skip_typescript)]
+    pub fn m_row<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("SidebarSection")?;
+            self.slot.put(me.row(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "rows", skip_typescript)]
+    pub fn m_rows<'t>(&mut self, this: This<'t>, a_rows: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_rows: Vec<rune::El> = conv::arg(a_rows.0, "rows")?;
+            let me = self.slot.take("SidebarSection")?;
+            self.slot.put(me.rows(a_rows));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("SidebarSection")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+}
+
+/// A full-window screen without side panes — a settings page, lock screen or onboarding view
+/// in the same window as a [`SplitView`]. Shares [`SplitView`]'s title bar height, traffic-light
+/// clearance, window-drag band and framed content card so switching screens matches pixel for
+/// pixel: `Page::new(content).title("Settings").leading(back).trailing(done).titlebar_inset(cx.titlebar_inset()).build(&kit)`.
+#[napi(js_name = "kit_Page")]
+pub struct W_kit_Page {
+    pub(crate) slot: conv::Slot<rune_kit::Page>,
+}
+impl Class for W_kit_Page {
+    type Inner = rune_kit::Page;
+    const NAME: &'static str = "Page";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_Page { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::Page {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_Page>(v)
+    }
+}
+impl ToJs for rune_kit::Page {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_Page>(self)
+    }
+}
+#[napi]
+impl W_kit_Page {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_main: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_main: rune::El = conv::arg(a_main.0, "main")?;
+            let out = conv::owned::<W_kit_Page>(rune_kit::Page::new(a_main))?;
+            Ok(Raw(out))
+        })
+    }
+/// A centred title in the toolbar band.
+    #[napi(js_name = "title", skip_typescript)]
+    pub fn m_title<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_t: String = conv::arg(a_t.0, "t")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.title(a_t));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The toolbar's centre slot (replaces [`Self::title`]).
+    #[napi(js_name = "center", skip_typescript)]
+    pub fn m_center<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.center(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Adds a leading control to the toolbar (a Back button, say), placed past the traffic lights.
+    #[napi(js_name = "leading", skip_typescript)]
+    pub fn m_leading<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.leading(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Adds a trailing control to the toolbar.
+    #[napi(js_name = "trailing", skip_typescript)]
+    pub fn m_trailing<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.trailing(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Replaces the toolbar with a pre-built [`Toolbar`].
+    #[napi(js_name = "toolbar", skip_typescript)]
+    pub fn m_toolbar<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_t: rune_kit::Toolbar = conv::arg(a_t.0, "t")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.toolbar(a_t));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`.
+    #[napi(js_name = "titlebar_inset", skip_typescript)]
+    pub fn m_titlebar_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.titlebar_inset(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points past the traffic lights (or the window's edge in full screen) where the toolbar's
+/// leading slot starts, matching [`SplitView::sidebar_toggle`].
+    #[napi(js_name = "past_lights", skip_typescript)]
+    pub fn m_past_lights<'t>(&mut self, this: This<'t>, a_past_lights: Raw, a_edge: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_past_lights: f32 = conv::arg(a_past_lights.0, "past_lights")?;
+            let a_edge: f32 = conv::arg(a_edge.0, "edge")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.past_lights(a_past_lights, a_edge));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The window background showing around the content pane (default 8 points, matching
+/// [`SplitView::frame_inset`]).
+    #[napi(js_name = "frame_inset", skip_typescript)]
+    pub fn m_frame_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.frame_inset(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Puts the toolbar inside the framed content pane at its top, matching
+/// [`SplitView::toolbar_in_panel`].
+    #[napi(js_name = "toolbar_in_panel", skip_typescript)]
+    pub fn m_toolbar_in_panel<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            let me = self.slot.take("Page")?;
+            self.slot.put(me.toolbar_in_panel());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("Page")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+}
+
+/// Where the sidebar's toggle button sits and how it looks:
+/// `SidebarToggle::new().size(ControlSize::Large).past_lights(16.0).in_header()`.
+#[napi(js_name = "kit_shell__SidebarToggle")]
+pub struct W_kit_shell__SidebarToggle {
+    pub(crate) slot: conv::Slot<rune_kit::shell::SidebarToggle>,
+}
+impl Class for W_kit_shell__SidebarToggle {
+    type Inner = rune_kit::shell::SidebarToggle;
+    const NAME: &'static str = "SidebarToggle";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_shell__SidebarToggle { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::shell::SidebarToggle {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_kit_shell__SidebarToggle>(v)
+    }
+}
+impl ToJs for rune_kit::shell::SidebarToggle {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_shell__SidebarToggle>(self)
+    }
+}
+#[napi]
+impl W_kit_shell__SidebarToggle {
+/// A 24 point button 8 points past the traffic lights (12 from the window's edge when there
+/// are none), 8 points before the toolbar's first item while the sidebar is closed.
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new() -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(rune_kit::shell::SidebarToggle::new())?;
+            Ok(Raw(out))
+        })
+    }
+/// The button's size: 16, 20, 24, 28 or 36 points.
+    #[napi(js_name = "size", skip_typescript)]
+    pub fn m_size(&mut self, a_s: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_s: rune_kit::ControlSize = conv::arg(a_s.0, "s")?;
+            let me = self.slot.get("SidebarToggle")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(me.size(a_s))?;
+            Ok(Raw(out))
+        })
+    }
+/// Points between the traffic lights and the button.
+    #[napi(js_name = "past_lights", skip_typescript)]
+    pub fn m_past_lights(&mut self, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.get("SidebarToggle")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(me.past_lights(a_points))?;
+            Ok(Raw(out))
+        })
+    }
+/// Points from the window's leading edge when there are no traffic lights (full screen,
+/// and off macOS).
+    #[napi(js_name = "edge", skip_typescript)]
+    pub fn m_edge(&mut self, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.get("SidebarToggle")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(me.edge(a_points))?;
+            Ok(Raw(out))
+        })
+    }
+/// Points between the button and what follows it in the title bar while the sidebar is
+/// closed.
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap(&mut self, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.get("SidebarToggle")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(me.gap(a_points))?;
+            Ok(Raw(out))
+        })
+    }
+/// While the sidebar is open, the button sits at the end of the sidebar's title bar row
+/// instead of past the traffic lights, and travels between the two on the sidebar's spring.
+    #[napi(js_name = "in_header", skip_typescript)]
+    pub fn m_in_header(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("SidebarToggle")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(me.in_header())?;
+            Ok(Raw(out))
+        })
+    }
+/// Marks the button with a dot while the sidebar is closed (unread activity in it).
+    #[napi(js_name = "unread", skip_typescript)]
+    pub fn m_unread(&mut self, a_unread: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_unread: bool = conv::arg(a_unread.0, "unread")?;
+            let me = self.slot.get("SidebarToggle")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(me.unread(a_unread))?;
+            Ok(Raw(out))
+        })
+    }
+/// The shortcut hint shown in the toggle button's tooltip (`"⇧⌘B"` on macOS,
+/// `"Ctrl+Shift+B"` elsewhere by default; pass `""` to omit).
+    #[napi(js_name = "shortcut", skip_typescript)]
+    pub fn m_shortcut(&mut self, a_shortcut: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_shortcut: &'static str = conv::arg(a_shortcut.0, "shortcut")?;
+            let me = self.slot.get("SidebarToggle")?.clone();
+            let out = conv::owned::<W_kit_shell__SidebarToggle>(me.shortcut(a_shortcut))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__SidebarToggle>(self.slot.get("SidebarToggle")?.clone())?)))
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__SidebarToggle>(<rune_kit::shell::SidebarToggle as Default>::default())?)))
+    }
+}
+
+/// The app shell: `SplitView::new(main).sidebar(..).toolbar(..).inspector(..)
+/// .titlebar_inset(cx.titlebar_inset()).build(&kit)`.
+///
+/// The sidebar and inspector are flush panes on the window's deep background; the main pane is
+/// a rounded card beside them, inset by [`Self::frame_inset`] where no pane borders it. A 48
+/// point band across the top is the title bar: it drags the window, its leading end clears the
+/// traffic lights (pass [`Cx::titlebar_inset`], 0 in full screen), and the sidebar's toggle
+/// button sits just past them ([`SidebarToggle`]). Panes resize from their inner edge
+/// (double-click resets the width, dragging below half the minimum collapses) and open and
+/// close together on one spring ([`PaneMotion`]). Under Reduce Motion they snap. Widths and
+/// open states live in the app's [`PaneState`]s. With [`SidebarPeek`], a closed sidebar slides
+/// in over the content while the pointer rests at the window's edge.
+///
+/// The band's middle is 24 points down: place the traffic lights there with
+/// `Chrome { traffic_lights: Some((16.0, 17.0)), .. }` (with [`Self::toolbar_in_panel`], the
+/// frame inset further down).
+///
+/// [`Cx::titlebar_inset`]: rune::Cx::titlebar_inset
+#[napi(js_name = "kit_SplitView")]
+pub struct W_kit_SplitView {
+    pub(crate) slot: conv::Slot<rune_kit::SplitView>,
+}
+impl Class for W_kit_SplitView {
+    type Inner = rune_kit::SplitView;
+    const NAME: &'static str = "SplitView";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_SplitView { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::SplitView {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_SplitView>(v)
+    }
+}
+impl ToJs for rune_kit::SplitView {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_SplitView>(self)
+    }
+}
+#[napi]
+impl W_kit_SplitView {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_main: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_main: rune::El = conv::arg(a_main.0, "main")?;
+            let out = conv::owned::<W_kit_SplitView>(rune_kit::SplitView::new(a_main))?;
+            Ok(Raw(out))
+        })
+    }
+/// The leading pane. `access` finds its state in the app's; the grip and the toggle button
+/// write to it. `content` is usually a built `Sidebar`.
+    #[napi(js_name = "sidebar", skip_typescript)]
+    pub fn m_sidebar<'t>(&mut self, this: This<'t>, a_state: Raw, a_access: Raw, a_content: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_state_i = conv::instance::<crate::gen::kit::W_kit_PaneState>(a_state.0).map_err(|e| conv::err(format!("{}: {}", "state", e.reason)))?;
+            let a_state = a_state_i.slot().get("PaneState")?;
+            let a_access = crate::gen::tramp::t7_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
+            let a_content: rune::El = conv::arg(a_content.0, "content")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.sidebar(a_state, a_access, a_content));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The trailing pane, resized from its leading edge.
+    #[napi(js_name = "inspector", skip_typescript)]
+    pub fn m_inspector<'t>(&mut self, this: This<'t>, a_state: Raw, a_access: Raw, a_content: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_state_i = conv::instance::<crate::gen::kit::W_kit_PaneState>(a_state.0).map_err(|e| conv::err(format!("{}: {}", "state", e.reason)))?;
+            let a_state = a_state_i.slot().get("PaneState")?;
+            let a_access = crate::gen::tramp::t7_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
+            let a_content: rune::El = conv::arg(a_content.0, "content")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.inspector(a_state, a_access, a_content));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The band above the main pane (and the inspector). Without one the band is empty and
+/// still drags the window.
+    #[napi(js_name = "toolbar", skip_typescript)]
+    pub fn m_toolbar<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_t: rune_kit::Toolbar = conv::arg(a_t.0, "t")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.toolbar(a_t));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`.
+    #[napi(js_name = "titlebar_inset", skip_typescript)]
+    pub fn m_titlebar_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.titlebar_inset(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Leaves out the sidebar's toggle button (the app shows its own, or none).
+    #[napi(js_name = "hide_sidebar_toggle", skip_typescript)]
+    pub fn m_hide_sidebar_toggle<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.hide_sidebar_toggle());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Where the sidebar's toggle button sits and how it looks.
+    #[napi(js_name = "sidebar_toggle", skip_typescript)]
+    pub fn m_sidebar_toggle<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_t: rune_kit::shell::SidebarToggle = conv::arg(a_t.0, "t")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.sidebar_toggle(a_t));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The window background showing around the main pane where no pane borders it (default
+/// 8 points).
+    #[napi(js_name = "frame_inset", skip_typescript)]
+    pub fn m_frame_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.frame_inset(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Puts the toolbar inside the main pane, at its top, and insets the pane from the window's
+/// top too. The strip above it drags the window, and the sidebar's title bar row lines up
+/// with the toolbar.
+    #[napi(js_name = "toolbar_in_panel", skip_typescript)]
+    pub fn m_toolbar_in_panel<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.toolbar_in_panel());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points between the sidebar's edges and its contents: `start` at the window's edge, `end`
+/// at the main pane.
+    #[napi(js_name = "sidebar_padding", skip_typescript)]
+    pub fn m_sidebar_padding<'t>(&mut self, this: This<'t>, a_start: Raw, a_end: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_start: f32 = conv::arg(a_start.0, "start")?;
+            let a_end: f32 = conv::arg(a_end.0, "end")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.sidebar_padding(a_start, a_end));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// How the panes open and close. Both move on the spring for the sidebar's width (the
+/// inspector's without one), so they move as one.
+    #[napi(js_name = "pane_motion", skip_typescript)]
+    pub fn m_pane_motion<'t>(&mut self, this: This<'t>, a_m: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_m: rune_kit::shell::PaneMotion = conv::arg(a_m.0, "m")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.pane_motion(a_m));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Lets the closed sidebar peek over the content.
+    #[napi(js_name = "sidebar_peek", skip_typescript)]
+    pub fn m_sidebar_peek<'t>(&mut self, this: This<'t>, a_p: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_p: rune_kit::shell::SidebarPeek = conv::arg(a_p.0, "p")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.sidebar_peek(a_p));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Pass [`Cx::is_reduced_motion`]: fades replace the slides of the panes' contents and of
+/// a peek, as [`PaneMotion::reduced_motion_fade`] and [`SidebarPeek::reduced_motion_fade`]
+/// set. Widths snap under Reduce Motion either way.
+///
+/// [`Cx::is_reduced_motion`]: rune::Cx::is_reduced_motion
+    #[napi(js_name = "reduced_motion", skip_typescript)]
+    pub fn m_reduced_motion<'t>(&mut self, this: This<'t>, a_reduced: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_reduced: bool = conv::arg(a_reduced.0, "reduced")?;
+            let me = self.slot.take("SplitView")?;
+            self.slot.put(me.reduced_motion(a_reduced));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("SplitView")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+}
+
+impl FromJs for rune_kit::shell::TabDensity {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        let (tag, payload) = conv::enum_tag(v, "TabDensity")?;
+        match (tag.as_str(), payload) {
+            ("Full", _) => Ok(rune_kit::shell::TabDensity::Full),
+            ("Compact", _) => Ok(rune_kit::shell::TabDensity::Compact),
+            ("IconOnly", _) => Ok(rune_kit::shell::TabDensity::IconOnly),
+            (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "TabDensity"))),
+        }
+    }
+}
+impl ToJs for rune_kit::shell::TabDensity {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        #[allow(unreachable_patterns)]
+        match self {
+            rune_kit::shell::TabDensity::Full => conv::ToJs::to_js("Full"),
+            rune_kit::shell::TabDensity::Compact => conv::ToJs::to_js("Compact"),
+            rune_kit::shell::TabDensity::IconOnly => conv::ToJs::to_js("IconOnly"),
+            _ => Ok(conv::undefined()),
+        }
+    }
+}
+
+impl FromJs for rune_kit::shell::TabDragMode {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        let (tag, payload) = conv::enum_tag(v, "TabDragMode")?;
+        match (tag.as_str(), payload) {
+            ("Reorder", Some(p)) => Ok(rune_kit::shell::TabDragMode::Reorder { from: conv::field::<usize>(p, "TabDragMode.Reorder", "from")?, to: conv::field::<usize>(p, "TabDragMode.Reorder", "to")?, delta: conv::field::<f32>(p, "TabDragMode.Reorder", "delta")?, pitch: conv::field::<f32>(p, "TabDragMode.Reorder", "pitch")?, pinned: conv::field::<bool>(p, "TabDragMode.Reorder", "pinned")? }),
+            ("TearOut", Some(p)) => Ok(rune_kit::shell::TabDragMode::TearOut { from: conv::field::<usize>(p, "TabDragMode.TearOut", "from")?, offset: conv::field::<[f32; 2]>(p, "TabDragMode.TearOut", "offset")? }),
+            (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "TabDragMode"))),
+        }
+    }
+}
+impl ToJs for rune_kit::shell::TabDragMode {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        #[allow(unreachable_patterns)]
+        match self {
+            rune_kit::shell::TabDragMode::Reorder { from, to, delta, pitch, pinned } => { let o = conv::object(); conv::set(o, "from", from.to_js()?); conv::set(o, "to", to.to_js()?); conv::set(o, "delta", delta.to_js()?); conv::set(o, "pitch", pitch.to_js()?); conv::set(o, "pinned", pinned.to_js()?); Ok(conv::tagged("Reorder", o)) }
+            rune_kit::shell::TabDragMode::TearOut { from, offset } => { let o = conv::object(); conv::set(o, "from", from.to_js()?); conv::set(o, "offset", offset.to_js()?); Ok(conv::tagged("TearOut", o)) }
+            _ => Ok(conv::undefined()),
+        }
+    }
+}
+
+impl FromJs for rune_kit::shell::TabDragPhase {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        let (tag, payload) = conv::enum_tag(v, "TabDragPhase")?;
+        match (tag.as_str(), payload) {
+            ("Idle", _) => Ok(rune_kit::shell::TabDragPhase::Idle),
+            ("Pressed", Some(p)) => Ok(rune_kit::shell::TabDragPhase::Pressed { index: conv::field::<usize>(p, "TabDragPhase.Pressed", "index")?, pinned: conv::field::<bool>(p, "TabDragPhase.Pressed", "pinned")?, tab_pitch: conv::field::<f32>(p, "TabDragPhase.Pressed", "tab_pitch")? }),
+            ("Dragging", Some(p)) => Ok(rune_kit::shell::TabDragPhase::Dragging(conv::arg::<rune_kit::shell::TabDragMode>(p, "TabDragPhase.Dragging")?)),
+            ("Dropping", Some(p)) => Ok(rune_kit::shell::TabDragPhase::Dropping { from: conv::field::<usize>(p, "TabDragPhase.Dropping", "from")?, to: conv::field::<usize>(p, "TabDragPhase.Dropping", "to")? }),
+            (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "TabDragPhase"))),
+        }
+    }
+}
+impl ToJs for rune_kit::shell::TabDragPhase {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        #[allow(unreachable_patterns)]
+        match self {
+            rune_kit::shell::TabDragPhase::Idle => conv::ToJs::to_js("Idle"),
+            rune_kit::shell::TabDragPhase::Pressed { index, pinned, tab_pitch } => { let o = conv::object(); conv::set(o, "index", index.to_js()?); conv::set(o, "pinned", pinned.to_js()?); conv::set(o, "tab_pitch", tab_pitch.to_js()?); Ok(conv::tagged("Pressed", o)) }
+            rune_kit::shell::TabDragPhase::Dragging(a) => Ok(conv::tagged("Dragging", a.to_js()?)),
+            rune_kit::shell::TabDragPhase::Dropping { from, to } => { let o = conv::object(); conv::set(o, "from", from.to_js()?); conv::set(o, "to", to.to_js()?); Ok(conv::tagged("Dropping", o)) }
+            _ => Ok(conv::undefined()),
+        }
+    }
+}
+
+/// The gestures of one [`TabStrip`](super::TabStrip), owned by the app (`TabDragState::default()`)
+/// and passed to [`TabStrip::drag_state`](super::TabStrip::drag_state). One instance can serve a
+/// strip that moves between layouts; [`TabDragState::cancel`] drops a gesture in flight.
+#[napi(js_name = "kit_shell__TabDragState")]
+pub struct W_kit_shell__TabDragState {
+    pub(crate) slot: conv::Slot<rune_kit::shell::TabDragState>,
+}
+impl Class for W_kit_shell__TabDragState {
+    type Inner = rune_kit::shell::TabDragState;
+    const NAME: &'static str = "TabDragState";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_shell__TabDragState { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::shell::TabDragState {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take_or_clone::<W_kit_shell__TabDragState>(v)
+    }
+}
+impl ToJs for rune_kit::shell::TabDragState {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_shell__TabDragState>(self)
+    }
+}
+#[napi]
+impl W_kit_shell__TabDragState {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new() -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let out = conv::owned::<W_kit_shell__TabDragState>(rune_kit::shell::TabDragState::new())?;
+            Ok(Raw(out))
+        })
+    }
+/// The tab lifted by a drag (reordering or torn out), by its index.
+    #[napi(js_name = "dragging", skip_typescript)]
+    pub fn m_dragging(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("TabDragState")?;
+            let out = conv::ToJs::to_js(me.dragging())?;
+            Ok(Raw(out))
+        })
+    }
+/// Whether a tab is torn out of the strip.
+    #[napi(js_name = "torn_out", skip_typescript)]
+    pub fn m_torn_out(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("TabDragState")?;
+            let out = conv::ToJs::to_js(me.torn_out())?;
+            Ok(Raw(out))
+        })
+    }
+/// The tab under the pointer, by id.
+    #[napi(js_name = "hovered", skip_typescript)]
+    pub fn m_hovered(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("TabDragState")?;
+            let out = conv::ToJs::to_js(me.hovered().map(str::to_owned))?;
+            Ok(Raw(out))
+        })
+    }
+/// Drops a gesture in flight (a layout switch, a rename starting): the tab springs back.
+    #[napi(js_name = "cancel", skip_typescript)]
+    pub fn m_cancel(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("TabDragState")?;
+            let out = { me.cancel(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// The torn-out tab now shows in a window of its own that follows the pointer (on_tear_move):
+/// the strip stops drawing it until the gesture ends, or until it docks back into the strip.
+    #[napi(js_name = "hand_off", skip_typescript)]
+    pub fn m_hand_off(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("TabDragState")?;
+            let out = { me.hand_off(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Whether the torn-out tab shows in a window of its own ([Self::hand_off]).
+    #[napi(js_name = "handed_off", skip_typescript)]
+    pub fn m_handed_off(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("TabDragState")?;
+            let out = conv::ToJs::to_js(me.handed_off())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(getter, js_name = "phase", skip_typescript)]
+    pub fn g_phase(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TabDragState")?.phase.clone())?)))
+    }
+    #[napi(setter, js_name = "phase", skip_typescript)]
+    pub fn p_phase(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: rune_kit::shell::TabDragPhase = conv::arg(value.0, "phase")?;
+            self.slot.get_mut("TabDragState")?.phase = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "width_lock", skip_typescript)]
+    pub fn g_width_lock(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TabDragState")?.width_lock.clone())?)))
+    }
+    #[napi(setter, js_name = "width_lock", skip_typescript)]
+    pub fn p_width_lock(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: Option<f32> = conv::arg(value.0, "width_lock")?;
+            self.slot.get_mut("TabDragState")?.width_lock = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "suppress_click", skip_typescript)]
+    pub fn g_suppress_click(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TabDragState")?.suppress_click.clone())?)))
+    }
+    #[napi(setter, js_name = "suppress_click", skip_typescript)]
+    pub fn p_suppress_click(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: bool = conv::arg(value.0, "suppress_click")?;
+            self.slot.get_mut("TabDragState")?.suppress_click = value;
+            Ok(())
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__TabDragState>(self.slot.get("TabDragState")?.clone())?)))
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_shell__TabDragState>(<rune_kit::shell::TabDragState as Default>::default())?)))
+    }
+}
+
+/// One tab: `TabItem::new(id, title).avatar(..).status(..)`.
+#[napi(js_name = "kit_shell__TabItem")]
+pub struct W_kit_shell__TabItem {
+    pub(crate) slot: conv::Slot<rune_kit::shell::TabItem<'static, crate::state::JsState>>,
+}
+impl Class for W_kit_shell__TabItem {
+    type Inner = rune_kit::shell::TabItem<'static, crate::state::JsState>;
+    const NAME: &'static str = "TabItem";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_shell__TabItem { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::shell::TabItem<'static, crate::state::JsState> {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_shell__TabItem>(v)
+    }
+}
+impl ToJs for rune_kit::shell::TabItem<'static, crate::state::JsState> {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_shell__TabItem>(self)
+    }
+}
+#[napi]
+impl W_kit_shell__TabItem {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_id: Raw, a_title: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_id: String = conv::arg(a_id.0, "id")?;
+            let a_title: String = conv::arg(a_title.0, "title")?;
+            let out = conv::owned::<W_kit_shell__TabItem>(rune_kit::shell::TabItem::<'static, crate::state::JsState>::new(a_id, a_title))?;
+            Ok(Raw(out))
+        })
+    }
+/// A second, muted line under the title in a vertical strip (a project's name); the row
+/// grows to 45 points.
+    #[napi(js_name = "subtitle", skip_typescript)]
+    pub fn m_subtitle<'t>(&mut self, this: This<'t>, a_subtitle: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_subtitle: String = conv::arg(a_subtitle.0, "subtitle")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.subtitle(a_subtitle));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A 16 point leading element: a project's avatar.
+    #[napi(js_name = "avatar", skip_typescript)]
+    pub fn m_avatar<'t>(&mut self, this: This<'t>, a_avatar: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_avatar: rune::El = conv::arg(a_avatar.0, "avatar")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.avatar(a_avatar));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A 16 point leading icon in place of an avatar (a draft's pencil), muted until active.
+    #[napi(js_name = "icon", skip_typescript)]
+    pub fn m_icon<'t>(&mut self, this: This<'t>, a_icon: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_icon_i = conv::instance::<crate::gen::rune::W_Icon>(a_icon.0).map_err(|e| conv::err(format!("{}: {}", "icon", e.reason)))?;
+            let a_icon = a_icon_i.slot().leak("Icon")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.icon(a_icon));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Its status mark. The strip shows what it's given; OpenCode leaves the dots off the
+/// active tab and keeps the busy ring.
+    #[napi(js_name = "status", skip_typescript)]
+    pub fn m_status<'t>(&mut self, this: This<'t>, a_status: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_status: Option<rune_kit::shell::TabItemStatus> = conv::arg(a_status.0, "status")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.status(a_status));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Pinned tabs come first in the strip, keep [`TabOverflow`]'s `pinned_width` as icons,
+/// have no close button and reorder only among themselves.
+    #[napi(js_name = "pinned", skip_typescript)]
+    pub fn m_pinned<'t>(&mut self, this: This<'t>, a_pinned: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_pinned: bool = conv::arg(a_pinned.0, "pinned")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.pinned(a_pinned));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Whether the close button and a middle click close it (default true).
+    #[napi(js_name = "closable", skip_typescript)]
+    pub fn m_closable<'t>(&mut self, this: This<'t>, a_closable: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_closable: bool = conv::arg(a_closable.0, "closable")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.closable(a_closable));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Highlights the tab while its context menu is open.
+    #[napi(js_name = "marked", skip_typescript)]
+    pub fn m_marked<'t>(&mut self, this: This<'t>, a_marked: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_marked: bool = conv::arg(a_marked.0, "marked")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.marked(a_marked));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Raise it to ring a background tab once (900 ms), as a prompt arriving does.
+    #[napi(js_name = "pulse", skip_typescript)]
+    pub fn m_pulse<'t>(&mut self, this: This<'t>, a_seq: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_seq: u32 = conv::arg(a_seq.0, "seq")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.pulse(a_seq));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A field in place of the title while renaming in place. The tab doesn't drag meanwhile.
+    #[napi(js_name = "editor", skip_typescript)]
+    pub fn m_editor<'t>(&mut self, this: This<'t>, a_field: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_field: rune::El = conv::arg(a_field.0, "field")?;
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.editor(a_field));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Wraps the built tab: a context menu handler, a hover card's anchor.
+    #[napi(js_name = "decorate", skip_typescript)]
+    pub fn m_decorate<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: rune::El, c1: rune_kit::shell::TabDensity| -> rune::El { crate::js::scope(|| { { let v0 = conv::arg_js(c0); { let v1 = conv::arg_js(c1); let r = a_f_h.call(&[v0, v1]); conv::ret_el(r) } } }) };
+            let me = self.slot.take("TabItem")?;
+            self.slot.put(me.decorate(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+}
+
+impl FromJs for rune_kit::shell::TabItemStatus {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        let (tag, payload) = conv::enum_tag(v, "TabItemStatus")?;
+        match (tag.as_str(), payload) {
+            ("Busy", _) => Ok(rune_kit::shell::TabItemStatus::Busy),
+            ("Attention", _) => Ok(rune_kit::shell::TabItemStatus::Attention),
+            ("Unread", _) => Ok(rune_kit::shell::TabItemStatus::Unread),
+            ("Failed", _) => Ok(rune_kit::shell::TabItemStatus::Failed),
+            (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "TabItemStatus"))),
+        }
+    }
+}
+impl ToJs for rune_kit::shell::TabItemStatus {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        #[allow(unreachable_patterns)]
+        match self {
+            rune_kit::shell::TabItemStatus::Busy => conv::ToJs::to_js("Busy"),
+            rune_kit::shell::TabItemStatus::Attention => conv::ToJs::to_js("Attention"),
+            rune_kit::shell::TabItemStatus::Unread => conv::ToJs::to_js("Unread"),
+            rune_kit::shell::TabItemStatus::Failed => conv::ToJs::to_js("Failed"),
+            _ => Ok(conv::undefined()),
+        }
+    }
+}
+
+impl FromJs for rune_kit::shell::TabOrientation {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        let (tag, payload) = conv::enum_tag(v, "TabOrientation")?;
+        match (tag.as_str(), payload) {
+            ("Horizontal", _) => Ok(rune_kit::shell::TabOrientation::Horizontal),
+            ("Vertical", _) => Ok(rune_kit::shell::TabOrientation::Vertical),
+            (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "TabOrientation"))),
+        }
+    }
+}
+impl ToJs for rune_kit::shell::TabOrientation {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        #[allow(unreachable_patterns)]
+        match self {
+            rune_kit::shell::TabOrientation::Horizontal => conv::ToJs::to_js("Horizontal"),
+            rune_kit::shell::TabOrientation::Vertical => conv::ToJs::to_js("Vertical"),
+            _ => Ok(conv::undefined()),
+        }
+    }
+}
+
+impl FromJs for rune_kit::shell::TabOverflow {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        let (tag, payload) = conv::enum_tag(v, "TabOverflow")?;
+        match (tag.as_str(), payload) {
+            ("ShrinkThenScroll", Some(p)) => Ok(rune_kit::shell::TabOverflow::ShrinkThenScroll { min_width: conv::field::<f32>(p, "TabOverflow.ShrinkThenScroll", "min_width")?, max_width: conv::field::<f32>(p, "TabOverflow.ShrinkThenScroll", "max_width")?, pinned_width: conv::field::<f32>(p, "TabOverflow.ShrinkThenScroll", "pinned_width")?, fade_width: conv::field::<f32>(p, "TabOverflow.ShrinkThenScroll", "fade_width")? }),
+            ("Scroll", Some(p)) => Ok(rune_kit::shell::TabOverflow::Scroll { fade_width: conv::field::<f32>(p, "TabOverflow.Scroll", "fade_width")? }),
+            (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "TabOverflow"))),
+        }
+    }
+}
+impl ToJs for rune_kit::shell::TabOverflow {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        #[allow(unreachable_patterns)]
+        match self {
+            rune_kit::shell::TabOverflow::ShrinkThenScroll { min_width, max_width, pinned_width, fade_width } => { let o = conv::object(); conv::set(o, "min_width", min_width.to_js()?); conv::set(o, "max_width", max_width.to_js()?); conv::set(o, "pinned_width", pinned_width.to_js()?); conv::set(o, "fade_width", fade_width.to_js()?); Ok(conv::tagged("ShrinkThenScroll", o)) }
+            rune_kit::shell::TabOverflow::Scroll { fade_width } => { let o = conv::object(); conv::set(o, "fade_width", fade_width.to_js()?); Ok(conv::tagged("Scroll", o)) }
+            _ => Ok(conv::undefined()),
+        }
+    }
+}
+
+#[napi(js_name = "__C_kit_shell__TabOverflow_HORIZONTAL_DEFAULT", skip_typescript)]
+pub fn c_kit_shell__TabOverflow_HORIZONTAL_DEFAULT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::shell::TabOverflow::HORIZONTAL_DEFAULT.clone())?)))
+}
+
+#[napi(js_name = "__C_kit_shell__TabOverflow_VERTICAL_DEFAULT", skip_typescript)]
+pub fn c_kit_shell__TabOverflow_VERTICAL_DEFAULT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::shell::TabOverflow::VERTICAL_DEFAULT.clone())?)))
+}
+
+#[napi(js_name = "__E_kit_shell__TabOverflow_density_for", skip_typescript)]
+pub fn __e_kit_shell__taboverflow_density_for(a_width: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_width: f32 = conv::arg(a_width.0, "width")?;
+        
+        let out = conv::ToJs::to_js(rune_kit::shell::TabOverflow::density_for(a_width))?;
+        Ok(Raw(out))
+    })
+}
+
+/// The width of each unpinned tab when `unpinned` of them and `pinned` pinned ones share
+/// `available` points with `gap` between each: equal shares between the policy's bounds.
+/// Past the minimum the tabs overflow and the strip scrolls. `max_width` for `Scroll`.
+#[napi(js_name = "__E_kit_shell__TabOverflow_tab_width", skip_typescript)]
+pub fn __e_kit_shell__taboverflow_tab_width(a_self: Raw, a_available: Raw, a_unpinned: Raw, a_pinned: Raw, a_gap: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_available: f32 = conv::arg(a_available.0, "available")?;
+        let a_unpinned: usize = conv::arg(a_unpinned.0, "unpinned")?;
+        let a_pinned: usize = conv::arg(a_pinned.0, "pinned")?;
+        let a_gap: f32 = conv::arg(a_gap.0, "gap")?;
+        let mut me: rune_kit::shell::TabOverflow = conv::arg(a_self.0, "self")?;
+        let out = conv::ToJs::to_js(me.tab_width(a_available, a_unpinned, a_pinned, a_gap))?;
+        Ok(Raw(out))
+    })
+}
+
+impl FromJs for rune_kit::shell::TabReorder {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        if conv::kind(v) != napi::sys::ValueType::napi_object {
+            return Err(conv::err(concat!("expected a ", "TabReorder", " object")));
+        }
+        
+        Ok(rune_kit::shell::TabReorder {
+            id: conv::field::<String>(v, "TabReorder", "id")?,
+            from: conv::field::<usize>(v, "TabReorder", "from")?,
+            to: conv::field::<usize>(v, "TabReorder", "to")?,
+        })
+    }
+}
+impl ToJs for rune_kit::shell::TabReorder {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        let o = conv::records::new("kit_shell__TabReorder");
+        conv::set(o, "id", self.id.clone().to_js()?);
+        conv::set(o, "from", self.from.clone().to_js()?);
+        conv::set(o, "to", self.to.clone().to_js()?);
+        Ok(o)
+    }
+}
+impl conv::Record for rune_kit::shell::TabReorder {
+    fn write_back(self, o: conv::Value) -> conv::Result<()> {
+        conv::set(o, "id", self.id.clone().to_js()?);
+        conv::set(o, "from", self.from.clone().to_js()?);
+        conv::set(o, "to", self.to.clone().to_js()?);
+        Ok(())
+    }
+}
+
+/// A keyed strip of tabs: `TabStrip::new("tabs", TabOrientation::Horizontal).tabs(..)
+/// .active(..).drag_state(&s.drag, |s| &mut s.drag).on_select(..).build(&kit)`.
+///
+/// Horizontal tabs are 28 points tall with 6 between them, share the strip from 224 points
+/// down to 28 and then scroll; a 1.5 point separator stands between neighbours that aren't
+/// active or hovered. In a `.window_drag()` titlebar the gaps between tabs, the bands above and
+/// below them and the space after the trailing action move the window, as only the tabs and
+/// buttons take presses. Vertical tabs fill the row with 3 points between them, each reaching
+/// across half the gap so no press misses.
+///
+/// A press selects a horizontal tab at once; a vertical one selects on release, so dragging it
+/// leaves the selection where it is ([`Self::select_on_drag_start`]). Dragging 4 points along
+/// the strip reorders, Escape puts the tab back, and with [`Self::tear_out`] dragging it off
+/// the strip tears it out. A middle click closes a tab.
+#[napi(js_name = "kit_TabStrip")]
+pub struct W_kit_TabStrip {
+    pub(crate) slot: conv::Slot<rune_kit::TabStrip<'static, crate::state::JsState>>,
+}
+impl Class for W_kit_TabStrip {
+    type Inner = rune_kit::TabStrip<'static, crate::state::JsState>;
+    const NAME: &'static str = "TabStrip";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_TabStrip { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::TabStrip<'static, crate::state::JsState> {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_TabStrip>(v)
+    }
+}
+impl ToJs for rune_kit::TabStrip<'static, crate::state::JsState> {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_TabStrip>(self)
+    }
+}
+#[napi]
+impl W_kit_TabStrip {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_key: Raw, a_orientation: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_key: String = conv::arg(a_key.0, "key")?;
+            let a_orientation: rune_kit::shell::TabOrientation = conv::arg(a_orientation.0, "orientation")?;
+            let out = conv::owned::<W_kit_TabStrip>(rune_kit::TabStrip::<'static, crate::state::JsState>::new(a_key, a_orientation))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "tabs", skip_typescript)]
+    pub fn m_tabs<'t>(&mut self, this: This<'t>, a_tabs: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_tabs: Vec<rune_kit::shell::TabItem<'static, crate::state::JsState>> = conv::arg(a_tabs.0, "tabs")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.tabs(a_tabs));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The selected tab, by id.
+    #[napi(js_name = "active", skip_typescript)]
+    pub fn m_active<'t>(&mut self, this: This<'t>, a_active_id: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_active_id: Option<&'static str> = conv::arg(a_active_id.0, "active_id")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.active(a_active_id));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The points a horizontal strip has, trailing action included: `cx.layout_size(key)`'s
+/// width (the strip's root grows into the space it's given). It sets the tabs' shared
+/// width and density; without it they take their widest.
+    #[napi(js_name = "viewport_width", skip_typescript)]
+    pub fn m_viewport_width<'t>(&mut self, this: This<'t>, a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_width: Option<f32> = conv::arg(a_width.0, "width")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.viewport_width(a_width));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The UI zoom the strip draws at (default 1), so drags convert from window points.
+    #[napi(js_name = "zoom", skip_typescript)]
+    pub fn m_zoom<'t>(&mut self, this: This<'t>, a_zoom: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_zoom: f32 = conv::arg(a_zoom.0, "zoom")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.zoom(a_zoom));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The overflow policy (default [`TabOverflow::HORIZONTAL_DEFAULT`] or
+/// [`TabOverflow::VERTICAL_DEFAULT`]).
+    #[napi(js_name = "overflow", skip_typescript)]
+    pub fn m_overflow<'t>(&mut self, this: This<'t>, a_policy: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_policy: rune_kit::shell::TabOverflow = conv::arg(a_policy.0, "policy")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.overflow(a_policy));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points between tabs (default 6 horizontal, 3 vertical).
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.gap(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A tab's height (default 28).
+    #[napi(js_name = "row_height", skip_typescript)]
+    pub fn m_row_height<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.row_height(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Whether a press selects the tab at once, so a drag selects it too (default true
+/// horizontal), or the release does and a drag leaves the selection (default false vertical).
+    #[napi(js_name = "select_on_drag_start", skip_typescript)]
+    pub fn m_select_on_drag_start<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.select_on_drag_start(a_on));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Lets a drag across the strip tear a tab out ([`Self::on_tear_out`]). Off by default.
+    #[napi(js_name = "tear_out", skip_typescript)]
+    pub fn m_tear_out<'t>(&mut self, this: This<'t>, a_spec: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_spec: Option<rune_kit::shell::TearOutSpec> = conv::arg(a_spec.0, "spec")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.tear_out(a_spec));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Gives each tab `El::matched("{prefix}-{id}")`, so a tab flies between strips when the
+/// layout swaps one for another.
+    #[napi(js_name = "matched_prefix", skip_typescript)]
+    pub fn m_matched_prefix<'t>(&mut self, this: This<'t>, a_prefix: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_prefix: Option<&'static str> = conv::arg(a_prefix.0, "prefix")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.matched_prefix(a_prefix));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The spring tabs step aside on during a drag (default `SNAP`, 0.25 s). Drops, tabs opening and
+/// closing, and widths changing reflow on `REFLOW`.
+    #[napi(js_name = "reorder_spring", skip_typescript)]
+    pub fn m_reorder_spring<'t>(&mut self, this: This<'t>, a_spring: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_spring: rune_motion::Spring = conv::arg(a_spring.0, "spring")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.reorder_spring(a_spring));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// An element right after the last horizontal tab (the new-tab button), outside the
+/// scrolling, with the space past it left bare.
+    #[napi(js_name = "trailing_action", skip_typescript)]
+    pub fn m_trailing_action<'t>(&mut self, this: This<'t>, a_action: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_action: rune::El = conv::arg(a_action.0, "action")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.trailing_action(a_action));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The trailing action's width, which the tabs leave it (default 28, a large icon button).
+    #[napi(js_name = "trailing_width", skip_typescript)]
+    pub fn m_trailing_width<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.trailing_width(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The strip's gestures, kept in the app's state; `access` finds them there. Without it the
+/// tabs select and close but don't drag, and closing doesn't lock their width.
+    #[napi(js_name = "drag_state", skip_typescript)]
+    pub fn m_drag_state<'t>(&mut self, this: This<'t>, a_state: Raw, a_access: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_state_i = conv::instance::<crate::gen::kit::W_kit_shell__TabDragState>(a_state.0).map_err(|e| conv::err(format!("{}: {}", "state", e.reason)))?;
+            let a_state = a_state_i.slot().get("TabDragState")?;
+            let a_access = crate::gen::tramp::t8_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.drag_state(a_state, a_access));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The colour under the strip (default `bg_deep`), which a dragged tab and the close slot
+/// paint opaque.
+    #[napi(js_name = "fill", skip_typescript)]
+    pub fn m_fill<'t>(&mut self, this: This<'t>, a_color: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.fill(a_color));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The close button's glyph (default the kit's close glyph).
+    #[napi(js_name = "close_icon", skip_typescript)]
+    pub fn m_close_icon<'t>(&mut self, this: This<'t>, a_icon: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let mut a_icon_i = conv::instance::<crate::gen::rune::W_Icon>(a_icon.0).map_err(|e| conv::err(format!("{}: {}", "icon", e.reason)))?;
+            let a_icon = a_icon_i.slot().leak("Icon")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.close_icon(a_icon));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// What a busy tab shows (default the kit's spinner at 14 points).
+    #[napi(js_name = "busy_indicator", skip_typescript)]
+    pub fn m_busy_indicator<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f = crate::gen::tramp::t9_register(a_f.0).map_err(|e| conv::err(format!("{}: {}", "f", e.reason)))?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.busy_indicator(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The tab list's accessible name (default "Tabs").
+    #[napi(js_name = "label", skip_typescript)]
+    pub fn m_label<'t>(&mut self, this: This<'t>, a_label: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_label: String = conv::arg(a_label.0, "label")?;
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.label(a_label));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "on_select", skip_typescript)]
+    pub fn m_on_select<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &str, c2: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); conv::lend::<crate::gen::rune::W_Tx, _>(c2, |v2| { let r = a_f_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () }) } } }) };
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.on_select(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The close button, a middle click.
+    #[napi(js_name = "on_close", skip_typescript)]
+    pub fn m_on_close<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &str, c2: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); conv::lend::<crate::gen::rune::W_Tx, _>(c2, |v2| { let r = a_f_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () }) } } }) };
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.on_close(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "on_double_click", skip_typescript)]
+    pub fn m_on_double_click<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &str, c2: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); conv::lend::<crate::gen::rune::W_Tx, _>(c2, |v2| { let r = a_f_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () }) } } }) };
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.on_double_click(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The pointer entering (`true`) and leaving a tab.
+    #[napi(js_name = "on_hover", skip_typescript)]
+    pub fn m_on_hover<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: &str, c2: bool, c3: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); { let v2 = conv::arg_js(c2); conv::lend::<crate::gen::rune::W_Tx, _>(c3, |v3| { let r = a_f_h.call(&[v0, v1, v2, v3]); crate::state::replace_from(c0, r); () }) } } } }) };
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.on_hover(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "on_reorder", skip_typescript)]
+    pub fn m_on_reorder<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: rune_kit::shell::TabReorder, c2: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); conv::lend::<crate::gen::rune::W_Tx, _>(c2, |v2| { let r = a_f_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () }) } } }) };
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.on_reorder(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "on_tear_out", skip_typescript)]
+    pub fn m_on_tear_out<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: rune_kit::shell::TabTearOut, c2: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); conv::lend::<crate::gen::rune::W_Tx, _>(c2, |v2| { let r = a_f_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () }) } } }) };
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.on_tear_out(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Each move of a torn-out tab, and its return to the strip, while the button is down.
+    #[napi(js_name = "on_tear_move", skip_typescript)]
+    pub fn m_on_tear_move<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: rune_kit::shell::TabTearMove, c2: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); conv::lend::<crate::gen::rune::W_Tx, _>(c2, |v2| { let r = a_f_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () }) } } }) };
+            let me = self.slot.take("TabStrip")?;
+            self.slot.put(me.on_tear_move(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The strip. A torn-out tab stays inside the strip's clip; [`Self::build_layered`] lifts it out.
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("TabStrip")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+/// The strip, with a torn-out tab floating over the window in `layer`, which the view mounts
+/// at its root with [`crate::root`] as it does popovers and menus.
+    #[napi(js_name = "build_layered", skip_typescript)]
+    pub fn m_build_layered(&mut self, a_k: Raw, a_layer: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let a_layer_raw = a_layer.0;
+            let mut a_layer: Vec<rune::El> = conv::arg(a_layer_raw, "layer")?;
+            let me = self.slot.take("TabStrip")?;
+            let out = conv::ToJs::to_js(me.build_layered(a_k, &mut a_layer))?;
+            conv::write_array(a_layer_raw, a_layer)?;
+            Ok(Raw(out))
+        })
+    }
+}
+
+impl FromJs for rune_kit::shell::TabTearMove {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        if conv::kind(v) != napi::sys::ValueType::napi_object {
+            return Err(conv::err(concat!("expected a ", "TabTearMove", " object")));
+        }
+        
+        Ok(rune_kit::shell::TabTearMove {
+            id: conv::field::<String>(v, "TabTearMove", "id")?,
+            index: conv::field::<usize>(v, "TabTearMove", "index")?,
+            torn: conv::field::<bool>(v, "TabTearMove", "torn")?,
+            grab: conv::field::<[f32; 2]>(v, "TabTearMove", "grab")?,
+            window_point: conv::field::<[f32; 2]>(v, "TabTearMove", "window_point")?,
+            screen_point: conv::field::<Option<(i32, i32,)>>(v, "TabTearMove", "screen_point")?,
+        })
+    }
+}
+impl ToJs for rune_kit::shell::TabTearMove {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        let o = conv::records::new("kit_shell__TabTearMove");
+        conv::set(o, "id", self.id.clone().to_js()?);
+        conv::set(o, "index", self.index.clone().to_js()?);
+        conv::set(o, "torn", self.torn.clone().to_js()?);
+        conv::set(o, "grab", self.grab.clone().to_js()?);
+        conv::set(o, "window_point", self.window_point.clone().to_js()?);
+        conv::set(o, "screen_point", self.screen_point.clone().to_js()?);
+        Ok(o)
+    }
+}
+impl conv::Record for rune_kit::shell::TabTearMove {
+    fn write_back(self, o: conv::Value) -> conv::Result<()> {
+        conv::set(o, "id", self.id.clone().to_js()?);
+        conv::set(o, "index", self.index.clone().to_js()?);
+        conv::set(o, "torn", self.torn.clone().to_js()?);
+        conv::set(o, "grab", self.grab.clone().to_js()?);
+        conv::set(o, "window_point", self.window_point.clone().to_js()?);
+        conv::set(o, "screen_point", self.screen_point.clone().to_js()?);
+        Ok(())
+    }
+}
+
+impl FromJs for rune_kit::shell::TabTearOut {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        if conv::kind(v) != napi::sys::ValueType::napi_object {
+            return Err(conv::err(concat!("expected a ", "TabTearOut", " object")));
+        }
+        
+        Ok(rune_kit::shell::TabTearOut {
+            id: conv::field::<String>(v, "TabTearOut", "id")?,
+            index: conv::field::<usize>(v, "TabTearOut", "index")?,
+            offset: conv::field::<[f32; 2]>(v, "TabTearOut", "offset")?,
+            window_point: conv::field::<Option<[f32; 2]>>(v, "TabTearOut", "window_point")?,
+            screen_point: conv::field::<Option<(i32, i32,)>>(v, "TabTearOut", "screen_point")?,
+        })
+    }
+}
+impl ToJs for rune_kit::shell::TabTearOut {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        let o = conv::records::new("kit_shell__TabTearOut");
+        conv::set(o, "id", self.id.clone().to_js()?);
+        conv::set(o, "index", self.index.clone().to_js()?);
+        conv::set(o, "offset", self.offset.clone().to_js()?);
+        conv::set(o, "window_point", self.window_point.clone().to_js()?);
+        conv::set(o, "screen_point", self.screen_point.clone().to_js()?);
+        Ok(o)
+    }
+}
+impl conv::Record for rune_kit::shell::TabTearOut {
+    fn write_back(self, o: conv::Value) -> conv::Result<()> {
+        conv::set(o, "id", self.id.clone().to_js()?);
+        conv::set(o, "index", self.index.clone().to_js()?);
+        conv::set(o, "offset", self.offset.clone().to_js()?);
+        conv::set(o, "window_point", self.window_point.clone().to_js()?);
+        conv::set(o, "screen_point", self.screen_point.clone().to_js()?);
+        Ok(())
+    }
+}
+
+impl FromJs for rune_kit::shell::TearOutSpec {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        if conv::kind(v) != napi::sys::ValueType::napi_object {
+            return Err(conv::err(concat!("expected a ", "TearOutSpec", " object")));
+        }
+        let d = <rune_kit::shell::TearOutSpec as Default>::default();
+        Ok(rune_kit::shell::TearOutSpec {
+            detach_distance: conv::field_or::<f32>(v, "TearOutSpec", "detach_distance", || d.detach_distance.clone())?,
+            reattach_distance: conv::field_or::<f32>(v, "TearOutSpec", "reattach_distance", || d.reattach_distance.clone())?,
+        })
+    }
+}
+impl ToJs for rune_kit::shell::TearOutSpec {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        let o = conv::records::new("kit_shell__TearOutSpec");
+        conv::set(o, "detach_distance", self.detach_distance.clone().to_js()?);
+        conv::set(o, "reattach_distance", self.reattach_distance.clone().to_js()?);
+        Ok(o)
+    }
+}
+impl conv::Record for rune_kit::shell::TearOutSpec {
+    fn write_back(self, o: conv::Value) -> conv::Result<()> {
+        conv::set(o, "detach_distance", self.detach_distance.clone().to_js()?);
+        conv::set(o, "reattach_distance", self.reattach_distance.clone().to_js()?);
+        Ok(())
+    }
+}
+
+/// A titlebar the app draws: leading controls, a [`TabStrip`](super::TabStrip), and trailing
+/// controls, in a `.window_drag()` band that keeps clear of the traffic lights on macOS and
+/// the caption buttons on Windows.
+/// `WindowTitlebar::from_insets(cx.chrome_insets(), zoom).leading(menu).tabs(strip).build(&kit)`.
+///
+/// Its buttons and tabs take their presses; the gaps between tabs, the bands above and below
+/// them and the empty stretch after the strip move the window, double-click to zoom it and, on
+/// Windows, right-click for the window menu.
+#[napi(js_name = "kit_WindowTitlebar")]
+pub struct W_kit_WindowTitlebar {
+    pub(crate) slot: conv::Slot<rune_kit::WindowTitlebar>,
+}
+impl Class for W_kit_WindowTitlebar {
+    type Inner = rune_kit::WindowTitlebar;
+    const NAME: &'static str = "WindowTitlebar";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_WindowTitlebar { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::WindowTitlebar {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_WindowTitlebar>(v)
+    }
+}
+impl ToJs for rune_kit::WindowTitlebar {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_WindowTitlebar>(self)
+    }
+}
+#[napi]
+impl W_kit_WindowTitlebar {
+/// Sized from the window's insets at UI zoom `zoom` (1 unscaled): the band is as tall as
+/// the window's titlebar and reserves `insets.leading / zoom` and `insets.trailing / zoom`.
+    #[napi(js_name = "from_insets", skip_typescript)]
+    pub fn s_from_insets(a_insets: Raw, a_zoom: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_insets: rune::ChromeInsets = conv::arg(a_insets.0, "insets")?;
+            let a_zoom: f32 = conv::arg(a_zoom.0, "zoom")?;
+            let out = conv::owned::<W_kit_WindowTitlebar>(rune_kit::WindowTitlebar::from_insets(a_insets, a_zoom))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "key", skip_typescript)]
+    pub fn m_key<'t>(&mut self, this: This<'t>, a_key: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_key: String = conv::arg(a_key.0, "key")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.key(a_key));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The band's height in points, in place of the insets'.
+    #[napi(js_name = "height", skip_typescript)]
+    pub fn m_height<'t>(&mut self, this: This<'t>, a_logical_height: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_logical_height: f32 = conv::arg(a_logical_height.0, "logical_height")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.height(a_logical_height));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points above the controls (8 on macOS, whose 28 point row sits low in a 36 point band).
+    #[napi(js_name = "top_padding", skip_typescript)]
+    pub fn m_top_padding<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.top_padding(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points past the leading inset (default 14; 10 on macOS, 9 beside side tabs on Windows).
+    #[napi(js_name = "leading_padding", skip_typescript)]
+    pub fn m_leading_padding<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.leading_padding(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points before the trailing inset (default 12).
+    #[napi(js_name = "trailing_padding", skip_typescript)]
+    pub fn m_trailing_padding<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.trailing_padding(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Points between items (default 6).
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.gap(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The band's colour (default `bg_deep`).
+    #[napi(js_name = "fill", skip_typescript)]
+    pub fn m_fill<'t>(&mut self, this: This<'t>, a_color: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.fill(a_color));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "leading", skip_typescript)]
+    pub fn m_leading<'t>(&mut self, this: This<'t>, a_el: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_el: rune::El = conv::arg(a_el.0, "el")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.leading(a_el));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A horizontal strip, which takes the space between the sides. Its trailing action hugs the
+/// last tab, and the rest of its space stays bare, moving the window.
+    #[napi(js_name = "tabs", skip_typescript)]
+    pub fn m_tabs<'t>(&mut self, this: This<'t>, a_strip: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_strip: rune::El = conv::arg(a_strip.0, "strip")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.tabs(a_strip));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "trailing", skip_typescript)]
+    pub fn m_trailing<'t>(&mut self, this: This<'t>, a_el: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_el: rune::El = conv::arg(a_el.0, "el")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            self.slot.put(me.trailing(a_el));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("WindowTitlebar")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+}
+
+/// A toolbar: `Toolbar::new().leading(..).title("..").trailing(..).build(&kit)`. The band is a
+/// window drag region (buttons in it keep their presses) and its centre slot sits in the
+/// middle of the band whatever the sides hold.
+#[napi(js_name = "kit_Toolbar")]
+pub struct W_kit_Toolbar {
+    pub(crate) slot: conv::Slot<rune_kit::Toolbar>,
+}
+impl Class for W_kit_Toolbar {
+    type Inner = rune_kit::Toolbar;
+    const NAME: &'static str = "Toolbar";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_Toolbar { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_kit::Toolbar {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_Toolbar>(v)
+    }
+}
+impl ToJs for rune_kit::Toolbar {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_Toolbar>(self)
+    }
+}
+#[napi]
+impl W_kit_Toolbar {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new() -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let out = conv::owned::<W_kit_Toolbar>(rune_kit::Toolbar::new())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "leading", skip_typescript)]
+    pub fn m_leading<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Toolbar")?;
+            self.slot.put(me.leading(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "trailing", skip_typescript)]
+    pub fn m_trailing<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Toolbar")?;
+            self.slot.put(me.trailing(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The centre slot. Replaces a [`Toolbar::title`].
+    #[napi(js_name = "center", skip_typescript)]
+    pub fn m_center<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_e: rune::El = conv::arg(a_e.0, "e")?;
+            let me = self.slot.take("Toolbar")?;
+            self.slot.put(me.center(a_e));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A centred title in the kit's medium UI type.
+    #[napi(js_name = "title", skip_typescript)]
+    pub fn m_title<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_t: String = conv::arg(a_t.0, "t")?;
+            let me = self.slot.take("Toolbar")?;
+            self.slot.put(me.title(a_t));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Backs the band with a system material (macOS blurs what's behind a transparent
+/// window). Elsewhere, and headless, the kit's base background draws instead.
+    #[napi(js_name = "material", skip_typescript)]
+    pub fn m_material<'t>(&mut self, this: This<'t>, a_m: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_m: rune::SystemMaterial = conv::arg(a_m.0, "m")?;
+            let me = self.slot.take("Toolbar")?;
+            self.slot.put(me.material(a_m));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "build", skip_typescript)]
+    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let me = self.slot.take("Toolbar")?;
+            let out = conv::ToJs::to_js(me.build(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "default", skip_typescript)]
+    pub fn s___default() -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_Toolbar>(<rune_kit::Toolbar as Default>::default())?)))
     }
 }
 
@@ -2523,7 +5512,9 @@ impl W_kit_Dialog {
     }
 }
 
-/// The v2 loader: a faint ring with a third-arc (`Loader`), 16 points by default.
+/// The v2 loader, for loading that isn't AI activity (`Loader`): a 2-unit ring at 0.2 with a
+/// third of it, round-capped from 12 o'clock, turning once every 900 ms; it stops at 12 o'clock
+/// under reduced motion. 16 points by default, in `icon_muted`.
 #[napi(js_name = "kit_Loader")]
 pub struct W_kit_Loader {
     pub(crate) slot: conv::Slot<rune_kit::Loader>,
@@ -2564,6 +5555,16 @@ impl W_kit_Loader {
             let a_s: f32 = conv::arg(a_s.0, "s")?;
             let me = self.slot.take("Loader")?;
             self.slot.put(me.size(a_s));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The ring's ink (CSS `currentColor`); `icon_muted` by default.
+    #[napi(js_name = "color", skip_typescript)]
+    pub fn m_color<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            let me = self.slot.take("Loader")?;
+            self.slot.put(me.color(a_c));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -2715,7 +5716,13 @@ impl W_kit_ProgressCircle {
     }
 }
 
-/// The 4×4 pulse grid: corners hidden, outer squares dim (0.15), inner squares 0.4.
+/// Soft Radar, the activity spinner (`Spinner`, `spinner-radar.ts`): a 5×5 grid of 2-unit dots
+/// on a 3-unit pitch in a 16-unit box, whose lit head sweeps clockwise around each square ring
+/// every 1.8 s, leaving a fading trail, with the centre dot steady at 0.64. Unlit dots rest at
+/// 0.2. Every spinner shares the wall clock's phase, so all of them on screen sweep together, and
+/// under reduced motion each dot holds the pose a fifth of the way into its loop, as Desktop's
+/// do. 18 points by default; Desktop's `ActivityRing` is 14 and its session progress indicator 16,
+/// both in `icon_muted`.
 #[napi(js_name = "kit_Spinner")]
 pub struct W_kit_Spinner {
     pub(crate) slot: conv::Slot<rune_kit::Spinner>,
@@ -2759,6 +5766,7 @@ impl W_kit_Spinner {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// The dots' ink (CSS `currentColor`); `std_text` by default.
     #[napi(js_name = "color", skip_typescript)]
     pub fn m_color<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -3015,7 +6023,7 @@ impl W_kit_List {
     #[napi(js_name = "on_search_edit", skip_typescript)]
     pub fn m_on_search_edit<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
-            let a_f = crate::gen::tramp::t5_register(a_f.0).map_err(|e| conv::err(format!("{}: {}", "f", e.reason)))?;
+            let a_f = crate::gen::tramp::t6_register(a_f.0).map_err(|e| conv::err(format!("{}: {}", "f", e.reason)))?;
             let me = self.slot.take("List")?;
             self.slot.put(me.on_search_edit(a_f));
             Ok(Raw(napi::JsValue::value(&this).value))
@@ -3193,6 +6201,37 @@ pub fn __e_kit_case_sensitive() -> napi::Result<Raw> {
     })
 }
 
+/// A code block [`Markdown::code_frame`] is wrapping.
+#[napi(js_name = "kit_CodeFrame")]
+pub struct W_kit_CodeFrame {
+    pub(crate) slot: conv::Slot<rune_kit::CodeFrame<'static>>,
+}
+impl Class for W_kit_CodeFrame {
+    type Inner = rune_kit::CodeFrame<'static>;
+    const NAME: &'static str = "CodeFrame";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_CodeFrame { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+#[napi]
+impl W_kit_CodeFrame {
+    #[napi(getter, js_name = "index", skip_typescript)]
+    pub fn g_index(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("CodeFrame")?.index.clone())?)))
+    }
+    #[napi(getter, js_name = "source", skip_typescript)]
+    pub fn g_source(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("CodeFrame")?.source.to_owned())?)))
+    }
+    #[napi(getter, js_name = "open", skip_typescript)]
+    pub fn g_open(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("CodeFrame")?.open.clone())?)))
+    }
+}
+
 /// A diagram [`Markdown::diagram_frame`] is wrapping.
 #[napi(js_name = "kit_DiagramFrame")]
 pub struct W_kit_DiagramFrame {
@@ -3213,6 +6252,10 @@ impl W_kit_DiagramFrame {
     #[napi(getter, js_name = "index", skip_typescript)]
     pub fn g_index(&self) -> napi::Result<Raw> {
         conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("DiagramFrame")?.index.clone())?)))
+    }
+    #[napi(getter, js_name = "source", skip_typescript)]
+    pub fn g_source(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("DiagramFrame")?.source.to_owned())?)))
     }
     #[napi(getter, js_name = "open", skip_typescript)]
     pub fn g_open(&self) -> napi::Result<Raw> {
@@ -3377,6 +6420,33 @@ impl W_kit_Highlight {
     }
 }
 
+/// An image [`Markdown::image_frame`] is wrapping.
+#[napi(js_name = "kit_ImageFrame")]
+pub struct W_kit_ImageFrame {
+    pub(crate) slot: conv::Slot<rune_kit::ImageFrame<'static>>,
+}
+impl Class for W_kit_ImageFrame {
+    type Inner = rune_kit::ImageFrame<'static>;
+    const NAME: &'static str = "ImageFrame";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_ImageFrame { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+#[napi]
+impl W_kit_ImageFrame {
+    #[napi(getter, js_name = "src", skip_typescript)]
+    pub fn g_src(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("ImageFrame")?.src.to_owned())?)))
+    }
+    #[napi(getter, js_name = "alt", skip_typescript)]
+    pub fn g_alt(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("ImageFrame")?.alt.to_owned())?)))
+    }
+}
+
 /// Markdown source as an element. See the module docs for cost and keys.
 #[napi(js_name = "kit_Markdown")]
 pub struct W_kit_Markdown {
@@ -3413,6 +6483,46 @@ impl W_kit_Markdown {
             let a_case: rune_kit::Case = conv::arg(a_case.0, "case")?;
             let out = conv::ToJs::to_js(rune_kit::Markdown::find(&a_src, &a_query, a_case))?;
             Ok(Raw(out))
+        })
+    }
+/// The picture for an image's source as written (`![alt](src)`): a decoded or decoding
+/// [`Image`] from the app's cache, or `None` when it has none. Until it decodes, and without
+/// one, the image shows Chromium's broken-image glyph and its alt text, as a web page does
+/// for an `<img>` with no picture. Without this, every image does.
+    #[napi(js_name = "images", skip_typescript)]
+    pub fn m_images<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &str| -> Option<rune::Image> { crate::js::scope(|| { { let v0 = conv::arg_js(c0); let r = a_f_h.call(&[v0]); conv::ret_or(r, || None) } }) };
+            let me = self.slot.take("Markdown")?;
+            self.slot.put(me.images(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Draws `f(image, frame)` in place of each image that shows its picture, so an app can
+/// open it larger on a press (`markdown.css`'s `cursor: zoom-in`, a button named by its alt
+/// text) or key it for a flight into a viewer.
+    #[napi(js_name = "image_frame", skip_typescript)]
+    pub fn m_image_frame<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: rune::El, c1: &rune_kit::ImageFrame| -> rune::El { crate::js::scope(|| { { let v0 = conv::arg_js(c0); conv::lend_ref::<crate::gen::kit::W_kit_ImageFrame, _>(unsafe { std::mem::transmute::<&rune_kit::ImageFrame, &rune_kit::ImageFrame<'static>>(c1) }, |v1| { let r = a_f_h.call(&[v0, v1]); conv::ret_el(r) }) } }) };
+            let me = self.slot.take("Markdown")?;
+            self.slot.put(me.image_frame(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The image to draw before a link to `url` in place of [`MarkdownStyle::link_icons`]'
+/// globe: the site's favicon, once the app has fetched and decoded it (`None` until then,
+/// and for sites it won't ask). GitHub links keep GitHub's mark.
+    #[napi(js_name = "link_favicon", skip_typescript)]
+    pub fn m_link_favicon<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &str| -> Option<rune::Pixels> { crate::js::scope(|| { { let v0 = conv::arg_js(c0); let r = a_f_h.call(&[v0]); conv::ret_or(r, || None) } }) };
+            let me = self.slot.take("Markdown")?;
+            self.slot.put(me.link_favicon(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
 /// Called with a link's destination when it is clicked, or pressed with Enter or Space
@@ -3664,6 +6774,23 @@ impl W_kit_Markdown {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// Draws `f(card, frame)` in place of each code block's card, so an app can put its own
+/// controls on it (a Copy button). Diagrams that draw as their source and diff fences don't
+/// come here.
+///
+/// ```ignore
+/// Markdown::new(src).code_frame(|card, c| col().key(format!("code-{}", c.index)).child(card).child(copy_button(c.source)))
+/// ```
+    #[napi(js_name = "code_frame", skip_typescript)]
+    pub fn m_code_frame<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: rune::El, c1: &rune_kit::CodeFrame| -> rune::El { crate::js::scope(|| { { let v0 = conv::arg_js(c0); conv::lend_ref::<crate::gen::kit::W_kit_CodeFrame, _>(unsafe { std::mem::transmute::<&rune_kit::CodeFrame, &rune_kit::CodeFrame<'static>>(c1) }, |v1| { let r = a_f_h.call(&[v0, v1]); conv::ret_el(r) }) } }) };
+            let me = self.slot.take("Markdown")?;
+            self.slot.put(me.code_frame(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
     #[napi(js_name = "build", skip_typescript)]
     pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -3716,6 +6843,24 @@ impl ToJs for rune_kit::MarkdownStyle {
 }
 #[napi]
 impl W_kit_MarkdownStyle {
+/// An icon `size` points square, `gap` points before the text, ahead of every link to an
+/// `http` or `https` page: a globe in the link's colour, GitHub's mark for github.com, or the
+/// site's favicon from [`Markdown::link_favicon`]. OpenCode's markdown sets them 14 and 4.
+/// None by default.
+    #[napi(js_name = "link_icons", skip_typescript)]
+    pub fn m_link_icons<'t>(&mut self, this: This<'t>, a_size: Raw, a_gap: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_size: f32 = conv::arg(a_size.0, "size")?;
+            let a_gap: f32 = conv::arg(a_gap.0, "gap")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().link_icons(a_size, a_gap))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.link_icons(a_size, a_gap));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
     #[napi(js_name = "from_kit", skip_typescript)]
     pub fn s_from_kit(a_k: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -3861,6 +7006,126 @@ impl W_kit_MarkdownStyle {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// A block quote's rule, `width` points wide in `rule`, `pad` points before its text, and
+/// the text's colour (2, 12 and the body text colour by default).
+    #[napi(js_name = "quote", skip_typescript)]
+    pub fn m_quote<'t>(&mut self, this: This<'t>, a_rule: Raw, a_width: Raw, a_pad: Raw, a_text: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_rule: rune::Color = conv::arg(a_rule.0, "rule")?;
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let a_pad: f32 = conv::arg(a_pad.0, "pad")?;
+            let a_text: rune::Color = conv::arg(a_text.0, "text")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().quote(a_rule, a_width, a_pad, a_text))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.quote(a_rule, a_width, a_pad, a_text));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The colour of a link under the pointer, underlined in it (the link colour by default).
+    #[napi(js_name = "link_hover", skip_typescript)]
+    pub fn m_link_hover<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().link_hover(a_c))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.link_hover(a_c));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Code blocks' text where the highlighter leaves it uncoloured (the body text colour by
+/// default).
+    #[napi(js_name = "code_block_text", skip_typescript)]
+    pub fn m_code_block_text<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().code_block_text(a_c))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.code_block_text(a_c));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Fences in a shell language (`bash`, `sh`, `shell`, `zsh`, `fish`, `console`,
+/// `terminal`) on `fill` with a `border`, their text all in `text` with no syntax colours,
+/// as a web page that styles a command apart from code.
+    #[napi(js_name = "shell_code", skip_typescript)]
+    pub fn m_shell_code<'t>(&mut self, this: This<'t>, a_fill: Raw, a_border: Raw, a_text: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_fill: rune::Color = conv::arg(a_fill.0, "fill")?;
+            let a_border: rune::Color = conv::arg(a_border.0, "border")?;
+            let a_text: rune::Color = conv::arg(a_text.0, "text")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().shell_code(a_fill, a_border, a_text))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.shell_code(a_fill, a_border, a_text));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// List markers end where the item's text starts, numbers and bullets alike, as CSS's
+/// `list-style-position: outside` puts them, rather than centred in the marker column.
+    #[napi(js_name = "list_markers_outside", skip_typescript)]
+    pub fn m_list_markers_outside<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().list_markers_outside(a_on))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.list_markers_outside(a_on));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The marker column of a list inside a list item: `bullets` for bulleted lists and
+/// `numbers` for numbered ones (the top level's [`Self::list`] indent by default).
+    #[napi(js_name = "list_nested_indent", skip_typescript)]
+    pub fn m_list_nested_indent<'t>(&mut self, this: This<'t>, a_bullets: Raw, a_numbers: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_bullets: f32 = conv::arg(a_bullets.0, "bullets")?;
+            let a_numbers: f32 = conv::arg(a_numbers.0, "numbers")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().list_nested_indent(a_bullets, a_numbers))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.list_nested_indent(a_bullets, a_numbers));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Task list checkboxes: `size` points square with corner `radius`, their left edge `left`
+/// points into the marker column and their top `top` below the item's (`None`: centred on
+/// its first line). Checked, they fill `fill_on` with a `mark` in it; unchecked, they fill
+/// `fill_off` inside a `border_off` outline. 16 points, 8 in and centred by default.
+    #[napi(js_name = "task_checkbox", skip_typescript)]
+    pub fn m_task_checkbox<'t>(&mut self, this: This<'t>, a_size: Raw, a_radius: Raw, a_left: Raw, a_top: Raw, a_fill_on: Raw, a_mark: Raw, a_fill_off: Raw, a_border_off: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_size: f32 = conv::arg(a_size.0, "size")?;
+            let a_radius: f32 = conv::arg(a_radius.0, "radius")?;
+            let a_left: f32 = conv::arg(a_left.0, "left")?;
+            let a_top: Option<f32> = conv::arg(a_top.0, "top")?;
+            let a_fill_on: rune::Color = conv::arg(a_fill_on.0, "fill_on")?;
+            let a_mark: rune::Color = conv::arg(a_mark.0, "mark")?;
+            let a_fill_off: rune::Color = conv::arg(a_fill_off.0, "fill_off")?;
+            let a_border_off: rune::Color = conv::arg(a_border_off.0, "border_off")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().task_checkbox(a_size, a_radius, a_left, a_top, a_fill_on, a_mark, a_fill_off, a_border_off))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.task_checkbox(a_size, a_radius, a_left, a_top, a_fill_on, a_mark, a_fill_off, a_border_off));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
     #[napi(js_name = "rule", skip_typescript)]
     pub fn m_rule<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -3888,7 +7153,8 @@ impl W_kit_MarkdownStyle {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
-/// The font of heading `level` (1 to 3; level 4 and deeper share 3).
+/// The font of heading `level` (1 to 4; level 5 and deeper share 4). Level 3 sets 4 too,
+/// so a style that sets levels 1 to 3 keeps 4 and deeper in level 3's font.
     #[napi(js_name = "heading_font", skip_typescript)]
     pub fn m_heading_font<'t>(&mut self, this: This<'t>, a_level: Raw, a_f: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -3960,6 +7226,39 @@ impl W_kit_MarkdownStyle {
             }
             let me = self.slot.take("MarkdownStyle")?;
             self.slot.put(me.strong_weight(a_w));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The width of the column the document lays out in, when the app knows it. With
+/// [`Markdown::scroll_wide`], tables then size their columns as a browser's automatic table
+/// layout does: in proportion to their content when it fits, between their narrowest and
+/// widest when it nearly does, and at their narrowest (each column's longest word), scrolling
+/// sideways, when even that is wider than the text. Lists and quotes take their indent off it.
+    #[napi(js_name = "text_width", skip_typescript)]
+    pub fn m_text_width<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().text_width(a_points))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.text_width(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// How far the sides of a code block that scrolls sideways ([`Markdown::scroll_wide`]) fade
+/// out, in points: 12 by default, 0 for a hard edge as a web page's `overflow: auto` clips.
+    #[napi(js_name = "wide_fade", skip_typescript)]
+    pub fn m_wide_fade<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().wide_fade(a_points))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.wide_fade(a_points));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -4514,6 +7813,21 @@ impl W_kit_MarkdownStyle {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// Whether cells follow their column's `:-:` and `--:` alignment (on by default). Off, every
+/// cell starts at its column's left, as a web table whose CSS sets `text-align: start`.
+    #[napi(js_name = "table_column_align", skip_typescript)]
+    pub fn m_table_column_align<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().table_column_align(a_on))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.table_column_align(a_on));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// The space above and below a table (12 and 16 points by default). Like the other blocks'
 /// margins, it collapses with the space a neighbour wants, taking the larger.
     #[napi(js_name = "table_margin", skip_typescript)]
@@ -4527,6 +7841,24 @@ impl W_kit_MarkdownStyle {
             }
             let me = self.slot.take("MarkdownStyle")?;
             self.slot.put(me.table_margin(a_top, a_bottom));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A table that scrolls sideways ([`Markdown::scroll_wide`] with [`Self::text_width`]) gets a
+/// scroll bar in an 8 point strip under its rows: `@opencode/ui`'s `scrollbar.css` thumb
+/// ([`ScrollBarStyle::native`](crate::ScrollBarStyle::native)), `thumb` while the pointer is
+/// over the table and `thumb_hover` while it's over the thumb. None by default.
+    #[napi(js_name = "table_scroll_bar", skip_typescript)]
+    pub fn m_table_scroll_bar<'t>(&mut self, this: This<'t>, a_thumb: Raw, a_thumb_hover: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_thumb: rune::Color = conv::arg(a_thumb.0, "thumb")?;
+            let a_thumb_hover: rune::Color = conv::arg(a_thumb_hover.0, "thumb_hover")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_kit_MarkdownStyle>(v.clone().table_scroll_bar(a_thumb, a_thumb_hover))?));
+            }
+            let me = self.slot.take("MarkdownStyle")?;
+            self.slot.put(me.table_scroll_bar(a_thumb, a_thumb_hover));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -4913,8 +8245,44 @@ impl Class for W_kit_Note {
         &mut self.slot
     }
 }
+impl FromJs for rune_kit::Note<'static> {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take::<W_kit_Note>(v)
+    }
+}
+impl ToJs for rune_kit::Note<'static> {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_kit_Note>(self)
+    }
+}
 #[napi]
 impl W_kit_Note {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_source: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_source: &'static str = conv::arg(a_source.0, "source")?;
+            let out = conv::owned::<W_kit_Note>(rune_kit::Note::<'static>::new(a_source))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "key", skip_typescript)]
+    pub fn m_key<'t>(&mut self, this: This<'t>, a_key: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_key: &'static str = conv::arg(a_key.0, "key")?;
+            let me = self.slot.take("Note")?;
+            self.slot.put(me.key(a_key));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap<'t>(&mut self, this: This<'t>, a_gap: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_gap: f32 = conv::arg(a_gap.0, "gap")?;
+            let me = self.slot.take("Note")?;
+            self.slot.put(me.gap(a_gap));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
     #[napi(js_name = "build", skip_typescript)]
     pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -5566,6 +8934,21 @@ impl W_kit_TooltipStyle {
             
             let me = self.slot.get("TooltipStyle")?;
             let out = conv::ToJs::to_js(me.text_color())?;
+            Ok(Raw(out))
+        })
+    }
+/// This look for Rune's own [`El::help`](rune::El::help) tooltips
+/// ([`Cx::help_look`](rune::Cx::help_look)), placed and timed as `@opencode/ui`'s
+/// `Tooltip` sets Kobalte's: 4 pt from its element, 8 pt inside the window, after 400 ms,
+/// and at once within 300 ms of the last one hiding. Its keycaps are `keybind-v2`'s
+/// neutral keys: 14 pt, 4 pt in, 2 pt corners and 2 pt apart, 6 pt after the text, their
+/// labels in uppercase 11/530.
+    #[napi(js_name = "help_look", skip_typescript)]
+    pub fn m_help_look(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("TooltipStyle")?;
+            let out = conv::ToJs::to_js(me.help_look())?;
             Ok(Raw(out))
         })
     }
@@ -6328,8 +9711,8 @@ impl W_kit_RollingText {
 
 /// How a scroll bar's thumb looks, at rest and while the pointer is over the bar or holds the
 /// thumb: `viewport.scroll_bar_styled(ScrollBarStyle::from_kit(&k).thumb_hover(k.c.border_hover))`.
-/// Built from a kit by [`ScrollBarStyle::from_kit`], or without one by
-/// [`ScrollBarStyle::neutral`]; each builder overrides one thing.
+/// Built from a kit by [`ScrollBarStyle::from_kit`] or [`ScrollBarStyle::scroll_view`], or
+/// without one by [`ScrollBarStyle::neutral`]; each builder overrides one thing.
 #[napi(js_name = "kit_ScrollBarStyle")]
 pub struct W_kit_ScrollBarStyle {
     pub(crate) slot: conv::Slot<rune_kit::ScrollBarStyle>,
@@ -6364,6 +9747,109 @@ impl W_kit_ScrollBarStyle {
             let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
             let a_k = a_k_i.slot().get("Kit")?;
             let out = conv::owned::<W_kit_ScrollBarStyle>(rune_kit::ScrollBarStyle::from_kit(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+/// `@opencode/ui`'s ScrollView thumb: always an overlay, hidden at rest and shown while the
+/// pointer is over the area or it scrolls; a 4 point `border_muted` pill that turns
+/// `border_strong` under the pointer or while dragged.
+    #[napi(js_name = "scroll_view", skip_typescript)]
+    pub fn s_scroll_view(a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let out = conv::owned::<W_kit_ScrollBarStyle>(rune_kit::ScrollBarStyle::scroll_view(a_k))?;
+            Ok(Raw(out))
+        })
+    }
+/// `@opencode/ui`'s `scrollbar.css`, the scroll bar of every plain `overflow: auto` box in
+/// OpenCode: an 8 point strip beside the viewport (leave the room for it: the bar draws
+/// there, or over the viewport's edge with [`Self::inside`]), its track 4 points in from the
+/// ends and a 4 point `thumb` pill sized and placed as Chromium's thumb with its 2 point clear
+/// border, shown only while the pointer is over the area, and `thumb_hover` while the pointer
+/// is over the thumb or drags it. It shows and hides at once. Pass `border_muted` and
+/// `border_strong`.
+    #[napi(js_name = "native", skip_typescript)]
+    pub fn s_native(a_thumb: Raw, a_thumb_hover: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_thumb: rune::Color = conv::arg(a_thumb.0, "thumb")?;
+            let a_thumb_hover: rune::Color = conv::arg(a_thumb_hover.0, "thumb_hover")?;
+            let out = conv::owned::<W_kit_ScrollBarStyle>(rune_kit::ScrollBarStyle::native(a_thumb, a_thumb_hover))?;
+            Ok(Raw(out))
+        })
+    }
+/// `@opencode/ui`'s MenuScroll thumb, for menus, popovers and dialog lists such as the
+/// command palette: a 4 point `thumb` pill on an 8 point strip, shown only while the list
+/// scrolls (and 800 ms after) or the thumb is held or under the pointer, and `thumb_hover`
+/// under the pointer or held. Pass `border_muted` and `border_strong`.
+    #[napi(js_name = "menu_scroll", skip_typescript)]
+    pub fn s_menu_scroll(a_thumb: Raw, a_thumb_hover: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_thumb: rune::Color = conv::arg(a_thumb.0, "thumb")?;
+            let a_thumb_hover: rune::Color = conv::arg(a_thumb_hover.0, "thumb_hover")?;
+            let out = conv::owned::<W_kit_ScrollBarStyle>(rune_kit::ScrollBarStyle::menu_scroll(a_thumb, a_thumb_hover))?;
+            Ok(Raw(out))
+        })
+    }
+/// A [`Self::native`] bar over the viewport's own end edge, in room its content leaves there,
+/// rather than beside it: a plain `overflow-y: auto` box (a sidebar's list) whose styled
+/// scroll bar takes its 8 point gutter from the box while the content overflows. Give the
+/// content [`Self::strip`] of end padding while it overflows.
+    #[napi(js_name = "inside", skip_typescript)]
+    pub fn m_inside(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("ScrollBarStyle")?.clone();
+            let out = conv::owned::<W_kit_ScrollBarStyle>(me.inside())?;
+            Ok(Raw(out))
+        })
+    }
+/// The bar along the bottom edge of a viewport that scrolls sideways ([`El::scroll_x`])
+/// rather than down its right edge.
+    #[napi(js_name = "horizontal", skip_typescript)]
+    pub fn m_horizontal(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("ScrollBarStyle")?.clone();
+            let out = conv::owned::<W_kit_ScrollBarStyle>(me.horizontal())?;
+            Ok(Raw(out))
+        })
+    }
+/// Shows an overlay bar while the pointer is over the element marked
+/// [`ScrollBar::scroll_bar_hover`] for this viewport, or over the thumb, rather than over
+/// the viewport, as `@opencode/ui` ScrollView's `thumbHoverTarget` reveals its thumb: a
+/// timeline whose root also holds the Jump to latest button floating over it, or a page
+/// whose thumb belongs to one of its columns.
+    #[napi(js_name = "hover_target", skip_typescript)]
+    pub fn m_hover_target(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("ScrollBarStyle")?.clone();
+            let out = conv::owned::<W_kit_ScrollBarStyle>(me.hover_target())?;
+            Ok(Raw(out))
+        })
+    }
+/// Starts the track `top` points further down the viewport than its top and ends its strip
+/// `end` points in from the viewport's end edge, as ScrollView's `thumbContainer` mounts its
+/// thumb in a track the page places: a column's gutter under its sticky header, with the
+/// track as long as the viewport below `top` and the thumb sized to it.
+    #[napi(js_name = "track_offset", skip_typescript)]
+    pub fn m_track_offset(&mut self, a_top: Raw, a_end: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_top: f32 = conv::arg(a_top.0, "top")?;
+            let a_end: f32 = conv::arg(a_end.0, "end")?;
+            let me = self.slot.get("ScrollBarStyle")?.clone();
+            let out = conv::owned::<W_kit_ScrollBarStyle>(me.track_offset(a_top, a_end))?;
+            Ok(Raw(out))
+        })
+    }
+/// How thick the strip beside the viewport is, for the room a [`Self::native`] bar takes.
+    #[napi(js_name = "strip", skip_typescript)]
+    pub fn m_strip(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("ScrollBarStyle")?;
+            let out = conv::ToJs::to_js(me.strip())?;
             Ok(Raw(out))
         })
     }
@@ -6752,1266 +10238,6 @@ impl ToJs for rune_kit::SelectAppearance {
     }
 }
 
-/// A full-window screen without side panes — a settings page, lock screen or onboarding view
-/// in the same window as a [`SplitView`]. Shares [`SplitView`]'s title bar height, traffic-light
-/// clearance, window-drag band and framed content card so switching screens matches pixel for
-/// pixel: `Page::new(content).title("Settings").leading(back).trailing(done).titlebar_inset(cx.titlebar_inset()).build(&kit)`.
-#[napi(js_name = "kit_Page")]
-pub struct W_kit_Page {
-    pub(crate) slot: conv::Slot<rune_kit::Page>,
-}
-impl Class for W_kit_Page {
-    type Inner = rune_kit::Page;
-    const NAME: &'static str = "Page";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_Page { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::Page {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_Page>(v)
-    }
-}
-impl ToJs for rune_kit::Page {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_Page>(self)
-    }
-}
-#[napi]
-impl W_kit_Page {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new(a_main: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_main: rune::El = conv::arg(a_main.0, "main")?;
-            let out = conv::owned::<W_kit_Page>(rune_kit::Page::new(a_main))?;
-            Ok(Raw(out))
-        })
-    }
-/// A centred title in the toolbar band.
-    #[napi(js_name = "title", skip_typescript)]
-    pub fn m_title<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_t: String = conv::arg(a_t.0, "t")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.title(a_t));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The toolbar's centre slot (replaces [`Self::title`]).
-    #[napi(js_name = "center", skip_typescript)]
-    pub fn m_center<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.center(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Adds a leading control to the toolbar (a Back button, say), placed past the traffic lights.
-    #[napi(js_name = "leading", skip_typescript)]
-    pub fn m_leading<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.leading(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Adds a trailing control to the toolbar.
-    #[napi(js_name = "trailing", skip_typescript)]
-    pub fn m_trailing<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.trailing(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Replaces the toolbar with a pre-built [`Toolbar`].
-    #[napi(js_name = "toolbar", skip_typescript)]
-    pub fn m_toolbar<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_t: rune_kit::Toolbar = conv::arg(a_t.0, "t")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.toolbar(a_t));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`.
-    #[napi(js_name = "titlebar_inset", skip_typescript)]
-    pub fn m_titlebar_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.titlebar_inset(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Points past the traffic lights (or the window's edge in full screen) where the toolbar's
-/// leading slot starts, matching [`SplitView::sidebar_toggle`].
-    #[napi(js_name = "past_lights", skip_typescript)]
-    pub fn m_past_lights<'t>(&mut self, this: This<'t>, a_past_lights: Raw, a_edge: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_past_lights: f32 = conv::arg(a_past_lights.0, "past_lights")?;
-            let a_edge: f32 = conv::arg(a_edge.0, "edge")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.past_lights(a_past_lights, a_edge));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The window background showing around the content pane (default 8 points, matching
-/// [`SplitView::frame_inset`]).
-    #[napi(js_name = "frame_inset", skip_typescript)]
-    pub fn m_frame_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.frame_inset(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Puts the toolbar inside the framed content pane at its top, matching
-/// [`SplitView::toolbar_in_panel`].
-    #[napi(js_name = "toolbar_in_panel", skip_typescript)]
-    pub fn m_toolbar_in_panel<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
-        conv::guard(move || {
-            
-            let me = self.slot.take("Page")?;
-            self.slot.put(me.toolbar_in_panel());
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "build", skip_typescript)]
-    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-            let a_k = a_k_i.slot().get("Kit")?;
-            let me = self.slot.take("Page")?;
-            let out = conv::ToJs::to_js(me.build(a_k))?;
-            Ok(Raw(out))
-        })
-    }
-}
-
-#[napi(js_name = "__C_kit_PaneState_MIN", skip_typescript)]
-pub fn c_kit_PaneState_MIN() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::PaneState::MIN.clone())?)))
-}
-
-#[napi(js_name = "__C_kit_PaneState_MAX", skip_typescript)]
-pub fn c_kit_PaneState_MAX() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::PaneState::MAX.clone())?)))
-}
-
-/// A side pane's width and whether it shows: a sidebar's or an inspector's. The app owns it
-/// (a field of its state), so it can save the width and restore it with [`PaneState::new`].
-/// Widths are whole points within the pane's range.
-#[napi(js_name = "kit_PaneState")]
-pub struct W_kit_PaneState {
-    pub(crate) slot: conv::Slot<rune_kit::PaneState>,
-}
-impl Class for W_kit_PaneState {
-    type Inner = rune_kit::PaneState;
-    const NAME: &'static str = "PaneState";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_PaneState { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::PaneState {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::cloned::<W_kit_PaneState>(v)
-    }
-}
-impl ToJs for rune_kit::PaneState {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_PaneState>(self)
-    }
-}
-#[napi]
-impl W_kit_PaneState {
-/// An open pane `width` points wide, which double-clicking its edge also returns to.
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new(a_width: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_width: f32 = conv::arg(a_width.0, "width")?;
-            let out = conv::owned::<W_kit_PaneState>(rune_kit::PaneState::new(a_width))?;
-            Ok(Raw(out))
-        })
-    }
-/// Its width range. The width and the default clamp into it, from the values given to
-/// [`Self::new`] and [`Self::with_width`], so `new(640.0).range(360.0, 960.0)` is 640.
-    #[napi(js_name = "range", skip_typescript)]
-    pub fn m_range(&mut self, a_min: Raw, a_max: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_min: f32 = conv::arg(a_min.0, "min")?;
-            let a_max: f32 = conv::arg(a_max.0, "max")?;
-            let me = self.slot.get("PaneState")?.clone();
-            let out = conv::owned::<W_kit_PaneState>(me.range(a_min, a_max))?;
-            Ok(Raw(out))
-        })
-    }
-/// Starts collapsed (a saved state, or an inspector that opens on demand).
-    #[napi(js_name = "collapsed", skip_typescript)]
-    pub fn m_collapsed(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?.clone();
-            let out = conv::owned::<W_kit_PaneState>(me.collapsed())?;
-            Ok(Raw(out))
-        })
-    }
-/// A saved width, clamped and rounded (the width it starts with; the default stays).
-    #[napi(js_name = "with_width", skip_typescript)]
-    pub fn m_with_width(&mut self, a_width: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_width: f32 = conv::arg(a_width.0, "width")?;
-            let me = self.slot.get("PaneState")?.clone();
-            let out = conv::owned::<W_kit_PaneState>(me.with_width(a_width))?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "width", skip_typescript)]
-    pub fn m_width(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.width())?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "is_open", skip_typescript)]
-    pub fn m_is_open(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.is_open())?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "min_width", skip_typescript)]
-    pub fn m_min_width(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.min_width())?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "max_width", skip_typescript)]
-    pub fn m_max_width(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.max_width())?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "default_width", skip_typescript)]
-    pub fn m_default_width(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.default_width())?;
-            Ok(Raw(out))
-        })
-    }
-/// Whether its edge is being dragged.
-    #[napi(js_name = "is_resizing", skip_typescript)]
-    pub fn m_is_resizing(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.is_resizing())?;
-            Ok(Raw(out))
-        })
-    }
-/// Points it takes in the layout: its width when open, else 0.
-    #[napi(js_name = "shown_width", skip_typescript)]
-    pub fn m_shown_width(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.shown_width())?;
-            Ok(Raw(out))
-        })
-    }
-/// Clamps to the range and rounds to a whole point. Doesn't open the pane.
-    #[napi(js_name = "set_width", skip_typescript)]
-    pub fn m_set_width(&mut self, a_width: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_width: f32 = conv::arg(a_width.0, "width")?;
-            let me = self.slot.get_mut("PaneState")?;
-            let out = { me.set_width(a_width); conv::Result::Ok(conv::undefined()) }?;
-            Ok(Raw(out))
-        })
-    }
-/// Opening a peeking sidebar docks it where it floats; closing ends any peek.
-    #[napi(js_name = "set_open", skip_typescript)]
-    pub fn m_set_open(&mut self, a_open: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_open: bool = conv::arg(a_open.0, "open")?;
-            let me = self.slot.get_mut("PaneState")?;
-            let out = { me.set_open(a_open); conv::Result::Ok(conv::undefined()) }?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "toggle", skip_typescript)]
-    pub fn m_toggle(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get_mut("PaneState")?;
-            let out = { me.toggle(); conv::Result::Ok(conv::undefined()) }?;
-            Ok(Raw(out))
-        })
-    }
-/// Whether the closed sidebar floats over the content (a `SplitView` with
-/// [`SidebarPeek`]).
-    #[napi(js_name = "is_peeking", skip_typescript)]
-    pub fn m_is_peeking(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get("PaneState")?;
-            let out = conv::ToJs::to_js(me.is_peeking())?;
-            Ok(Raw(out))
-        })
-    }
-/// Slides a peeking sidebar away (Escape, say). Leaving it with the pointer, or the window
-/// losing focus, ends a peek too.
-    #[napi(js_name = "end_peek", skip_typescript)]
-    pub fn m_end_peek(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get_mut("PaneState")?;
-            let out = { me.end_peek(); conv::Result::Ok(conv::undefined()) }?;
-            Ok(Raw(out))
-        })
-    }
-/// Shows the closed sidebar as a peek, over the content.
-    #[napi(js_name = "peek", skip_typescript)]
-    pub fn m_peek(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get_mut("PaneState")?;
-            let out = { me.peek(); conv::Result::Ok(conv::undefined()) }?;
-            Ok(Raw(out))
-        })
-    }
-/// Back to the width it was made with (double-clicking its edge).
-    #[napi(js_name = "reset_width", skip_typescript)]
-    pub fn m_reset_width(&mut self) -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let me = self.slot.get_mut("PaneState")?;
-            let out = { me.reset_width(); conv::Result::Ok(conv::undefined()) }?;
-            Ok(Raw(out))
-        })
-    }
-/// Where dragging its edge to `width` leaves it: clamped, or collapsed (keeping its last
-/// width) once dragged below half its minimum, as AppKit's split views do. Dragging back
-/// out opens it again.
-    #[napi(js_name = "drag_to", skip_typescript)]
-    pub fn m_drag_to(&mut self, a_width: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_width: f32 = conv::arg(a_width.0, "width")?;
-            let me = self.slot.get_mut("PaneState")?;
-            let out = { me.drag_to(a_width); conv::Result::Ok(conv::undefined()) }?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "clone", skip_typescript)]
-    pub fn m___clone(&self) -> napi::Result<Raw> {
-        conv::guard(|| Ok(Raw(conv::owned::<W_kit_PaneState>(self.slot.get("PaneState")?.clone())?)))
-    }
-    #[napi(js_name = "default", skip_typescript)]
-    pub fn s___default() -> napi::Result<Raw> {
-        conv::guard(|| Ok(Raw(conv::owned::<W_kit_PaneState>(<rune_kit::PaneState as Default>::default())?)))
-    }
-}
-
-/// A sidebar's content: header, a scrolling list of sections and rows, and footer.
-/// `Sidebar::new().header(..).section(..).footer(..).build(&kit)`. The list is one Tab stop
-/// that lands on the selected row. Up and Down move the selection (it follows focus, as in a
-/// source list), Home and End go to the ends, typing a row's first letters jumps to it, and
-/// Return presses the focused row.
-#[napi(js_name = "kit_Sidebar")]
-pub struct W_kit_Sidebar {
-    pub(crate) slot: conv::Slot<rune_kit::Sidebar>,
-}
-impl Class for W_kit_Sidebar {
-    type Inner = rune_kit::Sidebar;
-    const NAME: &'static str = "Sidebar";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_Sidebar { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::Sidebar {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_Sidebar>(v)
-    }
-}
-impl ToJs for rune_kit::Sidebar {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_Sidebar>(self)
-    }
-}
-#[napi]
-impl W_kit_Sidebar {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new() -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let out = conv::owned::<W_kit_Sidebar>(rune_kit::Sidebar::new())?;
-            Ok(Raw(out))
-        })
-    }
-/// Points between the sidebar's sides and its rows, header and footer (default 8).
-    #[napi(js_name = "inset", skip_typescript)]
-    pub fn m_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.inset(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Points between the header's items (default 2).
-    #[napi(js_name = "header_gap", skip_typescript)]
-    pub fn m_header_gap<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.header_gap(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Points above the header and between it and the list (default 0 and 8).
-    #[napi(js_name = "header_padding", skip_typescript)]
-    pub fn m_header_padding<'t>(&mut self, this: This<'t>, a_top: Raw, a_bottom: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_top: f32 = conv::arg(a_top.0, "top")?;
-            let a_bottom: f32 = conv::arg(a_bottom.0, "bottom")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.header_padding(a_top, a_bottom));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Points between the list's items (default 0). Virtualised rows don't take it: give them
-/// the space in their height.
-    #[napi(js_name = "row_gap", skip_typescript)]
-    pub fn m_row_gap<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.row_gap(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The height of [`Self::virtual_rows`]' rows (default [`ROW_HEIGHT`]). Give the rows the
-/// same height with [`SidebarRow::height`].
-    #[napi(js_name = "row_height", skip_typescript)]
-    pub fn m_row_height<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.row_height(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The list's accessible name.
-    #[napi(js_name = "label", skip_typescript)]
-    pub fn m_label<'t>(&mut self, this: This<'t>, a_l: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_l: String = conv::arg(a_l.0, "l")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.label(a_l));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Above the list, outside its scrolling: a "New" row or button, a search field.
-    #[napi(js_name = "header", skip_typescript)]
-    pub fn m_header<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.header(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Below the list: an account or settings row, a version line.
-    #[napi(js_name = "footer", skip_typescript)]
-    pub fn m_footer<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.footer(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "section", skip_typescript)]
-    pub fn m_section<'t>(&mut self, this: This<'t>, a_s: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_s: rune_kit::SidebarSection = conv::arg(a_s.0, "s")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.section(a_s));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Any element in the list: a built [`SidebarRow`] or [`SidebarHeader`], a divider.
-    #[napi(js_name = "child", skip_typescript)]
-    pub fn m_child<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Sidebar")?;
-            self.slot.put(me.child(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "build", skip_typescript)]
-    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-            let a_k = a_k_i.slot().get("Kit")?;
-            let me = self.slot.take("Sidebar")?;
-            let out = conv::ToJs::to_js(me.build(a_k))?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "default", skip_typescript)]
-    pub fn s___default() -> napi::Result<Raw> {
-        conv::guard(|| Ok(Raw(conv::owned::<W_kit_Sidebar>(<rune_kit::Sidebar as Default>::default())?)))
-    }
-}
-
-/// A section's header row: its title, an optional count, a disclosure triangle and a trailing
-/// action (a small "+" button, say). Pressing it calls `on_toggle`; whether the section is
-/// collapsed is the app's state. [`SidebarSection`] pairs it with its rows; use it on its own
-/// in a virtualised list.
-#[napi(js_name = "kit_SidebarHeader")]
-pub struct W_kit_SidebarHeader {
-    pub(crate) slot: conv::Slot<rune_kit::SidebarHeader>,
-}
-impl Class for W_kit_SidebarHeader {
-    type Inner = rune_kit::SidebarHeader;
-    const NAME: &'static str = "SidebarHeader";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_SidebarHeader { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::SidebarHeader {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_SidebarHeader>(v)
-    }
-}
-impl ToJs for rune_kit::SidebarHeader {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_SidebarHeader>(self)
-    }
-}
-#[napi]
-impl W_kit_SidebarHeader {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new(a_title: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_title: String = conv::arg(a_title.0, "title")?;
-            let out = conv::owned::<W_kit_SidebarHeader>(rune_kit::SidebarHeader::new(a_title))?;
-            Ok(Raw(out))
-        })
-    }
-/// Shows a disclosure triangle for this state. Without it, or `on_toggle`, the header is
-/// a plain label.
-    #[napi(js_name = "collapsed", skip_typescript)]
-    pub fn m_collapsed<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_c: bool = conv::arg(a_c.0, "c")?;
-            let me = self.slot.take("SidebarHeader")?;
-            self.slot.put(me.collapsed(a_c));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "count", skip_typescript)]
-    pub fn m_count<'t>(&mut self, this: This<'t>, a_n: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_n: usize = conv::arg(a_n.0, "n")?;
-            let me = self.slot.take("SidebarHeader")?;
-            self.slot.put(me.count(a_n));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A trailing element, such as a small "+" icon button.
-    #[napi(js_name = "action", skip_typescript)]
-    pub fn m_action<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("SidebarHeader")?;
-            self.slot.put(me.action(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "on_toggle", skip_typescript)]
-    pub fn m_on_toggle<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
-            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
-            let me = self.slot.take("SidebarHeader")?;
-            self.slot.put(me.on_toggle(a_f));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "build", skip_typescript)]
-    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-            let a_k = a_k_i.slot().get("Kit")?;
-            let me = self.slot.take("SidebarHeader")?;
-            let out = conv::ToJs::to_js(me.build(a_k))?;
-            Ok(Raw(out))
-        })
-    }
-}
-
-/// A selectable sidebar row: icon, label, then a trailing detail (a time), badge or element.
-/// `SidebarRow::new("Inbox").icon(&INBOX).badge("3").selected(sel).on_select(..).build(&kit)`.
-/// Key the built row by its item's id.
-///
-/// A taller row takes a second, muted line, an avatar and a status slot that turns into a
-/// close button under the pointer: `SidebarRow::new(title).height(45.0).avatar(..)
-/// .subtitle(project).status(RowStatus::Busy).on_close(..)`.
-#[napi(js_name = "kit_SidebarRow")]
-pub struct W_kit_SidebarRow {
-    pub(crate) slot: conv::Slot<rune_kit::SidebarRow>,
-}
-impl Class for W_kit_SidebarRow {
-    type Inner = rune_kit::SidebarRow;
-    const NAME: &'static str = "SidebarRow";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_SidebarRow { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::SidebarRow {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_SidebarRow>(v)
-    }
-}
-impl ToJs for rune_kit::SidebarRow {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_SidebarRow>(self)
-    }
-}
-#[napi]
-impl W_kit_SidebarRow {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new(a_label: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_label: String = conv::arg(a_label.0, "label")?;
-            let out = conv::owned::<W_kit_SidebarRow>(rune_kit::SidebarRow::new(a_label))?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "icon", skip_typescript)]
-    pub fn m_icon<'t>(&mut self, this: This<'t>, a_i: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let mut a_i_i = conv::instance::<crate::gen::rune::W_Icon>(a_i.0).map_err(|e| conv::err(format!("{}: {}", "i", e.reason)))?;
-            let a_i = a_i_i.slot().leak("Icon")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.icon(a_i));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A 16 point leading element in place of the icon: a project's avatar, an initial.
-    #[napi(js_name = "avatar", skip_typescript)]
-    pub fn m_avatar<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.avatar(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A second line under the label, smaller and fainter than it (11 point `caption` in
-/// `text_faint`, under a medium-weight 13 point label). The row's accessible name is then
-/// "Label, Subtitle". Give the row the height for it (default [`TWO_LINE_ROW_HEIGHT`]).
-    #[napi(js_name = "subtitle", skip_typescript)]
-    pub fn m_subtitle<'t>(&mut self, this: This<'t>, a_s: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_s: String = conv::arg(a_s.0, "s")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.subtitle(a_s));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The label's type, in place of the default (13 point; medium weight with a subtitle).
-/// It also sets the inline rename field's type.
-    #[napi(js_name = "title_style", skip_typescript)]
-    pub fn m_title_style<'t>(&mut self, this: This<'t>, a_style: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_style: rune::TextStyle = conv::arg(a_style.0, "style")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.title_style(a_style));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The subtitle's type, in place of the default (the kit's `caption`).
-    #[napi(js_name = "subtitle_style", skip_typescript)]
-    pub fn m_subtitle_style<'t>(&mut self, this: This<'t>, a_style: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_style: rune::TextStyle = conv::arg(a_style.0, "style")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.subtitle_style(a_style));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The subtitle's colour, in place of the default (`text_faint`).
-    #[napi(js_name = "subtitle_color", skip_typescript)]
-    pub fn m_subtitle_color<'t>(&mut self, this: This<'t>, a_color: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.subtitle_color(a_color));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A row that shows the selection but never takes focus: for a list driven from outside,
-/// such as one a search field filters and steers with its own keys. The row is out of the
-/// Tab order, Tab and Space don't act on it, and pressing it selects it (`on_select`)
-/// while a focused field stays focused (`El::preserve_focus_on_press`). Keyboard navigation
-/// of a select-only list (Up/Down and Return from the field) is the app's job. The selected
-/// row is still exposed as selected to assistive tech (`ElementInfo::item_selected`), and
-/// changing the selection never pulls focus to the row. Equivalent to
-/// `.focusable(false).focus_selected(..)` on the built row, plus the focus-preserving press.
-    #[napi(js_name = "select_only", skip_typescript)]
-    pub fn m_select_only<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
-        conv::guard(move || {
-            
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.select_only());
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The row's height (default [`ROW_HEIGHT`], or [`TWO_LINE_ROW_HEIGHT`] with a subtitle).
-    #[napi(js_name = "height", skip_typescript)]
-    pub fn m_height<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.height(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Faint trailing text: a time ("2m"), a count, a shortcut.
-    #[napi(js_name = "detail", skip_typescript)]
-    pub fn m_detail<'t>(&mut self, this: This<'t>, a_d: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_d: String = conv::arg(a_d.0, "d")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.detail(a_d));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A trailing pill (an unread count).
-    #[napi(js_name = "badge", skip_typescript)]
-    pub fn m_badge<'t>(&mut self, this: This<'t>, a_b: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_b: String = conv::arg(a_b.0, "b")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.badge(a_b));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Any trailing element (a status dot, a menu button), after the detail and badge.
-    #[napi(js_name = "trailing", skip_typescript)]
-    pub fn m_trailing<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.trailing(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A close button in the status slot, in place of the status while the pointer is on the
-/// row. It swaps at once, with no fade.
-    #[napi(js_name = "on_close", skip_typescript)]
-    pub fn m_on_close<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
-            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.on_close(a_f));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "selected", skip_typescript)]
-    pub fn m_selected<'t>(&mut self, this: This<'t>, a_s: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_s: bool = conv::arg(a_s.0, "s")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.selected(a_s));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Nesting level: each indents the row by [`INDENT`].
-    #[napi(js_name = "depth", skip_typescript)]
-    pub fn m_depth<'t>(&mut self, this: This<'t>, a_d: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_d: u8 = conv::arg(a_d.0, "d")?;
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.depth(a_d));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Called when the row is pressed, or reached with the arrow keys.
-    #[napi(js_name = "on_select", skip_typescript)]
-    pub fn m_on_select<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
-            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.on_select(a_f));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Called on a double click (rename, open in a new window).
-    #[napi(js_name = "on_double_click", skip_typescript)]
-    pub fn m_on_double_click<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
-            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.on_double_click(a_f));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Edits the label in place, in the field bound to `edit` (`access` finds it in the app's
-/// state). Set `edit.focused` and its text when renaming starts. Return calls `commit`,
-/// Escape calls `cancel`; both should end the rename.
-    #[napi(js_name = "renaming", skip_typescript)]
-    pub fn m_renaming<'t>(&mut self, this: This<'t>, a_edit: Raw, a_access: Raw, a_commit: Raw, a_cancel: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let mut a_edit_i = conv::instance::<crate::gen::rune::W_TextEdit>(a_edit.0).map_err(|e| conv::err(format!("{}: {}", "edit", e.reason)))?;
-            let a_edit = a_edit_i.slot().get("TextEdit")?;
-            let a_access = crate::gen::tramp::t5_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
-            let a_commit_h = conv::arg::<conv::JsFn>(a_commit.0, "commit")?.0;
-            let a_commit = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_commit_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
-            let a_cancel_h = conv::arg::<conv::JsFn>(a_cancel.0, "cancel")?.0;
-            let a_cancel = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_cancel_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
-            let me = self.slot.take("SidebarRow")?;
-            self.slot.put(me.renaming(a_edit, a_access, a_commit, a_cancel));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "build", skip_typescript)]
-    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-            let a_k = a_k_i.slot().get("Kit")?;
-            let me = self.slot.take("SidebarRow")?;
-            let out = conv::ToJs::to_js(me.build(a_k))?;
-            Ok(Raw(out))
-        })
-    }
-}
-
-/// A titled group of rows that collapses: `SidebarSection::new("Today").collapsed(..)
-/// .on_toggle(..).row(..)`. Rows below it move on the kit's disclosure spring as it opens.
-#[napi(js_name = "kit_SidebarSection")]
-pub struct W_kit_SidebarSection {
-    pub(crate) slot: conv::Slot<rune_kit::SidebarSection>,
-}
-impl Class for W_kit_SidebarSection {
-    type Inner = rune_kit::SidebarSection;
-    const NAME: &'static str = "SidebarSection";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_SidebarSection { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::SidebarSection {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_SidebarSection>(v)
-    }
-}
-impl ToJs for rune_kit::SidebarSection {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_SidebarSection>(self)
-    }
-}
-#[napi]
-impl W_kit_SidebarSection {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new(a_title: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_title: String = conv::arg(a_title.0, "title")?;
-            let out = conv::owned::<W_kit_SidebarSection>(rune_kit::SidebarSection::new(a_title))?;
-            Ok(Raw(out))
-        })
-    }
-/// Its key among the list's children (default: the title).
-    #[napi(js_name = "key", skip_typescript)]
-    pub fn m_key<'t>(&mut self, this: This<'t>, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_k: String = conv::arg(a_k.0, "k")?;
-            let me = self.slot.take("SidebarSection")?;
-            self.slot.put(me.key(a_k));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "collapsed", skip_typescript)]
-    pub fn m_collapsed<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_c: bool = conv::arg(a_c.0, "c")?;
-            let me = self.slot.take("SidebarSection")?;
-            self.slot.put(me.collapsed(a_c));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "count", skip_typescript)]
-    pub fn m_count<'t>(&mut self, this: This<'t>, a_n: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_n: usize = conv::arg(a_n.0, "n")?;
-            let me = self.slot.take("SidebarSection")?;
-            self.slot.put(me.count(a_n));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "action", skip_typescript)]
-    pub fn m_action<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("SidebarSection")?;
-            self.slot.put(me.action(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "on_toggle", skip_typescript)]
-    pub fn m_on_toggle<'t>(&mut self, this: This<'t>, a_f: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
-            let a_f = move |c0: &mut crate::state::JsState, c1: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); conv::lend::<crate::gen::rune::W_Tx, _>(c1, |v1| { let r = a_f_h.call(&[v0, v1]); crate::state::replace_from(c0, r); () }) } }) };
-            let me = self.slot.take("SidebarSection")?;
-            self.slot.put(me.on_toggle(a_f));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A row: a built [`SidebarRow`], keyed by the app.
-    #[napi(js_name = "row", skip_typescript)]
-    pub fn m_row<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("SidebarSection")?;
-            self.slot.put(me.row(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "rows", skip_typescript)]
-    pub fn m_rows<'t>(&mut self, this: This<'t>, a_rows: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_rows: Vec<rune::El> = conv::arg(a_rows.0, "rows")?;
-            let me = self.slot.take("SidebarSection")?;
-            self.slot.put(me.rows(a_rows));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "build", skip_typescript)]
-    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-            let a_k = a_k_i.slot().get("Kit")?;
-            let me = self.slot.take("SidebarSection")?;
-            let out = conv::ToJs::to_js(me.build(a_k))?;
-            Ok(Raw(out))
-        })
-    }
-}
-
-/// The app shell: `SplitView::new(main).sidebar(..).toolbar(..).inspector(..)
-/// .titlebar_inset(cx.titlebar_inset()).build(&kit)`.
-///
-/// The sidebar and inspector are flush panes on the window's deep background; the main pane is
-/// a rounded card beside them, inset by [`Self::frame_inset`] where no pane borders it. A 48
-/// point band across the top is the title bar: it drags the window, its leading end clears the
-/// traffic lights (pass [`Cx::titlebar_inset`], 0 in full screen), and the sidebar's toggle
-/// button sits just past them ([`SidebarToggle`]). Panes resize from their inner edge
-/// (double-click resets the width, dragging below half the minimum collapses) and open and
-/// close together on one spring ([`PaneMotion`]). Under Reduce Motion they snap. Widths and
-/// open states live in the app's [`PaneState`]s. With [`SidebarPeek`], a closed sidebar slides
-/// in over the content while the pointer rests at the window's edge.
-///
-/// The band's middle is 24 points down: place the traffic lights there with
-/// `Chrome { traffic_lights: Some((16.0, 17.0)), .. }` (with [`Self::toolbar_in_panel`], the
-/// frame inset further down).
-///
-/// [`Cx::titlebar_inset`]: rune::Cx::titlebar_inset
-#[napi(js_name = "kit_SplitView")]
-pub struct W_kit_SplitView {
-    pub(crate) slot: conv::Slot<rune_kit::SplitView>,
-}
-impl Class for W_kit_SplitView {
-    type Inner = rune_kit::SplitView;
-    const NAME: &'static str = "SplitView";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_SplitView { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::SplitView {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_SplitView>(v)
-    }
-}
-impl ToJs for rune_kit::SplitView {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_SplitView>(self)
-    }
-}
-#[napi]
-impl W_kit_SplitView {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new(a_main: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let a_main: rune::El = conv::arg(a_main.0, "main")?;
-            let out = conv::owned::<W_kit_SplitView>(rune_kit::SplitView::new(a_main))?;
-            Ok(Raw(out))
-        })
-    }
-/// The leading pane. `access` finds its state in the app's; the grip and the toggle button
-/// write to it. `content` is usually a built `Sidebar`.
-    #[napi(js_name = "sidebar", skip_typescript)]
-    pub fn m_sidebar<'t>(&mut self, this: This<'t>, a_state: Raw, a_access: Raw, a_content: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let mut a_state_i = conv::instance::<crate::gen::kit::W_kit_PaneState>(a_state.0).map_err(|e| conv::err(format!("{}: {}", "state", e.reason)))?;
-            let a_state = a_state_i.slot().get("PaneState")?;
-            let a_access = crate::gen::tramp::t6_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
-            let a_content: rune::El = conv::arg(a_content.0, "content")?;
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.sidebar(a_state, a_access, a_content));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The trailing pane, resized from its leading edge.
-    #[napi(js_name = "inspector", skip_typescript)]
-    pub fn m_inspector<'t>(&mut self, this: This<'t>, a_state: Raw, a_access: Raw, a_content: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let mut a_state_i = conv::instance::<crate::gen::kit::W_kit_PaneState>(a_state.0).map_err(|e| conv::err(format!("{}: {}", "state", e.reason)))?;
-            let a_state = a_state_i.slot().get("PaneState")?;
-            let a_access = crate::gen::tramp::t6_register(a_access.0).map_err(|e| conv::err(format!("{}: {}", "access", e.reason)))?;
-            let a_content: rune::El = conv::arg(a_content.0, "content")?;
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.inspector(a_state, a_access, a_content));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The band above the main pane (and the inspector). Without one the band is empty and
-/// still drags the window.
-    #[napi(js_name = "toolbar", skip_typescript)]
-    pub fn m_toolbar<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_t: rune_kit::Toolbar = conv::arg(a_t.0, "t")?;
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.toolbar(a_t));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`.
-    #[napi(js_name = "titlebar_inset", skip_typescript)]
-    pub fn m_titlebar_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.titlebar_inset(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Leaves out the sidebar's toggle button (the app shows its own, or none).
-    #[napi(js_name = "hide_sidebar_toggle", skip_typescript)]
-    pub fn m_hide_sidebar_toggle<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
-        conv::guard(move || {
-            
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.hide_sidebar_toggle());
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The window background showing around the main pane where no pane borders it (default
-/// 8 points).
-    #[napi(js_name = "frame_inset", skip_typescript)]
-    pub fn m_frame_inset<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_points: f32 = conv::arg(a_points.0, "points")?;
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.frame_inset(a_points));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Puts the toolbar inside the main pane, at its top, and insets the pane from the window's
-/// top too. The strip above it drags the window, and the sidebar's title bar row lines up
-/// with the toolbar.
-    #[napi(js_name = "toolbar_in_panel", skip_typescript)]
-    pub fn m_toolbar_in_panel<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
-        conv::guard(move || {
-            
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.toolbar_in_panel());
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Points between the sidebar's edges and its contents: `start` at the window's edge, `end`
-/// at the main pane.
-    #[napi(js_name = "sidebar_padding", skip_typescript)]
-    pub fn m_sidebar_padding<'t>(&mut self, this: This<'t>, a_start: Raw, a_end: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_start: f32 = conv::arg(a_start.0, "start")?;
-            let a_end: f32 = conv::arg(a_end.0, "end")?;
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.sidebar_padding(a_start, a_end));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Pass [`Cx::is_reduced_motion`]: fades replace the slides of the panes' contents and of
-/// a peek, as [`PaneMotion::reduced_motion_fade`] and [`SidebarPeek::reduced_motion_fade`]
-/// set. Widths snap under Reduce Motion either way.
-///
-/// [`Cx::is_reduced_motion`]: rune::Cx::is_reduced_motion
-    #[napi(js_name = "reduced_motion", skip_typescript)]
-    pub fn m_reduced_motion<'t>(&mut self, this: This<'t>, a_reduced: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_reduced: bool = conv::arg(a_reduced.0, "reduced")?;
-            let me = self.slot.take("SplitView")?;
-            self.slot.put(me.reduced_motion(a_reduced));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "build", skip_typescript)]
-    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-            let a_k = a_k_i.slot().get("Kit")?;
-            let me = self.slot.take("SplitView")?;
-            let out = conv::ToJs::to_js(me.build(a_k))?;
-            Ok(Raw(out))
-        })
-    }
-}
-
-/// A toolbar: `Toolbar::new().leading(..).title("..").trailing(..).build(&kit)`. The band is a
-/// window drag region (buttons in it keep their presses) and its centre slot sits in the
-/// middle of the band whatever the sides hold.
-#[napi(js_name = "kit_Toolbar")]
-pub struct W_kit_Toolbar {
-    pub(crate) slot: conv::Slot<rune_kit::Toolbar>,
-}
-impl Class for W_kit_Toolbar {
-    type Inner = rune_kit::Toolbar;
-    const NAME: &'static str = "Toolbar";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_Toolbar { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::Toolbar {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_Toolbar>(v)
-    }
-}
-impl ToJs for rune_kit::Toolbar {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_Toolbar>(self)
-    }
-}
-#[napi]
-impl W_kit_Toolbar {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new() -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let out = conv::owned::<W_kit_Toolbar>(rune_kit::Toolbar::new())?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "leading", skip_typescript)]
-    pub fn m_leading<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Toolbar")?;
-            self.slot.put(me.leading(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "trailing", skip_typescript)]
-    pub fn m_trailing<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Toolbar")?;
-            self.slot.put(me.trailing(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The centre slot. Replaces a [`Toolbar::title`].
-    #[napi(js_name = "center", skip_typescript)]
-    pub fn m_center<'t>(&mut self, this: This<'t>, a_e: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_e: rune::El = conv::arg(a_e.0, "e")?;
-            let me = self.slot.take("Toolbar")?;
-            self.slot.put(me.center(a_e));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// A centred title in the kit's medium UI type.
-    #[napi(js_name = "title", skip_typescript)]
-    pub fn m_title<'t>(&mut self, this: This<'t>, a_t: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_t: String = conv::arg(a_t.0, "t")?;
-            let me = self.slot.take("Toolbar")?;
-            self.slot.put(me.title(a_t));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Backs the band with a system material (macOS blurs what's behind a transparent
-/// window). Elsewhere, and headless, the kit's base background draws instead.
-    #[napi(js_name = "material", skip_typescript)]
-    pub fn m_material<'t>(&mut self, this: This<'t>, a_m: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_m: rune::SystemMaterial = conv::arg(a_m.0, "m")?;
-            let me = self.slot.take("Toolbar")?;
-            self.slot.put(me.material(a_m));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "build", skip_typescript)]
-    pub fn m_build(&mut self, a_k: Raw) -> napi::Result<Raw> {
-        conv::guard(|| {
-            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-            let a_k = a_k_i.slot().get("Kit")?;
-            let me = self.slot.take("Toolbar")?;
-            let out = conv::ToJs::to_js(me.build(a_k))?;
-            Ok(Raw(out))
-        })
-    }
-    #[napi(js_name = "default", skip_typescript)]
-    pub fn s___default() -> napi::Result<Raw> {
-        conv::guard(|| Ok(Raw(conv::owned::<W_kit_Toolbar>(<rune_kit::Toolbar as Default>::default())?)))
-    }
-}
-
 /// Click (or activate with Enter/Space) to record. Escape cancels; Backspace clears.
 /// `on_change` must register the proposed binding before releasing the previous registration:
 /// returning an error keeps the old value and shows the refused chord with a message
@@ -8270,6 +10496,18 @@ impl W_kit_Switch {
             
             let me = self.slot.take("Switch")?;
             self.slot.put(me.standard());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// The compact appearance as `@opencode/ui` draws it on the web (switch.css:20-152): a 24 x 16
+/// track with 4 point corners and a 12 point thumb with 2 point corners, 2 points in, that
+/// moves 8 points when on. Under the pointer the thumb grows a point towards the middle.
+    #[napi(js_name = "web", skip_typescript)]
+    pub fn m_web<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            let me = self.slot.take("Switch")?;
+            self.slot.put(me.web());
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -9172,6 +11410,16 @@ impl W_kit_TextArea {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// Mark misspelled words and offer their suggestions in the field's menu (`El::spellcheck`).
+    #[napi(js_name = "spellcheck", skip_typescript)]
+    pub fn m_spellcheck<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            let me = self.slot.take("TextArea")?;
+            self.slot.put(me.spellcheck(a_on));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
     #[napi(js_name = "new", skip_typescript)]
     pub fn s_new(a_edit: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -9623,6 +11871,16 @@ impl W_kit_TextInput {
             let a_revealed: bool = conv::arg(a_revealed.0, "revealed")?;
             let me = self.slot.take("TextInput")?;
             self.slot.put(me.revealed(a_revealed));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Mark misspelled words and offer their suggestions in the field's menu (`El::spellcheck`).
+    #[napi(js_name = "spellcheck", skip_typescript)]
+    pub fn m_spellcheck<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            let me = self.slot.take("TextInput")?;
+            self.slot.put(me.spellcheck(a_on));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -10089,81 +12347,6 @@ impl W_kit_ToastRegion {
     }
 }
 
-/// Builds a [`TreeModel`] of [`FileNode`]s from file paths (`/`-separated, relative to a root).
-///
-/// By default folders sort before files, names sort naturally (`file2` before `file10`, case
-/// aside), and a chain of folders that each hold only one folder shows as one row named
-/// `a/b/c`, as an editor's compact folders do. Folders start closed; open them on the model.
-#[napi(js_name = "kit_FileTree")]
-pub struct W_kit_FileTree {
-    pub(crate) slot: conv::Slot<rune_kit::FileTree>,
-}
-impl Class for W_kit_FileTree {
-    type Inner = rune_kit::FileTree;
-    const NAME: &'static str = "FileTree";
-    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
-        W_kit_FileTree { slot }
-    }
-    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
-        &mut self.slot
-    }
-}
-impl FromJs for rune_kit::FileTree {
-    fn from_js(v: conv::Value) -> conv::Result<Self> {
-        conv::take::<W_kit_FileTree>(v)
-    }
-}
-impl ToJs for rune_kit::FileTree {
-    fn to_js(self) -> conv::Result<conv::Value> {
-        conv::owned::<W_kit_FileTree>(self)
-    }
-}
-#[napi]
-impl W_kit_FileTree {
-    #[napi(js_name = "new", skip_typescript)]
-    pub fn s_new() -> napi::Result<Raw> {
-        conv::guard(|| {
-            
-            let out = conv::owned::<W_kit_FileTree>(rune_kit::FileTree::new())?;
-            Ok(Raw(out))
-        })
-    }
-/// Show a chain of single-folder folders as one `a/b/c` row (on by default).
-    #[napi(js_name = "compact_folders", skip_typescript)]
-    pub fn m_compact_folders<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_on: bool = conv::arg(a_on.0, "on")?;
-            let me = self.slot.take("FileTree")?;
-            self.slot.put(me.compact_folders(a_on));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// Sort folders before files (on by default); off, they mix by name.
-    #[napi(js_name = "dirs_first", skip_typescript)]
-    pub fn m_dirs_first<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_on: bool = conv::arg(a_on.0, "on")?;
-            let me = self.slot.take("FileTree")?;
-            self.slot.put(me.dirs_first(a_on));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-/// The model's row-key prefix ([`TreeModel::key`], `"files"` here).
-    #[napi(js_name = "key", skip_typescript)]
-    pub fn m_key<'t>(&mut self, this: This<'t>, a_key: Raw) -> napi::Result<Raw> {
-        conv::guard(move || {
-            let a_key: String = conv::arg(a_key.0, "key")?;
-            let me = self.slot.take("FileTree")?;
-            self.slot.put(me.key(a_key));
-            Ok(Raw(napi::JsValue::value(&this).value))
-        })
-    }
-    #[napi(js_name = "default", skip_typescript)]
-    pub fn s___default() -> napi::Result<Raw> {
-        conv::guard(|| Ok(Raw(conv::owned::<W_kit_FileTree>(<rune_kit::FileTree as Default>::default())?)))
-    }
-}
-
 /// What a standard tree row shows after its indent and chevron: an icon, a label and trailing
 /// content (change counts, a status dot, a badge, or any element).
 #[napi(js_name = "kit_TreeItem")]
@@ -10322,9 +12505,21 @@ impl Class for W_kit_TreeRow {
 }
 #[napi]
 impl W_kit_TreeRow {
+    #[napi(getter, js_name = "id", skip_typescript)]
+    pub fn g_id(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeRow")?.id.to_owned())?)))
+    }
     #[napi(getter, js_name = "depth", skip_typescript)]
     pub fn g_depth(&self) -> napi::Result<Raw> {
         conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeRow")?.depth.clone())?)))
+    }
+    #[napi(getter, js_name = "expanded", skip_typescript)]
+    pub fn g_expanded(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeRow")?.expanded.clone())?)))
+    }
+    #[napi(getter, js_name = "selected", skip_typescript)]
+    pub fn g_selected(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeRow")?.selected.clone())?)))
     }
     #[napi(getter, js_name = "cursor", skip_typescript)]
     pub fn g_cursor(&self) -> napi::Result<Raw> {
@@ -10336,55 +12531,230 @@ impl W_kit_TreeRow {
     }
 }
 
+/// A tree's metrics and colours. [`TreeStyle::from_kit`] takes them from the theme; the builder
+/// methods set the rest (an editor's file tree, say, with folders that show only a chevron).
+#[napi(js_name = "kit_TreeStyle")]
+pub struct W_kit_TreeStyle {
+    pub(crate) slot: conv::Slot<rune_kit::TreeStyle>,
+}
+impl Class for W_kit_TreeStyle {
+    type Inner = rune_kit::TreeStyle;
+    const NAME: &'static str = "TreeStyle";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_kit_TreeStyle { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
 impl FromJs for rune_kit::TreeStyle {
     fn from_js(v: conv::Value) -> conv::Result<Self> {
-        if conv::kind(v) != napi::sys::ValueType::napi_object {
-            return Err(conv::err(concat!("expected a ", "TreeStyle", " object")));
-        }
-        
-        Ok(rune_kit::TreeStyle {
-            row_height: conv::field::<f32>(v, "TreeStyle", "row_height")?,
-            indent: conv::field::<f32>(v, "TreeStyle", "indent")?,
-            padding: conv::field::<f32>(v, "TreeStyle", "padding")?,
-            guides: conv::field::<bool>(v, "TreeStyle", "guides")?,
-            guide: conv::field::<rune::Color>(v, "TreeStyle", "guide")?,
-            selected: conv::field::<rune::Color>(v, "TreeStyle", "selected")?,
-        })
+        conv::cloned::<W_kit_TreeStyle>(v)
     }
 }
 impl ToJs for rune_kit::TreeStyle {
     fn to_js(self) -> conv::Result<conv::Value> {
-        let o = conv::records::new("kit_TreeStyle");
-        conv::set(o, "row_height", self.row_height.clone().to_js()?);
-        conv::set(o, "indent", self.indent.clone().to_js()?);
-        conv::set(o, "padding", self.padding.clone().to_js()?);
-        conv::set(o, "guides", self.guides.clone().to_js()?);
-        conv::set(o, "guide", self.guide.clone().to_js()?);
-        conv::set(o, "selected", self.selected.clone().to_js()?);
-        Ok(o)
+        conv::owned::<W_kit_TreeStyle>(self)
     }
 }
-impl conv::Record for rune_kit::TreeStyle {
-    fn write_back(self, o: conv::Value) -> conv::Result<()> {
-        conv::set(o, "row_height", self.row_height.clone().to_js()?);
-        conv::set(o, "indent", self.indent.clone().to_js()?);
-        conv::set(o, "padding", self.padding.clone().to_js()?);
-        conv::set(o, "guides", self.guides.clone().to_js()?);
-        conv::set(o, "guide", self.guide.clone().to_js()?);
-        conv::set(o, "selected", self.selected.clone().to_js()?);
-        Ok(())
+#[napi]
+impl W_kit_TreeStyle {
+    #[napi(js_name = "from_kit", skip_typescript)]
+    pub fn s_from_kit(a_k: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+            let a_k = a_k_i.slot().get("Kit")?;
+            let out = conv::owned::<W_kit_TreeStyle>(rune_kit::TreeStyle::from_kit(a_k))?;
+            Ok(Raw(out))
+        })
     }
-}
-
-#[napi(js_name = "__R_kit_TreeStyle_from_kit", skip_typescript)]
-pub fn __r_kit_treestyle_from_kit(a_k: Raw) -> napi::Result<Raw> {
-    conv::guard(|| {
-        let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
-        let a_k = a_k_i.slot().get("Kit")?;
-        
-        let out = conv::ToJs::to_js(rune_kit::TreeStyle::from_kit(a_k))?;
-        Ok(Raw(out))
-    })
+/// The overlay a row shows under the pointer (the theme's hover colour by default). A
+/// selected row keeps its selected fill instead.
+    #[napi(js_name = "hover", skip_typescript)]
+    pub fn m_hover(&mut self, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.hover(a_c))?;
+            Ok(Raw(out))
+        })
+    }
+/// Space between the chevron, the icon and the label (4 points by default).
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap(&mut self, a_gap: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_gap: f32 = conv::arg(a_gap.0, "gap")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.gap(a_gap))?;
+            Ok(Raw(out))
+        })
+    }
+/// The rows' corner radius (the theme's small radius by default).
+    #[napi(js_name = "radius", skip_typescript)]
+    pub fn m_radius(&mut self, a_r: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_r: f32 = conv::arg(a_r.0, "r")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.radius(a_r))?;
+            Ok(Raw(out))
+        })
+    }
+/// The labels' font, and their colour at rest and on a selected row (the theme's UI font in
+/// its text colour by default). A [`TreeItem::label_color`] still wins.
+    #[napi(js_name = "label", skip_typescript)]
+    pub fn m_label(&mut self, a_font: Raw, a_rest: Raw, a_selected: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_font: rune::TextStyle = conv::arg(a_font.0, "font")?;
+            let a_rest: rune::Color = conv::arg(a_rest.0, "rest")?;
+            let a_selected: rune::Color = conv::arg(a_selected.0, "selected")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.label(a_font, a_rest, a_selected))?;
+            Ok(Raw(out))
+        })
+    }
+/// A label too long for its row fades out over its last `width` points instead of ending in
+/// an ellipsis.
+    #[napi(js_name = "fade_long_labels", skip_typescript)]
+    pub fn m_fade_long_labels(&mut self, a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.fade_long_labels(a_width))?;
+            Ok(Raw(out))
+        })
+    }
+/// Folders show only their chevron, and a file's icon takes the chevron's place, as a file
+/// tree whose folders need no glyph of their own does. Off, every row keeps a chevron lane
+/// and folders show their folder icon ([`TreeItem::file`]).
+    #[napi(js_name = "chevron_only_folders", skip_typescript)]
+    pub fn m_chevron_only_folders(&mut self, a_on: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.chevron_only_folders(a_on))?;
+            Ok(Raw(out))
+        })
+    }
+/// The disclosure glyph, drawn as it is on an open folder and turned a quarter
+/// anticlockwise on a closed one (the theme's `chevron_down` by default).
+    #[napi(js_name = "chevron", skip_typescript)]
+    pub fn m_chevron(&mut self, a_glyph: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_glyph_i = conv::instance::<crate::gen::rune::W_Icon>(a_glyph.0).map_err(|e| conv::err(format!("{}: {}", "glyph", e.reason)))?;
+            let a_glyph = a_glyph_i.slot().leak("Icon")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.chevron(a_glyph))?;
+            Ok(Raw(out))
+        })
+    }
+/// The chevron's colour at rest and on a selected row (the theme's muted icon colour for both
+/// by default).
+    #[napi(js_name = "chevron_colors", skip_typescript)]
+    pub fn m_chevron_colors(&mut self, a_rest: Raw, a_selected: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_rest: rune::Color = conv::arg(a_rest.0, "rest")?;
+            let a_selected: rune::Color = conv::arg(a_selected.0, "selected")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.chevron_colors(a_rest, a_selected))?;
+            Ok(Raw(out))
+        })
+    }
+/// Moves the chevron down `dy` points, open or closed, to sit on the label's baseline.
+    #[napi(js_name = "chevron_nudge", skip_typescript)]
+    pub fn m_chevron_nudge(&mut self, a_dy: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_dy: f32 = conv::arg(a_dy.0, "dy")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.chevron_nudge(a_dy))?;
+            Ok(Raw(out))
+        })
+    }
+/// The indent guides hide until the pointer is over the tree, then show at `opacity`.
+    #[napi(js_name = "guides_on_hover", skip_typescript)]
+    pub fn m_guides_on_hover(&mut self, a_opacity: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_opacity: f32 = conv::arg(a_opacity.0, "opacity")?;
+            let me = self.slot.get("TreeStyle")?.clone();
+            let out = conv::owned::<W_kit_TreeStyle>(me.guides_on_hover(a_opacity))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(getter, js_name = "row_height", skip_typescript)]
+    pub fn g_row_height(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeStyle")?.row_height.clone())?)))
+    }
+    #[napi(setter, js_name = "row_height", skip_typescript)]
+    pub fn p_row_height(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: f32 = conv::arg(value.0, "row_height")?;
+            self.slot.get_mut("TreeStyle")?.row_height = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "indent", skip_typescript)]
+    pub fn g_indent(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeStyle")?.indent.clone())?)))
+    }
+    #[napi(setter, js_name = "indent", skip_typescript)]
+    pub fn p_indent(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: f32 = conv::arg(value.0, "indent")?;
+            self.slot.get_mut("TreeStyle")?.indent = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "padding", skip_typescript)]
+    pub fn g_padding(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeStyle")?.padding.clone())?)))
+    }
+    #[napi(setter, js_name = "padding", skip_typescript)]
+    pub fn p_padding(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: f32 = conv::arg(value.0, "padding")?;
+            self.slot.get_mut("TreeStyle")?.padding = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "guides", skip_typescript)]
+    pub fn g_guides(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeStyle")?.guides.clone())?)))
+    }
+    #[napi(setter, js_name = "guides", skip_typescript)]
+    pub fn p_guides(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: bool = conv::arg(value.0, "guides")?;
+            self.slot.get_mut("TreeStyle")?.guides = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "guide", skip_typescript)]
+    pub fn g_guide(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeStyle")?.guide.clone())?)))
+    }
+    #[napi(setter, js_name = "guide", skip_typescript)]
+    pub fn p_guide(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: rune::Color = conv::arg(value.0, "guide")?;
+            self.slot.get_mut("TreeStyle")?.guide = value;
+            Ok(())
+        })
+    }
+    #[napi(getter, js_name = "selected", skip_typescript)]
+    pub fn g_selected(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("TreeStyle")?.selected.clone())?)))
+    }
+    #[napi(setter, js_name = "selected", skip_typescript)]
+    pub fn p_selected(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: rune::Color = conv::arg(value.0, "selected")?;
+            self.slot.get_mut("TreeStyle")?.selected = value;
+            Ok(())
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_kit_TreeStyle>(self.slot.get("TreeStyle")?.clone())?)))
+    }
 }
 
 impl FromJs for rune_kit::State {
@@ -10460,6 +12830,15 @@ impl W_El {
             let a_style: rune_kit::ScrollBarStyle = conv::arg(a_style.0, "style")?;
             let me = self.slot.take("El")?;
             self.slot.put(<rune::El as rune_kit::ScrollBar>::scroll_bar_styled(me, a_style));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "scroll_bar_hover", skip_typescript)]
+    pub fn t_rune_kit_ScrollBar_scroll_bar_hover<'t>(&mut self, this: This<'t>, a_viewport_key: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_viewport_key: String = conv::arg(a_viewport_key.0, "viewport_key")?;
+            let me = self.slot.take("El")?;
+            self.slot.put(<rune::El as rune_kit::ScrollBar>::scroll_bar_hover(me, &a_viewport_key));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -10610,6 +12989,43 @@ pub fn c_kit_glyphs__DEFAULT() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::glyphs::DEFAULT.clone())?)))
 }
 
+/// Whether `ev` is the sidebar's show/hide shortcut: ⇧⌘B (Ctrl+Shift+B off macOS), and on macOS
+/// also ⌃⌘S, AppKit's Toggle Sidebar. Call it from the app's key handler (`AppSpec::on_key`)
+/// and toggle the sidebar's [`PaneState`] when it matches.
+#[napi(js_name = "kit_shell__is_sidebar_toggle", skip_typescript)]
+pub fn f_kit_shell__is_sidebar_toggle(a_ev: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_ev: rune::KeyEvent = conv::arg(a_ev.0, "ev")?;
+        let out = conv::ToJs::to_js(rune_kit::shell::is_sidebar_toggle(&a_ev))?;
+        Ok(Raw(out))
+    })
+}
+
+#[napi(js_name = "__C_kit_shell__INDENT", skip_typescript)]
+pub fn c_kit_shell__INDENT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::shell::INDENT.clone())?)))
+}
+
+#[napi(js_name = "__C_kit_shell__ROW_HEIGHT", skip_typescript)]
+pub fn c_kit_shell__ROW_HEIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::shell::ROW_HEIGHT.clone())?)))
+}
+
+#[napi(js_name = "__C_kit_shell__TOOLBAR_HEIGHT", skip_typescript)]
+pub fn c_kit_shell__TOOLBAR_HEIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_kit::shell::TOOLBAR_HEIGHT.clone())?)))
+}
+
+#[napi(js_name = "__C_kit_shell__SIDEBAR", skip_typescript)]
+pub fn c_kit_shell__SIDEBAR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_kit::shell::SIDEBAR))) }?)))
+}
+
+#[napi(js_name = "__C_kit_shell__INSPECTOR", skip_typescript)]
+pub fn c_kit_shell__INSPECTOR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_kit::shell::INSPECTOR))) }?)))
+}
+
 /// A menu at a secondary-press position. Store the point from `El::on_secondary_press`
 /// in app state; clear it in `on_close` and item callbacks. Uses Menu's flipping anchor.
 #[napi(js_name = "kit_context_menu", skip_typescript)]
@@ -10673,6 +13089,16 @@ pub fn f_kit_scroll_bar(a_k: Raw, a_area: Raw, a_key: Raw, a_viewport: Raw) -> n
         let a_key: String = conv::arg(a_key.0, "key")?;
         let a_viewport: rune::El = conv::arg(a_viewport.0, "viewport")?;
         let out = conv::ToJs::to_js(rune_kit::scroll_bar(a_k, &a_area, &a_key, a_viewport))?;
+        Ok(Raw(out))
+    })
+}
+
+/// An icon for a file by its extension: code, text and docs, images, or a plain page.
+#[napi(js_name = "kit_file_icon", skip_typescript)]
+pub fn f_kit_file_icon(a_name: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_name: String = conv::arg(a_name.0, "name")?;
+        let out = conv::static_ref::<crate::gen::rune::W_Icon>(rune_kit::file_icon(&a_name))?;
         Ok(Raw(out))
     })
 }

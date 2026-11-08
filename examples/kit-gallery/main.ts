@@ -15,7 +15,7 @@
 // module (GPU instance timing against `rune::render`), not part of the app, so it has no port.
 
 import { AppSpec, type Cx, type El, TextEdit, col, color, extra_args, run } from "runex-js"
-import { ComboboxState, Kit, type PaletteSeed, root } from "runex-js/kit"
+import { ComboboxState, type FileNode, FileTree, Kit, type PaletteSeed, type TreeModel, root } from "runex-js/kit"
 import * as rune_theme_opencode from "runex-js/theme-opencode"
 import { FAMILIES, FONTS } from "runex-js/theme-opencode"
 
@@ -31,6 +31,8 @@ export class G {
   open: string | null
   edits: TextEdit[]
   combo: ComboboxState
+  /** The file tree story's files. */
+  files: TreeModel<FileNode<null>>
   neutral: boolean
   palette: boolean
   /** `--reduced-motion`: the runtime's reduced-motion mode. */
@@ -43,6 +45,7 @@ export class G {
     open: string | null
     edits: TextEdit[]
     combo: ComboboxState
+    files: TreeModel<FileNode<null>>
     neutral: boolean
     palette: boolean
     reduced: boolean
@@ -53,6 +56,7 @@ export class G {
     this.open = f.open
     this.edits = f.edits
     this.combo = f.combo
+    this.files = f.files
     this.neutral = f.neutral
     this.palette = f.palette
     this.reduced = f.reduced
@@ -83,10 +87,20 @@ function init(): G {
     // `[TextEdit; 8]`'s `Default::default()`.
     edits: Array.from({ length: 8 }, () => TextEdit.default()),
     combo: ComboboxState.default(),
+    files: files(),
     neutral: extra_args().some((a) => a === "neutral"),
     palette: extra_args().some((a) => a === "palette"),
     reduced: extra_args().some((a) => a === "--reduced-motion"),
   })
+}
+
+/** The acme-web checkout Desktop's Files panel shows, `src/util` open on `format.ts`. */
+function files(): TreeModel<FileNode<null>> {
+  const paths = [".git/HEAD", "src/util/format.ts", "src/money.ts", "src/index.ts", "package.json", "README.md"]
+  const m = FileTree.new().compact_folders(false).build(paths.map((p) => [p, null] as const))
+  m.expand_to("src/util/format.ts")
+  m.select("src/util/format.ts")
+  return m
 }
 
 // The `OnceLock` statics: each kit is built once, on first use.

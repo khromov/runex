@@ -35,7 +35,7 @@ function exportsOf(path, seen = new Set()) {
   return names
 }
 
-const entries = ["index", "kit", "fx", "light", "motion", "knobs", "theme-opencode"]
+const entries = ["index", "kit", "fx", "light", "motion", "knobs", "theme-opencode", "notify"]
   .map((name) => ({ name, names: exportsOf(join(root, "ts", `${name}.ts`)) }))
 
 const declared = new Set([...text.matchAll(/^export (?:declare )?(?:class|interface|type|const|function|enum) ([A-Za-z_$][\w$]*)/gm)].map((m) => m[1]))

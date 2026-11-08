@@ -55,19 +55,19 @@
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rows","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows","rect":[289,257,615,134],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"opencode","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/opencode","rect":[289,257,615,44],"role":"group","scale":1}
 {"blur":0,"fill":"#1d1d1fff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/opencode/tile","rect":[289,268,22,22],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"letter","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/opencode/tile/letter","rect":[295.5,272,9,14],"role":"text","scale":1,"text":"O"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"letter","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/opencode/tile/letter","rect":[295.5,272.13,9,13.75],"role":"text","scale":1,"text":"O"}
 {"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"name","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/opencode/name","rect":[321,269,400,20],"role":"text","scale":1,"text":"OpenCode"}
 {"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"state","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/opencode/state","rect":[731,269,173,20],"role":"text","scale":1,"text":"Allow incoming connections"}
 {"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep0","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/sep0","rect":[289,301,615,1],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rune","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/rune","rect":[289,302,615,44],"role":"group","scale":1}
 {"blur":0,"fill":"#6d4affff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/rune/tile","rect":[289,313,22,22],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"letter","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/rune/tile/letter","rect":[296,317,8,14],"role":"text","scale":1,"text":"R"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"letter","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/rune/tile/letter","rect":[296,317.13,8,13.75],"role":"text","scale":1,"text":"R"}
 {"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"name","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/rune/name","rect":[321,314,400,20],"role":"text","scale":1,"text":"Rune"}
 {"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"state","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/rune/state","rect":[731,314,173,20],"role":"text","scale":1,"text":"Allow incoming connections"}
 {"blur":0,"fill":"#ffffff1a","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"sep1","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/sep1","rect":[289,346,615,1],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"display","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/display","rect":[289,347,615,44],"role":"group","scale":1}
 {"blur":0,"fill":"#2f80edff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"tile","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/display/tile","rect":[289,358,22,22],"role":"group","scale":1}
-{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"letter","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/display/tile/letter","rect":[296,362,8,14],"role":"text","scale":1,"text":"S"}
+{"blur":0,"color":"#ffffffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"letter","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/display/tile/letter","rect":[296,362.13,8,13.75],"role":"text","scale":1,"text":"S"}
 {"blur":0,"color":"#fafafaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"name","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/display/name","rect":[321,359,400,20],"role":"text","scale":1,"text":"Studio Display Updater"}
 {"blur":0,"color":"#aeaeaeff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"state","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/allowed/allowed-card/rows/display/state","rect":[731,359,173,20],"role":"text","scale":1,"text":"Allow incoming connections"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"address","loopPhase":null,"opacity":1,"path":"kit-root/window/content/page-network/address","rect":[273,415,647,165],"role":"group","scale":1}
@@ -142,19 +142,19 @@
 {"a11y":"0/0/0/2/0/2/1/0","bounds":[289,257,615,134],"key":"rows","role":"group"}
 {"a11y":"0/0/0/2/0/2/1/0/0","bounds":[289,257,615,44],"key":"opencode","role":"group"}
 {"a11y":"0/0/0/2/0/2/1/0/0/0","bounds":[289,268,22,22],"key":"tile","role":"group"}
-{"a11y":"0/0/0/2/0/2/1/0/0/0/0","bounds":[295.5,272,9,14],"key":"letter","name":"O","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/0/0/0","bounds":[295.5,272.1,9,13.8],"key":"letter","name":"O","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/0/1","bounds":[321,269,400,20],"key":"name","name":"OpenCode","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/0/2","bounds":[731,269,173,20],"key":"state","name":"Allow incoming connections","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/1","bounds":[289,301,615,1],"key":"sep0","role":"group"}
 {"a11y":"0/0/0/2/0/2/1/0/2","bounds":[289,302,615,44],"key":"rune","role":"group"}
 {"a11y":"0/0/0/2/0/2/1/0/2/0","bounds":[289,313,22,22],"key":"tile","role":"group"}
-{"a11y":"0/0/0/2/0/2/1/0/2/0/0","bounds":[296,317,8,14],"key":"letter","name":"R","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/2/0/0","bounds":[296,317.1,8,13.8],"key":"letter","name":"R","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/2/1","bounds":[321,314,400,20],"key":"name","name":"Rune","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/2/2","bounds":[731,314,173,20],"key":"state","name":"Allow incoming connections","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/3","bounds":[289,346,615,1],"key":"sep1","role":"group"}
 {"a11y":"0/0/0/2/0/2/1/0/4","bounds":[289,347,615,44],"key":"display","role":"group"}
 {"a11y":"0/0/0/2/0/2/1/0/4/0","bounds":[289,358,22,22],"key":"tile","role":"group"}
-{"a11y":"0/0/0/2/0/2/1/0/4/0/0","bounds":[296,362,8,14],"key":"letter","name":"S","role":"label"}
+{"a11y":"0/0/0/2/0/2/1/0/4/0/0","bounds":[296,362.1,8,13.8],"key":"letter","name":"S","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/4/1","bounds":[321,359,400,20],"key":"name","name":"Studio Display Updater","role":"label"}
 {"a11y":"0/0/0/2/0/2/1/0/4/2","bounds":[731,359,173,20],"key":"state","name":"Allow incoming connections","role":"label"}
 {"a11y":"0/0/0/2/0/3","bounds":[273,415,647,165],"key":"address","role":"group"}

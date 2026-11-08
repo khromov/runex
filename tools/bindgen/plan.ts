@@ -455,18 +455,30 @@ function closureParam(ctx: Ctx, name: string, raw: string, label: string, fn: Js
 
 // ── results ────────────────────────────────────────────────────────────────
 
-export function planResult(ctx: Ctx, ty: Json | null): ResultPlan {
+/**
+ * `statics`: the value is a constant's, whose elided lifetimes are 'static. A `&'static`
+ * reference to a class that isn't Clone (a theme's icon) becomes an instance that refers to it
+ * (`conv::static_ref`), as a static of that class does.
+ */
+export function planResult(ctx: Ctx, ty: Json | null, statics = false): ResultPlan {
   const m = ctx.model
   if (!ty || (ty.tuple && ty.tuple.length === 0)) return { ts: "void", toJs: (e) => `{ ${e}; conv::Result::Ok(conv::undefined()) }` }
   if (ty.borrowed_ref) {
     const inner = ty.borrowed_ref.type
+    const isStatic = (r: Json) => !r.is_mutable && (r.lifetime === "'static" || (statics && r.lifetime == null))
     if (inner.primitive === "str") return { ts: "string", toJs: (e) => `conv::ToJs::to_js(${e}.to_owned())` }
     if (inner.slice) {
+      // `&'static [&'static T]` or `&'static [T]` of a class that isn't Clone: a catalog.
+      const el = inner.slice.borrowed_ref
+      const ev = isStatic(ty.borrowed_ref) && (!el || isStatic(el)) ? staticClass(ctx, el ? el.type : inner.slice) : null
+      if (ev) return { ts: `${wrapTs(ev.ts)}[]`, toJs: (e) => `conv::static_refs::<${ev.w}>(${e}.iter()${el ? ".copied()" : ""})` }
       const v = m.value(ctx, inner.slice)
       if (!v || (v.isClass && !v.bound?.traits.has("Clone"))) return fail("returns a slice")
       return { ts: v.rust === "u8" ? "Uint8Array" : `${wrapTs(v.ts)}[]`, toJs: (e) => `conv::ToJs::to_js(${e}.to_vec())` }
     }
     if (inner.resolved_path && m.resolve(ctx.crate, inner.resolved_path).std === "Path") return { ts: "string", toJs: (e) => `conv::ToJs::to_js(${e})` }
+    const sv = isStatic(ty.borrowed_ref) ? staticClass(ctx, inner) : null
+    if (sv) return { ts: sv.ts, toJs: (e) => `conv::static_ref::<${sv.w}>(${e})` }
     const v = m.value(ctx, inner)
     if (!v) return fail(`returns a reference to ${describe(inner)}`)
     if (v.isClass && !v.bound?.traits.has("Clone")) return fail(`returns a reference to non-Clone ${v.rust}`)
@@ -497,6 +509,9 @@ export function planResult(ctx: Ctx, ty: Json | null): ResultPlan {
     if (r.std === "Option" && a[0]?.borrowed_ref) {
       const inner = a[0].borrowed_ref.type
       if (inner.primitive === "str") return { ts: "string | null", toJs: (e) => `conv::ToJs::to_js(${e}.map(str::to_owned))` }
+      const r = a[0].borrowed_ref
+      const sv = !r.is_mutable && (r.lifetime === "'static" || (statics && r.lifetime == null)) ? staticClass(ctx, inner) : null
+      if (sv) return { ts: `${sv.ts} | null`, toJs: (e) => `match ${e} { Some(v) => conv::static_ref::<${sv.w}>(v), None => Ok(conv::null()) }` }
       const v = m.value(ctx, inner)
       if (!v || (v.isClass && !v.bound?.traits.has("Clone"))) return fail("returns Option of a reference")
       return { ts: `${v.ts} | null`, toJs: (e) => `conv::ToJs::to_js(${e}.cloned())` }
@@ -506,6 +521,13 @@ export function planResult(ctx: Ctx, ty: Json | null): ResultPlan {
   if (!v) return fail(`return type ${describe(ty)}`)
   if (v.lendOnly) return fail(`returns ${v.rust}, which borrows`)
   return { ts: v.ts, toJs: (e) => `conv::ToJs::to_js(${e})` }
+}
+
+/** A class that isn't Clone, as `&'static` results refer to it: its TS type and wrapper. */
+function staticClass(ctx: Ctx, ty: Json): { ts: string; w: string } | null {
+  const v = ctx.model.value(ctx, ty)
+  if (!v?.isClass || !v.bound || v.bound.traits.has("Clone")) return null
+  return { ts: v.ts, w: `crate::gen::${v.bound.crate.config.module}::${v.bound.wrapper}` }
 }
 
 /** TS type params a signature needs (`S` when a closure receives the state). */

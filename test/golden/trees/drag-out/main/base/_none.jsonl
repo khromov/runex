@@ -1,24 +1,24 @@
 {"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Drag Out","viewport":[520,200],"warnings":[]}
 {"blur":0,"fill":"#121314ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,520,200],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[23,33.75,474,92],"role":"group","scale":1}
-{"blur":0,"dragOut":true,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"file","loopPhase":null,"opacity":1,"path":"#0/#0/file","rect":[23,33.75,150,92],"role":"button","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/file/#0","rect":[35,45.75,126,16.5],"role":"text","scale":1,"text":"A file"}
-{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/file/#1","rect":[35,66.25,126,15],"role":"text","scale":1,"text":"Dragged out of Rune.txt"}
-{"blur":0,"dragOut":true,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"app","loopPhase":null,"opacity":1,"path":"#0/#0/app","rect":[185,33.75,150,92],"role":"button","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/app/#0","rect":[197,45.75,126,16.5],"role":"text","scale":1,"text":"An app"}
-{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/app/#1","rect":[197,66.25,126,15],"role":"text","scale":1,"text":"Calculator.app"}
-{"blur":0,"dragOut":true,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"text","loopPhase":null,"opacity":1,"path":"#0/#0/text","rect":[347,33.75,150,92],"role":"button","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/text/#0","rect":[359,45.75,126,16.5],"role":"text","scale":1,"text":"Some text"}
-{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/text/#1","rect":[359,66.25,126,15],"role":"text","scale":1,"text":"Hello from Rune"}
-{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"status","loopPhase":null,"opacity":1,"path":"#0/status","rect":[171.75,149.75,176.5,16.5],"role":"text","scale":1,"text":"Drag a tile out of the window"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0","rect":[23,33.88,474,92],"role":"group","scale":1}
+{"blur":0,"dragOut":true,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"file","loopPhase":null,"opacity":1,"path":"#0/#0/file","rect":[23,33.88,150,92],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/file/#0","rect":[35,45.88,126,16.25],"role":"text","scale":1,"text":"A file"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/file/#1","rect":[35,66.13,126,15],"role":"text","scale":1,"text":"Dragged out of Rune.txt"}
+{"blur":0,"dragOut":true,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"app","loopPhase":null,"opacity":1,"path":"#0/#0/app","rect":[185,33.88,150,92],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/app/#0","rect":[197,45.88,126,16.25],"role":"text","scale":1,"text":"An app"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/app/#1","rect":[197,66.13,126,15],"role":"text","scale":1,"text":"Calculator.app"}
+{"blur":0,"dragOut":true,"fill":"#1c1d20ff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"text","loopPhase":null,"opacity":1,"path":"#0/#0/text","rect":[347,33.88,150,92],"role":"button","scale":1}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/text/#0","rect":[359,45.88,126,16.25],"role":"text","scale":1,"text":"Some text"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/#0/text/#1","rect":[359,66.13,126,15],"role":"text","scale":1,"text":"Hello from Rune"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"status","loopPhase":null,"opacity":1,"path":"#0/status","rect":[171.75,149.88,176.5,16.25],"role":"text","scale":1,"text":"Drag a tile out of the window"}
 {"a11y":"0","bounds":[0,0,520,200],"name":"Drag Out","role":"window"}
-{"a11y":"0/0","bounds":[23,33.8,150,92],"key":"file","name":"A file Dragged out of Rune.txt","role":"button"}
-{"a11y":"0/0/0","bounds":[35,45.8,126,16.5],"name":"A file","role":"label"}
-{"a11y":"0/0/1","bounds":[35,66.3,126,15],"name":"Dragged out of Rune.txt","role":"label"}
-{"a11y":"0/1","bounds":[185,33.8,150,92],"key":"app","name":"An app Calculator.app","role":"button"}
-{"a11y":"0/1/0","bounds":[197,45.8,126,16.5],"name":"An app","role":"label"}
-{"a11y":"0/1/1","bounds":[197,66.3,126,15],"name":"Calculator.app","role":"label"}
-{"a11y":"0/2","bounds":[347,33.8,150,92],"key":"text","name":"Some text Hello from Rune","role":"button"}
-{"a11y":"0/2/0","bounds":[359,45.8,126,16.5],"name":"Some text","role":"label"}
-{"a11y":"0/2/1","bounds":[359,66.3,126,15],"name":"Hello from Rune","role":"label"}
-{"a11y":"0/3","bounds":[171.8,149.8,176.5,16.5],"key":"status","name":"Drag a tile out of the window","role":"label"}
+{"a11y":"0/0","bounds":[23,33.9,150,92],"key":"file","name":"A file Dragged out of Rune.txt","role":"button"}
+{"a11y":"0/0/0","bounds":[35,45.9,126,16.3],"name":"A file","role":"label"}
+{"a11y":"0/0/1","bounds":[35,66.1,126,15],"name":"Dragged out of Rune.txt","role":"label"}
+{"a11y":"0/1","bounds":[185,33.9,150,92],"key":"app","name":"An app Calculator.app","role":"button"}
+{"a11y":"0/1/0","bounds":[197,45.9,126,16.3],"name":"An app","role":"label"}
+{"a11y":"0/1/1","bounds":[197,66.1,126,15],"name":"Calculator.app","role":"label"}
+{"a11y":"0/2","bounds":[347,33.9,150,92],"key":"text","name":"Some text Hello from Rune","role":"button"}
+{"a11y":"0/2/0","bounds":[359,45.9,126,16.3],"name":"Some text","role":"label"}
+{"a11y":"0/2/1","bounds":[359,66.1,126,15],"name":"Hello from Rune","role":"label"}
+{"a11y":"0/3","bounds":[171.8,149.9,176.5,16.3],"key":"status","name":"Drag a tile out of the window","role":"label"}

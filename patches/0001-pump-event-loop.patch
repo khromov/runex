@@ -1,8 +1,8 @@
 diff --git a/crates/rune/src/app.rs b/crates/rune/src/app.rs
-index 3cee9f38..5f42126c 100644
+index 0f6399e2..75679610 100644
 --- a/crates/rune/src/app.rs
 +++ b/crates/rune/src/app.rs
-@@ -505,6 +505,26 @@ impl<S: 'static> App<S> {
+@@ -552,6 +552,26 @@ impl<S: 'static> App<S> {
      }
  }
  
@@ -30,10 +30,10 @@ index 3cee9f38..5f42126c 100644
      pub(crate) fn resolve_args(&mut self, inherited: Args) -> Args {
          self.argv.take().map_or(inherited, Args::parse_from)
 diff --git a/crates/rune/src/lib.rs b/crates/rune/src/lib.rs
-index 2a77baac..52ebcbdf 100644
+index f66b22b1..22ab0063 100644
 --- a/crates/rune/src/lib.rs
 +++ b/crates/rune/src/lib.rs
-@@ -322,6 +322,8 @@ pub use tooling::run_windows_with;
+@@ -327,6 +327,8 @@ pub use tooling::run_windows_with;
  pub use tooling::run_windows_with_args;
  pub use tooling::run_with;
  pub use tooling::set_app_id;
@@ -42,7 +42,7 @@ index 2a77baac..52ebcbdf 100644
  pub use tooling::try_run_windows_with;
  pub use tooling::try_run_windows_with_args;
  pub use tray::Tray;
-@@ -335,7 +337,11 @@ pub use video::MediaSource;
+@@ -340,7 +342,11 @@ pub use video::MediaSource;
  pub use video::Player;
  pub use video::PlayerState;
  pub use video::Video;
@@ -80,10 +80,10 @@ index f9138193..64e1b91c 100644
      if let Err(error) = result { panic!("{error}"); }
  }
 diff --git a/crates/rune/src/window.rs b/crates/rune/src/window.rs
-index c7046726..a95c2cb0 100644
+index 7ec6fa8b..8ad31484 100644
 --- a/crates/rune/src/window.rs
 +++ b/crates/rune/src/window.rs
-@@ -72,6 +72,14 @@ mod float_on_open;
+@@ -71,6 +71,14 @@ mod float_on_open;
  #[cfg(not(target_arch = "wasm32"))]
  pub use event_loop::run;
  pub(crate) use event_loop::run_windows;
@@ -98,7 +98,7 @@ index c7046726..a95c2cb0 100644
  #[cfg(test)]
  #[path = "window/covered_tests.rs"]
  mod covered;
-@@ -142,6 +150,8 @@ struct Windows {
+@@ -147,6 +155,8 @@ struct Windows {
      hosts: Vec<Option<Box<dyn AnyHost>>>,
      // Weak pool preserves release_gpu_when_closed when the last GPU owner closes.
      gpu: Rc<RefCell<Weak<Gpu>>>,
@@ -106,8 +106,8 @@ index c7046726..a95c2cb0 100644
 +    flow: ControlFlow,
  }
  impl Windows {
-     fn cleanup(&mut self, event_loop: &ActiveEventLoop) {
-@@ -253,15 +263,15 @@ impl ApplicationHandler<WakeEvent> for Windows {
+     /// Starts the windows `crate::open_window` asked for this turn, in fresh slots, each like
+@@ -179,8 +189,8 @@ impl Windows {
          for mut overlay in overlays {
              let (slot, proxy) = (self.hosts.len(), self.proxy.clone());
              let frame_proxy = proxy.clone();
@@ -118,15 +118,22 @@ index c7046726..a95c2cb0 100644
              overlay.resumed(event_loop);
              self.hosts.push(Some(overlay));
          }
+@@ -301,12 +311,12 @@ impl ApplicationHandler<WakeEvent> for Windows {
          #[cfg(target_os = "macos")]
          {
              let proxy = self.proxy.clone();
 -            crate::platform::reopen::install(move || proxy.send_event(WakeEvent::Reopen).is_ok());
 +            crate::platform::reopen::install(move || send_wake(&proxy, WakeEvent::Reopen));
          }
+         #[cfg(target_os = "windows")]
+         {
+             let proxy = self.proxy.clone();
+-            crate::open_url::instance::on_relaunch(move || proxy.send_event(WakeEvent::Reopen).is_ok());
++            crate::open_url::instance::on_relaunch(move || send_wake(&proxy, WakeEvent::Reopen));
+         }
          crate::open_url::incoming::settle();
          // A window opened at launch took it; a GPU kept for a later one would sit idle until then.
-@@ -300,8 +310,8 @@ impl ApplicationHandler<WakeEvent> for Windows {
+@@ -346,8 +356,8 @@ impl ApplicationHandler<WakeEvent> for Windows {
          // Layer surfaces have no redraw events: keep turning while one animates (its vsync
          // paces the loop). Hosts whose only motion is an ambient loop sleep until its next step.
          let deadline = self.hosts.iter().flatten().filter_map(|host| host.wake_deadline()).min();
@@ -137,7 +144,7 @@ index c7046726..a95c2cb0 100644
      }
      fn exiting(&mut self, event_loop: &ActiveEventLoop) {
          // Rune didn't ask to exit, so the OS is ending the app: macOS Quit, Cmd-Q, the Dock's
-@@ -409,7 +419,7 @@ impl<S: 'static> Host<S> {
+@@ -460,7 +470,7 @@ impl<S: 'static> Host<S> {
          #[cfg(target_os = "macos")]
          let frame_proxy = proxy.clone();
          let waker: Waker = Arc::new(move || {
@@ -146,7 +153,7 @@ index c7046726..a95c2cb0 100644
          });
          let (open, keep_running, on_close, release_gpu) = (app.open, app.keep_running, app.on_close, app.release_gpu);
          let on_reopen = app.on_reopen;
-@@ -459,7 +469,7 @@ impl<S: 'static> Host<S> {
+@@ -508,7 +518,7 @@ impl<S: 'static> Host<S> {
          crate::platform::scroll_bars::watch();
          rt.set_system_scroll_bars_state(crate::platform::scroll_bars::current().with_override(args.scroll_bars));
          rt.trace_channels = args.trace.as_ref().map(|_| Default::default());
@@ -155,7 +162,7 @@ index c7046726..a95c2cb0 100644
          rt.set_live_visible(false);
          rt.set_os_drag(crate::drag_out::SUPPORTED);
          rt.transparent = options.transparent;
-@@ -531,7 +541,7 @@ impl<S: 'static> Host<S> {
+@@ -582,7 +592,7 @@ impl<S: 'static> Host<S> {
              #[cfg(target_os = "macos")]
              present_log,
              #[cfg(target_os = "macos")]
@@ -165,10 +172,10 @@ index c7046726..a95c2cb0 100644
      }
  }
 diff --git a/crates/rune/src/window/any_host.rs b/crates/rune/src/window/any_host.rs
-index 295da0eb..f4234d8f 100644
+index ca6805ea..537302f8 100644
 --- a/crates/rune/src/window/any_host.rs
 +++ b/crates/rune/src/window/any_host.rs
-@@ -157,7 +157,7 @@ impl<S: 'static> AnyHost for Host<S> {
+@@ -158,7 +158,7 @@ impl<S: 'static> AnyHost for Host<S> {
          self.fn_key();
          self.flush_files(event_loop);
          // Another window switched the font families (`Tx::set_font_families`).
@@ -178,10 +185,10 @@ index 295da0eb..f4234d8f 100644
          self.first_frame_ready(event_loop);
          if !self.win.as_ref().is_some_and(|w| w.visible || w.first_frame.reveal) {
 diff --git a/crates/rune/src/window/draw.rs b/crates/rune/src/window/draw.rs
-index 72ec3b8c..24829651 100644
+index 45addb72..b06844a0 100644
 --- a/crates/rune/src/window/draw.rs
 +++ b/crates/rune/src/window/draw.rs
-@@ -344,7 +344,7 @@ impl<S: 'static> Host<S> {
+@@ -345,7 +345,7 @@ impl<S: 'static> Host<S> {
          #[cfg(target_os = "windows")]
          if self.idle && steady {
              l.steady_frame = true;
@@ -190,7 +197,7 @@ index 72ec3b8c..24829651 100644
          }
          if !hidden && (!self.idle || (self.trace.is_some() && self.args.frames.is_some())) {
              // Without a running display link, macOS hands out drawables faster than the
-@@ -352,7 +352,7 @@ impl<S: 'static> Host<S> {
+@@ -353,7 +353,7 @@ impl<S: 'static> Host<S> {
              #[cfg(target_os = "macos")]
              if !l.native.pacing.as_mut().is_some_and(|p| p.start()) { l.retry = Some(now + TIMER_FRAME); }
              #[cfg(not(target_os = "macos"))]
@@ -200,7 +207,7 @@ index 72ec3b8c..24829651 100644
          } else {
              l.stop_pacing();
 diff --git a/crates/rune/src/window/event_loop.rs b/crates/rune/src/window/event_loop.rs
-index dac693c5..f4af0742 100644
+index 6b80f974..fe2d990f 100644
 --- a/crates/rune/src/window/event_loop.rs
 +++ b/crates/rune/src/window/event_loop.rs
 @@ -51,6 +51,15 @@ fn run_configured(_: Factory, _: Args, _: bool) -> Result<(), String> {
@@ -219,11 +226,13 @@ index dac693c5..f4af0742 100644
      let _ = accessory;
      crate::tooling::perf_warn::launch::run_starts();
      crate::platform::ready_signal::run_starts();
-@@ -77,15 +86,19 @@ fn run_configured(factory: Factory, args: Args, accessory: bool) -> Result<(), S
-     #[cfg(target_os = "macos")]
+@@ -77,16 +86,20 @@ fn run_configured(factory: Factory, args: Args, accessory: bool) -> Result<(), S
      crate::platform::app_icon::launched();
      let proxy = event_loop.create_proxy();
+     let turn = proxy.clone();
+-    crate::popup_menu::start(std::sync::Arc::new(move || { let _ = turn.send_event(WakeEvent::Turn); }));
 -    let mut windows = Windows { factory: Some(factory), args, proxy, hosts: Vec::new(), gpu: Rc::default() };
++    crate::popup_menu::start(std::sync::Arc::new(move || { let _ = super::send_wake(&turn, WakeEvent::Turn); }));
 +    let windows = Windows { factory: Some(factory), args, proxy, hosts: Vec::new(), gpu: Rc::default(), flow: ControlFlow::Wait };
      crate::open_url::incoming::prepare();
 -    let result = event_loop.run_app(&mut windows);
@@ -242,9 +251,9 @@ index dac693c5..f4af0742 100644
 -    result.map_err(|error| format!("run: {error}"))
  }
  
- #[test]
+ #[cfg(not(target_arch = "wasm32"))]
 diff --git a/crates/rune/src/window/events.rs b/crates/rune/src/window/events.rs
-index 961ba431..6f66a856 100644
+index 6f0a2feb..9d4672df 100644
 --- a/crates/rune/src/window/events.rs
 +++ b/crates/rune/src/window/events.rs
 @@ -41,7 +41,7 @@ impl<S: 'static> Host<S> {
@@ -266,7 +275,7 @@ index 961ba431..6f66a856 100644
              self.shell(event_loop);
          }
 diff --git a/crates/rune/src/window/handle.rs b/crates/rune/src/window/handle.rs
-index 70f4f02c..685bdaa0 100644
+index 0d28dd9d..433a7cc7 100644
 --- a/crates/rune/src/window/handle.rs
 +++ b/crates/rune/src/window/handle.rs
 @@ -28,7 +28,7 @@ impl WindowHandle {
@@ -288,10 +297,10 @@ index 70f4f02c..685bdaa0 100644
          }
      }
 diff --git a/crates/rune/src/window/lifecycle.rs b/crates/rune/src/window/lifecycle.rs
-index 15f21dd0..e74e41a7 100644
+index 8a5428c4..684e690e 100644
 --- a/crates/rune/src/window/lifecycle.rs
 +++ b/crates/rune/src/window/lifecycle.rs
-@@ -211,8 +211,8 @@ impl<S: 'static> Host<S> {
+@@ -223,8 +223,8 @@ impl<S: 'static> Host<S> {
              }
              let shown = self.win.as_ref().filter(|w| w.visible);
              let window = shown.map(|w| &w.window);

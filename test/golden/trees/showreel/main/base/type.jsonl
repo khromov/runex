@@ -1,44 +1,44 @@
 {"anim_t":0,"animating":false,"dark_system":true,"reduced_motion":false,"scale":2,"t":0,"time_scale":1,"title":"Showreel","viewport":[960,540],"warnings":[]}
 {"blur":0,"fill":"#0b0b0dff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0","rect":[0,0,960,540],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"doc","loopPhase":null,"opacity":1,"path":"#0/doc","rect":[200,130,600,272],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0","rect":[200,130,600,16],"role":"group","scale":1}
-{"blur":0,"color":"#5f5f68ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0/#0","rect":[200,130,35.5,16],"role":"text","scale":1,"text":"Notes"}
-{"blur":0,"color":"#45454cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0/#1","rect":[243.5,130,5,16],"role":"text","scale":1,"text":"/"}
-{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0/#2","rect":[256.5,130,72,16],"role":"text","scale":1,"text":"Typography"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#1","rect":[200,146,600,22],"role":"group","scale":1}
-{"blur":0,"color":"#f3f3f5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#2","rect":[200,168,600,50],"role":"text","scale":1,"text":"Small type, sharp edges"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#3","rect":[200,218,600,10],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4","rect":[200,228,600,18],"role":"group","scale":1}
-{"blur":0,"fill":"#7c5cffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#0","rect":[200,228,18,18],"role":"group","scale":1}
-{"blur":0,"color":"#0b0b0dff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#0/#0","rect":[208,232.25,2,9.5],"role":"text","scale":1,"text":""}
-{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#1","rect":[228,228.75,64,16.5],"role":"text","scale":1,"text":"Mira Chen"}
-{"blur":0,"color":"#5f5f68ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#2","rect":[302,228.75,4,16.5],"role":"text","scale":1,"text":"·"}
-{"blur":0,"color":"#5f5f68ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#3","rect":[316,228.75,66,16.5],"role":"text","scale":1,"text":"4 min read"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#5","rect":[200,246,600,26],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#6","rect":[200,272,600,28],"role":"group","scale":1}
-{"blur":0,"color":"#c9cad1ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#6/#0","rect":[200,275.25,399.5,21.5],"role":"text","scale":1,"text":"Good interfaces are mostly text. Labels, numbers,"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#7","rect":[200,300,600,28],"role":"group","scale":1}
-{"blur":0,"color":"#c9cad1ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#7/#0","rect":[200,303.25,386,21.5],"role":"text","scale":1,"text":"code and long reading all live or die by the edge"}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#8","rect":[200,328,600,28],"role":"group","scale":1}
-{"blur":0,"color":"#c9cad1ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#8/#0","rect":[200,331.25,5,21.5],"role":"text","scale":1,"text":""}
-{"blur":0,"fill":"#8ab4ffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#8/#1","rect":[205,331,2,22],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#9","rect":[200,356,600,24],"role":"group","scale":1}
-{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10","rect":[200,380,600,22],"role":"group","scale":1}
-{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10/#0","rect":[200,380,233.5,22],"role":"group","scale":1}
-{"blur":0,"color":"#9ecbffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10/#0/#0","rect":[208,383,217.5,16],"role":"text","scale":1,"text":"font-feature-settings: \"tnum\""}
-{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10/#1","rect":[443.5,382.75,78.5,16.5],"role":"text","scale":1,"text":"0123456789"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"doc","loopPhase":null,"opacity":1,"path":"#0/doc","rect":[200,130,600,271.25],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0","rect":[200,130,600,15.63],"role":"group","scale":1}
+{"blur":0,"color":"#5f5f68ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0/#0","rect":[200,130,35.5,15.63],"role":"text","scale":1,"text":"Notes"}
+{"blur":0,"color":"#45454cff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0/#1","rect":[243.5,130,5,15.63],"role":"text","scale":1,"text":"/"}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#0/#2","rect":[256.5,130,72,15.63],"role":"text","scale":1,"text":"Typography"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#1","rect":[200,145.63,600,22],"role":"group","scale":1}
+{"blur":0,"color":"#f3f3f5ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#2","rect":[200,167.63,600,50],"role":"text","scale":1,"text":"Small type, sharp edges"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#3","rect":[200,217.63,600,10],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4","rect":[200,227.63,600,18],"role":"group","scale":1}
+{"blur":0,"fill":"#7c5cffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#0","rect":[200,227.63,18,18],"role":"group","scale":1}
+{"blur":0,"color":"#0b0b0dff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#0/#0","rect":[208,231.9,2,9.45],"role":"text","scale":1,"text":""}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#1","rect":[228,228.5,64,16.25],"role":"text","scale":1,"text":"Mira Chen"}
+{"blur":0,"color":"#5f5f68ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#2","rect":[302,228.5,4,16.25],"role":"text","scale":1,"text":"·"}
+{"blur":0,"color":"#5f5f68ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#4/#3","rect":[316,228.5,66,16.25],"role":"text","scale":1,"text":"4 min read"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#5","rect":[200,245.63,600,26],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#6","rect":[200,271.63,600,28],"role":"group","scale":1}
+{"blur":0,"color":"#c9cad1ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#6/#0","rect":[200,275,399.5,21.25],"role":"text","scale":1,"text":"Good interfaces are mostly text. Labels, numbers,"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#7","rect":[200,299.63,600,28],"role":"group","scale":1}
+{"blur":0,"color":"#c9cad1ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#7/#0","rect":[200,303,386,21.25],"role":"text","scale":1,"text":"code and long reading all live or die by the edge"}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#8","rect":[200,327.63,600,28],"role":"group","scale":1}
+{"blur":0,"color":"#c9cad1ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#8/#0","rect":[200,331,5,21.25],"role":"text","scale":1,"text":""}
+{"blur":0,"fill":"#8ab4ffff","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#8/#1","rect":[205,330.63,2,22],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#9","rect":[200,355.63,600,24],"role":"group","scale":1}
+{"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10","rect":[200,379.63,600,21.63],"role":"group","scale":1}
+{"blur":0,"fill":"#ffffff0f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10/#0","rect":[200,379.63,233.5,21.63],"role":"group","scale":1}
+{"blur":0,"color":"#9ecbffff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10/#0/#0","rect":[208,382.63,217.5,15.63],"role":"text","scale":1,"text":"font-feature-settings: \"tnum\""}
+{"blur":0,"color":"#9a9aa3ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"#0/doc/#10/#1","rect":[443.5,382.31,78.5,16.25],"role":"text","scale":1,"text":"0123456789"}
 {"a11y":"0","bounds":[0,0,960,540],"name":"Showreel","role":"window"}
-{"a11y":"0/0","bounds":[200,130,600,272],"key":"doc","role":"group"}
-{"a11y":"0/0/0","bounds":[200,130,35.5,16],"name":"Notes","role":"label"}
-{"a11y":"0/0/1","bounds":[243.5,130,5,16],"name":"/","role":"label"}
-{"a11y":"0/0/2","bounds":[256.5,130,72,16],"name":"Typography","role":"label"}
-{"a11y":"0/0/3","bounds":[200,168,600,50],"name":"Small type, sharp edges","role":"label"}
-{"a11y":"0/0/4","bounds":[208,232.3,2,9.5],"name":"","role":"label"}
-{"a11y":"0/0/5","bounds":[228,228.8,64,16.5],"name":"Mira Chen","role":"label"}
-{"a11y":"0/0/6","bounds":[302,228.8,4,16.5],"name":"·","role":"label"}
-{"a11y":"0/0/7","bounds":[316,228.8,66,16.5],"name":"4 min read","role":"label"}
-{"a11y":"0/0/8","bounds":[200,275.3,399.5,21.5],"name":"Good interfaces are mostly text. Labels, numbers,","role":"label"}
-{"a11y":"0/0/9","bounds":[200,303.3,386,21.5],"name":"code and long reading all live or die by the edge","role":"label"}
-{"a11y":"0/0/10","bounds":[200,331.3,5,21.5],"name":"","role":"label"}
-{"a11y":"0/0/11","bounds":[208,383,217.5,16],"name":"font-feature-settings: \"tnum\"","role":"label"}
-{"a11y":"0/0/12","bounds":[443.5,382.8,78.5,16.5],"name":"0123456789","role":"label"}
+{"a11y":"0/0","bounds":[200,130,600,271.3],"key":"doc","role":"group"}
+{"a11y":"0/0/0","bounds":[200,130,35.5,15.6],"name":"Notes","role":"label"}
+{"a11y":"0/0/1","bounds":[243.5,130,5,15.6],"name":"/","role":"label"}
+{"a11y":"0/0/2","bounds":[256.5,130,72,15.6],"name":"Typography","role":"label"}
+{"a11y":"0/0/3","bounds":[200,167.6,600,50],"name":"Small type, sharp edges","role":"label"}
+{"a11y":"0/0/4","bounds":[208,231.9,2,9.5],"name":"","role":"label"}
+{"a11y":"0/0/5","bounds":[228,228.5,64,16.3],"name":"Mira Chen","role":"label"}
+{"a11y":"0/0/6","bounds":[302,228.5,4,16.3],"name":"·","role":"label"}
+{"a11y":"0/0/7","bounds":[316,228.5,66,16.3],"name":"4 min read","role":"label"}
+{"a11y":"0/0/8","bounds":[200,275,399.5,21.3],"name":"Good interfaces are mostly text. Labels, numbers,","role":"label"}
+{"a11y":"0/0/9","bounds":[200,303,386,21.3],"name":"code and long reading all live or die by the edge","role":"label"}
+{"a11y":"0/0/10","bounds":[200,331,5,21.3],"name":"","role":"label"}
+{"a11y":"0/0/11","bounds":[208,382.6,217.5,15.6],"name":"font-feature-settings: \"tnum\"","role":"label"}
+{"a11y":"0/0/12","bounds":[443.5,382.3,78.5,16.3],"name":"0123456789","role":"label"}

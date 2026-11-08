@@ -1,7 +1,7 @@
 // The performance overlay's switches: `--perf[=MODE]`, `RUNEX_PERF` and `App.perf`, through
 // fixtures/perf.ts (each run its own process, since the mode is read at start). Headless runs
-// draw one frame, so only the overlay's presence shows here; test/windowed checks that stats
-// and log lines arrive.
+// draw one frame here, which Rune reports to `on_frame_encoded` as a window's frames, so one stats
+// call arrives; test/windowed checks the stats and log lines a real window sends each second.
 import { describe, expect, setDefaultTimeout, test } from "bun:test"
 import { readFileSync } from "node:fs"
 import { join } from "node:path"
@@ -43,8 +43,10 @@ describe("mode resolution", () => {
     expect(perf([], { FIXTURE_APP_PERF: "overlay" }).overlay).toBe(true)
   })
 
-  test("the stats callback isn't called headless", () => {
-    expect(perf([], { FIXTURE_APP_PERF: "none", FIXTURE_STATS: "1" }).stats).toBe(0)
+  test("a headless run reports its frames to the stats callback, as Rune reports them to on_frame_encoded", () => {
+    // One drawn frame (--tree renders frame 0): the first report, which needs no wait.
+    expect(perf([], { FIXTURE_APP_PERF: "none", FIXTURE_STATS: "1" }).stats).toBe(1)
+    expect(perf([], { FIXTURE_APP_PERF: "none" }).stats).toBe(0)
   })
 })
 
@@ -59,8 +61,7 @@ describe("arguments", () => {
 
 describe("PerfStats", () => {
   test("the keys the declaration promises (snapshot)", () => {
-    // Read from the shipped declaration: on_stats only runs in a window (test/windowed checks the
-    // delivered object has these keys).
+    // Read from the shipped declaration (test/windowed checks the delivered object has these keys).
     const dts = readFileSync(fileURLToPath(import.meta.resolve("runex-js")).replace(/index\.js$/, "perf.d.ts"), "utf8")
     const body = dts.slice(dts.indexOf("export interface PerfStats"))
     const keys = [...body.slice(0, body.indexOf("\n}")).matchAll(/^\s+(\w+): /gm)].map((m) => m[1])

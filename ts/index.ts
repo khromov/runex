@@ -46,9 +46,13 @@ function namesScript(arg: string, script: string): boolean {
   }
 }
 
-export { App, AppSpec, run } from "./app.js"
+export { App, AppSpec, instant_now, run } from "./app.js"
+export type { FrameEncoded, FrameOutcome } from "./app.js"
+export * as tooling from "./tooling.js"
+export { set_icon_swap } from "./icons.js"
+export type { HeadlessRun, WindowFrame } from "./tooling.js"
 export { ConfiguredOverlay, OverlaySpec } from "./overlay.js"
-export { WindowSpec, run_windows, run_windows_with, run_windows_with_args } from "./windows.js"
+export { WindowSpec, open_window, run_windows, run_windows_with, run_windows_with_args } from "./windows.js"
 export { Binding, Live, LiveText, Tween } from "./live.js"
 export { run_with } from "./compose.js"
 import "./gradient.js"

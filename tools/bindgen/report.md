@@ -1,8 +1,8 @@
 # Binding report
 
-Generated: 218 classes, 77 records, 102 enums, 2054 methods, 87 functions, 268 constants.
+Generated: 235 classes, 81 records, 109 enums, 2273 methods, 109 functions, 404 constants.
 
-Skipped: 182 items.
+Skipped: 165 items.
 
 ## parameter type {"resolved_path":{"path":"Prop","args":{"angle_bracketed":{"args":[{"type":{"generic":"T"}}],"constraints":[]}}}} (18)
 
@@ -42,14 +42,11 @@ Skipped: 182 items.
 - `rune_light::LightRenderer::read_timings`
 - `rune_light::LightRenderer::render`
 
-## generic over something other than the app state (12)
+## generic over something other than the app state (9)
 
 - `rune::live::Binding`
 - `rune_fx::OneShot`
 - `rune_fx::OneShots`
-- `rune_kit::FileNode`
-- `rune_kit::Tree`
-- `rune_kit::TreeModel`
 - `rune_motion::Animated`
 - `rune_motion::Keyframe`
 - `rune_motion::Keyframes`
@@ -57,7 +54,7 @@ Skipped: 182 items.
 - `rune_motion::Release`
 - `rune_motion::VelocityTracker`
 
-## returns Option of a reference (9)
+## returns Option of a reference (8)
 
 - `rune::DragItem::png_data`
 - `rune::dirs::AppDirs::downloads`
@@ -67,7 +64,6 @@ Skipped: 182 items.
 - `rune_kit::ShortcutRecorderState::shortcut`
 - `rune_motion::AnimationStore::values_of`
 - `rune_motion::Scene::trace_mut`
-- `rune_theme_opencode::provider_icons::named`
 
 ## return type {"resolved_path":{"path":"Prop","args":{"angle_bracketed":{"args":[{"type":{"primitive":"f32"}}],"constraints":[]}}}} (5)
 
@@ -121,12 +117,6 @@ Skipped: 182 items.
 - `rune::FileDialogs::open`
 - `rune::FileDialogs::open_folder`
 - `rune::FileDialogs::save`
-
-## returns Note, which borrows (3)
-
-- `rune_kit::Note::gap`
-- `rune_kit::Note::key`
-- `rune_kit::Note::new`
 
 ## returns TreeRow, which borrows (3)
 
@@ -222,11 +212,6 @@ Skipped: 182 items.
 - `rune::edit_access`
 - `rune::el::edit_access`
 
-## returns a reference to non-Clone rune::Icon (2)
-
-- `rune_kit::file_icon`
-- `rune_theme_opencode::provider_icons::FALLBACK`
-
 ## IntoIterator without Item (1)
 
 - `rune_motion::Choreography::stagger`
@@ -282,10 +267,6 @@ Skipped: 182 items.
 ## reference to {"resolved_path":{"path":"OverlaySpec","args":{"angle_bracketed":{"args":[{"type":{"generic":"P"}}],"constraints":[]}}}} (1)
 
 - `rune::Story::overlay`
-
-## parameter type {"resolved_path":{"path":"Rc","args":{"angle_bracketed":{"args":[{"type":{"primitive":"str"}}],"constraints":[]}}}} (1)
-
-- `rune::text::Run::new`
 
 ## return type {"resolved_path":{"path":"Option","args":{"angle_bracketed":{"args":[{"type":{"resolved_path":{"path":"Language","args": (1)
 
@@ -347,26 +328,6 @@ Skipped: 182 items.
 
 - `rune_kit::Select::details`
 
-## parameter type {"resolved_path":{"path":"RowStatus","args":null}} (1)
-
-- `rune_kit::SidebarRow::status`
-
-## reference to {"resolved_path":{"path":"Reorder","args":null}} (1)
-
-- `rune_kit::SidebarRow::reorder`
-
-## parameter type {"resolved_path":{"path":"SidebarToggle","args":null}} (1)
-
-- `rune_kit::SplitView::sidebar_toggle`
-
-## parameter type {"resolved_path":{"path":"PaneMotion","args":null}} (1)
-
-- `rune_kit::SplitView::pane_motion`
-
-## parameter type {"resolved_path":{"path":"SidebarPeek","args":null}} (1)
-
-- `rune_kit::SplitView::sidebar_peek`
-
 ## parameter type {"resolved_path":{"path":"std::cmp::Ordering","args":null}} (1)
 
 - `rune_kit::SortDir::apply`
@@ -386,14 +347,6 @@ Skipped: 182 items.
 ## parameter type {"resolved_path":{"path":"Option","args":{"angle_bracketed":{"args":[{"type":{"impl_trait":[{"trait_bound":{"trait":{"pa (1)
 
 - `rune_kit::TextInput::active_descendant`
-
-## sequence of {"tuple":[{"generic":"P"},{"generic":"D"}]} (1)
-
-- `rune_kit::FileTree::build`
-
-## reference to {"resolved_path":{"path":"FileNode","args":{"angle_bracketed":{"args":[{"type":{"generic":"D"}}],"constraints":[]}}}} (1)
-
-- `rune_kit::TreeItem::file`
 
 ## rune_kit::TreeRow<'static> only exists inside callbacks (1)
 

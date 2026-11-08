@@ -11,11 +11,11 @@
 {"blur":0,"fill":"#ffffff1f","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"thumb","loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/thumb","rect":[187.34,139,54.66,26],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"springs","loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs","rect":[78,139,164,26],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"Snappy","label":"Snappy","loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Snappy","rect":[78,139,54.66,26],"role":"segment","scale":1}
-{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Snappy/#0","rect":[81.84,143.75,47,16.5],"role":"text","scale":1,"text":"Snappy"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Snappy/#0","rect":[81.84,143.88,47,16.25],"role":"text","scale":1,"text":"Snappy"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"Smooth","label":"Smooth","loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Smooth","rect":[132.66,139,54.66,26],"role":"segment","scale":1}
-{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Smooth/#0","rect":[136,143.75,48,16.5],"role":"text","scale":1,"text":"Smooth"}
+{"blur":0,"color":"#a2a5aaff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Smooth/#0","rect":[136,143.88,48,16.25],"role":"text","scale":1,"text":"Smooth"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"Bouncy","label":"Bouncy","loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Bouncy","rect":[187.34,139,54.66,26],"role":"segment","scale":1}
-{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Bouncy/#0","rect":[191.16,143.75,47,16.5],"role":"text","scale":1,"text":"Bouncy"}
+{"blur":0,"color":"#eff0f2ff","fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"stage/card/#1/picker/springs/Bouncy/#0","rect":[191.16,143.88,47,16.25],"role":"text","scale":1,"text":"Bouncy"}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":false,"focused":false,"inert":false,"loopPhase":null,"opacity":1,"path":"stage/card/#2","rect":[5,186,240,8],"role":"group","scale":1}
 {"blur":0,"fill":"#00000000","focusVisible":false,"focusable":true,"focused":false,"inert":false,"key":"track","label":"Puck","loopPhase":null,"opacity":1,"path":"stage/card/track","rect":[5,210,240,28],"role":"slider","scale":1}
 {"blur":0,"fill":"#ffffff16","focusVisible":false,"focusable":false,"focused":false,"inert":false,"key":"rail","loopPhase":null,"opacity":1,"path":"stage/card/track/rail","rect":[19,223,212,2],"role":"group","scale":1}
@@ -37,9 +37,9 @@
 {"a11y":"0/0/0/3/0","bounds":[187.3,139,54.7,26],"key":"thumb","role":"group"}
 {"a11y":"0/0/0/3/1","bounds":[78,139,164,26],"key":"springs","role":"group"}
 {"a11y":"0/0/0/3/1/0","actions":["click","focus"],"bounds":[78,139,54.7,26],"key":"Snappy","name":"Snappy","role":"radio-button","states":["unchecked"]}
-{"a11y":"0/0/0/3/1/0/0","bounds":[81.8,143.8,47,16.5],"name":"Snappy","role":"label"}
+{"a11y":"0/0/0/3/1/0/0","bounds":[81.8,143.9,47,16.3],"name":"Snappy","role":"label"}
 {"a11y":"0/0/0/3/1/1","actions":["click","focus"],"bounds":[132.7,139,54.7,26],"key":"Smooth","name":"Smooth","role":"radio-button","states":["unchecked"]}
-{"a11y":"0/0/0/3/1/1/0","bounds":[136,143.8,48,16.5],"name":"Smooth","role":"label"}
+{"a11y":"0/0/0/3/1/1/0","bounds":[136,143.9,48,16.3],"name":"Smooth","role":"label"}
 {"a11y":"0/0/0/3/1/2","actions":["click","focus"],"bounds":[187.3,139,54.7,26],"key":"Bouncy","name":"Bouncy","role":"radio-button","states":["checked"]}
-{"a11y":"0/0/0/3/1/2/0","bounds":[191.2,143.8,47,16.5],"name":"Bouncy","role":"label"}
+{"a11y":"0/0/0/3/1/2/0","bounds":[191.2,143.9,47,16.3],"name":"Bouncy","role":"label"}
 {"a11y":"0/0/0/4","actions":["focus","increment","decrement","set-value"],"bounds":[5,210,240,28],"key":"track","name":"Puck","range":[0,0,1,0.3333333333333333],"role":"slider"}
