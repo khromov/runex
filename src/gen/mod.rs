@@ -4,6 +4,7 @@ pub mod kit;
 pub mod knobs;
 pub mod light;
 pub mod motion;
+pub mod notify;
 pub mod rune;
 pub mod theme_opencode;
 pub mod tramp;

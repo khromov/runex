@@ -620,6 +620,12 @@ pub fn shared<C: Class>(value: C::Inner) -> Result<Value> {
     unsafe { C::to_napi_value(env(), C::wrap(Slot::Shared(value))) }
 }
 
+/// `&'static` values (a catalog slice) as an array of `C`s that refer to them.
+pub fn static_refs<C: Class>(values: impl IntoIterator<Item = &'static C::Inner>) -> Result<Value> {
+    let items = values.into_iter().map(static_ref::<C>).collect::<Result<Vec<_>>>()?;
+    Ok(array(items))
+}
+
 /// A clone of the value inside class instance `v`.
 pub fn cloned<C: Class>(v: Value) -> Result<C::Inner>
 where
@@ -850,6 +856,28 @@ impl<T: ToJs> ToJs for std::ops::Range<T> {
         set(o, "start", self.start.to_js()?);
         set(o, "end", self.end.to_js()?);
         Ok(o)
+    }
+}
+
+/// A shared string (a hover group's name, a text run's): a JavaScript string.
+impl FromJs for std::rc::Rc<str> {
+    fn from_js(v: Value) -> Result<Self> {
+        Ok(String::from_js(v)?.into())
+    }
+}
+impl ToJs for std::rc::Rc<str> {
+    fn to_js(self) -> Result<Value> {
+        self.to_string().to_js()
+    }
+}
+impl FromJs for std::sync::Arc<str> {
+    fn from_js(v: Value) -> Result<Self> {
+        Ok(String::from_js(v)?.into())
+    }
+}
+impl ToJs for std::sync::Arc<str> {
+    fn to_js(self) -> Result<Value> {
+        self.to_string().to_js()
     }
 }
 

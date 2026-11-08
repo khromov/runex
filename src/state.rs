@@ -44,6 +44,11 @@ pub struct AppFns {
     pub on_ime: RefCell<Option<JsRef>>,
     pub on_reopen: RefCell<Option<JsRef>>,
     pub on_open_url: RefCell<Option<JsRef>>,
+    pub on_modifiers: RefCell<Option<JsRef>>,
+    /// `App.on_frame_encoded`'s function, called with each frame's report (`frame_hook`).
+    pub on_frame_encoded: RefCell<Option<JsRef>>,
+    /// Whether `frame_hook` is installed on this app, for `App.perf` or `App.on_frame_encoded`.
+    pub frame_hook: std::cell::Cell<bool>,
     pub scenes: RefCell<Vec<(String, JsRef)>>,
     /// `AppHandle::update` callbacks queued from JavaScript, run on the next frame.
     pub updates: RefCell<Vec<JsRef>>,
@@ -69,6 +74,8 @@ impl AppFns {
         take(&self.on_ime, &other.on_ime);
         take(&self.on_reopen, &other.on_reopen);
         take(&self.on_open_url, &other.on_open_url);
+        take(&self.on_modifiers, &other.on_modifiers);
+        take(&self.on_frame_encoded, &other.on_frame_encoded);
         let scenes = std::mem::take(&mut *other.scenes.borrow_mut());
         if !scenes.is_empty() {
             *self.scenes.borrow_mut() = scenes;
@@ -234,6 +241,38 @@ pub fn on_focus(s: &mut JsState, focused: bool, tx: &mut Tx) {
             lend_tx(tx, |tx| js::call(f, &[s.value(), js::to_js(focused), tx]));
         }
     });
+}
+
+pub fn on_modifiers(s: &mut JsState, mods: rune::Mods, tx: &mut Tx) {
+    js::scope(|| {
+        if let Some(f) = AppFns::get(&s.fns.on_modifiers) {
+            lend_tx(tx, |tx| js::call(f, &[s.value(), crate::conv::arg_js(mods), tx]));
+        }
+    });
+}
+
+/// `App::on_frame_encoded` for a runex app: each report goes to the performance overlay, when
+/// it's on (`App.perf`), then to `App.on_frame_encoded`'s function, when there is one. Installed
+/// once, by whichever comes first; a hot reload replaces the function in place.
+pub fn frame_hook(app: rune::App<JsState>, fns: &Rc<AppFns>) -> rune::App<JsState> {
+    if fns.frame_hook.replace(true) {
+        return app;
+    }
+    let fns = fns.clone();
+    app.on_frame_encoded(move |f| {
+        let perf = fns.perf.borrow().clone();
+        if let Some(perf) = perf {
+            perf.frame(f);
+        }
+        if let Some(h) = AppFns::get(&fns.on_frame_encoded) {
+            // Not the frame's own JavaScript: the report comes after the frame was encoded.
+            js::scope(|| js::untimed(|| {
+                if let Ok(v) = crate::manual::frames::to_js(f) {
+                    js::call(h, &[v]);
+                }
+            }));
+        }
+    })
 }
 
 pub fn lend_tx<R>(tx: &mut Tx, f: impl FnOnce(sys::napi_value) -> R) -> R {

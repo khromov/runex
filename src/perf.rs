@@ -1424,16 +1424,17 @@ fn bar_rects(i: usize, d: &Drawn, top: f64) -> [[f32; 4]; 3] {
 }
 
 /// Turns the overlay on for an app: its hooks report frames to it, and its view draws it.
-pub fn install_app(app: rune::App<crate::state::JsState>, fns: &crate::state::AppFns, mode: Mode, on_stats: Option<crate::js::JsRef>) -> rune::App<crate::state::JsState> {
+pub fn install_app(app: rune::App<crate::state::JsState>, fns: &Rc<crate::state::AppFns>, mode: Mode, on_stats: Option<crate::js::JsRef>) -> rune::App<crate::state::JsState> {
     let perf = Perf::new(mode);
     perf.set_on_stats(on_stats);
     *fns.perf.borrow_mut() = Some(perf.clone());
-    let drawn = perf.clone();
-    app.on_frame_encoded(move |f| perf.frame(f)).on_frame_drawn(move |rt| drawn.surface(rt.surface_stats()))
+    // Frame reports reach `perf.frame` through the app's one frame hook, which
+    // `App.on_frame_encoded` shares.
+    crate::state::frame_hook(app, fns).on_frame_drawn(move |rt| perf.surface(rt.surface_stats()))
 }
 
 /// `install_app` for one window of a multi-window app.
-pub fn install_window(mut spec: rune::WindowSpec<crate::state::JsState>, fns: &crate::state::AppFns, mode: Mode, on_stats: Option<crate::js::JsRef>) -> rune::WindowSpec<crate::state::JsState> {
+pub fn install_window(mut spec: rune::WindowSpec<crate::state::JsState>, fns: &Rc<crate::state::AppFns>, mode: Mode, on_stats: Option<crate::js::JsRef>) -> rune::WindowSpec<crate::state::JsState> {
     spec.app = install_app(spec.app, fns, mode, on_stats);
     spec
 }

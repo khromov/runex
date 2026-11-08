@@ -1137,7 +1137,7 @@ pub fn f_knobs_side(a_page: Raw, a_k: Raw, a_groups: Raw, a_st: Raw, a_lens: Raw
         let a_groups: Vec<rune_knobs::Group> = conv::arg(a_groups.0, "groups")?;
         let a_groups: &'static [rune_knobs::Group] = Box::leak(a_groups.into_boxed_slice());
         let a_st: rune_knobs::Style = conv::arg(a_st.0, "st")?;
-        let a_lens = crate::gen::tramp::t7_register(a_lens.0).map_err(|e| conv::err(format!("{}: {}", "lens", e.reason)))?;
+        let a_lens = crate::gen::tramp::t10_register(a_lens.0).map_err(|e| conv::err(format!("{}: {}", "lens", e.reason)))?;
         let out = conv::ToJs::to_js(rune_knobs::side(a_page, a_k, a_groups, a_st, a_lens))?;
         Ok(Raw(out))
     })
@@ -1169,7 +1169,7 @@ pub fn f_knobs_inline(a_k: Raw, a_groups: Raw, a_st: Raw, a_lens: Raw, a_active:
         let a_groups: Vec<rune_knobs::Group> = conv::arg(a_groups.0, "groups")?;
         let a_groups: &'static [rune_knobs::Group] = Box::leak(a_groups.into_boxed_slice());
         let a_st: rune_knobs::Style = conv::arg(a_st.0, "st")?;
-        let a_lens = crate::gen::tramp::t7_register(a_lens.0).map_err(|e| conv::err(format!("{}: {}", "lens", e.reason)))?;
+        let a_lens = crate::gen::tramp::t10_register(a_lens.0).map_err(|e| conv::err(format!("{}: {}", "lens", e.reason)))?;
         let a_active: bool = conv::arg(a_active.0, "active")?;
         let out = conv::ToJs::to_js(rune_knobs::inline(a_k, a_groups, a_st, a_lens, a_active))?;
         Ok(Raw(out))
@@ -1187,7 +1187,7 @@ pub fn f_knobs_layer(a_k: Raw, a_groups: Raw, a_st: Raw, a_lens: Raw) -> napi::R
         let a_groups: Vec<rune_knobs::Group> = conv::arg(a_groups.0, "groups")?;
         let a_groups: &'static [rune_knobs::Group] = Box::leak(a_groups.into_boxed_slice());
         let a_st: rune_knobs::Style = conv::arg(a_st.0, "st")?;
-        let a_lens = crate::gen::tramp::t7_register(a_lens.0).map_err(|e| conv::err(format!("{}: {}", "lens", e.reason)))?;
+        let a_lens = crate::gen::tramp::t10_register(a_lens.0).map_err(|e| conv::err(format!("{}: {}", "lens", e.reason)))?;
         let out = conv::ToJs::to_js(rune_knobs::layer(a_k, a_groups, a_st, a_lens))?;
         Ok(Raw(out))
     })

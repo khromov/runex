@@ -104,11 +104,53 @@ impl WindowSpec {
         Ok(this)
     }
 
+    /// The first open leaves focus where it is (`WindowSpec::inactive`).
+    #[napi(js_name = "inactive", ts_return_type = "this")]
+    pub fn inactive<'t>(&mut self, this: This<'t>) -> napi::Result<This<'t>> {
+        self.map(|w| Ok(w.inactive()))?;
+        Ok(this)
+    }
+    /// Opens the window maximized (`WindowSpec::maximized`).
+    #[napi(js_name = "maximized", ts_return_type = "this")]
+    pub fn maximized<'t>(&mut self, this: This<'t>, maximized: bool) -> napi::Result<This<'t>> {
+        self.map(|w| Ok(w.maximized(maximized)))?;
+        Ok(this)
+    }
+    /// Calls `f(frame)` with each of this window's frame reports (see `App.on_frame_encoded`).
+    #[napi(js_name = "on_frame_encoded", ts_args_type = "f: (frame: FrameEncoded) => void", ts_return_type = "this")]
+    pub fn on_frame_encoded<'t>(&mut self, this: This<'t>, f: Function<'_, Unknown<'_>, Unknown<'_>>) -> napi::Result<This<'t>> {
+        *self.fns.on_frame_encoded.borrow_mut() = Some(JsRef::new(raw(&f)));
+        let fns = self.fns.clone();
+        self.map(move |mut w| {
+            w.app = crate::state::frame_hook(w.app, &fns);
+            Ok(w)
+        })?;
+        Ok(this)
+    }
+
     /// The same window, its state type erased (`WindowSpec::boxed`): in JavaScript, itself.
     #[napi(js_name = "boxed", ts_return_type = "this")]
     pub fn boxed<'t>(&mut self, this: This<'t>) -> This<'t> {
         this
     }
+}
+
+/// Opens another window in the running app's event loop (`rune::open_window`), with its own
+/// state and functions, as a `start_windows` factory's windows have: a second document window,
+/// or a tab dragged out of its strip. Call it from a handler, an update or `on_ready`; the window
+/// starts at the end of the turn, and keeps the app running until it closes. Its key must differ
+/// from every open window's. The handle places, focuses and closes it. Headless runs open nothing.
+#[napi(js_name = "open_window", ts_args_type = "spec: WindowSpec", ts_return_type = "WindowHandle")]
+pub fn open_window(spec: Raw) -> napi::Result<Raw> {
+    let mut w = conv::instance_plain::<WindowSpec>(spec.0)?;
+    let fns = w.fns.clone();
+    let mut w = w.take()?;
+    let default = crate::perf::default_mode();
+    if default.any() && fns.perf.borrow().is_none() {
+        w = crate::perf::install_window(w, &fns, default, None);
+    }
+    crate::app::register_window(w.key.clone(), fns);
+    Ok(Raw(conv::ToJs::to_js(rune::open_window(w))?))
 }
 
 fn native_app(v: conv::Value) -> napi::Result<napi::bindgen_prelude::ClassInstance<'static, NativeApp>> {

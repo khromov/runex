@@ -2,7 +2,7 @@
 
 Generates runex's bindings from Rune's rustdoc JSON, so the TypeScript API is Rune's own: the
 same names, signatures and docs, for every public item of `rune`, `rune_motion`, `rune_kit`,
-`rune_fx`, `rune_light`, `rune_knobs` and `rune_theme_opencode`.
+`rune_fx`, `rune_light`, `rune_knobs`, `rune_theme_opencode` and `rune_notify`.
 
 ```sh
 bun tools/bindgen/main.ts             # regenerate (rustdoc JSON is reused when present)
@@ -93,14 +93,22 @@ bound when its signature converts). The generator sorts each public struct and e
 
 Signatures convert through `src/conv.rs` (`FromJs`/`ToJs`): numbers, strings, `Option`, `Vec`,
 slices, arrays, tuples, `Duration` (seconds), paths, bytes (`Uint8Array`), records, enums, classes;
-`impl Into<..>`/`AsRef<..>`/`IntoIterator<..>`; closures (`impl Fn`, `Box<dyn Fn>`, `Rc<dyn Fn>`)
+`Rc<str>`/`Arc<str>` (strings); `&'static T` results of a class that isn't `Clone` (a theme's
+icons: `file_icons::file`, `icons::ALL`), as instances that refer to the static, like a static of
+that class; `impl Into<..>`/`AsRef<..>`/`IntoIterator<..>`; closures (`impl Fn`, `Box<dyn Fn>`, `Rc<dyn Fn>`)
 and `fn` pointers (via trampolines) whose arguments are lent to JavaScript for the call, including
 the app state (`&mut S`) and `&mut Tx`; callbacks returning `&mut T` (`on_edit`); `&mut Vec<T>`
 (written back into the array); `Deref` targets' methods; `From` impls as static `from`.
 
 A type parameter is the app's state (`crate::state::JsState`) when it's named `S` (or listed in
 `stateGenerics`) and has no trait bounds. A struct with one lifetime (`Play<'a, X>`) is bound as
-"lend-only": JavaScript sees it only inside callbacks.
+"lend-only": JavaScript sees it only inside callbacks. A builder whose lifetime only borrows
+strings (`TabStrip<'a, S>`, `TabItem<'a, S>`, `Note<'a>`) is listed in the crate's `ownedLifetimes`
+instead: its methods are read with `'a` as `'static`, so `Cow<'a, str>` takes an owned string and
+`&'a str` an interned one (leaked once per distinct string, as element roles are), and JavaScript
+owns it like any builder. A struct field borrowing a string for the struct's lifetime
+(`TreeRow::id`) reads as a copy. A field named like a method shows only when that method isn't
+bound (`TreeRow::selected` the field, beside the skipped builder `selected(bool)`).
 
 ## Platforms
 
@@ -119,4 +127,7 @@ only macOS has: bindgen takes JSON documented for `docTarget` (`config.ts`, macO
 refuses any other unless given `--any-target`.
 
 Hand-written code covers what has no generic shape: apps and their pump (`src/app.rs`),
-multi-window apps, overlays, live values and the compositor (`src/manual/`).
+multi-window apps and `open_window`, overlays, live values and the compositor, frame reports
+(`App.on_frame_encoded`, `instant_now`), `tooling::headless_run`, the tree over the app's own node
+type (`Tree`, `TreeModel`, with ts/tree.ts's `FileNode` and `FileTree`), the icon swap and
+`rune_notify::on_click` (`src/manual/`). `config.ts` denies the Rune items these replace.

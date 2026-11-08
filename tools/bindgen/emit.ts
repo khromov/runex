@@ -165,6 +165,8 @@ ${at}impl ToJs for ${b.rust} {
     const tsStatics: string[] = []
     const ctx = new Ctx(this.model, crate, b, new Map()).with(b.item.inner.struct?.generics ?? b.item.inner.enum?.generics)
     const seen = new Set<string>()
+    // Methods actually bound: a field shares JavaScript's one namespace with these only.
+    const emitted = new Set<string>()
     for (const m of crate.inherent(b.item)) {
       if (this.model.denied(crate, b.path, m.name)) continue
       if (m.inner.assoc_const) {
@@ -186,6 +188,7 @@ ${at}impl ToJs for ${b.rust} {
       const tsParams = p.params.map((x) => `${tsParamName(x.name)}: ${x.ts}`).join(", ")
       const gen = tsGenerics(tsParams)
       this.count.methods++
+      emitted.add(m.name)
       if (!p.selfKind) {
         const call = `${turbofish(b.rust)}::${m.name}(${pass})`
         const result = p.result.ts === "SELF" ? `conv::owned::<${w}>(${call})` : p.result.toJs(call)
@@ -256,6 +259,7 @@ ${at}impl ToJs for ${b.rust} {
         const pass = p.params.map((x) => x.pass).join(", ")
         const receiver = p.selfKind === "mut" ? `let me = self.slot.get_mut(${name})?;` : `let me = self.slot.get(${name})?;`
         this.count.methods++
+        emitted.add(m.name)
         add(`${rsdoc(m.docs)}    #[napi(js_name = ${JSON.stringify(m.name)}, skip_typescript)]
     pub fn m_${m.name}(&mut self${args ? ", " + args : ""}) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -283,7 +287,7 @@ ${at}impl ToJs for ${b.rust} {
       const f = crate.item(fid)
       if (!f || f.visibility !== "public") continue
       // A method of the same name wins (JavaScript has one namespace for both).
-      if (seen.has(f.name)) continue
+      if (emitted.has(f.name)) continue
       const fty = f.inner.struct_field
       const fwhat = `${crate.name}::${b.path.join("::")}::${f.name}`
       // A `&'static T` field (a kit glyph): an instance borrowing it.
@@ -298,6 +302,17 @@ ${at}impl ToJs for ${b.rust} {
           tsMembers.push(`${jsdoc(add.docs, "  ")}  readonly ${safeMember(f.name)}: ${sv.ts}`)
           continue
         }
+      }
+      // A `&'a str` borrowed from what the class borrows (`TreeRow::id`): read as a copy.
+      if (fty.borrowed_ref && !fty.borrowed_ref.is_mutable && fty.borrowed_ref.type.primitive === "str" && fty.borrowed_ref.lifetime !== "'static" && fty.borrowed_ref.lifetime != null) {
+        const add = member(crate.cfgOf(fid), fwhat, f.docs)
+        if (!add) continue
+        add(`    #[napi(getter, js_name = ${JSON.stringify(f.name)}, skip_typescript)]
+    pub fn g_${f.name}(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get(${name})?.${f.name}.to_owned())?)))
+    }`)
+        tsMembers.push(`${jsdoc(add.docs, "  ")}  readonly ${safeMember(f.name)}: string`)
+        continue
       }
       const { value: v, cfg: vCfg } = this.model.track(() => this.model.value(ctx, fty))
       if (!v || v.lendOnly || (v.isClass && !v.bound?.traits.has("Clone"))) continue
@@ -782,7 +797,7 @@ pub fn c_${js}() -> napi::Result<Raw> {
         this.count.consts++
         return
       }
-      const result = planResult(ctx, ty)
+      const result = planResult(ctx, ty, true)
       const js = this.model.uniqueJs(crate, path)
       const expr = `${crate.name}::${path.join("::")}`
       const make = v?.isClass && v.bound?.traits.has("Clone") && !v.bound.traits.has("Copy")

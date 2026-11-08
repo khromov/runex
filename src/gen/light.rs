@@ -1021,6 +1021,18 @@ impl W_light_LightRenderer {
             Ok(())
         })
     }
+    #[napi(getter, js_name = "inspect", skip_typescript)]
+    pub fn g_inspect(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::ToJs::to_js(self.slot.get("LightRenderer")?.inspect.clone())?)))
+    }
+    #[napi(setter, js_name = "inspect", skip_typescript)]
+    pub fn p_inspect(&mut self, value: Raw) -> napi::Result<()> {
+        conv::guard(|| {
+            let value: bool = conv::arg(value.0, "inspect")?;
+            self.slot.get_mut("LightRenderer")?.inspect = value;
+            Ok(())
+        })
+    }
 }
 
 /// The GI pass's intermediate buffers, for inspection and visualisation. All are `Rgba16Float`.

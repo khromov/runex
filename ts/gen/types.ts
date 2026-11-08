@@ -2337,6 +2337,13 @@ export interface Tx {
    */
   launch(source: string, destination: string): void
   /**
+   * The `El::matched` flights this change starts draw outside every clip until they land, as
+   * a [`Tx::launch`] does, rather than inside their destinations' clips: for elements that
+   * move between parts of the window that clip them, as tabs moving from a titlebar's strip
+   * into a sidebar that opens as they land, where a clip would hide them for most of the way.
+   */
+  unclipped_flights(): void
+  /**
    * In `on_press` and `on_drag`, the button that drove it, which is
    * [`PointerButton::Primary`] unless the element opted in to others with
    * [`El::pointer_buttons`]. Other handlers see `Primary`.
@@ -2591,6 +2598,12 @@ export interface Tx {
   element_at_in<S = any>(within: string, x: number, y: number, f: (s: S, v1: Picked | null, tx: Tx) => S | void): void
   /** [`Tx::element_at_in`] with options ([`Pick`](crate::Pick)). */
   element_at_in_with<S = any>(within: string, x: number, y: number, pick: Pick, f: (s: S, v1: Picked | null, tx: Tx) => S | void): void
+  /**
+   * [`Runtime::invalidate_memos_by_prefix`](crate::Runtime::invalidate_memos_by_prefix) on
+   * this window, from a handler or `poll`: e.g. a plugin host evicting the subtrees an
+   * unloading library built.
+   */
+  invalidate_memos_by_prefix(prefix: string): void
   /** Whether this runtime has an attached motion or tooling trace. */
   tracing(): boolean
   /**
@@ -2635,6 +2648,20 @@ export interface Tx {
    * maximize button would (macOS zooms). Does nothing for overlays and headless runs.
    */
   toggle_maximized(): void
+  /**
+   * Take this window full screen after this handler, or bring it back, as macOS's green
+   * button and Electron's `setFullScreen` do: on Windows and Linux a borderless window over
+   * its display, which hides a custom titlebar's caption buttons (`Cx::chrome_insets`).
+   * Does nothing for overlays and headless runs.
+   */
+  toggle_full_screen(): void
+  /**
+   * Deliver `ev` once this handler is done, as if it were typed: to the focused field, then
+   * the key handlers, as the keyboard routes it. For a menu the app draws itself, whose Edit
+   * items send Ctrl+C (⌘C) and the rest to the field that has focus, as AppKit's standard
+   * Edit items do. Keys sent in one handler arrive in order.
+   */
+  send_key(ev: KeyEvent): void
   /**
    * Set this window's title after this handler, in its title bar and the Window menu. The
    * window starts with `AppSpec`'s title and keeps the last one set when it's closed and
@@ -2899,6 +2926,18 @@ export interface Drag {
    * pointer was taken away). Put back whatever the drag moved.
    */
   cancelled(): boolean
+  /**
+   * The pointer in window points from the window's top-left, whatever scale the element
+   * draws at.
+   */
+  window_point(): number[]
+  /**
+   * The pointer in physical desktop pixels, the space `WindowOptions::position` and
+   * `WindowHandle::set_position` take: for opening a window under the pointer, as a tab
+   * dragged out of its strip does. `None` without a native window (headless runs, the web)
+   * and where the system hides window positions (Wayland).
+   */
+  screen_point(): [number, number] | null
   phase: Phase
   x: number
   y: number
@@ -3123,7 +3162,9 @@ export class Anchor {
   declare fit: boolean
   /** [`El::anchored_unscaled`]: at window scale, not its anchor's zoom. */
   declare unscaled: boolean
-  constructor(init?: { key: string; side: Side; align: Align; gap: number; fit: boolean; unscaled: boolean }) {
+  /** [`El::anchored_round`]: at whole points. */
+  declare round: boolean
+  constructor(init?: { key: string; side: Side; align: Align; gap: number; fit: boolean; unscaled: boolean; round: boolean }) {
     if (init) Object.assign(this, init)
   }
 
@@ -3133,6 +3174,54 @@ $n.__register_record("Anchor", Anchor)
 
 /** Which side of its anchor an [`El::anchored`] overlay sits on. */
 export type Side = "Top" | "Bottom" | "Left" | "Right"
+/** How a scroll viewport's edges fade with the content hidden under them ([`El::scroll_fade`]). */
+export interface ScrollFade {
+  /**
+   * A [`Self::strength`] fade is full once `points` are hidden, rather than 15: a small value
+   * shows the whole fade as soon as anything is hidden, as a mask a scroll listener toggles
+   * on and off does (Desktop's projects list).
+   */
+  full_at(points: number): ScrollFade
+  /**
+   * Only the end the content runs on past (the bottom, or the right of a sideways viewport)
+   * follows the scroll; the start keeps the viewport's own [`El::clip_fade`] or
+   * [`El::clip_fade_linear`], such as a fixed fade over a field's top padding.
+   */
+  end_only(): ScrollFade
+  /**
+   * Ramps alpha linearly across the fade, as a CSS `linear-gradient` mask does, rather than
+   * on smoothstep.
+   */
+  linear(): ScrollFade
+  /**
+   * The top fade starts under the [`El::sticky_top`] header stuck at the viewport's top, for
+   * the rows of that header's section (the header's later siblings), at the strength of what
+   * the section hides under the header; a header being pushed away by the next leaves the
+   * rows clear, and the incoming one starts clear. With no header stuck, the viewport's own
+   * top fades. Desktop's palettes fade their sections so (`search-list.css`), drawing the
+   * fade over the rows in the list's surface colour.
+   */
+  below_sticky(): ScrollFade
+  clone(): ScrollFade
+}
+export interface ScrollFade$Static {
+  readonly prototype: ScrollFade
+  /**
+   * Each edge fades over `width` points (16-32 reads well) at a strength that follows the
+   * content hidden under it, full once 15 points are hidden: the edge itself shows
+   * `1 - strength`. A viewport at its top (or bottom, or stuck to it) shows that edge hard.
+   * Desktop's search lists fade so (`search-list.tsx`).
+   */
+  strength(width: number): ScrollFade
+  /**
+   * Each edge feathers by as much as is hidden under it, up to `max` points, on a linear ramp
+   * from nothing at the edge: CSS `mask-image: linear-gradient(transparent, black
+   * min(max, scrollTop))`, as Desktop's vertical tabs do. It appears and leaves without a jump.
+   */
+  feather(max: number): ScrollFade
+}
+export const ScrollFade: ScrollFade$Static = $n.ScrollFade
+
 export interface el__TextSpec {
   content: string
   style: TextStyle
@@ -3161,6 +3250,30 @@ export interface el__TextSpec$Static {
 
 }
 export const el__TextSpec: el__TextSpec$Static = $n.el__TextSpec
+
+/**
+ * An icon set inline in text by [`El::inline_icon`]: a glyph or an image, `size` points square
+ * (14 by default), `gap` points before the text after it (4).
+ */
+export interface InlineIcon {
+  /** Its side in points. */
+  size(points: number): this
+  /** Its room after it, before the text, in points. */
+  gap(points: number): this
+  /** An image's corner radius in points. */
+  radius(points: number): this
+  /** A glyph's colour. */
+  color(c: Color): this
+  clone(): InlineIcon
+}
+export interface InlineIcon$Static {
+  readonly prototype: InlineIcon
+  /** `icon`, drawn in [`Self::color`] or the element's text colour. */
+  glyph(icon: Icon): InlineIcon
+  /** An image (decoded pixels, such as a site's favicon), scaled to fit the square. */
+  image(pixels: Pixels): InlineIcon
+}
+export const InlineIcon: InlineIcon$Static = $n.InlineIcon
 
 /**
  * How one [`Mark::Pill`](crate::Mark::Pill) chip looks: any part left unset falls back to
@@ -3344,6 +3457,12 @@ export interface El {
    * overlay that zooms its own content (or must not zoom). Call it after `anchored`.
    */
   anchored_unscaled(): this
+  /**
+   * Put this [`El::anchored`] overlay at whole points, rounding where it goes as Kobalte's
+   * popper rounds Floating UI's position (`Math.round` on x and y), so a menu under a trigger
+   * at half a point lands where a web menu does. Call it after `anchored`.
+   */
+  anchored_round(): this
   /**
    * Back this node with a system backdrop material: the platform blurs what is behind the
    * window under the node's rect and corner radius (the largest of its corners), which follow
@@ -3768,6 +3887,14 @@ export interface El {
    */
   window_drag(): this
   /**
+   * A part of a `.window_drag()` band that keeps its presses: a press, double press or
+   * secondary click on it, or on a bare child of it, neither moves, zooms nor opens the menu
+   * of the window. Controls (`on_press`, `on_drag`, focusable elements, text fields) already
+   * keep theirs; this is for the parts between them, such as the gaps of a toolbar group.
+   * Like any hit target, it takes presses from what lies under it.
+   */
+  no_window_drag(): this
+  /**
    * The caret of an editor the app draws itself rather than with `text_input`: while this
    * element is drawn and no text field has focus, the window turns its input method on (dead
    * keys, CJK, the emoji picker, dictation), places the candidate window at this element's
@@ -4015,6 +4142,24 @@ export interface El {
    */
   matched(id: string): this
   /**
+   * While this [`matched`](Self::matched) element flies, its children keep their final
+   * layout at their own size, from the moving frame's leading edge and centred on its
+   * height, cropped to it, rather than scaled to cover it: for a row whose width changes as
+   * it flies, as a tab moving between a titlebar's strip and a sidebar, whose avatar and title
+   * would otherwise scale up or slide off its leading edge.
+   */
+  matched_crop(): this
+  /**
+   * When an animated commit changes this element's width (a side panel springing open
+   * beside a column of text), it and everything in it take the layout they land at in
+   * that frame, so text wraps once rather than on every frame of the travel, and the whole
+   * slides as one: its first child that drew last frame starts where it was drawn and
+   * glides to its new place on this element's spring. Heights its growth rows change land
+   * with it. Motion checks take that frame's re-layout as designed. A window resize, an
+   * instant commit and Reduce Motion land as they otherwise would.
+   */
+  hold_landing_width(): this
+  /**
    * Draws bytes `range` of a [`text`](crate::text) or [`rich`](crate::rich) element as a
    * pill: a rounded chip in `style`'s colour (default: the rich style's link colour at 20%,
    * or [`El::pill_colors`]) with its label in `style`'s text colour and its icon before it,
@@ -4031,6 +4176,19 @@ export interface El {
   pill(range: { start: number; end: number }, style: PillStyle): this
   /** [`El::pill`] for several ranges. */
   pills(pills: ([{ start: number; end: number }, PillStyle])[]): this
+  /**
+   * Sets `icon` inline in a [`text`](crate::text) or [`rich`](crate::rich) element, before
+   * byte `at` (a char boundary), in room of its own that moves the text after it aside. It
+   * stays on the line of the word that follows it, as an icon before a link does on a web
+   * page, and sits centred on that word's letters. Its glyph takes `icon`'s colour or the
+   * element's; an image (a site's favicon) draws as it is. Selection and copy skip it. With no
+   * word after `at`, or over a pill, it draws nothing.
+   *
+   * ```ignore
+   * rich("see the docs", spans).inline_icon(8, InlineIcon::glyph(&GLOBE).size(14.0).gap(4.0))
+   * ```
+   */
+  inline_icon(at: number, icon: InlineIcon): this
   /**
    * Whether this element and its children snap their fills, borders and clips to whole
    * device pixels when they paint. On by default: a box laid out at a fractional position
@@ -4123,6 +4281,14 @@ export interface El {
    */
   scroll_edge_fade(width: number): this
   /**
+   * On a scroll viewport, fade its edges with the content hidden under them, as `fade`
+   * describes: [`ScrollFade::strength`] (as [`El::scroll_edge_fade`]), a
+   * [`ScrollFade::feather`] as wide as what's hidden, linear ramps, or a top fade under the
+   * header stuck there. Everything [`El::scroll_edge_fade`] says of sticky elements, explicit
+   * masks and [`El::scroll_margin`] applies.
+   */
+  scroll_fade(fade: ScrollFade): this
+  /**
    * On a scroll viewport, the space [`Tx::scroll_into_view`] leaves between a revealed row and
    * the edge it scrolls to, like CSS `scroll-padding`. The content's own ends still stop flush.
    */
@@ -4191,6 +4357,29 @@ export interface El {
    * `Shadow { y: 0.5, color, ..Default::default() }` under an opaque one. Several stack.
    */
   stuck_shadow(shadow: Shadow): this
+  /**
+   * Fades this [`El::sticky_top`] element's children, not its own fill, as the next
+   * sticky-top sibling rises to it: whole while that sibling's top is `lead + span` points or
+   * more below this one's drawn top, gone once it's `lead` below, linearly between, frame by
+   * frame with the scroll. Desktop's Home fades a stuck day header's title so as the next day
+   * comes up (`home/scroll.ts`), its fill still covering the rows under it until the next
+   * header, a later sibling drawn over it, takes its place. A header with no sticky sibling
+   * after it stays whole.
+   */
+  stuck_fade(lead: number, span: number): this
+  /**
+   * Keeps this text's height its lines' own, unrounded (22.4 points for a line at a 22.4
+   * line height, 24.375 device pixels for a 19.5 point line at 1.25x), as a browser lays out
+   * a paragraph: a stack of texts lands where a web page's does rather than gaining up to a
+   * pixel per text. Every text does this unless it asks for [`El::rounded_lines`].
+   */
+  exact_lines(): this
+  /**
+   * Rounds this text's height up to whole device pixels instead of keeping its lines' own
+   * ([`El::exact_lines`]), as Rune laid out every text before: a box sized by one text keeps
+   * its edges on the pixel grid at any scale.
+   */
+  rounded_lines(): this
   font(s: TextStyle): this
   /**
    * Per-frame styled or coloured byte ranges (syntax highlights, mentions, inline styles)
@@ -4323,6 +4512,13 @@ export interface El {
    * it; elsewhere in the text they still do.
    */
   on_link_secondary<S = any>(f: (s: S, s1: string, pointer_press: PointerPress, tx: Tx) => S | void): this
+  /**
+   * Mark this text field's misspelled words, as a browser's `spellcheck` does: the platform's
+   * checker (Windows' spell checking API, AppKit's `NSSpellChecker`; none on Linux or the
+   * web) puts a red marker under each word the caret has left, and the field's menu offers its
+   * suggestions and Learn Spelling. Off by default; a secure field never checks.
+   */
+  spellcheck(on: boolean): this
   placeholder(s: string, c: Color): this
   caret(caret: Color, selection: Color): this
   /**
@@ -4459,16 +4655,46 @@ export interface El {
   /** Per-corner radius: top-left, top-right, bottom-right, bottom-left. */
   corners(r: number[]): this
   /**
-   * A ring `width` points wide just inside the border box, following the corner radii. It
-   * takes no layout space and replaces the fill under it rather than drawing over it, so a
-   * translucent ring shows what's behind the element. For a stroke over the fill (SwiftUI's
-   * `strokeBorder`), put the border on an unfilled child the same size.
+   * A ring `width` points wide just inside the border box, following the corner radii, as a
+   * CSS `border` draws with `box-sizing: border-box`. It takes no layout space and draws over
+   * the fill, which runs under it to the outer edge, so a translucent border on a filled box
+   * shows the fill through it, as in CSS. Inset [`Self::box_shadow`]s draw between the two,
+   * inside the ring. The width snaps to device pixels as a CSS border's does: under one pixel
+   * it draws one, above that it floors to whole pixels. For a ring at its exact fractional
+   * width, as CSS `box-shadow: inset 0 0 0 0.5px` draws, use an inset [`Self::box_shadow`]
+   * with that spread.
    */
   border(width: number, c: Color): this
   /**
+   * A border with its own width on each side, `[top, right, bottom, left]` points, in one
+   * colour, as CSS `border-top`, `border-right`, `border-bottom` and `border-left` draw: a
+   * zero side draws nothing, and the ring follows the corner radii, narrowing round a corner
+   * from one side's width to the other's. Drawn like [`Self::border`], over the fill and
+   * taking no layout space, with each width snapped to device pixels the same way. So a
+   * `border-bottom: 0.5px` hairline is `.border_sides([0.0, 0.0, 0.5, 0.0], c)`, its one
+   * device pixel the box's last row. Dashes and gradients draw the widest side all round.
+   * Replaces any `border`, and `border` replaces it.
+   */
+  border_sides(widths: number[], c: Color): this
+  /**
+   * Makes this element's [`Self::border`] or [`Self::border_sides`] take room in layout, as a
+   * CSS border does: its padding and content lay out inside it, each side as wide as it
+   * draws, snapped as Chromium snaps a border width to device pixels. So a
+   * `border-bottom: 0.5px` row is one whole device pixel taller at any scale (0.8 points at
+   * 1.25x), and a stack of them ends where a web page's does.
+   */
+  border_layout(): this
+  /**
+   * Draws a colour icon (one whose body names its own colours, such as a file-type badge) as
+   * its silhouette in this element's colour, as an SVG mask of the icon filled with
+   * `currentColor` draws it (`@opencode/ui` FileIcon's `mono`): a file tab's badge in one
+   * colour until the tab is selected or hovered. A monochrome icon draws as it always does.
+   */
+  icon_one_color(): this
+  /**
    * A border whose colour runs from `top` at the top edge to `bottom` at the bottom edge,
-   * e.g. a top-lit hairline rim. Drawn like [`El::border`], inside the box in place of the
-   * fill. Replaces any `border`, and `border` replaces it.
+   * e.g. a top-lit hairline rim. Drawn like [`El::border`], inside the box over the fill.
+   * Replaces any `border`, and `border` replaces it.
    */
   border_gradient(width: number, top: Color, bottom: Color): this
   /**
@@ -4476,8 +4702,8 @@ export interface El {
    * with butt ends, along the ring's centre line, round the corners too. The pattern starts
    * with a dash where the top edge leaves the top-left corner and runs clockwise. The period
    * stretches or shrinks a little so a whole number of dashes fits, and the last gap meets the
-   * first dash cleanly. Unlike a solid border, the fill shows through the gaps and the dashes
-   * draw over it. A zero `dash` or `gap` keeps the border solid.
+   * first dash cleanly. The fill shows through the gaps, and the dashes draw over it as a
+   * solid border does. A zero `dash` or `gap` keeps the border solid.
    */
   border_dash(dash: number, gap: number): this
   /**
@@ -4520,7 +4746,10 @@ export interface El {
    * the rect (the corner radius rounds the image), `Fill` covers the rect and crops the overflow.
    */
   pixels_fit(pixels: Pixels, fit: SurfaceFit): this
-  /** A ring `offset` points outside the border box (CSS `outline` + `outline-offset`). */
+  /**
+   * A ring `offset` points outside the border box (CSS `outline` + `outline-offset`). Width
+   * and offset snap to device pixels as [`Self::border`]'s width does.
+   */
   outline(width: number, offset: number, color: Color): this
   opacity(o: number): this
   /**
@@ -4539,6 +4768,15 @@ export interface El {
    * opacity still belong to `opacity` / `live_opacity`.
    */
   dim(alpha: number): this
+  /**
+   * Fade the whole subtree as one composited layer, like CSS `opacity`: a label over its
+   * button's fill shows the fill as it is, not faded through, and overlapping children don't
+   * show through each other. Static, as [`Self::dim`] is: a change lands at once, and
+   * animation and hit-test opacity still belong to `opacity` / `live_opacity`. Only an
+   * element below 1 whose paint overlaps (children, or more than one paint of its own) draws
+   * offscreen; anything else just takes the alpha. Repeated calls multiply.
+   */
+  layer_opacity(alpha: number): this
   /**
    * Add children's premultiplied colours while a direct child is between opacity 0 and 1.
    * Give two overlaid states opacity `1-t` and `t` for a dissolve without a midpoint alpha dip.
@@ -4641,6 +4879,16 @@ export interface El {
    * element's paint radii. Hit testing still uses the rectangular clip bounds.
    */
   clip_corners(radii: number[]): this
+  /**
+   * Punch a round hole through this element and everything it and its descendants draw: clear
+   * within `inner` points of `center` (points from the element's top-left, which may lie
+   * outside it), whole from `outer` points, and ramping linearly between, as CSS
+   * `mask-image: radial-gradient(circle at x y, transparent inner, black outer)` does. Equal
+   * radii cut an anti-aliased edge. Room for a badge over an avatar's corner:
+   * `.cutout_circle([16.0, 0.0], 4.0, 5.0)` under a 6 point dot at the corner. The subtree
+   * draws in an isolated layer, whose composite cuts the hole; hit testing ignores it.
+   */
+  cutout_circle(center: number[], inner: number, outer: number): this
   /** Soft clip with a fade width per side (left, top, right, bottom). */
   clip_fade(left: number, top: number, right: number, bottom: number): this
   /**
@@ -4651,6 +4899,18 @@ export interface El {
   clip_fade_linear(left: number, top: number, right: number, bottom: number): this
   /** Track hover for descendants' `group_*` styles (see [`Visual::hover_group`]). */
   hover_group(): this
+  /**
+   * [`Self::hover_group`], shared by every element on screen with the same `key`: the pointer
+   * over any of them hovers them all, so one group can span elements that don't nest, such as
+   * a reply's text and the footer under it in separate rows of a virtual list.
+   */
+  hover_group_shared(key: string): this
+  /**
+   * [`Self::hover_group`] that also counts as hovered while keyboard focus is on it or
+   * anywhere inside it, as CSS `:is(:hover, :has(:focus-visible))` does: a tab whose close
+   * button and hover wash show when Tab reaches it, as under the pointer.
+   */
+  hover_group_focus(): this
   /**
    * Curves for this element's hover track: `enter` when the pointer arrives, `exit` when it
    * leaves (e.g. a delayed reveal).
@@ -4687,6 +4947,13 @@ export interface El {
    * Also works on interactive overlays. Headless hosts may call Runtime::window_focus.
    */
   on_window_focus<S = any>(f: (s: S, v1: boolean, tx: Tx) => S | void): this
+  /**
+   * On the root or around text fields: the app's spell checking setting, `on`, which the
+   * fields' menus show as a Spellcheck item with a check mark, as a browser's do. Picking it
+   * calls `f` with the setting flipped; the app keeps it and passes it to its fields'
+   * [`El::spellcheck`].
+   */
+  on_spellcheck<S = any>(on: boolean, f: (s: S, v1: boolean, tx: Tx) => S | void): this
   /**
    * On the root (or modal root), handle paste when no text field is focused.
    * Native clipboard reads are asynchronous. Script `paste` uses the same handler.
@@ -4887,13 +5154,28 @@ export interface El {
    */
   focus_ring(width: number, offset: number, color: Color): this
   /**
+   * A ring drawn while focus is on this element or anywhere inside it, whether the pointer or
+   * the keyboard put it there, as CSS `:focus-within` draws a text field's box: e.g.
+   * `focus_within_ring(1.0, -1.0, c)` for `outline: 1px solid; outline-offset: -1px`, a ring
+   * just inside the border box. It isn't a Tab stop by itself.
+   */
+  focus_within_ring(width: number, offset: number, color: Color): this
+  /**
+   * While focus is on this element or anywhere inside it, from the pointer or the keyboard,
+   * it draws none of its [`El::box_shadow`]s and no [`El::hover`] fill, as a CSS field whose
+   * `:focus-within` rule sets `box-shadow: none` and whose hover rule is
+   * `:not(:focus-within)`: the [`El::focus_within_ring`] stands in for its raised edge.
+   */
+  focus_within_flat(): this
+  /**
    * No focus ring: not the default one, and not one set with [`El::focus_ring`]. A control
    * that shows focus its own way (a fill, an outline it animates) sets it on itself or on
    * the child that would draw the ring.
    *
-   * Without it, a `focusable` element focused from the keyboard draws AppKit's ring when
-   * neither it nor a child (short of another focusable) sets `focus_ring`: 3 points wide
-   * in [`Cx::focus_color`](crate::Cx::focus_color), just outside its border box, following
+   * Without it, a `focusable` element focused from the keyboard draws the default ring when
+   * neither it nor a child (short of another focusable) sets `focus_ring`: the view's
+   * [`Cx::focus_ring`](crate::Cx::focus_ring), else AppKit's, 3 points wide in
+   * [`Cx::focus_color`](crate::Cx::focus_color), just outside its border box, following
    * its corner radii. Text fields, focused links, `focus_highlight` rows and the items of a `menu`,
    * `listbox`, `list`, `tree` or `grid` group draw none, as in AppKit: their caret,
    * highlight or selection shows focus.
@@ -4954,6 +5236,18 @@ export interface El {
    * or `truncate_fade`), as AppKit's expansion tooltips show a table cell's whole text.
    */
   help_when_truncated(text: string): this
+  /**
+   * Keycaps drawn after this element's [`El::help`] text, as a web tooltip shows its
+   * command's keybind: `.help("Toggle review").help_keys(["Ctrl", "Shift", "R"])`. Call it
+   * after `help`, which replaces them. The element tree and assistive technology read them
+   * after the text, a space apart.
+   */
+  help_keys(keys: string[]): this
+  /**
+   * Shows this element's [`El::help`] tooltip above it, 4 points clear, and below only when
+   * there's no room above, as a web page's `placement="top"` tooltip sits over its button.
+   */
+  help_above(): this
   child(child: El): this
   children(children: El[]): this
   color(c: Color): this
@@ -5396,6 +5690,13 @@ export interface Play {
    */
   launch(source: string, destination: string): void
   /**
+   * The `El::matched` flights this change starts draw outside every clip until they land, as
+   * a [`Tx::launch`] does, rather than inside their destinations' clips: for elements that
+   * move between parts of the window that clip them, as tabs moving from a titlebar's strip
+   * into a sidebar that opens as they land, where a clip would hide them for most of the way.
+   */
+  unclipped_flights(): void
+  /**
    * In `on_press` and `on_drag`, the button that drove it, which is
    * [`PointerButton::Primary`] unless the element opted in to others with
    * [`El::pointer_buttons`]. Other handlers see `Primary`.
@@ -5650,6 +5951,12 @@ export interface Play {
   element_at_in<S = any>(within: string, x: number, y: number, f: (s: S, v1: Picked | null, tx: Tx) => S | void): void
   /** [`Tx::element_at_in`] with options ([`Pick`](crate::Pick)). */
   element_at_in_with<S = any>(within: string, x: number, y: number, pick: Pick, f: (s: S, v1: Picked | null, tx: Tx) => S | void): void
+  /**
+   * [`Runtime::invalidate_memos_by_prefix`](crate::Runtime::invalidate_memos_by_prefix) on
+   * this window, from a handler or `poll`: e.g. a plugin host evicting the subtrees an
+   * unloading library built.
+   */
+  invalidate_memos_by_prefix(prefix: string): void
   /** Whether this runtime has an attached motion or tooling trace. */
   tracing(): boolean
   /**
@@ -5694,6 +6001,20 @@ export interface Play {
    * maximize button would (macOS zooms). Does nothing for overlays and headless runs.
    */
   toggle_maximized(): void
+  /**
+   * Take this window full screen after this handler, or bring it back, as macOS's green
+   * button and Electron's `setFullScreen` do: on Windows and Linux a borderless window over
+   * its display, which hides a custom titlebar's caption buttons (`Cx::chrome_insets`).
+   * Does nothing for overlays and headless runs.
+   */
+  toggle_full_screen(): void
+  /**
+   * Deliver `ev` once this handler is done, as if it were typed: to the focused field, then
+   * the key handlers, as the keyboard routes it. For a menu the app draws itself, whose Edit
+   * items send Ctrl+C (⌘C) and the rest to the field that has focus, as AppKit's standard
+   * Edit items do. Keys sent in one handler arrive in order.
+   */
+  send_key(ev: KeyEvent): void
   /**
    * Set this window's title after this handler, in its title bar and the Window menu. The
    * window starts with `AppSpec`'s title and keeps the last one set when it's closed and
@@ -6293,24 +6614,24 @@ export const Path: Path$Static = $n.Path
  * smoothing's dilation. Set app-wide with `App::font_smoothing`, or at run time with
  * `Tx::set_font_smoothing`, which redraws with glyphs rasterised for the new mode.
  *
- * The default is [`FontSmoothing::On`] on macOS and [`FontSmoothing::Off`] on every other
- * platform (Linux, Windows, the web), which has no font smoothing to match. Both work on any
- * OS (they are arithmetic on outlines, not calls into CoreText). Either way the pipeline
+ * The default is [`FontSmoothing::On`] on macOS, [`FontSmoothing::DirectWrite`] on Windows and
+ * [`FontSmoothing::Off`] elsewhere (Linux, the web). `On` and `Off` work on any OS (they are
+ * arithmetic on outlines, not calls into CoreText). Either way the pipeline
  * floors pens to CoreGraphics' subpixel steps (`quantisation_steps`), flattens curves and
  * hints small sizes as CoreGraphics does, and draws coverage as is. Windows blend in
  * sRGB-encoded space, as CoreGraphics does, unless the app sets `App::srgb_blend`.
  */
-export type FontSmoothing = "On" | "Off"
+export type FontSmoothing = "On" | "Off" | "DirectWrite"
 export const FontSmoothing = {
   /**
    * The CoreGraphics stages glyphs rasterise with: all of them for `On`, all but the
-   * dilation for `Off`.
+   * dilation for `Off` (and for `DirectWrite` where DirectWrite can't draw a glyph).
    */
   pipeline: $n.__E_FontSmoothing_pipeline as (self: FontSmoothing) => text__ApplePipeline,
 } as {
   /**
    * The CoreGraphics stages glyphs rasterise with: all of them for `On`, all but the
-   * dilation for `Off`.
+   * dilation for `Off` (and for `DirectWrite` where DirectWrite can't draw a glyph).
    */
   pipeline: (self: FontSmoothing) => text__ApplePipeline
 
@@ -6410,7 +6731,7 @@ export interface text__Run {
 }
 export interface text__Run$Static {
   readonly prototype: text__Run
-
+  "new"(text: string): text__Run
 }
 export const text__Run: text__Run$Static = $n.text__Run
 
@@ -6431,7 +6752,11 @@ export interface text__RunLayout$Static {
 }
 export const text__RunLayout: text__RunLayout$Static = $n.text__RunLayout
 
-/** An SVG icon body as found in `@opencode/ui`'s catalog: elements inside a square viewBox. */
+/**
+ * An SVG icon body as found in `@opencode/ui`'s catalog: elements inside a square viewBox,
+ * drawn in its element's colour. A body that names its own colours (`fill="#…"`, gradients),
+ * such as a file-type badge, draws in them instead, as full SVG (`use`, clips, gradients).
+ */
 export interface Icon {
   name: string
   view: number
@@ -6639,6 +6964,16 @@ export const TextHighlight: TextHighlight$Static = $n.TextHighlight
 
 export interface text__TextSystem {
   /**
+   * The colour image of `icon` at `px` device pixels square when its body names its own
+   * colours, its `currentColor` parts in `color`; None for a monochrome icon, which draws
+   * from the alpha atlas ([`Self::icon_quad`]). Without Rune's `svg` feature every icon draws
+   * monochrome.
+   *
+   * With `one` (`El::icon_one_color`) the image is the icon's silhouette in `color`: its own
+   * colours drawn as their coverage only, as an SVG mask filled with `currentColor` draws it.
+   */
+  color_icon(icon: Icon, px: number, color: Color, one: boolean): Pixels | null
+  /**
    * The sans and mono slots' families (CSS lists), as [`TextSystem::new`] or
    * [`Self::set_families`] named them.
    */
@@ -6669,11 +7004,21 @@ export interface text__TextSystem {
   color_glyph(color: number): Pixels
   /**
    * The colours the next glyphs draw in (`spans` by `Ink`). On macOS they choose each
-   * glyph's dilation, so glyphs in light and dark inks rasterize separately.
+   * glyph's dilation and on Windows its gamma table, so glyphs in light and dark inks
+   * rasterize separately.
    */
   set_glyph_inks(element: Color, spans: Span[]): void
   /** How glyphs rasterise and place ([`FontSmoothing`]). */
   font_smoothing(): FontSmoothing
+  /**
+   * The exponent a glyph's coverage is raised to when drawn in premultiplied `fill`. With
+   * smoothing off (the default on Linux and the web) it stands in for the text gamma a browser's
+   * grayscale antialiasing applies there: light text on a dark page draws heavier and dark
+   * text on a light one a little lighter than coverage blended as is, keyed by the text's
+   * luminance. With smoothing on, CoreText's dilation does that job, and with DirectWrite Skia's
+   * gamma tables do; coverage is drawn as is.
+   */
+  coverage_exponent(fill: number[]): number
   /**
    * Rasterise and place glyphs in `mode` from the next placement on, with its CoreGraphics
    * stages ([`FontSmoothing::pipeline`]). Glyphs already rasterised in another mode stay
@@ -6915,7 +7260,10 @@ export class WindowOptions {
   declare min_size: [number, number] | null
   /** Logical maximum content size. None leaves it unconstrained. */
   declare max_size: [number, number] | null
-  /** Whether the user can resize the window. Programmatic sizing is unaffected. */
+  /**
+   * Whether the user can resize the window. Programmatic sizing is unaffected. A window
+   * that isn't resizable doesn't maximize either: its maximize (zoom) button is disabled.
+   */
   declare resizable: boolean
   constructor(init?: { transparent?: boolean; borderless?: boolean; click_through?: boolean; always_on_top?: boolean; visible?: boolean; position?: [number, number] | null; physical_size?: [number, number] | null; min_size?: [number, number] | null; max_size?: [number, number] | null; resizable?: boolean }) {
     if (init) Object.assign(this, init)
@@ -6998,6 +7346,27 @@ export interface ConfiguredWindowOptions$Static {
   from(value: WindowOptions): ConfiguredWindowOptions
 }
 export const ConfiguredWindowOptions: ConfiguredWindowOptions$Static = $n.ConfiguredWindowOptions
+
+/** A window's place on the desktop, in physical pixels: what to save to reopen it there. */
+export class WindowPlacement {
+  /** The frame's top-left, the space `WindowOptions::position` takes. */
+  declare position: [number, number]
+  /** The content's top-left. */
+  declare content_position: [number, number]
+  /** The content's size, the space `WindowOptions::physical_size` takes. */
+  declare content_size: [number, number]
+  /** Physical pixels per point on the window's display. */
+  declare scale: number
+  declare maximized: boolean
+  declare minimized: boolean
+  declare full_screen: boolean
+  constructor(init?: { position?: [number, number]; content_position?: [number, number]; content_size?: [number, number]; scale?: number; maximized?: boolean; minimized?: boolean; full_screen?: boolean }) {
+    if (init) Object.assign(this, init)
+  }
+
+
+}
+$n.__register_record("WindowPlacement", WindowPlacement)
 
 /**
  * The platform-free half of a surface's adapter: what its handlers heard, and whether the
@@ -7135,17 +7504,21 @@ export const WheelEvent: WheelEvent$Static = $n.WheelEvent
 
 /**
  * A key with modifiers, as an app binds it: `Chord::parse("mod+shift+t")`. Parsing is
- * case-insensitive; modifiers are `mod` (alias `primary`), `ctrl` (`control`), `alt`
- * (`option`, `opt`), `shift` and `super` (`cmd`, `command`, `meta`, `win`, `logo`: the
- * literal ⌘ or logo key, which is rarely what a cross-platform binding wants). Keys are a
- * character or a name: `enter` (`return`), `tab`, `escape` (`esc`), `backspace`, `delete`
- * (`del`), `insert`, `home`, `end`, `pageup`, `pagedown`, `left`/`right`/`up`/`down`
- * (`arrowleft`, …), `space`, `plus`, `comma`, `f1`–`f24`, `contextmenu` (`menu`).
- * `Display` writes the canonical form back ("mod+shift+t"), for settings files.
+ * case-insensitive and ignores spaces around each "+"; modifiers are `mod` (alias `primary`),
+ * `ctrl` (`control`), `alt` (`option`, `opt`), `shift` and `super` (`cmd`, `command`, `meta`,
+ * `win`, `logo`: the literal ⌘ or logo key, which is rarely what a cross-platform binding
+ * wants). Keys are a character or a name: `enter` (`return`), `tab`, `escape` (`esc`),
+ * `backspace`, `delete` (`del`), `insert`, `home`, `end`, `pageup`, `pagedown`,
+ * `left`/`right`/`up`/`down` (`arrowleft`, …), `space`, `plus` (or a trailing "+":
+ * "mod++"), `comma`, the punctuation names (`minus`, `bracketleft`, …), `f1`–`f24`,
+ * `contextmenu` (`menu`), `printscreen`, `scrolllock` and `pause`. "{" and "}" read as Shift
+ * with "[" and "]", the keys that type them on a US layout. `Display` writes the canonical
+ * form back ("mod+shift+t"), for settings files.
  */
 export interface Chord {
   /** This chord with `m` held too. */
   with(m: ChordMod): Chord
+  /** The key, a character lowercased. */
   key(): ChordKey
   /** Whether the chord names `m`, as written (before platform resolution). */
   has(m: ChordMod): boolean
@@ -7159,9 +7532,18 @@ export interface Chord {
   /**
    * `matches`, also comparing a character chord with `tx.key_base()`, the character the
    * key types with no modifiers under the current layout (⌥B types "∫" on a Mac, ⇧[ types
-   * "{"), so the binding follows the layout as the menu bar's does.
+   * "{"), so the binding follows the layout as the menu bar's does. Where neither that
+   * character nor the typed one is ASCII (a Cyrillic or Greek layout, "ü" on German) an
+   * ASCII chord falls back to `tx.physical_key()`, the key in that place on a US layout.
    */
   matches_tx(ev: KeyEvent, tx: Tx): boolean
+  /**
+   * `matches`, resolving the chord with `platform`'s conventions: for tests, or an app that
+   * lets the user pick a keymap. `ev.mods` reads as this build reports them.
+   */
+  matches_on(ev: KeyEvent, platform: KeyPlatform): boolean
+  /** `matches_tx` with `platform`'s conventions; see `matches_on`. */
+  matches_tx_on(ev: KeyEvent, tx: Tx, platform: KeyPlatform): boolean
   /**
    * Whether `self` and `other` are the same keys on `platform`: "mod+b" and "ctrl+b" are
    * on Windows and Linux, not on macOS. For conflict checks in a shortcut table or editor.
@@ -7185,9 +7567,14 @@ export interface Chord {
 }
 export interface Chord$Static {
   readonly prototype: Chord
-  /** The key alone; add modifiers with `with`. */
+  /**
+   * The key alone; add modifiers with `with`. The key is stored as parsing would write it:
+   * a character lowercased, '{' and '}' as Shift with '[' and ']', a tab, newline, escape,
+   * backspace or delete character as that key, and a function key within F1–F24.
+   */
   "new"(key: ChordKey): Chord
   parse(s: string): Chord
+  from(value: Chord): Chord
 }
 export const Chord: Chord$Static = $n.Chord
 
@@ -7205,7 +7592,7 @@ export const ChordError: ChordError$Static = $n.ChordError
  * The key a chord ends in. A character is the one the key types without Shift ('t', '[',
  * '1', ','), lowercase; name the unshifted key and add `shift` ("mod+shift+[", not "mod+{").
  */
-export type ChordKey = { Char: string } | "Enter" | "Tab" | "Escape" | "Backspace" | "Delete" | "Insert" | "Home" | "End" | "PageUp" | "PageDown" | "Left" | "Right" | "Up" | "Down" | { Function: number } | "ContextMenu"
+export type ChordKey = { Char: string } | "Enter" | "Tab" | "Escape" | "Backspace" | "Delete" | "Insert" | "Home" | "End" | "PageUp" | "PageDown" | "Left" | "Right" | "Up" | "Down" | { Function: number } | "ContextMenu" | "PrintScreen" | "ScrollLock" | "Pause"
 /** One modifier as a chord names it. */
 export type ChordMod = "Primary" | "Ctrl" | "Alt" | "Shift" | "Super"
 /** The platform whose keyboard conventions a chord resolves and draws with. */
@@ -7227,6 +7614,8 @@ export const KeyPlatform = {
 export interface Keybind {
   /** These chords instead on `platform`. Panics if `spec` doesn't parse, as `new` does. */
   on(platform: KeyPlatform, spec: string): this
+  /** `chords` instead on `platform`: `on` for chords built as data. */
+  on_chords(platform: KeyPlatform, chords: Chord[]): this
   /** The chords that apply on `platform`. */
   chords_on(platform: KeyPlatform): Chord[]
   /** The chords that apply here. */
@@ -7235,10 +7624,16 @@ export interface Keybind {
   matches(ev: KeyEvent): boolean
   /** Whether `ev` is any of this platform's chords; see `Chord::matches_tx`. */
   matches_tx(ev: KeyEvent, tx: Tx): boolean
+  /** Whether `ev` is any of `platform`'s chords; see `Chord::matches_on`. */
+  matches_on(ev: KeyEvent, platform: KeyPlatform): boolean
+  /** Whether `ev` is any of `platform`'s chords; see `Chord::matches_tx_on`. */
+  matches_tx_on(ev: KeyEvent, tx: Tx, platform: KeyPlatform): boolean
   /** The first chord's label here ("⇧⌘T", "Ctrl+Shift+T"), or "" when nothing is bound. */
   label(): string
   /** The first chord's label on `platform`, or "" when nothing is bound there. */
   label_on(platform: KeyPlatform): string
+  /** The string `parse` reads back as `platform`'s chords: "mod+t, mod+n", or "none". */
+  spec_on(platform: KeyPlatform): string
   clone(): Keybind
 }
 export interface Keybind$Static {
@@ -7248,6 +7643,7 @@ export interface Keybind$Static {
    * input (a settings file) with `str::parse` instead.
    */
   "new"(spec: string): Keybind
+  from(value: Chord): Keybind
   default(): Keybind
 }
 export const Keybind: Keybind$Static = $n.Keybind
@@ -7597,6 +7993,19 @@ export interface Cx {
    * prefer [`Self::window_layout_with`] for a value that changes less often.
    */
   window_layout(key: string): number[] | null
+  /**
+   * A copy of this context for a sub-view over another state type, or a scratch run of
+   * the same view: environment, settings and the reads made so far. Pass it back with
+   * [`Self::absorb`] to keep what the sub-view did, or drop it to discard that, as a host
+   * does for a sub-view (a plugin's panel) that panicked partway.
+   */
+  retype(): Cx
+  /**
+   * Takes back a [`Self::retype`]d context a nested view ran with: its overrides, and the
+   * caret and layout reads it added. The window's chrome stays the outer view's: a staged
+   * story's `caption_color` or titlebar isn't the window's.
+   */
+  absorb(other: Cx): void
   env(): Env
   system_dark(): boolean
   /**
@@ -7623,6 +8032,51 @@ export interface Cx {
    * hover and press washes are this colour at 10% and 20%; close turns red either way.
    */
   caption_color(color: Color): void
+  /**
+   * The theme's text colour, as CSS `color` on the page: text, icons and text fields that
+   * aren't given a colour (`El::color`, `El::placeholder`, `El::caret`) draw in it, the
+   * placeholder at 40% and the selection at 20%, so a field left uncoloured stays readable in
+   * a light theme. Without it they draw white. Set it on every run of the view; a `memo`
+   * whose text takes it rebuilds when it changes.
+   */
+  foreground(color: Color): void
+  /**
+   * The keyboard focus ring a focusable element draws when it doesn't set its own
+   * ([`El::focus_ring`](crate::El::focus_ring)), in place of AppKit's: `width` points wide,
+   * `offset` points outside its border box, following its corner radii, e.g. `2.0, 2.5` for
+   * CSS `outline: 2px solid; outline-offset: 2.5px`. It shows only for keyboard focus, as
+   * `:focus-visible` does. Set it on every run of the view.
+   */
+  focus_ring(width: number, offset: number, color: Color): void
+  /**
+   * How [`El::help`](crate::El::help) tooltips look, where they sit and how long they wait,
+   * in place of the system's ([`HelpLook::system`](crate::HelpLook::system)): a design
+   * system's own tooltip, as a web page draws one. Rune then draws it on macOS too, instead
+   * of AppKit's. Set it on every run of the view.
+   */
+  help_look(look: HelpLook): void
+  /**
+   * The height of the titlebar the app draws (`App::titlebar`), in window points, in place of
+   * `Titlebar::new`'s while the view keeps setting it: a band that scales with the app's UI
+   * zoom, as Electron's `setTitleBarOverlay({ height })` does. The Windows caption buttons
+   * take it (their width stays), macOS centres the traffic lights in it unless
+   * `Titlebar::traffic_lights` or `Chrome::traffic_lights` places them, and
+   * [`Self::chrome_insets`] reports it from the next frame on, so the buttons line up with
+   * the app's row at every zoom: for a 44 point row, `cx.titlebar_height(44.0 * zoom.max(1.0))`
+   * keeps the row 44 points tall zoomed out, as Electron apps size their `titleBarOverlay`.
+   * Insets are window points: a view that scales its content by a zoom divides them by it.
+   * Over [`Self::set_titlebar`], it sets that titlebar's height.
+   */
+  titlebar_height(points: number): void
+  /**
+   * The titlebar the app draws (`App::titlebar`), in place of the app's while the view keeps
+   * setting it: its height and, on macOS, where the traffic lights sit
+   * (`Titlebar::traffic_lights`), for a switch between layouts whose titlebars differ. The
+   * window moves the traffic lights and resizes the Windows caption buttons to it, and
+   * [`Self::chrome_insets`] and [`Self::titlebar_inset`] report the new controls from the
+   * next frame on. A window without `App::titlebar` keeps its native frame.
+   */
+  set_titlebar(titlebar: Titlebar): void
   /**
    * The user's accent colour (System Settings › Appearance on macOS) for this window's
    * appearance, [`SystemAccent::DEFAULT`](crate::SystemAccent::DEFAULT)'s blue elsewhere and
@@ -7790,6 +8244,65 @@ export class Env {
 
 }
 $n.__register_record("Env", Env)
+
+/**
+ * A tooltip's surface, type, placement and timing. [`HelpLook::system`] is Rune's own look;
+ * each builder overrides one thing, e.g. a design system's compact tooltip:
+ * `HelpLook::system(dark).fill(layer).ink(text).radius(4.0).padding(6.0, 5.0).font(small).gap(4.0).delay(0.4)`.
+ */
+export interface HelpLook {
+  /**
+   * Keycaps ([`El::help_keys`](crate::El::help_keys)) on `fill`, their labels in `font` and
+   * `ink`, uppercased when `upper`.
+   */
+  keycaps(fill: Color, ink: Color, font: TextStyle, upper: boolean): HelpLook
+  /**
+   * A keycap's height, inner padding either side (its least width is its height) and corner
+   * radius, `gap` points between two and `lead` points after the text.
+   */
+  keycap_shape(height: number, pad_x: number, radius: number, gap: number, lead: number): HelpLook
+  fill(c: Color): HelpLook
+  /** The text colour. */
+  ink(c: Color): HelpLook
+  /** A border `width` points wide inside the edge; 0 removes it. */
+  ring(width: number, c: Color): HelpLook
+  radius(r: number): HelpLook
+  /** Horizontal and vertical padding around the text. */
+  padding(x: number, y: number): HelpLook
+  font(f: TextStyle): HelpLook
+  /** The widest the tooltip grows before its text wraps; `None` for the window's width. */
+  max_width(w: number | null): HelpLook
+  /** Points between the element and its tooltip, under it or over it (Kobalte's `gutter`). */
+  gap(g: number): HelpLook
+  /** How far the tooltip keeps inside the window's edges (a popper's overflow padding). */
+  margin(m: number): HelpLook
+  /**
+   * Seconds the pointer rests on an element before its tooltip shows, in place of the
+   * runtime's `help_delay`.
+   */
+  delay(secs: number): HelpLook
+  /**
+   * For this long (seconds) after a tooltip hides, the next element's shows at once, as
+   * a web tooltip's `skipDelayDuration` does when the pointer moves along a toolbar.
+   */
+  skip_delay(secs: number): HelpLook
+  /**
+   * Box-shadow layers, painted in order (the first four); empty for none. Inset shadows
+   * are skipped.
+   */
+  shadows(layers: Shadow[]): HelpLook
+  clone(): HelpLook
+}
+export interface HelpLook$Static {
+  readonly prototype: HelpLook
+  /**
+   * Rune's own tooltip for a light or dark window: a pale or dark grey card with a hairline
+   * edge, 12 pt text, under its element 6 pt clear (over it 4 pt clear), after the
+   * runtime's `help_delay`.
+   */
+  system(dark: boolean): HelpLook
+}
+export const HelpLook: HelpLook$Static = $n.HelpLook
 
 /** One presented element as [`Runtime::motion_elements`] reports it. */
 export interface MotionElement {
@@ -7984,7 +8497,7 @@ export interface TextSelection$Static {
 export const TextSelection: TextSelection$Static = $n.TextSelection
 
 /** What a press on a window drag region asks the shell to do, synchronously in that press. */
-export type TitlebarAction = "Drag" | "DoubleClick" | "SystemMenu"
+export type TitlebarAction = "Drag" | "DoubleClick"
 /** A host's touch phase, as winit reports it. */
 export type TouchPhase = "Started" | "Moved" | "Ended" | "Cancelled"
 /** Registration failures callers can act on without inspecting platform error strings. */
@@ -8004,7 +8517,8 @@ export type SystemMaterial = "Glass" | "Popover"
 /**
  * What the window's own controls take of the app's titlebar, in points
  * (`Cx::chrome_insets`). The view re-runs when it changes: entering or leaving full screen,
- * a scale change. A `memo` closure that reads it needs it in its version.
+ * a scale change, `Cx::titlebar_height`, `Cx::set_titlebar`. Memos rebuild with it too, so a
+ * `memo` closure that reads it needs nothing in its version.
  */
 export class ChromeInsets {
   /**
@@ -8044,10 +8558,20 @@ $n.__register_record("ChromeInsets", ChromeInsets)
  *   the trailing edge at the band's height, as Electron's `titleBarOverlay` does.
  * - **Elsewhere:** the native frame stays and [`ChromeInsets`] is zero.
  *
- * A borderless window has no titlebar to replace, and ignores it.
+ * `Cx::titlebar_height` changes the height while the app runs, as a UI zoom does, and
+ * `Cx::set_titlebar` the whole titlebar, as a switch between layouts does. A borderless window
+ * has no titlebar to replace, and ignores it.
  */
 export interface Titlebar {
+  /**
+   * macOS: the close button's top-left, in points from the window's top-left, for this
+   * titlebar (Electron's `trafficLightPosition`), in place of `Chrome::traffic_lights` and
+   * the band's middle. Ignored elsewhere and in full screen.
+   */
+  traffic_lights(x: number, y: number): Titlebar
   height(): number
+  /** Where [`Self::traffic_lights`] put the close button, if it did. */
+  traffic_lights_origin(): [number, number] | null
   clone(): Titlebar
 }
 export interface Titlebar$Static {
@@ -8253,6 +8777,12 @@ export interface WindowHandle {
   key(): string
   /** macOS CGWindowID for ScreenCaptureKit exclusion; None before registration or after destruction. */
   window_number(): number | null
+  /**
+   * Where the window is on the desktop and whether it's maximized, minimized or full screen,
+   * to save and reopen it there. None while it's closed, and on Wayland, which hides window
+   * positions. Call it on the UI thread.
+   */
+  placement(): WindowPlacement | null
   set_click_through(click_through: boolean): void
   set_always_on_top(on: boolean): void
   /** Physical desktop pixels; retained across recreation. Unsupported on Wayland. */
@@ -8403,27 +8933,38 @@ export class kit_Palette {
 }
 $n.__register_record("kit_Palette", kit_Palette)
 
-/** Elevation tokens as box-shadow layers (outer and inset), painted in order. */
-export class kit_Elevation {
-  declare raised: Shadow[]
-  declare floating: Shadow[]
-  declare overlay: Shadow[]
-  declare button_neutral: Shadow[]
-  declare button_contrast: Shadow[]
-  declare elements: Shadow[]
-  declare switch_off: Shadow[]
-  declare switch_on: Shadow[]
+/**
+ * Elevation tokens as box-shadow layers (outer and inset), painted in order. Build one from
+ * [`Elevation::default`], setting its fields, and [`Elevation::with_input`] for the fields'.
+ */
+export interface kit_Elevation {
+  /**
+   * Text fields' and field selects' own shadow, `--v2-elevation-input`: in OpenCode's dark
+   * theme lighter than a button's (no drop, a 16% light ring). Without it fields take
+   * [`Self::button_neutral`].
+   */
+  with_input(layers: Shadow[]): this
+  /** The shadow text fields and field selects draw ([`Self::with_input`]). */
+  input(): Shadow[]
+  raised: Shadow[]
+  floating: Shadow[]
+  overlay: Shadow[]
+  button_neutral: Shadow[]
+  button_contrast: Shadow[]
+  elements: Shadow[]
+  switch_off: Shadow[]
+  switch_on: Shadow[]
   /** The older `--shadow-md` used by popovers and hover cards. */
-  declare md: Shadow[]
+  md: Shadow[]
   /** The standard-appearance switch thumb. */
-  declare knob: Shadow[]
-  constructor(init?: { raised?: Shadow[]; floating?: Shadow[]; overlay?: Shadow[]; button_neutral?: Shadow[]; button_contrast?: Shadow[]; elements?: Shadow[]; switch_off?: Shadow[]; switch_on?: Shadow[]; md?: Shadow[]; knob?: Shadow[] }) {
-    if (init) Object.assign(this, init)
-  }
-
-
+  knob: Shadow[]
+  clone(): kit_Elevation
 }
-$n.__register_record("kit_Elevation", kit_Elevation)
+export interface kit_Elevation$Static {
+  readonly prototype: kit_Elevation
+  default(): kit_Elevation
+}
+export const kit_Elevation: kit_Elevation$Static = $n.kit_Elevation
 
 /** Small glyphs drawn inside components (not the app's icon catalog). */
 export interface kit_Glyphs {
@@ -8629,6 +9170,862 @@ export interface kit_Kit$Static {
   from_palette_focus(seed: kit_PaletteSeed, focus: kit_PaletteFocus): kit_Kit
 }
 export const kit_Kit: kit_Kit$Static = $n.kit_Kit
+
+/**
+ * How side panes open and close: `PaneMotion::new().spring(Spring::new(0.3, 0.0))
+ * .scale_with_width(480.0, 0.15, 0.3).fade_tail(0.15)`. A `SplitView` gives both its panes the
+ * same motion, so they move as one.
+ */
+export interface kit_shell__PaneMotion {
+  /** The spring a pane's width moves on (by default the kit's disclosure spring). */
+  spring(s: motion_Spring): kit_shell__PaneMotion
+  /**
+   * Scales the spring's duration by the square root of the pane's width over `reference`
+   * points, kept within `min..=max` seconds, so a narrow pane doesn't crawl and a wide one
+   * doesn't snap.
+   */
+  scale_with_width(reference: number, min: number, max: number): kit_shell__PaneMotion
+  /**
+   * Fades contents only across the last `fraction` of the way to closed: solid through most
+   * of a close, and there almost at once in an open.
+   */
+  fade_tail(fraction: number): kit_shell__PaneMotion
+  /** Under Reduce Motion the pane snaps; its contents fade over `seconds` (0 snaps them too). */
+  reduced_motion_fade(seconds: number): kit_shell__PaneMotion
+  /** The spring a pane `width` points wide moves on. */
+  spring_for(k: kit_Kit, width: number): motion_Spring
+  clone(): kit_shell__PaneMotion
+}
+export interface kit_shell__PaneMotion$Static {
+  readonly prototype: kit_shell__PaneMotion
+  /**
+   * The kit's disclosure spring at every width; contents fade out early in a close and
+   * in late in an open; Reduce Motion snaps.
+   */
+  "new"(): kit_shell__PaneMotion
+  default(): kit_shell__PaneMotion
+}
+export const kit_shell__PaneMotion: kit_shell__PaneMotion$Static = $n.kit_shell__PaneMotion
+
+/**
+ * A side pane's width and whether it shows: a sidebar's or an inspector's. The app owns it
+ * (a field of its state), so it can save the width and restore it with [`PaneState::new`].
+ * Widths are whole points within the pane's range.
+ */
+export interface kit_PaneState {
+  /**
+   * Its width range. The width and the default clamp into it, from the values given to
+   * [`Self::new`] and [`Self::with_width`], so `new(640.0).range(360.0, 960.0)` is 640.
+   */
+  range(min: number, max: number): kit_PaneState
+  /** Starts collapsed (a saved state, or an inspector that opens on demand). */
+  collapsed(): kit_PaneState
+  /** A saved width, clamped and rounded (the width it starts with; the default stays). */
+  with_width(width: number): kit_PaneState
+  width(): number
+  is_open(): boolean
+  min_width(): number
+  max_width(): number
+  default_width(): number
+  /** Whether its edge is being dragged. */
+  is_resizing(): boolean
+  /** Points it takes in the layout: its width when open, else 0. */
+  shown_width(): number
+  /** Clamps to the range and rounds to a whole point. Doesn't open the pane. */
+  set_width(width: number): void
+  /** Opening a peeking sidebar docks it where it floats; closing ends any peek. */
+  set_open(open: boolean): void
+  toggle(): void
+  /**
+   * Whether the closed sidebar floats over the content (a `SplitView` with
+   * [`SidebarPeek`]).
+   */
+  is_peeking(): boolean
+  /**
+   * Slides a peeking sidebar away (Escape, say). Leaving it with the pointer, or the window
+   * losing focus, ends a peek too.
+   */
+  end_peek(): void
+  /** Shows the closed sidebar as a peek, over the content. */
+  peek(): void
+  /** Back to the width it was made with (double-clicking its edge). */
+  reset_width(): void
+  /**
+   * Where dragging its edge to `width` leaves it: clamped, or collapsed (keeping its last
+   * width) once dragged below half its minimum, as AppKit's split views do. Dragging back
+   * out opens it again.
+   */
+  drag_to(width: number): void
+  clone(): kit_PaneState
+}
+export interface kit_PaneState$Static {
+  readonly prototype: kit_PaneState
+  /** Range of a sidebar unless set: 160 to 480 points. */
+  readonly MIN: number
+  readonly MAX: number
+  /** An open pane `width` points wide, which double-clicking its edge also returns to. */
+  "new"(width: number): kit_PaneState
+  default(): kit_PaneState
+}
+export const kit_PaneState: kit_PaneState$Static = $n.kit_PaneState
+
+/**
+ * A closed sidebar that peeks: resting the pointer on the window's leading edge, or on the
+ * sidebar's toggle, slides the sidebar in over the content as a floating surface, without
+ * moving the layout. Leaving it closes it again; pressing the toggle docks it where it is.
+ * `SplitView::sidebar_peek(SidebarPeek::new().edge(16.0, ms(40)).toggle_delay(ms(80)))`.
+ */
+export interface kit_shell__SidebarPeek {
+  /**
+   * The zone along the window's leading edge, `width` points into the content past the
+   * frame inset, and how long the pointer rests in it before the sidebar peeks.
+   */
+  edge(width: number, delay: number): kit_shell__SidebarPeek
+  /**
+   * How long the pointer rests on the closed sidebar's toggle before it peeks. The toggle is
+   * crossed on the way to other title bar controls, so this is usually longer than the edge's.
+   */
+  toggle_delay(delay: number): kit_shell__SidebarPeek
+  /**
+   * Where the edge zone starts, in points from the window's top (default: below the title
+   * bar band, which holds the traffic lights and the toggle).
+   */
+  below(y: number): kit_shell__SidebarPeek
+  /**
+   * How far past the sidebar and toggle the pointer may stray, and for how long, before the
+   * peek closes.
+   */
+  hold(margin: number, grace: number): kit_shell__SidebarPeek
+  /** The spring the peek slides on (by default the kit's control spring). */
+  spring(s: motion_Spring): kit_shell__SidebarPeek
+  /** Under Reduce Motion the peek fades in place over `seconds` instead of sliding. */
+  reduced_motion_fade(seconds: number): kit_shell__SidebarPeek
+  clone(): kit_shell__SidebarPeek
+}
+export interface kit_shell__SidebarPeek$Static {
+  readonly prototype: kit_shell__SidebarPeek
+  /**
+   * A 16 point edge zone and a 12 point margin; 50 ms on the edge, 100 ms on the toggle, and
+   * 150 ms of grace before it closes; the kit's control spring.
+   */
+  "new"(): kit_shell__SidebarPeek
+  default(): kit_shell__SidebarPeek
+}
+export const kit_shell__SidebarPeek: kit_shell__SidebarPeek$Static = $n.kit_shell__SidebarPeek
+
+/**
+ * A list's drag to reorder, owned by the app: `Reorder::new().gap(4.0)`. Pass it to each
+ * row's `SidebarRow::reorder`. Rows are taken to share one height.
+ */
+export interface kit_shell__Reorder {
+  /** Points between the rows (the list's gap), so a row steps aside by its height plus this. */
+  gap(points: number): kit_shell__Reorder
+  /** The row being dragged, by its index before the drag. */
+  dragging(): number | null
+  /** Where the dragged row would land if dropped now. */
+  target(): number | null
+  clone(): kit_shell__Reorder
+}
+export interface kit_shell__Reorder$Static {
+  readonly prototype: kit_shell__Reorder
+  "new"(): kit_shell__Reorder
+  default(): kit_shell__Reorder
+}
+export const kit_shell__Reorder: kit_shell__Reorder$Static = $n.kit_shell__Reorder
+
+/** What a [`SidebarRow`]'s status slot shows. */
+export type kit_shell__RowStatus = "Busy" | "Attention" | "Unread" | { Other: El }
+/**
+ * A sidebar's content: header, a scrolling list of sections and rows, and footer.
+ * `Sidebar::new().header(..).section(..).footer(..).build(&kit)`. The list is one Tab stop
+ * that lands on the selected row. Up and Down move the selection (it follows focus, as in a
+ * source list), Home and End go to the ends, typing a row's first letters jumps to it, and
+ * Return presses the focused row.
+ */
+export interface kit_Sidebar {
+  /** Points between the sidebar's sides and its rows, header and footer (default 8). */
+  inset(points: number): this
+  /** Points between the header's items (default 2). */
+  header_gap(points: number): this
+  /** Points above the header and between it and the list (default 0 and 8). */
+  header_padding(top: number, bottom: number): this
+  /**
+   * Points between the list's items (default 0). Virtualised rows don't take it: give them
+   * the space in their height.
+   */
+  row_gap(points: number): this
+  /**
+   * The height of [`Self::virtual_rows`]' rows (default [`ROW_HEIGHT`]). Give the rows the
+   * same height with [`SidebarRow::height`].
+   */
+  row_height(points: number): this
+  /** The list's accessible name. */
+  label(l: string): this
+  /** Above the list, outside its scrolling: a "New" row or button, a search field. */
+  header(e: El): this
+  /** Below the list: an account or settings row, a version line. */
+  footer(e: El): this
+  section(s: kit_SidebarSection): this
+  /** Any element in the list: a built [`SidebarRow`] or [`SidebarHeader`], a divider. */
+  child(e: El): this
+  build(k: kit_Kit): El
+}
+export interface kit_Sidebar$Static {
+  readonly prototype: kit_Sidebar
+  "new"(): kit_Sidebar
+  default(): kit_Sidebar
+}
+export const kit_Sidebar: kit_Sidebar$Static = $n.kit_Sidebar
+
+/**
+ * A section's header row: its title, an optional count, a disclosure triangle and a trailing
+ * action (a small "+" button, say). Pressing it calls `on_toggle`; whether the section is
+ * collapsed is the app's state. [`SidebarSection`] pairs it with its rows; use it on its own
+ * in a virtualised list.
+ */
+export interface kit_SidebarHeader {
+  /**
+   * Shows a disclosure triangle for this state. Without it, or `on_toggle`, the header is
+   * a plain label.
+   */
+  collapsed(c: boolean): this
+  count(n: number): this
+  /** A trailing element, such as a small "+" icon button. */
+  action(e: El): this
+  on_toggle<S = any>(f: (s: S, tx: Tx) => S | void): this
+  build(k: kit_Kit): El
+}
+export interface kit_SidebarHeader$Static {
+  readonly prototype: kit_SidebarHeader
+  "new"(title: string): kit_SidebarHeader
+}
+export const kit_SidebarHeader: kit_SidebarHeader$Static = $n.kit_SidebarHeader
+
+/**
+ * A selectable sidebar row: icon, label, then a trailing detail (a time), badge or element.
+ * `SidebarRow::new("Inbox").icon(&INBOX).badge("3").selected(sel).on_select(..).build(&kit)`.
+ * Key the built row by its item's id.
+ *
+ * A taller row takes a second, muted line, an avatar and a status slot that turns into a
+ * close button under the pointer: `SidebarRow::new(title).height(45.0).avatar(..)
+ * .subtitle(project).status(RowStatus::Busy).on_close(..)`.
+ */
+export interface kit_SidebarRow {
+  icon(i: Icon): this
+  /** A 16 point leading element in place of the icon: a project's avatar, an initial. */
+  avatar(e: El): this
+  /**
+   * A second line under the label, smaller and fainter than it (11 point `caption` in
+   * `text_faint`, under a medium-weight 13 point label). The row's accessible name is then
+   * "Label, Subtitle". Give the row the height for it (default [`TWO_LINE_ROW_HEIGHT`]).
+   */
+  subtitle(s: string): this
+  /**
+   * The label's type, in place of the default (13 point; medium weight with a subtitle).
+   * It also sets the inline rename field's type.
+   */
+  title_style(style: TextStyle): this
+  /** The subtitle's type, in place of the default (the kit's `caption`). */
+  subtitle_style(style: TextStyle): this
+  /** The subtitle's colour, in place of the default (`text_faint`). */
+  subtitle_color(color: Color): this
+  /**
+   * A row that shows the selection but never takes focus: for a list driven from outside,
+   * such as one a search field filters and steers with its own keys. The row is out of the
+   * Tab order, Tab and Space don't act on it, and pressing it selects it (`on_select`)
+   * while a focused field stays focused (`El::preserve_focus_on_press`). Keyboard navigation
+   * of a select-only list (Up/Down and Return from the field) is the app's job. The selected
+   * row is still exposed as selected to assistive tech (`ElementInfo::item_selected`), and
+   * changing the selection never pulls focus to the row. Equivalent to
+   * `.focusable(false).focus_selected(..)` on the built row, plus the focus-preserving press.
+   */
+  select_only(): this
+  /** The row's height (default [`ROW_HEIGHT`], or [`TWO_LINE_ROW_HEIGHT`] with a subtitle). */
+  height(points: number): this
+  /** Faint trailing text: a time ("2m"), a count, a shortcut. */
+  detail(d: string): this
+  /** A trailing pill (an unread count). */
+  badge(b: string): this
+  /** Any trailing element (a status dot, a menu button), after the detail and badge. */
+  trailing(e: El): this
+  /** A 20 point slot at the row's end, after everything else. */
+  status(s: kit_shell__RowStatus): this
+  /**
+   * A close button in the status slot, in place of the status while the pointer is on the
+   * row. It swaps at once, with no fade.
+   */
+  on_close<S = any>(f: (s: S, tx: Tx) => S | void): this
+  selected(s: boolean): this
+  /** Nesting level: each indents the row by [`INDENT`]. */
+  depth(d: number): this
+  /** Called when the row is pressed, or reached with the arrow keys. */
+  on_select<S = any>(f: (s: S, tx: Tx) => S | void): this
+  /** Called on a double click (rename, open in a new window). */
+  on_double_click<S = any>(f: (s: S, tx: Tx) => S | void): this
+  /**
+   * Drags the row to a new place among the list's `count` rows, of which it is row `index`.
+   * It lifts above its neighbours and follows the pointer, and they step aside on springs.
+   * A drop calls `drop(s, from, to)` to move the item; Escape, or the window losing focus,
+   * puts it back. `access` finds the [`Reorder`] in the app's state. A press that doesn't
+   * move is still a select.
+   */
+  reorder<S = any>(state: kit_shell__Reorder, index: number, count: number, access: (s0: S) => kit_shell__Reorder, drop: (s: S, v1: number, v2: number) => S | void): this
+  /**
+   * Edits the label in place, in the field bound to `edit` (`access` finds it in the app's
+   * state). Set `edit.focused` and its text when renaming starts. Return calls `commit`,
+   * Escape calls `cancel`; both should end the rename.
+   */
+  renaming<S = any>(edit: TextEdit, access: (s0: S) => TextEdit, commit: (s: S, tx: Tx) => S | void, cancel: (s: S, tx: Tx) => S | void): this
+  build(k: kit_Kit): El
+}
+export interface kit_SidebarRow$Static {
+  readonly prototype: kit_SidebarRow
+  "new"(label: string): kit_SidebarRow
+}
+export const kit_SidebarRow: kit_SidebarRow$Static = $n.kit_SidebarRow
+
+/**
+ * A titled group of rows that collapses: `SidebarSection::new("Today").collapsed(..)
+ * .on_toggle(..).row(..)`. Rows below it move on the kit's disclosure spring as it opens.
+ */
+export interface kit_SidebarSection {
+  /** Its key among the list's children (default: the title). */
+  key(k: string): this
+  collapsed(c: boolean): this
+  count(n: number): this
+  action(e: El): this
+  on_toggle<S = any>(f: (s: S, tx: Tx) => S | void): this
+  /** A row: a built [`SidebarRow`], keyed by the app. */
+  row(e: El): this
+  rows(rows: El[]): this
+  build(k: kit_Kit): El
+}
+export interface kit_SidebarSection$Static {
+  readonly prototype: kit_SidebarSection
+  "new"(title: string): kit_SidebarSection
+}
+export const kit_SidebarSection: kit_SidebarSection$Static = $n.kit_SidebarSection
+
+/**
+ * A full-window screen without side panes — a settings page, lock screen or onboarding view
+ * in the same window as a [`SplitView`]. Shares [`SplitView`]'s title bar height, traffic-light
+ * clearance, window-drag band and framed content card so switching screens matches pixel for
+ * pixel: `Page::new(content).title("Settings").leading(back).trailing(done).titlebar_inset(cx.titlebar_inset()).build(&kit)`.
+ */
+export interface kit_Page {
+  /** A centred title in the toolbar band. */
+  title(t: string): this
+  /** The toolbar's centre slot (replaces [`Self::title`]). */
+  center(e: El): this
+  /** Adds a leading control to the toolbar (a Back button, say), placed past the traffic lights. */
+  leading(e: El): this
+  /** Adds a trailing control to the toolbar. */
+  trailing(e: El): this
+  /** Replaces the toolbar with a pre-built [`Toolbar`]. */
+  toolbar(t: kit_Toolbar): this
+  /** Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`. */
+  titlebar_inset(points: number): this
+  /**
+   * Points past the traffic lights (or the window's edge in full screen) where the toolbar's
+   * leading slot starts, matching [`SplitView::sidebar_toggle`].
+   */
+  past_lights(past_lights: number, edge: number): this
+  /**
+   * The window background showing around the content pane (default 8 points, matching
+   * [`SplitView::frame_inset`]).
+   */
+  frame_inset(points: number): this
+  /**
+   * Puts the toolbar inside the framed content pane at its top, matching
+   * [`SplitView::toolbar_in_panel`].
+   */
+  toolbar_in_panel(): this
+  build(k: kit_Kit): El
+}
+export interface kit_Page$Static {
+  readonly prototype: kit_Page
+  "new"(main: El): kit_Page
+}
+export const kit_Page: kit_Page$Static = $n.kit_Page
+
+/**
+ * Where the sidebar's toggle button sits and how it looks:
+ * `SidebarToggle::new().size(ControlSize::Large).past_lights(16.0).in_header()`.
+ */
+export interface kit_shell__SidebarToggle {
+  /** The button's size: 16, 20, 24, 28 or 36 points. */
+  size(s: kit_ControlSize): kit_shell__SidebarToggle
+  /** Points between the traffic lights and the button. */
+  past_lights(points: number): kit_shell__SidebarToggle
+  /**
+   * Points from the window's leading edge when there are no traffic lights (full screen,
+   * and off macOS).
+   */
+  edge(points: number): kit_shell__SidebarToggle
+  /**
+   * Points between the button and what follows it in the title bar while the sidebar is
+   * closed.
+   */
+  gap(points: number): kit_shell__SidebarToggle
+  /**
+   * While the sidebar is open, the button sits at the end of the sidebar's title bar row
+   * instead of past the traffic lights, and travels between the two on the sidebar's spring.
+   */
+  in_header(): kit_shell__SidebarToggle
+  /** Marks the button with a dot while the sidebar is closed (unread activity in it). */
+  unread(unread: boolean): kit_shell__SidebarToggle
+  /**
+   * The shortcut hint shown in the toggle button's tooltip (`"⇧⌘B"` on macOS,
+   * `"Ctrl+Shift+B"` elsewhere by default; pass `""` to omit).
+   */
+  shortcut(shortcut: string): kit_shell__SidebarToggle
+  clone(): kit_shell__SidebarToggle
+}
+export interface kit_shell__SidebarToggle$Static {
+  readonly prototype: kit_shell__SidebarToggle
+  /**
+   * A 24 point button 8 points past the traffic lights (12 from the window's edge when there
+   * are none), 8 points before the toolbar's first item while the sidebar is closed.
+   */
+  "new"(): kit_shell__SidebarToggle
+  default(): kit_shell__SidebarToggle
+}
+export const kit_shell__SidebarToggle: kit_shell__SidebarToggle$Static = $n.kit_shell__SidebarToggle
+
+/**
+ * The app shell: `SplitView::new(main).sidebar(..).toolbar(..).inspector(..)
+ * .titlebar_inset(cx.titlebar_inset()).build(&kit)`.
+ *
+ * The sidebar and inspector are flush panes on the window's deep background; the main pane is
+ * a rounded card beside them, inset by [`Self::frame_inset`] where no pane borders it. A 48
+ * point band across the top is the title bar: it drags the window, its leading end clears the
+ * traffic lights (pass [`Cx::titlebar_inset`], 0 in full screen), and the sidebar's toggle
+ * button sits just past them ([`SidebarToggle`]). Panes resize from their inner edge
+ * (double-click resets the width, dragging below half the minimum collapses) and open and
+ * close together on one spring ([`PaneMotion`]). Under Reduce Motion they snap. Widths and
+ * open states live in the app's [`PaneState`]s. With [`SidebarPeek`], a closed sidebar slides
+ * in over the content while the pointer rests at the window's edge.
+ *
+ * The band's middle is 24 points down: place the traffic lights there with
+ * `Chrome { traffic_lights: Some((16.0, 17.0)), .. }` (with [`Self::toolbar_in_panel`], the
+ * frame inset further down).
+ *
+ * [`Cx::titlebar_inset`]: rune::Cx::titlebar_inset
+ */
+export interface kit_SplitView {
+  /**
+   * The leading pane. `access` finds its state in the app's; the grip and the toggle button
+   * write to it. `content` is usually a built `Sidebar`.
+   */
+  sidebar<S = any>(state: kit_PaneState, access: (s0: S) => kit_PaneState, content: El): this
+  /** The trailing pane, resized from its leading edge. */
+  inspector<S = any>(state: kit_PaneState, access: (s0: S) => kit_PaneState, content: El): this
+  /**
+   * The band above the main pane (and the inspector). Without one the band is empty and
+   * still drags the window.
+   */
+  toolbar(t: kit_Toolbar): this
+  /** Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`. */
+  titlebar_inset(points: number): this
+  /** Leaves out the sidebar's toggle button (the app shows its own, or none). */
+  hide_sidebar_toggle(): this
+  /** Where the sidebar's toggle button sits and how it looks. */
+  sidebar_toggle(t: kit_shell__SidebarToggle): this
+  /**
+   * The window background showing around the main pane where no pane borders it (default
+   * 8 points).
+   */
+  frame_inset(points: number): this
+  /**
+   * Puts the toolbar inside the main pane, at its top, and insets the pane from the window's
+   * top too. The strip above it drags the window, and the sidebar's title bar row lines up
+   * with the toolbar.
+   */
+  toolbar_in_panel(): this
+  /**
+   * Points between the sidebar's edges and its contents: `start` at the window's edge, `end`
+   * at the main pane.
+   */
+  sidebar_padding(start: number, end: number): this
+  /**
+   * How the panes open and close. Both move on the spring for the sidebar's width (the
+   * inspector's without one), so they move as one.
+   */
+  pane_motion(m: kit_shell__PaneMotion): this
+  /** Lets the closed sidebar peek over the content. */
+  sidebar_peek(p: kit_shell__SidebarPeek): this
+  /**
+   * Pass [`Cx::is_reduced_motion`]: fades replace the slides of the panes' contents and of
+   * a peek, as [`PaneMotion::reduced_motion_fade`] and [`SidebarPeek::reduced_motion_fade`]
+   * set. Widths snap under Reduce Motion either way.
+   *
+   * [`Cx::is_reduced_motion`]: rune::Cx::is_reduced_motion
+   */
+  reduced_motion(reduced: boolean): this
+  build(k: kit_Kit): El
+}
+export interface kit_SplitView$Static {
+  readonly prototype: kit_SplitView
+  "new"(main: El): kit_SplitView
+}
+export const kit_SplitView: kit_SplitView$Static = $n.kit_SplitView
+
+/** How much a horizontal tab shows, from its width ([`TabOverflow::density_for`]). */
+export type kit_shell__TabDensity = "Full" | "Compact" | "IconOnly"
+export type kit_shell__TabDragMode = { Reorder: { from: number; to: number; delta: number; pitch: number; pinned: boolean } } | { TearOut: { from: number; offset: number[] } }
+export type kit_shell__TabDragPhase = "Idle" | { Pressed: { index: number; pinned: boolean; tab_pitch: number } } | { Dragging: kit_shell__TabDragMode } | { Dropping: { from: number; to: number } }
+/**
+ * The gestures of one [`TabStrip`](super::TabStrip), owned by the app (`TabDragState::default()`)
+ * and passed to [`TabStrip::drag_state`](super::TabStrip::drag_state). One instance can serve a
+ * strip that moves between layouts; [`TabDragState::cancel`] drops a gesture in flight.
+ */
+export interface kit_shell__TabDragState {
+  /** The tab lifted by a drag (reordering or torn out), by its index. */
+  dragging(): number | null
+  /** Whether a tab is torn out of the strip. */
+  torn_out(): boolean
+  /** The tab under the pointer, by id. */
+  hovered(): string | null
+  /** Drops a gesture in flight (a layout switch, a rename starting): the tab springs back. */
+  cancel(): void
+  /**
+   * The torn-out tab now shows in a window of its own that follows the pointer (on_tear_move):
+   * the strip stops drawing it until the gesture ends, or until it docks back into the strip.
+   */
+  hand_off(): void
+  /** Whether the torn-out tab shows in a window of its own ([Self::hand_off]). */
+  handed_off(): boolean
+  phase: kit_shell__TabDragPhase
+  /**
+   * Holds a horizontal strip's tab width while the pointer closes tabs one after another, so
+   * the next close button lands under the pointer. Set when a tab closes from the pointer;
+   * cleared when the pointer leaves the strip, and the tabs then spring to their new width.
+   */
+  width_lock: number | null
+  /** Swallows the click that follows a drag released over its own tab. */
+  suppress_click: boolean
+  clone(): kit_shell__TabDragState
+}
+export interface kit_shell__TabDragState$Static {
+  readonly prototype: kit_shell__TabDragState
+  "new"(): kit_shell__TabDragState
+  default(): kit_shell__TabDragState
+}
+export const kit_shell__TabDragState: kit_shell__TabDragState$Static = $n.kit_shell__TabDragState
+
+/** One tab: `TabItem::new(id, title).avatar(..).status(..)`. */
+export interface kit_shell__TabItem {
+  /**
+   * A second, muted line under the title in a vertical strip (a project's name); the row
+   * grows to 45 points.
+   */
+  subtitle(subtitle: string): this
+  /** A 16 point leading element: a project's avatar. */
+  avatar(avatar: El): this
+  /** A 16 point leading icon in place of an avatar (a draft's pencil), muted until active. */
+  icon(icon: Icon): this
+  /**
+   * Its status mark. The strip shows what it's given; OpenCode leaves the dots off the
+   * active tab and keeps the busy ring.
+   */
+  status(status: kit_shell__TabItemStatus | null): this
+  /**
+   * Pinned tabs come first in the strip, keep [`TabOverflow`]'s `pinned_width` as icons,
+   * have no close button and reorder only among themselves.
+   */
+  pinned(pinned: boolean): this
+  /** Whether the close button and a middle click close it (default true). */
+  closable(closable: boolean): this
+  /** Highlights the tab while its context menu is open. */
+  marked(marked: boolean): this
+  /** Raise it to ring a background tab once (900 ms), as a prompt arriving does. */
+  pulse(seq: number): this
+  /** A field in place of the title while renaming in place. The tab doesn't drag meanwhile. */
+  editor(field: El): this
+  /** Wraps the built tab: a context menu handler, a hover card's anchor. */
+  decorate(f: (el: El, tab_density: kit_shell__TabDensity) => El): this
+}
+export interface kit_shell__TabItem$Static {
+  readonly prototype: kit_shell__TabItem
+  "new"(id: string, title: string): kit_shell__TabItem
+}
+export const kit_shell__TabItem: kit_shell__TabItem$Static = $n.kit_shell__TabItem
+
+/** A tab's status mark, in the slot its close button takes under the pointer. */
+export type kit_shell__TabItemStatus = "Busy" | "Attention" | "Unread" | "Failed"
+/** Which way a [`TabStrip`] runs. */
+export type kit_shell__TabOrientation = "Horizontal" | "Vertical"
+/** What a strip does when its tabs don't fit. */
+export type kit_shell__TabOverflow = { ShrinkThenScroll: { min_width: number; max_width: number; pinned_width: number; fade_width: number } } | { Scroll: { fade_width: number } }
+export const kit_shell__TabOverflow = {
+  density_for: $n.__E_kit_shell__TabOverflow_density_for as (width: number) => kit_shell__TabDensity,
+  /**
+   * The width of each unpinned tab when `unpinned` of them and `pinned` pinned ones share
+   * `available` points with `gap` between each: equal shares between the policy's bounds.
+   * Past the minimum the tabs overflow and the strip scrolls. `max_width` for `Scroll`.
+   */
+  tab_width: $n.__E_kit_shell__TabOverflow_tab_width as (self: kit_shell__TabOverflow, available: number, unpinned: number, pinned: number, gap: number) => number,
+} as {
+  density_for: (width: number) => kit_shell__TabDensity
+  /**
+   * The width of each unpinned tab when `unpinned` of them and `pinned` pinned ones share
+   * `available` points with `gap` between each: equal shares between the policy's bounds.
+   * Past the minimum the tabs overflow and the strip scrolls. `max_width` for `Scroll`.
+   */
+  tab_width: (self: kit_shell__TabOverflow, available: number, unpinned: number, pinned: number, gap: number) => number
+  /** OpenCode's titlebar tabs: 28 to 224 points, pinned 36, 24 point fades. */
+  readonly HORIZONTAL_DEFAULT: kit_shell__TabOverflow
+  /** OpenCode's side tabs: 16 point fades. */
+  readonly VERTICAL_DEFAULT: kit_shell__TabOverflow
+}
+
+/** A drop that moved tab `id` from index `from` to `to`. */
+export class kit_shell__TabReorder {
+  declare id: string
+  declare from: number
+  declare to: number
+  constructor(init?: { id: string; from: number; to: number }) {
+    if (init) Object.assign(this, init)
+  }
+
+
+}
+$n.__register_record("kit_shell__TabReorder", kit_shell__TabReorder)
+
+/**
+ * A keyed strip of tabs: `TabStrip::new("tabs", TabOrientation::Horizontal).tabs(..)
+ * .active(..).drag_state(&s.drag, |s| &mut s.drag).on_select(..).build(&kit)`.
+ *
+ * Horizontal tabs are 28 points tall with 6 between them, share the strip from 224 points
+ * down to 28 and then scroll; a 1.5 point separator stands between neighbours that aren't
+ * active or hovered. In a `.window_drag()` titlebar the gaps between tabs, the bands above and
+ * below them and the space after the trailing action move the window, as only the tabs and
+ * buttons take presses. Vertical tabs fill the row with 3 points between them, each reaching
+ * across half the gap so no press misses.
+ *
+ * A press selects a horizontal tab at once; a vertical one selects on release, so dragging it
+ * leaves the selection where it is ([`Self::select_on_drag_start`]). Dragging 4 points along
+ * the strip reorders, Escape puts the tab back, and with [`Self::tear_out`] dragging it off
+ * the strip tears it out. A middle click closes a tab.
+ */
+export interface kit_TabStrip {
+  tabs(tabs: kit_shell__TabItem[]): this
+  /** The selected tab, by id. */
+  active(active_id: string | null): this
+  /**
+   * The points a horizontal strip has, trailing action included: `cx.layout_size(key)`'s
+   * width (the strip's root grows into the space it's given). It sets the tabs' shared
+   * width and density; without it they take their widest.
+   */
+  viewport_width(width: number | null): this
+  /** The UI zoom the strip draws at (default 1), so drags convert from window points. */
+  zoom(zoom: number): this
+  /**
+   * The overflow policy (default [`TabOverflow::HORIZONTAL_DEFAULT`] or
+   * [`TabOverflow::VERTICAL_DEFAULT`]).
+   */
+  overflow(policy: kit_shell__TabOverflow): this
+  /** Points between tabs (default 6 horizontal, 3 vertical). */
+  gap(points: number): this
+  /** A tab's height (default 28). */
+  row_height(points: number): this
+  /**
+   * Whether a press selects the tab at once, so a drag selects it too (default true
+   * horizontal), or the release does and a drag leaves the selection (default false vertical).
+   */
+  select_on_drag_start(on: boolean): this
+  /** Lets a drag across the strip tear a tab out ([`Self::on_tear_out`]). Off by default. */
+  tear_out(spec: kit_shell__TearOutSpec | null): this
+  /**
+   * Gives each tab `El::matched("{prefix}-{id}")`, so a tab flies between strips when the
+   * layout swaps one for another.
+   */
+  matched_prefix(prefix: string | null): this
+  /**
+   * The spring tabs step aside on during a drag (default `SNAP`, 0.25 s). Drops, tabs opening and
+   * closing, and widths changing reflow on `REFLOW`.
+   */
+  reorder_spring(spring: motion_Spring): this
+  /**
+   * An element right after the last horizontal tab (the new-tab button), outside the
+   * scrolling, with the space past it left bare.
+   */
+  trailing_action(action: El): this
+  /** The trailing action's width, which the tabs leave it (default 28, a large icon button). */
+  trailing_width(points: number): this
+  /**
+   * The strip's gestures, kept in the app's state; `access` finds them there. Without it the
+   * tabs select and close but don't drag, and closing doesn't lock their width.
+   */
+  drag_state<S = any>(state: kit_shell__TabDragState, access: (s0: S) => kit_shell__TabDragState): this
+  /**
+   * The colour under the strip (default `bg_deep`), which a dragged tab and the close slot
+   * paint opaque.
+   */
+  fill(color: Color): this
+  /** The close button's glyph (default the kit's close glyph). */
+  close_icon(icon: Icon): this
+  /** What a busy tab shows (default the kit's spinner at 14 points). */
+  busy_indicator(f: (kit0: kit_Kit) => El): this
+  /** The tab list's accessible name (default "Tabs"). */
+  label(label: string): this
+  on_select<S = any>(f: (s: S, s1: string, tx: Tx) => S | void): this
+  /** The close button, a middle click. */
+  on_close<S = any>(f: (s: S, s1: string, tx: Tx) => S | void): this
+  on_double_click<S = any>(f: (s: S, s1: string, tx: Tx) => S | void): this
+  /** The pointer entering (`true`) and leaving a tab. */
+  on_hover<S = any>(f: (s: S, s1: string, v2: boolean, tx: Tx) => S | void): this
+  on_reorder<S = any>(f: (s: S, tab_reorder: kit_shell__TabReorder, tx: Tx) => S | void): this
+  on_tear_out<S = any>(f: (s: S, tab_tear_out: kit_shell__TabTearOut, tx: Tx) => S | void): this
+  /** Each move of a torn-out tab, and its return to the strip, while the button is down. */
+  on_tear_move<S = any>(f: (s: S, tab_tear_move: kit_shell__TabTearMove, tx: Tx) => S | void): this
+  /** The strip. A torn-out tab stays inside the strip's clip; [`Self::build_layered`] lifts it out. */
+  build(k: kit_Kit): El
+  /**
+   * The strip, with a torn-out tab floating over the window in `layer`, which the view mounts
+   * at its root with [`crate::root`] as it does popovers and menus.
+   */
+  build_layered(k: kit_Kit, layer: El[]): El
+}
+export interface kit_TabStrip$Static {
+  readonly prototype: kit_TabStrip
+  "new"(key: string, orientation: kit_shell__TabOrientation): kit_TabStrip
+}
+export const kit_TabStrip: kit_TabStrip$Static = $n.kit_TabStrip
+
+/**
+ * The pointer moving a torn-out tab, or bringing it back to the strip (`torn` false), while
+ * the button is still down: the app can open the tab's window now and move it with the
+ * pointer, so the drag carries on in the new window ([`TabDragState::hand_off`]).
+ */
+export class kit_shell__TabTearMove {
+  declare id: string
+  declare index: number
+  /** Off the strip; false once the tab came back within the reattach distance. */
+  declare torn: boolean
+  /**
+   * Where the press landed in the tab, in points from its top-left: where the pointer sits
+   * in the tab the new window shows.
+   */
+  declare grab: number[]
+  /** The pointer in window points. */
+  declare window_point: number[]
+  /** The pointer on the desktop in physical pixels. `None` headless. */
+  declare screen_point: [number, number] | null
+  constructor(init?: { id: string; index: number; torn: boolean; grab: number[]; window_point: number[]; screen_point: [number, number] | null }) {
+    if (init) Object.assign(this, init)
+  }
+
+
+}
+$n.__register_record("kit_shell__TabTearMove", kit_shell__TabTearMove)
+
+/** A tab dragged off the strip and released: the app opens it in a window of its own. */
+export class kit_shell__TabTearOut {
+  declare id: string
+  declare index: number
+  /** Pointer travel since the press, in points. */
+  declare offset: number[]
+  /** Where it was released, in window points. */
+  declare window_point: number[] | null
+  /**
+   * The same point on the desktop in physical pixels (`Drag::screen_point`), for placing the
+   * new window under the pointer. `None` headless.
+   */
+  declare screen_point: [number, number] | null
+  constructor(init?: { id: string; index: number; offset: number[]; window_point: number[] | null; screen_point: [number, number] | null }) {
+    if (init) Object.assign(this, init)
+  }
+
+
+}
+$n.__register_record("kit_shell__TabTearOut", kit_shell__TabTearOut)
+
+/**
+ * A strip's tear-out gesture: dragging a tab this far across the strip detaches it, and
+ * bringing it back within `reattach_distance` docks it again.
+ */
+export class kit_shell__TearOutSpec {
+  /** Points across the strip before a drag detaches (36 for a horizontal strip, 48 vertical). */
+  declare detach_distance: number
+  /** Points across the strip within which a torn-out tab rejoins the reorder (24). */
+  declare reattach_distance: number
+  constructor(init?: { detach_distance?: number; reattach_distance?: number }) {
+    if (init) Object.assign(this, init)
+  }
+
+
+}
+$n.__register_record("kit_shell__TearOutSpec", kit_shell__TearOutSpec)
+
+/**
+ * A titlebar the app draws: leading controls, a [`TabStrip`](super::TabStrip), and trailing
+ * controls, in a `.window_drag()` band that keeps clear of the traffic lights on macOS and
+ * the caption buttons on Windows.
+ * `WindowTitlebar::from_insets(cx.chrome_insets(), zoom).leading(menu).tabs(strip).build(&kit)`.
+ *
+ * Its buttons and tabs take their presses; the gaps between tabs, the bands above and below
+ * them and the empty stretch after the strip move the window, double-click to zoom it and, on
+ * Windows, right-click for the window menu.
+ */
+export interface kit_WindowTitlebar {
+  key(key: string): this
+  /** The band's height in points, in place of the insets'. */
+  height(logical_height: number): this
+  /** Points above the controls (8 on macOS, whose 28 point row sits low in a 36 point band). */
+  top_padding(points: number): this
+  /** Points past the leading inset (default 14; 10 on macOS, 9 beside side tabs on Windows). */
+  leading_padding(points: number): this
+  /** Points before the trailing inset (default 12). */
+  trailing_padding(points: number): this
+  /** Points between items (default 6). */
+  gap(points: number): this
+  /** The band's colour (default `bg_deep`). */
+  fill(color: Color): this
+  leading(el: El): this
+  /**
+   * A horizontal strip, which takes the space between the sides. Its trailing action hugs the
+   * last tab, and the rest of its space stays bare, moving the window.
+   */
+  tabs(strip: El): this
+  trailing(el: El): this
+  build(k: kit_Kit): El
+}
+export interface kit_WindowTitlebar$Static {
+  readonly prototype: kit_WindowTitlebar
+  /**
+   * Sized from the window's insets at UI zoom `zoom` (1 unscaled): the band is as tall as
+   * the window's titlebar and reserves `insets.leading / zoom` and `insets.trailing / zoom`.
+   */
+  from_insets(insets: ChromeInsets, zoom: number): kit_WindowTitlebar
+}
+export const kit_WindowTitlebar: kit_WindowTitlebar$Static = $n.kit_WindowTitlebar
+
+/**
+ * A toolbar: `Toolbar::new().leading(..).title("..").trailing(..).build(&kit)`. The band is a
+ * window drag region (buttons in it keep their presses) and its centre slot sits in the
+ * middle of the band whatever the sides hold.
+ */
+export interface kit_Toolbar {
+  leading(e: El): this
+  trailing(e: El): this
+  /** The centre slot. Replaces a [`Toolbar::title`]. */
+  center(e: El): this
+  /** A centred title in the kit's medium UI type. */
+  title(t: string): this
+  /**
+   * Backs the band with a system material (macOS blurs what's behind a transparent
+   * window). Elsewhere, and headless, the kit's base background draws instead.
+   */
+  material(m: SystemMaterial): this
+  build(k: kit_Kit): El
+}
+export interface kit_Toolbar$Static {
+  readonly prototype: kit_Toolbar
+  "new"(): kit_Toolbar
+  default(): kit_Toolbar
+}
+export const kit_Toolbar: kit_Toolbar$Static = $n.kit_Toolbar
 
 export interface kit_Accordion {
   item(i: kit_AccordionItem): this
@@ -8931,9 +10328,15 @@ export interface kit_Dialog$Static {
 }
 export const kit_Dialog: kit_Dialog$Static = $n.kit_Dialog
 
-/** The v2 loader: a faint ring with a third-arc (`Loader`), 16 points by default. */
+/**
+ * The v2 loader, for loading that isn't AI activity (`Loader`): a 2-unit ring at 0.2 with a
+ * third of it, round-capped from 12 o'clock, turning once every 900 ms; it stops at 12 o'clock
+ * under reduced motion. 16 points by default, in `icon_muted`.
+ */
 export interface kit_Loader {
   size(s: number): this
+  /** The ring's ink (CSS `currentColor`); `icon_muted` by default. */
+  color(c: Color): this
   build(k: kit_Kit): El
 }
 export interface kit_Loader$Static {
@@ -8969,9 +10372,18 @@ export interface kit_ProgressCircle$Static {
 }
 export const kit_ProgressCircle: kit_ProgressCircle$Static = $n.kit_ProgressCircle
 
-/** The 4×4 pulse grid: corners hidden, outer squares dim (0.15), inner squares 0.4. */
+/**
+ * Soft Radar, the activity spinner (`Spinner`, `spinner-radar.ts`): a 5×5 grid of 2-unit dots
+ * on a 3-unit pitch in a 16-unit box, whose lit head sweeps clockwise around each square ring
+ * every 1.8 s, leaving a fading trail, with the centre dot steady at 0.64. Unlit dots rest at
+ * 0.2. Every spinner shares the wall clock's phase, so all of them on screen sweep together, and
+ * under reduced motion each dot holds the pose a fifth of the way into its loop, as Desktop's
+ * do. 18 points by default; Desktop's `ActivityRing` is 14 and its session progress indicator 16,
+ * both in `icon_muted`.
+ */
 export interface kit_Spinner {
   size(s: number): this
+  /** The dots' ink (CSS `currentColor`); `std_text` by default. */
   color(c: Color): this
   build(k: kit_Kit): El
 }
@@ -9058,6 +10470,24 @@ export const kit_Case = {
 
 }
 
+/** A code block [`Markdown::code_frame`] is wrapping. */
+export interface kit_CodeFrame {
+  /**
+   * Its place among the document's fenced blocks (code and diagrams), counted from 0, as
+   * a diagram's frame counts them. A stream only adds blocks after it.
+   */
+  readonly index: number
+  /** The code it shows. */
+  readonly source: string
+  /** The fence is still arriving. */
+  readonly open: boolean
+}
+export interface kit_CodeFrame$Static {
+  readonly prototype: kit_CodeFrame
+
+}
+export const kit_CodeFrame: kit_CodeFrame$Static = $n.kit_CodeFrame
+
 /** A diagram [`Markdown::diagram_frame`] is wrapping. */
 export interface kit_DiagramFrame {
   /**
@@ -9065,6 +10495,11 @@ export interface kit_DiagramFrame {
    * stream only adds blocks after it, so this stays put while the reply arrives.
    */
   readonly index: number
+  /**
+   * The lines it draws: the whole fence, or while the fence is still arriving, its
+   * complete lines.
+   */
+  readonly source: string
   /** The fence is still arriving. */
   readonly open: boolean
 }
@@ -9116,8 +10551,40 @@ export interface kit_Highlight$Static {
 }
 export const kit_Highlight: kit_Highlight$Static = $n.kit_Highlight
 
+/** An image [`Markdown::image_frame`] is wrapping. */
+export interface kit_ImageFrame {
+  /** Its source as written. */
+  readonly src: string
+  /** Its alt text. */
+  readonly alt: string
+}
+export interface kit_ImageFrame$Static {
+  readonly prototype: kit_ImageFrame
+
+}
+export const kit_ImageFrame: kit_ImageFrame$Static = $n.kit_ImageFrame
+
 /** Markdown source as an element. See the module docs for cost and keys. */
 export interface kit_Markdown {
+  /**
+   * The picture for an image's source as written (`![alt](src)`): a decoded or decoding
+   * [`Image`] from the app's cache, or `None` when it has none. Until it decodes, and without
+   * one, the image shows Chromium's broken-image glyph and its alt text, as a web page does
+   * for an `<img>` with no picture. Without this, every image does.
+   */
+  images(f: (s0: string) => Image | null): this
+  /**
+   * Draws `f(image, frame)` in place of each image that shows its picture, so an app can
+   * open it larger on a press (`markdown.css`'s `cursor: zoom-in`, a button named by its alt
+   * text) or key it for a flight into a viewer.
+   */
+  image_frame(f: (el: El, image_frame: kit_ImageFrame) => El): this
+  /**
+   * The image to draw before a link to `url` in place of [`MarkdownStyle::link_icons`]'
+   * globe: the site's favicon, once the app has fetched and decoded it (`None` until then,
+   * and for sites it won't ask). GitHub links keep GitHub's mark.
+   */
+  link_favicon(f: (s0: string) => Pixels | null): this
   /**
    * Called with a link's destination when it is clicked, or pressed with Enter or Space
    * while focused. With a handler, links show a hand and a solid underline under the
@@ -9234,6 +10701,16 @@ export interface kit_Markdown {
    * ```
    */
   diagram_frame(f: (el: El, diagram_frame: kit_DiagramFrame) => El): this
+  /**
+   * Draws `f(card, frame)` in place of each code block's card, so an app can put its own
+   * controls on it (a Copy button). Diagrams that draw as their source and diff fences don't
+   * come here.
+   *
+   * ```ignore
+   * Markdown::new(src).code_frame(|card, c| col().key(format!("code-{}", c.index)).child(card).child(copy_button(c.source)))
+   * ```
+   */
+  code_frame(f: (el: El, code_frame: kit_CodeFrame) => El): this
   build(k: kit_Kit): El
   /** Builds with `style`, for apps without a [`Kit`] (see [`MarkdownStyle::neutral`]). */
   render(style: kit_MarkdownStyle): El
@@ -9257,6 +10734,13 @@ export const kit_Markdown: kit_Markdown$Static = $n.kit_Markdown
  * overrides one thing.
  */
 export interface kit_MarkdownStyle {
+  /**
+   * An icon `size` points square, `gap` points before the text, ahead of every link to an
+   * `http` or `https` page: a globe in the link's colour, GitHub's mark for github.com, or the
+   * site's favicon from [`Markdown::link_favicon`]. OpenCode's markdown sets them 14 and 4.
+   * None by default.
+   */
+  link_icons(size: number, gap: number): this
   /** Body, heading (levels 1 to 3 and the muted level 4+) and emphasis colour. */
   text(c: Color): this
   /** Level 4+ headings and list markers. */
@@ -9275,10 +10759,48 @@ export interface kit_MarkdownStyle {
    */
   list(indent: number, gap: number): this
   quote_rule(c: Color): this
+  /**
+   * A block quote's rule, `width` points wide in `rule`, `pad` points before its text, and
+   * the text's colour (2, 12 and the body text colour by default).
+   */
+  quote(rule: Color, width: number, pad: number, text: Color): this
+  /** The colour of a link under the pointer, underlined in it (the link colour by default). */
+  link_hover(c: Color): this
+  /**
+   * Code blocks' text where the highlighter leaves it uncoloured (the body text colour by
+   * default).
+   */
+  code_block_text(c: Color): this
+  /**
+   * Fences in a shell language (`bash`, `sh`, `shell`, `zsh`, `fish`, `console`,
+   * `terminal`) on `fill` with a `border`, their text all in `text` with no syntax colours,
+   * as a web page that styles a command apart from code.
+   */
+  shell_code(fill: Color, border: Color, text: Color): this
+  /**
+   * List markers end where the item's text starts, numbers and bullets alike, as CSS's
+   * `list-style-position: outside` puts them, rather than centred in the marker column.
+   */
+  list_markers_outside(on: boolean): this
+  /**
+   * The marker column of a list inside a list item: `bullets` for bulleted lists and
+   * `numbers` for numbered ones (the top level's [`Self::list`] indent by default).
+   */
+  list_nested_indent(bullets: number, numbers: number): this
+  /**
+   * Task list checkboxes: `size` points square with corner `radius`, their left edge `left`
+   * points into the marker column and their top `top` below the item's (`None`: centred on
+   * its first line). Checked, they fill `fill_on` with a `mark` in it; unchecked, they fill
+   * `fill_off` inside a `border_off` outline. 16 points, 8 in and centred by default.
+   */
+  task_checkbox(size: number, radius: number, left: number, top: number | null, fill_on: Color, mark: Color, fill_off: Color, border_off: Color): this
   rule(c: Color): this
   /** Paragraphs, list items and list markers. */
   body_font(f: TextStyle): this
-  /** The font of heading `level` (1 to 3; level 4 and deeper share 3). */
+  /**
+   * The font of heading `level` (1 to 4; level 5 and deeper share 4). Level 3 sets 4 too,
+   * so a style that sets levels 1 to 3 keeps 4 and deeper in level 3's font.
+   */
   heading_font(level: number, f: TextStyle): this
   /**
    * Code blocks and diffs. Inline code is set in the app's mono slot, so keep this on
@@ -9297,6 +10819,19 @@ export interface kit_MarkdownStyle {
    */
   inline_code_pad(pad: number): this
   strong_weight(w: number): this
+  /**
+   * The width of the column the document lays out in, when the app knows it. With
+   * [`Markdown::scroll_wide`], tables then size their columns as a browser's automatic table
+   * layout does: in proportion to their content when it fits, between their narrowest and
+   * widest when it nearly does, and at their narrowest (each column's longest word), scrolling
+   * sideways, when even that is wider than the text. Lists and quotes take their indent off it.
+   */
+  text_width(points: number): this
+  /**
+   * How far the sides of a code block that scrolls sideways ([`Markdown::scroll_wide`]) fade
+   * out, in points: 12 by default, 0 for a hard edge as a web page's `overflow: auto` clips.
+   */
+  wide_fade(points: number): this
   /** The tints behind a diff's added and removed lines (full width). */
   diff(added: Color, removed: Color): this
   /** The text colours of a diff's added and removed lines (the body text colour by default). */
@@ -9439,10 +10974,22 @@ export interface kit_MarkdownStyle {
    */
   table_full_width(on: boolean): this
   /**
+   * Whether cells follow their column's `:-:` and `--:` alignment (on by default). Off, every
+   * cell starts at its column's left, as a web table whose CSS sets `text-align: start`.
+   */
+  table_column_align(on: boolean): this
+  /**
    * The space above and below a table (12 and 16 points by default). Like the other blocks'
    * margins, it collapses with the space a neighbour wants, taking the larger.
    */
   table_margin(top: number, bottom: number): this
+  /**
+   * A table that scrolls sideways ([`Markdown::scroll_wide`] with [`Self::text_width`]) gets a
+   * scroll bar in an 8 point strip under its rows: `@opencode/ui`'s `scrollbar.css` thumb
+   * ([`ScrollBarStyle::native`](crate::ScrollBarStyle::native)), `thumb` while the pointer is
+   * over the table and `thumb_hover` while it's over the thumb. None by default.
+   */
+  table_scroll_bar(thumb: Color, thumb_hover: Color): this
   /**
    * A data table on a card, from the kit's tokens: the body rows on a raised `bg_base` card
    * inset 2 points in a `layer_01` frame that also holds the faint, medium-weight header;
@@ -9525,11 +11072,13 @@ export const kit_MenuItem: kit_MenuItem$Static = $n.kit_MenuItem
  * fences, and `> [!note]` callouts).
  */
 export interface kit_Note {
+  key(key: string): this
+  gap(gap: number): this
   build(k: kit_Kit): El
 }
 export interface kit_Note$Static {
   readonly prototype: kit_Note
-
+  "new"(source: string): kit_Note
 }
 export const kit_Note: kit_Note$Static = $n.kit_Note
 
@@ -9640,6 +11189,15 @@ export interface kit_TooltipStyle {
   motion(s: motion_Spring): this
   text_style(): TextStyle
   text_color(): Color
+  /**
+   * This look for Rune's own [`El::help`](rune::El::help) tooltips
+   * ([`Cx::help_look`](rune::Cx::help_look)), placed and timed as `@opencode/ui`'s
+   * `Tooltip` sets Kobalte's: 4 pt from its element, 8 pt inside the window, after 400 ms,
+   * and at once within 300 ms of the last one hiding. Its keycaps are `keybind-v2`'s
+   * neutral keys: 14 pt, 4 pt in, 2 pt corners and 2 pt apart, 6 pt after the text, their
+   * labels in uppercase 11/530.
+   */
+  help_look(): HelpLook
   clone(): kit_TooltipStyle
 }
 export interface kit_TooltipStyle$Static {
@@ -9820,10 +11378,39 @@ export const kit_RollingText: kit_RollingText$Static = $n.kit_RollingText
 /**
  * How a scroll bar's thumb looks, at rest and while the pointer is over the bar or holds the
  * thumb: `viewport.scroll_bar_styled(ScrollBarStyle::from_kit(&k).thumb_hover(k.c.border_hover))`.
- * Built from a kit by [`ScrollBarStyle::from_kit`], or without one by
- * [`ScrollBarStyle::neutral`]; each builder overrides one thing.
+ * Built from a kit by [`ScrollBarStyle::from_kit`] or [`ScrollBarStyle::scroll_view`], or
+ * without one by [`ScrollBarStyle::neutral`]; each builder overrides one thing.
  */
 export interface kit_ScrollBarStyle {
+  /**
+   * A [`Self::native`] bar over the viewport's own end edge, in room its content leaves there,
+   * rather than beside it: a plain `overflow-y: auto` box (a sidebar's list) whose styled
+   * scroll bar takes its 8 point gutter from the box while the content overflows. Give the
+   * content [`Self::strip`] of end padding while it overflows.
+   */
+  inside(): kit_ScrollBarStyle
+  /**
+   * The bar along the bottom edge of a viewport that scrolls sideways ([`El::scroll_x`])
+   * rather than down its right edge.
+   */
+  horizontal(): kit_ScrollBarStyle
+  /**
+   * Shows an overlay bar while the pointer is over the element marked
+   * [`ScrollBar::scroll_bar_hover`] for this viewport, or over the thumb, rather than over
+   * the viewport, as `@opencode/ui` ScrollView's `thumbHoverTarget` reveals its thumb: a
+   * timeline whose root also holds the Jump to latest button floating over it, or a page
+   * whose thumb belongs to one of its columns.
+   */
+  hover_target(): kit_ScrollBarStyle
+  /**
+   * Starts the track `top` points further down the viewport than its top and ends its strip
+   * `end` points in from the viewport's end edge, as ScrollView's `thumbContainer` mounts its
+   * thumb in a track the page places: a column's gutter under its sticky header, with the
+   * track as long as the viewport below `top` and the thumb sized to it.
+   */
+  track_offset(top: number, end: number): kit_ScrollBarStyle
+  /** How thick the strip beside the viewport is, for the room a [`Self::native`] bar takes. */
+  strip(): number
   /** The thumb's colour at rest. */
   thumb(c: Color): kit_ScrollBarStyle
   /** The thumb's colour while the pointer is over the bar or holds the thumb. */
@@ -9844,6 +11431,29 @@ export interface kit_ScrollBarStyle$Static {
    * under the pointer.
    */
   from_kit(k: kit_Kit): kit_ScrollBarStyle
+  /**
+   * `@opencode/ui`'s ScrollView thumb: always an overlay, hidden at rest and shown while the
+   * pointer is over the area or it scrolls; a 4 point `border_muted` pill that turns
+   * `border_strong` under the pointer or while dragged.
+   */
+  scroll_view(k: kit_Kit): kit_ScrollBarStyle
+  /**
+   * `@opencode/ui`'s `scrollbar.css`, the scroll bar of every plain `overflow: auto` box in
+   * OpenCode: an 8 point strip beside the viewport (leave the room for it: the bar draws
+   * there, or over the viewport's edge with [`Self::inside`]), its track 4 points in from the
+   * ends and a 4 point `thumb` pill sized and placed as Chromium's thumb with its 2 point clear
+   * border, shown only while the pointer is over the area, and `thumb_hover` while the pointer
+   * is over the thumb or drags it. It shows and hides at once. Pass `border_muted` and
+   * `border_strong`.
+   */
+  native(thumb: Color, thumb_hover: Color): kit_ScrollBarStyle
+  /**
+   * `@opencode/ui`'s MenuScroll thumb, for menus, popovers and dialog lists such as the
+   * command palette: a 4 point `thumb` pill on an 8 point strip, shown only while the list
+   * scrolls (and 800 ms after) or the thumb is held or under the pointer, and `thumb_hover`
+   * under the pointer or held. Pass `border_muted` and `border_strong`.
+   */
+  menu_scroll(thumb: Color, thumb_hover: Color): kit_ScrollBarStyle
   /** The kit's thumb on Rune's neutral light or dark tokens, for apps without a kit. */
   neutral(dark: boolean): kit_ScrollBarStyle
 }
@@ -9909,366 +11519,6 @@ export const kit_Select: kit_Select$Static = $n.kit_Select
 
 export type kit_SelectAppearance = "Inline" | "Field"
 /**
- * A full-window screen without side panes — a settings page, lock screen or onboarding view
- * in the same window as a [`SplitView`]. Shares [`SplitView`]'s title bar height, traffic-light
- * clearance, window-drag band and framed content card so switching screens matches pixel for
- * pixel: `Page::new(content).title("Settings").leading(back).trailing(done).titlebar_inset(cx.titlebar_inset()).build(&kit)`.
- */
-export interface kit_Page {
-  /** A centred title in the toolbar band. */
-  title(t: string): this
-  /** The toolbar's centre slot (replaces [`Self::title`]). */
-  center(e: El): this
-  /** Adds a leading control to the toolbar (a Back button, say), placed past the traffic lights. */
-  leading(e: El): this
-  /** Adds a trailing control to the toolbar. */
-  trailing(e: El): this
-  /** Replaces the toolbar with a pre-built [`Toolbar`]. */
-  toolbar(t: kit_Toolbar): this
-  /** Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`. */
-  titlebar_inset(points: number): this
-  /**
-   * Points past the traffic lights (or the window's edge in full screen) where the toolbar's
-   * leading slot starts, matching [`SplitView::sidebar_toggle`].
-   */
-  past_lights(past_lights: number, edge: number): this
-  /**
-   * The window background showing around the content pane (default 8 points, matching
-   * [`SplitView::frame_inset`]).
-   */
-  frame_inset(points: number): this
-  /**
-   * Puts the toolbar inside the framed content pane at its top, matching
-   * [`SplitView::toolbar_in_panel`].
-   */
-  toolbar_in_panel(): this
-  build(k: kit_Kit): El
-}
-export interface kit_Page$Static {
-  readonly prototype: kit_Page
-  "new"(main: El): kit_Page
-}
-export const kit_Page: kit_Page$Static = $n.kit_Page
-
-/**
- * A side pane's width and whether it shows: a sidebar's or an inspector's. The app owns it
- * (a field of its state), so it can save the width and restore it with [`PaneState::new`].
- * Widths are whole points within the pane's range.
- */
-export interface kit_PaneState {
-  /**
-   * Its width range. The width and the default clamp into it, from the values given to
-   * [`Self::new`] and [`Self::with_width`], so `new(640.0).range(360.0, 960.0)` is 640.
-   */
-  range(min: number, max: number): kit_PaneState
-  /** Starts collapsed (a saved state, or an inspector that opens on demand). */
-  collapsed(): kit_PaneState
-  /** A saved width, clamped and rounded (the width it starts with; the default stays). */
-  with_width(width: number): kit_PaneState
-  width(): number
-  is_open(): boolean
-  min_width(): number
-  max_width(): number
-  default_width(): number
-  /** Whether its edge is being dragged. */
-  is_resizing(): boolean
-  /** Points it takes in the layout: its width when open, else 0. */
-  shown_width(): number
-  /** Clamps to the range and rounds to a whole point. Doesn't open the pane. */
-  set_width(width: number): void
-  /** Opening a peeking sidebar docks it where it floats; closing ends any peek. */
-  set_open(open: boolean): void
-  toggle(): void
-  /**
-   * Whether the closed sidebar floats over the content (a `SplitView` with
-   * [`SidebarPeek`]).
-   */
-  is_peeking(): boolean
-  /**
-   * Slides a peeking sidebar away (Escape, say). Leaving it with the pointer, or the window
-   * losing focus, ends a peek too.
-   */
-  end_peek(): void
-  /** Shows the closed sidebar as a peek, over the content. */
-  peek(): void
-  /** Back to the width it was made with (double-clicking its edge). */
-  reset_width(): void
-  /**
-   * Where dragging its edge to `width` leaves it: clamped, or collapsed (keeping its last
-   * width) once dragged below half its minimum, as AppKit's split views do. Dragging back
-   * out opens it again.
-   */
-  drag_to(width: number): void
-  clone(): kit_PaneState
-}
-export interface kit_PaneState$Static {
-  readonly prototype: kit_PaneState
-  /** Range of a sidebar unless set: 160 to 480 points. */
-  readonly MIN: number
-  readonly MAX: number
-  /** An open pane `width` points wide, which double-clicking its edge also returns to. */
-  "new"(width: number): kit_PaneState
-  default(): kit_PaneState
-}
-export const kit_PaneState: kit_PaneState$Static = $n.kit_PaneState
-
-/**
- * A sidebar's content: header, a scrolling list of sections and rows, and footer.
- * `Sidebar::new().header(..).section(..).footer(..).build(&kit)`. The list is one Tab stop
- * that lands on the selected row. Up and Down move the selection (it follows focus, as in a
- * source list), Home and End go to the ends, typing a row's first letters jumps to it, and
- * Return presses the focused row.
- */
-export interface kit_Sidebar {
-  /** Points between the sidebar's sides and its rows, header and footer (default 8). */
-  inset(points: number): this
-  /** Points between the header's items (default 2). */
-  header_gap(points: number): this
-  /** Points above the header and between it and the list (default 0 and 8). */
-  header_padding(top: number, bottom: number): this
-  /**
-   * Points between the list's items (default 0). Virtualised rows don't take it: give them
-   * the space in their height.
-   */
-  row_gap(points: number): this
-  /**
-   * The height of [`Self::virtual_rows`]' rows (default [`ROW_HEIGHT`]). Give the rows the
-   * same height with [`SidebarRow::height`].
-   */
-  row_height(points: number): this
-  /** The list's accessible name. */
-  label(l: string): this
-  /** Above the list, outside its scrolling: a "New" row or button, a search field. */
-  header(e: El): this
-  /** Below the list: an account or settings row, a version line. */
-  footer(e: El): this
-  section(s: kit_SidebarSection): this
-  /** Any element in the list: a built [`SidebarRow`] or [`SidebarHeader`], a divider. */
-  child(e: El): this
-  build(k: kit_Kit): El
-}
-export interface kit_Sidebar$Static {
-  readonly prototype: kit_Sidebar
-  "new"(): kit_Sidebar
-  default(): kit_Sidebar
-}
-export const kit_Sidebar: kit_Sidebar$Static = $n.kit_Sidebar
-
-/**
- * A section's header row: its title, an optional count, a disclosure triangle and a trailing
- * action (a small "+" button, say). Pressing it calls `on_toggle`; whether the section is
- * collapsed is the app's state. [`SidebarSection`] pairs it with its rows; use it on its own
- * in a virtualised list.
- */
-export interface kit_SidebarHeader {
-  /**
-   * Shows a disclosure triangle for this state. Without it, or `on_toggle`, the header is
-   * a plain label.
-   */
-  collapsed(c: boolean): this
-  count(n: number): this
-  /** A trailing element, such as a small "+" icon button. */
-  action(e: El): this
-  on_toggle<S = any>(f: (s: S, tx: Tx) => S | void): this
-  build(k: kit_Kit): El
-}
-export interface kit_SidebarHeader$Static {
-  readonly prototype: kit_SidebarHeader
-  "new"(title: string): kit_SidebarHeader
-}
-export const kit_SidebarHeader: kit_SidebarHeader$Static = $n.kit_SidebarHeader
-
-/**
- * A selectable sidebar row: icon, label, then a trailing detail (a time), badge or element.
- * `SidebarRow::new("Inbox").icon(&INBOX).badge("3").selected(sel).on_select(..).build(&kit)`.
- * Key the built row by its item's id.
- *
- * A taller row takes a second, muted line, an avatar and a status slot that turns into a
- * close button under the pointer: `SidebarRow::new(title).height(45.0).avatar(..)
- * .subtitle(project).status(RowStatus::Busy).on_close(..)`.
- */
-export interface kit_SidebarRow {
-  icon(i: Icon): this
-  /** A 16 point leading element in place of the icon: a project's avatar, an initial. */
-  avatar(e: El): this
-  /**
-   * A second line under the label, smaller and fainter than it (11 point `caption` in
-   * `text_faint`, under a medium-weight 13 point label). The row's accessible name is then
-   * "Label, Subtitle". Give the row the height for it (default [`TWO_LINE_ROW_HEIGHT`]).
-   */
-  subtitle(s: string): this
-  /**
-   * The label's type, in place of the default (13 point; medium weight with a subtitle).
-   * It also sets the inline rename field's type.
-   */
-  title_style(style: TextStyle): this
-  /** The subtitle's type, in place of the default (the kit's `caption`). */
-  subtitle_style(style: TextStyle): this
-  /** The subtitle's colour, in place of the default (`text_faint`). */
-  subtitle_color(color: Color): this
-  /**
-   * A row that shows the selection but never takes focus: for a list driven from outside,
-   * such as one a search field filters and steers with its own keys. The row is out of the
-   * Tab order, Tab and Space don't act on it, and pressing it selects it (`on_select`)
-   * while a focused field stays focused (`El::preserve_focus_on_press`). Keyboard navigation
-   * of a select-only list (Up/Down and Return from the field) is the app's job. The selected
-   * row is still exposed as selected to assistive tech (`ElementInfo::item_selected`), and
-   * changing the selection never pulls focus to the row. Equivalent to
-   * `.focusable(false).focus_selected(..)` on the built row, plus the focus-preserving press.
-   */
-  select_only(): this
-  /** The row's height (default [`ROW_HEIGHT`], or [`TWO_LINE_ROW_HEIGHT`] with a subtitle). */
-  height(points: number): this
-  /** Faint trailing text: a time ("2m"), a count, a shortcut. */
-  detail(d: string): this
-  /** A trailing pill (an unread count). */
-  badge(b: string): this
-  /** Any trailing element (a status dot, a menu button), after the detail and badge. */
-  trailing(e: El): this
-  /**
-   * A close button in the status slot, in place of the status while the pointer is on the
-   * row. It swaps at once, with no fade.
-   */
-  on_close<S = any>(f: (s: S, tx: Tx) => S | void): this
-  selected(s: boolean): this
-  /** Nesting level: each indents the row by [`INDENT`]. */
-  depth(d: number): this
-  /** Called when the row is pressed, or reached with the arrow keys. */
-  on_select<S = any>(f: (s: S, tx: Tx) => S | void): this
-  /** Called on a double click (rename, open in a new window). */
-  on_double_click<S = any>(f: (s: S, tx: Tx) => S | void): this
-  /**
-   * Edits the label in place, in the field bound to `edit` (`access` finds it in the app's
-   * state). Set `edit.focused` and its text when renaming starts. Return calls `commit`,
-   * Escape calls `cancel`; both should end the rename.
-   */
-  renaming<S = any>(edit: TextEdit, access: (s0: S) => TextEdit, commit: (s: S, tx: Tx) => S | void, cancel: (s: S, tx: Tx) => S | void): this
-  build(k: kit_Kit): El
-}
-export interface kit_SidebarRow$Static {
-  readonly prototype: kit_SidebarRow
-  "new"(label: string): kit_SidebarRow
-}
-export const kit_SidebarRow: kit_SidebarRow$Static = $n.kit_SidebarRow
-
-/**
- * A titled group of rows that collapses: `SidebarSection::new("Today").collapsed(..)
- * .on_toggle(..).row(..)`. Rows below it move on the kit's disclosure spring as it opens.
- */
-export interface kit_SidebarSection {
-  /** Its key among the list's children (default: the title). */
-  key(k: string): this
-  collapsed(c: boolean): this
-  count(n: number): this
-  action(e: El): this
-  on_toggle<S = any>(f: (s: S, tx: Tx) => S | void): this
-  /** A row: a built [`SidebarRow`], keyed by the app. */
-  row(e: El): this
-  rows(rows: El[]): this
-  build(k: kit_Kit): El
-}
-export interface kit_SidebarSection$Static {
-  readonly prototype: kit_SidebarSection
-  "new"(title: string): kit_SidebarSection
-}
-export const kit_SidebarSection: kit_SidebarSection$Static = $n.kit_SidebarSection
-
-/**
- * The app shell: `SplitView::new(main).sidebar(..).toolbar(..).inspector(..)
- * .titlebar_inset(cx.titlebar_inset()).build(&kit)`.
- *
- * The sidebar and inspector are flush panes on the window's deep background; the main pane is
- * a rounded card beside them, inset by [`Self::frame_inset`] where no pane borders it. A 48
- * point band across the top is the title bar: it drags the window, its leading end clears the
- * traffic lights (pass [`Cx::titlebar_inset`], 0 in full screen), and the sidebar's toggle
- * button sits just past them ([`SidebarToggle`]). Panes resize from their inner edge
- * (double-click resets the width, dragging below half the minimum collapses) and open and
- * close together on one spring ([`PaneMotion`]). Under Reduce Motion they snap. Widths and
- * open states live in the app's [`PaneState`]s. With [`SidebarPeek`], a closed sidebar slides
- * in over the content while the pointer rests at the window's edge.
- *
- * The band's middle is 24 points down: place the traffic lights there with
- * `Chrome { traffic_lights: Some((16.0, 17.0)), .. }` (with [`Self::toolbar_in_panel`], the
- * frame inset further down).
- *
- * [`Cx::titlebar_inset`]: rune::Cx::titlebar_inset
- */
-export interface kit_SplitView {
-  /**
-   * The leading pane. `access` finds its state in the app's; the grip and the toggle button
-   * write to it. `content` is usually a built `Sidebar`.
-   */
-  sidebar<S = any>(state: kit_PaneState, access: (s0: S) => kit_PaneState, content: El): this
-  /** The trailing pane, resized from its leading edge. */
-  inspector<S = any>(state: kit_PaneState, access: (s0: S) => kit_PaneState, content: El): this
-  /**
-   * The band above the main pane (and the inspector). Without one the band is empty and
-   * still drags the window.
-   */
-  toolbar(t: kit_Toolbar): this
-  /** Points the traffic lights take at the window's leading edge: `Cx::titlebar_inset`. */
-  titlebar_inset(points: number): this
-  /** Leaves out the sidebar's toggle button (the app shows its own, or none). */
-  hide_sidebar_toggle(): this
-  /**
-   * The window background showing around the main pane where no pane borders it (default
-   * 8 points).
-   */
-  frame_inset(points: number): this
-  /**
-   * Puts the toolbar inside the main pane, at its top, and insets the pane from the window's
-   * top too. The strip above it drags the window, and the sidebar's title bar row lines up
-   * with the toolbar.
-   */
-  toolbar_in_panel(): this
-  /**
-   * Points between the sidebar's edges and its contents: `start` at the window's edge, `end`
-   * at the main pane.
-   */
-  sidebar_padding(start: number, end: number): this
-  /**
-   * Pass [`Cx::is_reduced_motion`]: fades replace the slides of the panes' contents and of
-   * a peek, as [`PaneMotion::reduced_motion_fade`] and [`SidebarPeek::reduced_motion_fade`]
-   * set. Widths snap under Reduce Motion either way.
-   *
-   * [`Cx::is_reduced_motion`]: rune::Cx::is_reduced_motion
-   */
-  reduced_motion(reduced: boolean): this
-  build(k: kit_Kit): El
-}
-export interface kit_SplitView$Static {
-  readonly prototype: kit_SplitView
-  "new"(main: El): kit_SplitView
-}
-export const kit_SplitView: kit_SplitView$Static = $n.kit_SplitView
-
-/**
- * A toolbar: `Toolbar::new().leading(..).title("..").trailing(..).build(&kit)`. The band is a
- * window drag region (buttons in it keep their presses) and its centre slot sits in the
- * middle of the band whatever the sides hold.
- */
-export interface kit_Toolbar {
-  leading(e: El): this
-  trailing(e: El): this
-  /** The centre slot. Replaces a [`Toolbar::title`]. */
-  center(e: El): this
-  /** A centred title in the kit's medium UI type. */
-  title(t: string): this
-  /**
-   * Backs the band with a system material (macOS blurs what's behind a transparent
-   * window). Elsewhere, and headless, the kit's base background draws instead.
-   */
-  material(m: SystemMaterial): this
-  build(k: kit_Kit): El
-}
-export interface kit_Toolbar$Static {
-  readonly prototype: kit_Toolbar
-  "new"(): kit_Toolbar
-  default(): kit_Toolbar
-}
-export const kit_Toolbar: kit_Toolbar$Static = $n.kit_Toolbar
-
-/**
  * Click (or activate with Enter/Space) to record. Escape cancels; Backspace clears.
  * `on_change` must register the proposed binding before releasing the previous registration:
  * returning an error keeps the old value and shows the refused chord with a message
@@ -10324,6 +11574,12 @@ export interface kit_Switch {
   description(d: string): this
   /** The older, larger look (`appearance="standard"`). */
   standard(): this
+  /**
+   * The compact appearance as `@opencode/ui` draws it on the web (switch.css:20-152): a 24 x 16
+   * track with 4 point corners and a 12 point thumb with 2 point corners, 2 points in, that
+   * moves 8 points when on. Under the pointer the thumb grows a point towards the middle.
+   */
+  web(): this
   /**
    * The track and knob of an `NSSwitch` of this size on macOS 27: Mini (36 × 16, the size
    * System Settings uses) unless set. The standard appearance keeps its own size.
@@ -10518,6 +11774,8 @@ export interface kit_TextArea {
    * Toggling preserves the model selection until a hidden edit or navigation occurs.
    */
   revealed(revealed: boolean): this
+  /** Mark misspelled words and offer their suggestions in the field's menu (`El::spellcheck`). */
+  spellcheck(on: boolean): this
   placeholder(p: string): this
   /** The accessible name, as [`TextInput::label`]. */
   label(l: string): this
@@ -10592,6 +11850,8 @@ export const kit_TextField: kit_TextField$Static = $n.kit_TextField
 export interface kit_TextInput {
   secure(): this
   revealed(revealed: boolean): this
+  /** Mark misspelled words and offer their suggestions in the field's menu (`El::spellcheck`). */
+  spellcheck(on: boolean): this
   animate_edit_layout(): this
   on_change<S = any>(f: (s: S, tx: Tx) => S | void): this
   on_key<S = any>(f: (s: S, key_event: KeyEvent, tx: Tx) => boolean): this
@@ -10696,28 +11956,6 @@ export interface kit_ToastRegion$Static {
 export const kit_ToastRegion: kit_ToastRegion$Static = $n.kit_ToastRegion
 
 /**
- * Builds a [`TreeModel`] of [`FileNode`]s from file paths (`/`-separated, relative to a root).
- *
- * By default folders sort before files, names sort naturally (`file2` before `file10`, case
- * aside), and a chain of folders that each hold only one folder shows as one row named
- * `a/b/c`, as an editor's compact folders do. Folders start closed; open them on the model.
- */
-export interface kit_FileTree {
-  /** Show a chain of single-folder folders as one `a/b/c` row (on by default). */
-  compact_folders(on: boolean): this
-  /** Sort folders before files (on by default); off, they mix by name. */
-  dirs_first(on: boolean): this
-  /** The model's row-key prefix ([`TreeModel::key`], `"files"` here). */
-  key(key: string): this
-}
-export interface kit_FileTree$Static {
-  readonly prototype: kit_FileTree
-  "new"(): kit_FileTree
-  default(): kit_FileTree
-}
-export const kit_FileTree: kit_FileTree$Static = $n.kit_FileTree
-
-/**
  * What a standard tree row shows after its indent and chevron: an icon, a label and trailing
  * content (change counts, a status dot, a badge, or any element).
  */
@@ -10747,8 +11985,12 @@ export const kit_TreeItem: kit_TreeItem$Static = $n.kit_TreeItem
 export type kit_TreeKey = "Ignored" | "Handled" | { Open: string }
 /** A row's state as the tree draws it. */
 export interface kit_TreeRow {
+  readonly id: string
   /** 0 at the top level. */
   readonly depth: number
+  /** `Some(open)` for a row with children (shown ones, under a filter), `None` for a leaf. */
+  readonly expanded: boolean | null
+  readonly selected: boolean
   /** The keyboard cursor is on it. */
   readonly cursor: boolean
   /** A filter matched it (false without a filter). */
@@ -10760,26 +12002,66 @@ export interface kit_TreeRow$Static {
 }
 export const kit_TreeRow: kit_TreeRow$Static = $n.kit_TreeRow
 
-/** A tree's metrics and colours. [`TreeStyle::from_kit`] takes them from the theme. */
-export class kit_TreeStyle {
-  declare row_height: number
+/**
+ * A tree's metrics and colours. [`TreeStyle::from_kit`] takes them from the theme; the builder
+ * methods set the rest (an editor's file tree, say, with folders that show only a chevron).
+ */
+export interface kit_TreeStyle {
+  /**
+   * The overlay a row shows under the pointer (the theme's hover colour by default). A
+   * selected row keeps its selected fill instead.
+   */
+  hover(c: Color): kit_TreeStyle
+  /** Space between the chevron, the icon and the label (4 points by default). */
+  gap(gap: number): kit_TreeStyle
+  /** The rows' corner radius (the theme's small radius by default). */
+  radius(r: number): kit_TreeStyle
+  /**
+   * The labels' font, and their colour at rest and on a selected row (the theme's UI font in
+   * its text colour by default). A [`TreeItem::label_color`] still wins.
+   */
+  label(font: TextStyle, rest: Color, selected: Color): kit_TreeStyle
+  /**
+   * A label too long for its row fades out over its last `width` points instead of ending in
+   * an ellipsis.
+   */
+  fade_long_labels(width: number): kit_TreeStyle
+  /**
+   * Folders show only their chevron, and a file's icon takes the chevron's place, as a file
+   * tree whose folders need no glyph of their own does. Off, every row keeps a chevron lane
+   * and folders show their folder icon ([`TreeItem::file`]).
+   */
+  chevron_only_folders(on: boolean): kit_TreeStyle
+  /**
+   * The disclosure glyph, drawn as it is on an open folder and turned a quarter
+   * anticlockwise on a closed one (the theme's `chevron_down` by default).
+   */
+  chevron(glyph: Icon): kit_TreeStyle
+  /**
+   * The chevron's colour at rest and on a selected row (the theme's muted icon colour for both
+   * by default).
+   */
+  chevron_colors(rest: Color, selected: Color): kit_TreeStyle
+  /** Moves the chevron down `dy` points, open or closed, to sit on the label's baseline. */
+  chevron_nudge(dy: number): kit_TreeStyle
+  /** The indent guides hide until the pointer is over the tree, then show at `opacity`. */
+  guides_on_hover(opacity: number): kit_TreeStyle
+  row_height: number
   /** Points each level steps in. */
-  declare indent: number
+  indent: number
   /** Space at the row's ends. */
-  declare padding: number
+  padding: number
   /** Hairlines down each level's indent. */
-  declare guides: boolean
-  declare guide: Color
-  declare selected: Color
-  constructor(init?: { row_height: number; indent: number; padding: number; guides: boolean; guide: Color; selected: Color }) {
-    if (init) Object.assign(this, init)
-  }
-  static from_kit(k: kit_Kit): kit_TreeStyle {
-    return $n.__R_kit_TreeStyle_from_kit(k)
-  }
-
+  guides: boolean
+  guide: Color
+  selected: Color
+  clone(): kit_TreeStyle
 }
-$n.__register_record("kit_TreeStyle", kit_TreeStyle)
+export interface kit_TreeStyle$Static {
+  readonly prototype: kit_TreeStyle
+  from_kit(k: kit_Kit): kit_TreeStyle
+}
+export const kit_TreeStyle: kit_TreeStyle$Static = $n.kit_TreeStyle
 
 /** A forced visual state (Storybook's `data-state`). `Rest` lets the runtime drive hover/press. */
 export type kit_State = "Rest" | "Hover" | "Pressed" | "Focus" | "Disabled"
@@ -12247,6 +13529,8 @@ export interface light_LightRenderer {
   field_size(): [number, number]
   width: number
   height: number
+  /** Also trace every cascade's own interval without the merge, for inspection ([`LightRenderer::inspect`]). */
+  inspect: boolean
 }
 export interface light_LightRenderer$Static {
   readonly prototype: light_LightRenderer
@@ -12531,6 +13815,84 @@ export interface knobs_Knobs$Static {
 }
 export const knobs_Knobs: knobs_Knobs$Static = $n.knobs_Knobs
 
+/** A file's icon in a file tree and its type (`typescript`, `json`, `default`). */
+export interface opencode_tree_icons__TreeIcon {
+  icon(): Icon
+  /** The file type, as `@pierre/trees` names it (`data-icon-token`). */
+  token(): string
+  /**
+   * The type's colour for one appearance (`--trees-file-icon-color-<token>`), which a selected
+   * row draws its icon in.
+   */
+  color(dark: boolean): Color
+  clone(): opencode_tree_icons__TreeIcon
+}
+export interface opencode_tree_icons__TreeIcon$Static {
+  readonly prototype: opencode_tree_icons__TreeIcon
+
+}
+export const opencode_tree_icons__TreeIcon: opencode_tree_icons__TreeIcon$Static = $n.opencode_tree_icons__TreeIcon
+
+/** One notification to post, built with `Notification::new(id, title)`. */
+export interface notify_Notification {
+  body(body: string): this
+  /** A string the click hands back (`Click::info`), such as what to open. */
+  info(key: string, value: string): this
+  clone(): notify_Notification
+}
+export interface notify_Notification$Static {
+  readonly prototype: notify_Notification
+  /** Posting another notification with the same `id` replaces this one. */
+  "new"(id: string, title: string): notify_Notification
+  default(): notify_Notification
+}
+export const notify_Notification: notify_Notification$Static = $n.notify_Notification
+
+/** A click on one of the app's notifications, or on its default action. */
+export class notify_Click {
+  declare id: string
+  declare info: [string, string][]
+  constructor(init?: { id?: string; info?: [string, string][] }) {
+    if (init) Object.assign(this, init)
+  }
+  /** The user-info value posted under `key`. */
+  get(key: string): string | null {
+    return $n.__R_notify_Click_get(this, key)
+  }
+
+}
+$n.__register_record("notify_Click", notify_Click)
+
+/**
+ * Who the app's notifications come from, built with `Identity::new(id, name)`. Windows shows
+ * the name and icon on each toast and in Settings › System › Notifications; macOS takes both
+ * from the app's bundle.
+ */
+export interface notify_Identity {
+  /** An image file (PNG or ICO) for the app's toasts on Windows. */
+  icon(path: string): this
+  /**
+   * Windows: clicks reach the app as `<scheme>://notification/…` links, so a click on a toast
+   * left in the notification center starts the app after it quit. `register` points the
+   * scheme at this executable (`HKEY_CURRENT_USER\Software\Classes\<scheme>`); the app hands
+   * the links it receives (`rune::App::on_open_url`) to `click_from_url`. With
+   * `rune::single_instance`, a click while the app runs reaches the running process the same
+   * way. Without a scheme a click reaches only the process that posted the toast, while it runs.
+   */
+  activation(scheme: string): this
+  clone(): notify_Identity
+}
+export interface notify_Identity$Static {
+  readonly prototype: notify_Identity
+  /**
+   * `id` is the app's reverse-DNS identifier (on Windows its `AppUserModelID`, which also
+   * groups its windows on the taskbar); `name` is what people see.
+   */
+  "new"(id: string, name: string): notify_Identity
+  default(): notify_Identity
+}
+export const notify_Identity: notify_Identity$Static = $n.notify_Identity
+
 /** rune_motion::Animatable's methods. */
 export interface motion_Corners {
   write_lanes(out: number[]): void
@@ -12550,6 +13912,7 @@ export interface motion_Blur {
 export interface El {
   scroll_bar(k: kit_Kit): this
   scroll_bar_styled(style: kit_ScrollBarStyle): this
+  scroll_bar_hover(viewport_key: string): this
 }
 
 /** `e^x` with a relative error under 3e-7 for x in [−87, 88]. Below that it returns 0; above, ∞. */
@@ -12704,6 +14067,12 @@ export const motion_flags__SCROLLING: number = $n.__C_motion_flags__SCROLLING()
 export const motion_flags__CLIPPED: number = $n.__C_motion_flags__CLIPPED()
 
 export const motion_flags__FILTERED: number = $n.__C_motion_flags__FILTERED()
+
+/**
+ * Runs a loop of its own (`El::looping`: a spinner, a sheen, a busy ring's dots), whose
+ * wraps and turns are its design, however briefly it shows.
+ */
+export const motion_flags__LOOPING: number = $n.__C_motion_flags__LOOPING()
 
 /** Draws nothing and holds nothing: a hit or hover zone, a spacer. */
 export const motion_flags__BLANK: number = $n.__C_motion_flags__BLANK()
@@ -12883,6 +14252,13 @@ export const memo__layout_size: (key: string) => number[] | null = $n.memo__layo
  */
 export const memo__window_layout: (key: string) => number[] | null = $n.memo__window_layout
 
+/**
+ * [`memo`] with a version already hashed to a `u64`, for a caller that keeps its own
+ * hashes (a plugin across a C ABI, where `impl Hash` can't cross). The window's environment
+ * still joins it, as it does `memo`'s.
+ */
+export const memo__memo_with_hash: (id: string, version: number, build: () => El) => El = $n.memo__memo_with_hash
+
 /** Independent scalar colour oracle: encoded YCbCr -> linear RGB. */
 export const native_surface__nv12_reference: (y: number, cb: number, cr: number, format: native_surface__Format, color: native_surface__ColorInfo) => number[] = $n.native_surface__nv12_reference
 
@@ -12924,6 +14300,13 @@ export const text__text_hash: (text: string, spans: Span[], style: TextStyle, sc
 export const text__advance: (text: string, style: TextStyle) => number = $n.text__advance
 
 /**
+ * CSS's min-content and max-content widths of `text` (with `spans`) in `style`, in points and
+ * unrounded, as a browser's automatic table layout reads a cell: its widest unbreakable run,
+ * and its width on one line, neither counting the spaces that end a line.
+ */
+export const text__content_widths: (text: string, spans: Span[], style: TextStyle) => [number, number] = $n.text__content_widths
+
+/**
  * Changes whenever the fonts or families [`measure`] uses change, as when an app calls
  * `Tx::set_font_families`. A cache of measured sizes mixes it into its key.
  *
@@ -12942,7 +14325,8 @@ export const text__ink: (text: string, style: TextStyle) => text__TextInk | null
 /**
  * The size in points of `text` (with `spans`, as [`crate::rich`] takes them) set in `style`,
  * wrapped at `max_width` points when given, as the runtime will lay it out. Widths round up
- * to whole points. `max_width: Some(0.0)` gives the widest unbreakable run (CSS min-content).
+ * to whole points; heights are the lines' own, as a text lays out unless it asks for
+ * [`El::rounded_lines`](crate::El::rounded_lines). `max_width: Some(0.0)` gives the widest unbreakable run (CSS min-content).
  *
  * The first call on a thread loads the fonts (a few milliseconds); later calls cost a hash
  * lookup when the same text was measured recently, or one shaping pass when not.
@@ -13049,6 +14433,20 @@ export const tok__ACCENT_NAMES: string[] = $n.__C_tok__ACCENT_NAMES()
 export const tok__accent: (i: number, dark: boolean) => Color = $n.tok__accent
 
 /**
+ * Makes this process the app's only running one, before it opens a window (Windows).
+ *
+ * Returns false when another process of the app already runs: this launch's links went to
+ * its `App::on_open_url`, or, without links, it brought its front window forward, so return
+ * from `main` without opening a window. Returns true when this is the first process, which
+ * from now on receives the launches that follow, and also when the first can't be reached
+ * (it hangs or is exiting), so the launch still opens a window. `id` names the app (its
+ * reverse-DNS identifier); builds that should run side by side use different ids.
+ *
+ * macOS and other platforms: always true. macOS already reaches the running app.
+ */
+export const single_instance: (id: string) => boolean = $n.single_instance
+
+/**
  * The user's accent and focus ring colours. On macOS, the accent picked in System Settings
  * (`NSColor.controlAccentColor` and `keyboardFocusIndicatorColor`), read on the main thread
  * and kept up to date while a window is open; elsewhere [`SystemAccent::DEFAULT`].
@@ -13056,11 +14454,16 @@ export const tok__accent: (i: number, dark: boolean) => Color = $n.tok__accent
 export const system_accent: () => SystemAccent = $n.system_accent
 
 /**
- * macOS: shows `bytes` (an `.icns`, PNG, TIFF or anything else `NSImage` reads) as the app's
- * Dock and app-switcher icon while it runs, in place of the bundle's. Call it from any thread,
- * before `run` or after: before, Rune sets it once the app finishes launching; a later call
- * replaces it. A headless run sets nothing. Fails when the bytes aren't an image. Does nothing
- * elsewhere. (`AppHandle::set_dock_icon` shows or hides the Dock icon instead.)
+ * The app's icon while it runs, in place of the bundle's or executable's. Call it from any
+ * thread. A headless run sets nothing. Fails when the bytes aren't an image.
+ *
+ * - **macOS:** `bytes` is an `.icns`, PNG, TIFF or anything else `NSImage` reads, shown as the
+ *   Dock and app-switcher icon. Before `run`, Rune sets it once the app finishes launching; a
+ *   later call replaces it. (`AppHandle::set_dock_icon` shows or hides the Dock icon instead.)
+ * - **Windows:** `bytes` is a PNG or JPEG, best square and 256 px or more. Each window opened
+ *   after the call shows it in its title bar, on the taskbar and in Alt+Tab, so call it before
+ *   `run`.
+ * - Does nothing elsewhere.
  */
 export const set_app_icon: (bytes: Uint8Array) => void = $n.set_app_icon
 
@@ -13190,6 +14593,31 @@ export const kit_glyphs__FILE_IMAGE: Icon = $n.__C_kit_glyphs__FILE_IMAGE()
 export const kit_glyphs__DEFAULT: kit_Glyphs = $n.__C_kit_glyphs__DEFAULT()
 
 /**
+ * Whether `ev` is the sidebar's show/hide shortcut: ⇧⌘B (Ctrl+Shift+B off macOS), and on macOS
+ * also ⌃⌘S, AppKit's Toggle Sidebar. Call it from the app's key handler (`AppSpec::on_key`)
+ * and toggle the sidebar's [`PaneState`] when it matches.
+ */
+export const kit_shell__is_sidebar_toggle: (ev: KeyEvent) => boolean = $n.kit_shell__is_sidebar_toggle
+
+/** Each level of [`SidebarRow::depth`] indents this far. */
+export const kit_shell__INDENT: number = $n.__C_kit_shell__INDENT()
+
+/** A sidebar row's height (AppKit's medium source-list row). */
+export const kit_shell__ROW_HEIGHT: number = $n.__C_kit_shell__ROW_HEIGHT()
+
+/**
+ * The toolbar band's height, macOS 26's unified toolbar. The traffic lights centre in it when
+ * the window places them at y = (48 - 14) / 2 = 17.
+ */
+export const kit_shell__TOOLBAR_HEIGHT: number = $n.__C_kit_shell__TOOLBAR_HEIGHT()
+
+/** The sidebar toggle's glyph: a window with its leading pane drawn in. */
+export const kit_shell__SIDEBAR: Icon = $n.__C_kit_shell__SIDEBAR()
+
+/** The inspector toggle's glyph: the same window with its trailing pane drawn in. */
+export const kit_shell__INSPECTOR: Icon = $n.__C_kit_shell__INSPECTOR()
+
+/**
  * A menu at a secondary-press position. Store the point from `El::on_secondary_press`
  * in app state; clear it in `on_close` and item callbacks. Uses Menu's flipping anchor.
  */
@@ -13212,6 +14640,9 @@ export const kit_scrim: <S = any>(key: string, close: (s: S) => S | void) => El 
  * [`Kit::scroll_bar`] directly on the sized viewport.
  */
 export const kit_scroll_bar: (k: kit_Kit, area: string, key: string, viewport: El) => El = $n.kit_scroll_bar
+
+/** An icon for a file by its extension: code, text and docs, images, or a plain page. */
+export const kit_file_icon: (name: string) => Icon = $n.kit_file_icon
 
 /**
  * Mounts overlays above `base`: `base` fills the window and each overlay follows it in paint
@@ -13322,98 +14753,410 @@ export const knobs_describe: (notes: knobs_Note[]) => void = $n.knobs_describe
 /** ⌘⇧K toggles the layer and Esc closes it. Returns true when it took the key. */
 export const knobs_key: (k: knobs_Knobs, ev: KeyEvent) => boolean = $n.knobs_key
 
-export const opencode_icons__PLUS: Icon = $n.__C_opencode_icons__PLUS()
+/**
+ * Desktop's mark for app `id` (`AppIcon`'s ids: "vscode", "file-explorer", ...), in the
+ * variant for a dark or light appearance; None for the marks Desktop draws from PNGs.
+ */
+export const opencode_app_icons__named: (id: string, dark: boolean) => Icon | null = $n.opencode_app_icons__named
+
+/**
+ * The badge for a file at `path` (`/` or `\` separated, or just a name): its whole name first
+ * (`package.json`, `Dockerfile`), then its dotted suffixes longest first (`d.ts` before `ts`), else
+ * the plain document.
+ */
+export const opencode_file_icons__file: (path: string) => Icon = $n.opencode_file_icons__file
+
+/**
+ * The icon for a folder at `path`, open or closed: by its name as written, or with a leading
+ * `.` or `_`, or wrapped in `__` (`src`, `.github`, `__tests__`), else the plain folder.
+ */
+export const opencode_file_icons__folder: (path: string, expanded: boolean) => Icon = $n.opencode_file_icons__folder
+
+/** Every badge and folder icon, for a gallery. */
+export const opencode_file_icons__all: () => Icon[] = $n.opencode_file_icons__all
+
+export const opencode_icons__OUTLINE_LIST_CHANGELOG: Icon = $n.__C_opencode_icons__OUTLINE_LIST_CHANGELOG()
+
+export const opencode_icons__OUTLINE_PAIR: Icon = $n.__C_opencode_icons__OUTLINE_PAIR()
+
+export const opencode_icons__LOCK: Icon = $n.__C_opencode_icons__LOCK()
+
+export const opencode_icons__GLOBE: Icon = $n.__C_opencode_icons__GLOBE()
+
+export const opencode_icons__SELECT_ELEMENT: Icon = $n.__C_opencode_icons__SELECT_ELEMENT()
+
+export const opencode_icons__FLASK: Icon = $n.__C_opencode_icons__FLASK()
 
 export const opencode_icons__EDIT: Icon = $n.__C_opencode_icons__EDIT()
 
-export const opencode_icons__CHECK: Icon = $n.__C_opencode_icons__CHECK()
-
-export const opencode_icons__CHECK_SMALL: Icon = $n.__C_opencode_icons__CHECK_SMALL()
-
-export const opencode_icons__CHEVRON_DOWN: Icon = $n.__C_opencode_icons__CHEVRON_DOWN()
-
-export const opencode_icons__CHEVRON_RIGHT: Icon = $n.__C_opencode_icons__CHEVRON_RIGHT()
-
-export const opencode_icons__CLOSE: Icon = $n.__C_opencode_icons__CLOSE()
-
-export const opencode_icons__XMARK_SMALL: Icon = $n.__C_opencode_icons__XMARK_SMALL()
-
-export const opencode_icons__COPY: Icon = $n.__C_opencode_icons__COPY()
-
-export const opencode_icons__MAGNIFYING_GLASS: Icon = $n.__C_opencode_icons__MAGNIFYING_GLASS()
-
-export const opencode_icons__CIRCLE_X: Icon = $n.__C_opencode_icons__CIRCLE_X()
-
-export const opencode_icons__TRASH: Icon = $n.__C_opencode_icons__TRASH()
-
-export const opencode_icons__SETTINGS_GEAR: Icon = $n.__C_opencode_icons__SETTINGS_GEAR()
-
-export const opencode_icons__ARROW_UP: Icon = $n.__C_opencode_icons__ARROW_UP()
-
-export const opencode_icons__FILL_TRIANGLE_DOWN: Icon = $n.__C_opencode_icons__FILL_TRIANGLE_DOWN()
+export const opencode_icons__FOLDER_ADD_LEFT: Icon = $n.__C_opencode_icons__FOLDER_ADD_LEFT()
 
 export const opencode_icons__FOLDER: Icon = $n.__C_opencode_icons__FOLDER()
+
+export const opencode_icons__BRANCH: Icon = $n.__C_opencode_icons__BRANCH()
+
+export const opencode_icons__BRANCH_OUT: Icon = $n.__C_opencode_icons__BRANCH_OUT()
+
+export const opencode_icons__GRID_PLUS: Icon = $n.__C_opencode_icons__GRID_PLUS()
 
 export const opencode_icons__HELP: Icon = $n.__C_opencode_icons__HELP()
 
 export const opencode_icons__HELP_BOLD: Icon = $n.__C_opencode_icons__HELP_BOLD()
 
-export const opencode_icons__OUTLINE_DOTS: Icon = $n.__C_opencode_icons__OUTLINE_DOTS()
+export const opencode_icons__INFO: Icon = $n.__C_opencode_icons__INFO()
 
-export const opencode_icons__BRANCH: Icon = $n.__C_opencode_icons__BRANCH()
+export const opencode_icons__CIRCLE_EXCLAMATION: Icon = $n.__C_opencode_icons__CIRCLE_EXCLAMATION()
 
-export const opencode_icons__BRAIN: Icon = $n.__C_opencode_icons__BRAIN()
-
-export const opencode_icons__CONSOLE: Icon = $n.__C_opencode_icons__CONSOLE()
+export const opencode_icons__CIRCLE_XMARK: Icon = $n.__C_opencode_icons__CIRCLE_XMARK()
 
 export const opencode_icons__STATUS: Icon = $n.__C_opencode_icons__STATUS()
 
-export const opencode_icons__SIDEBAR: Icon = $n.__C_opencode_icons__SIDEBAR()
+export const opencode_icons__STATUS_ACTIVE: Icon = $n.__C_opencode_icons__STATUS_ACTIVE()
+
+export const opencode_icons__MAGNIFYING_GLASS: Icon = $n.__C_opencode_icons__MAGNIFYING_GLASS()
+
+export const opencode_icons__OUTLINE_MAGNIFIER_MINUS: Icon = $n.__C_opencode_icons__OUTLINE_MAGNIFIER_MINUS()
+
+export const opencode_icons__OUTLINE_MAGNIFIER_PLUS: Icon = $n.__C_opencode_icons__OUTLINE_MAGNIFIER_PLUS()
+
+export const opencode_icons__MENU: Icon = $n.__C_opencode_icons__MENU()
+
+export const opencode_icons__MINUS: Icon = $n.__C_opencode_icons__MINUS()
+
+export const opencode_icons__PLUS: Icon = $n.__C_opencode_icons__PLUS()
+
+export const opencode_icons__SETTINGS_GEAR: Icon = $n.__C_opencode_icons__SETTINGS_GEAR()
+
+export const opencode_icons__CHEVRON_DOWN: Icon = $n.__C_opencode_icons__CHEVRON_DOWN()
+
+export const opencode_icons__COLLAPSE: Icon = $n.__C_opencode_icons__COLLAPSE()
+
+export const opencode_icons__CHECK: Icon = $n.__C_opencode_icons__CHECK()
+
+export const opencode_icons__MONITOR: Icon = $n.__C_opencode_icons__MONITOR()
+
+export const opencode_icons__WORKSPACE_NEW: Icon = $n.__C_opencode_icons__WORKSPACE_NEW()
+
+export const opencode_icons__WORKSPACE_ISOLATED: Icon = $n.__C_opencode_icons__WORKSPACE_ISOLATED()
+
+export const opencode_icons__WORKSPACE: Icon = $n.__C_opencode_icons__WORKSPACE()
+
+export const opencode_icons__OUTLINE_WORKTREE: Icon = $n.__C_opencode_icons__OUTLINE_WORKTREE()
+
+export const opencode_icons__OUTLINE_TRASH: Icon = $n.__C_opencode_icons__OUTLINE_TRASH()
+
+export const opencode_icons__CLOSE: Icon = $n.__C_opencode_icons__CLOSE()
+
+export const opencode_icons__XMARK_SMALL: Icon = $n.__C_opencode_icons__XMARK_SMALL()
+
+export const opencode_icons__OUTLINE_XMARK: Icon = $n.__C_opencode_icons__OUTLINE_XMARK()
+
+export const opencode_icons__OUTLINE_CHEVRON_DOWN: Icon = $n.__C_opencode_icons__OUTLINE_CHEVRON_DOWN()
+
+export const opencode_icons__OUTLINE_CHEVRON_RIGHT: Icon = $n.__C_opencode_icons__OUTLINE_CHEVRON_RIGHT()
+
+export const opencode_icons__OUTLINE_DOTS: Icon = $n.__C_opencode_icons__OUTLINE_DOTS()
+
+export const opencode_icons__EXPAND: Icon = $n.__C_opencode_icons__EXPAND()
+
+export const opencode_icons__OUTLINE_EXPAND: Icon = $n.__C_opencode_icons__OUTLINE_EXPAND()
+
+export const opencode_icons__FILETREE: Icon = $n.__C_opencode_icons__FILETREE()
+
+export const opencode_icons__SPLIT: Icon = $n.__C_opencode_icons__SPLIT()
+
+export const opencode_icons__UNIFIED: Icon = $n.__C_opencode_icons__UNIFIED()
+
+export const opencode_icons__REVIEW: Icon = $n.__C_opencode_icons__REVIEW()
+
+export const opencode_icons__WINDOW_ANALYTICS: Icon = $n.__C_opencode_icons__WINDOW_ANALYTICS()
+
+export const opencode_icons__GRADUATION_CAP: Icon = $n.__C_opencode_icons__GRADUATION_CAP()
+
+export const opencode_icons__CODE_SLASH: Icon = $n.__C_opencode_icons__CODE_SLASH()
+
+export const opencode_icons__OUTLINE_CODE_BRACKETS: Icon = $n.__C_opencode_icons__OUTLINE_CODE_BRACKETS()
+
+export const opencode_icons__TRASH: Icon = $n.__C_opencode_icons__TRASH()
+
+export const opencode_icons__OUTLINE_SLIDERS: Icon = $n.__C_opencode_icons__OUTLINE_SLIDERS()
 
 export const opencode_icons__OUTLINE_COPY: Icon = $n.__C_opencode_icons__OUTLINE_COPY()
 
-export const opencode_icons__WARNING: Icon = $n.__C_opencode_icons__WARNING()
+export const opencode_icons__OUTLINE_QUOTE: Icon = $n.__C_opencode_icons__OUTLINE_QUOTE()
 
-export const opencode_icons__WARNING_BOLD: Icon = $n.__C_opencode_icons__WARNING_BOLD()
+export const opencode_icons__OUTLINE_ARROW_LEFT: Icon = $n.__C_opencode_icons__OUTLINE_ARROW_LEFT()
 
-export const opencode_icons__CIRCLE_CHECK: Icon = $n.__C_opencode_icons__CIRCLE_CHECK()
+export const opencode_icons__OUTLINE_ARROW_RIGHT: Icon = $n.__C_opencode_icons__OUTLINE_ARROW_RIGHT()
 
-export const opencode_icons__CIRCLE_CHECK_BOLD: Icon = $n.__C_opencode_icons__CIRCLE_CHECK_BOLD()
+export const opencode_icons__OUTLINE_ARROW_UP_RIGHT: Icon = $n.__C_opencode_icons__OUTLINE_ARROW_UP_RIGHT()
 
-export const opencode_icons__INFO: Icon = $n.__C_opencode_icons__INFO()
+export const opencode_icons__OUTLINE_ROTATE_CLOCKWISE: Icon = $n.__C_opencode_icons__OUTLINE_ROTATE_CLOCKWISE()
 
-export const opencode_icons__KEYBOARD: Icon = $n.__C_opencode_icons__KEYBOARD()
+export const opencode_icons__OUTLINE_GLOBE: Icon = $n.__C_opencode_icons__OUTLINE_GLOBE()
 
-export const opencode_icons__GLOBE: Icon = $n.__C_opencode_icons__GLOBE()
+export const opencode_icons__OUTLINE_GLOBE_PLUS: Icon = $n.__C_opencode_icons__OUTLINE_GLOBE_PLUS()
+
+export const opencode_icons__OUTLINE_COOKIE: Icon = $n.__C_opencode_icons__OUTLINE_COOKIE()
+
+export const opencode_icons__OUTLINE_BROWSER_ANNOTATE: Icon = $n.__C_opencode_icons__OUTLINE_BROWSER_ANNOTATE()
+
+export const opencode_icons__ARROW_UP_RIGHT: Icon = $n.__C_opencode_icons__ARROW_UP_RIGHT()
+
+export const opencode_icons__OUTLINE_SQUARE_ARROW: Icon = $n.__C_opencode_icons__OUTLINE_SQUARE_ARROW()
+
+export const opencode_icons__OUTLINE_ARROW_TO_CORNER_TOP_RIGHT: Icon = $n.__C_opencode_icons__OUTLINE_ARROW_TO_CORNER_TOP_RIGHT()
+
+export const opencode_icons__OUTLINE_HEXAGONAL_WARNING: Icon = $n.__C_opencode_icons__OUTLINE_HEXAGONAL_WARNING()
+
+export const opencode_icons__OUTLINE_SHARE: Icon = $n.__C_opencode_icons__OUTLINE_SHARE()
+
+export const opencode_icons__OUTLINE_EYE: Icon = $n.__C_opencode_icons__OUTLINE_EYE()
+
+export const opencode_icons__OUTLINE_EYE_SLASH: Icon = $n.__C_opencode_icons__OUTLINE_EYE_SLASH()
+
+export const opencode_icons__REFRESH: Icon = $n.__C_opencode_icons__REFRESH()
+
+export const opencode_icons__RESET: Icon = $n.__C_opencode_icons__RESET()
+
+export const opencode_icons__OUTLINE_UNDO: Icon = $n.__C_opencode_icons__OUTLINE_UNDO()
+
+export const opencode_icons__OUTLINE_RESET: Icon = $n.__C_opencode_icons__OUTLINE_RESET()
+
+export const opencode_icons__FILL_TRIANGLE_DOWN: Icon = $n.__C_opencode_icons__FILL_TRIANGLE_DOWN()
+
+export const opencode_icons__WAVEFORM: Icon = $n.__C_opencode_icons__WAVEFORM()
+
+export const opencode_icons__OUTLINE_STEER: Icon = $n.__C_opencode_icons__OUTLINE_STEER()
+
+export const opencode_icons__OUTLINE_WAVE_AUDIO: Icon = $n.__C_opencode_icons__OUTLINE_WAVE_AUDIO()
+
+export const opencode_icons__COMMENT: Icon = $n.__C_opencode_icons__COMMENT()
+
+export const opencode_icons__ARCHIVE: Icon = $n.__C_opencode_icons__ARCHIVE()
+
+export const opencode_icons__OUTLINE_TEXT: Icon = $n.__C_opencode_icons__OUTLINE_TEXT()
+
+export const opencode_icons__OUTLINE_PHOTO: Icon = $n.__C_opencode_icons__OUTLINE_PHOTO()
+
+export const opencode_icons__FILE_DOCUMENT: Icon = $n.__C_opencode_icons__FILE_DOCUMENT()
+
+export const opencode_icons__OUTLINE_AUDIO: Icon = $n.__C_opencode_icons__OUTLINE_AUDIO()
+
+export const opencode_icons__OUTLINE_VIDEO: Icon = $n.__C_opencode_icons__OUTLINE_VIDEO()
+
+export const opencode_icons__OUTLINE_BRAIN: Icon = $n.__C_opencode_icons__OUTLINE_BRAIN()
+
+export const opencode_icons__OUTLINE_CONSOLE: Icon = $n.__C_opencode_icons__OUTLINE_CONSOLE()
+
+export const opencode_icons__ALIGN_RIGHT: Icon = $n.__C_opencode_icons__ALIGN_RIGHT()
+
+export const opencode_icons__ARROW_UP: Icon = $n.__C_opencode_icons__ARROW_UP()
+
+export const opencode_icons__ARROW_LEFT: Icon = $n.__C_opencode_icons__ARROW_LEFT()
+
+export const opencode_icons__ARROW_RIGHT: Icon = $n.__C_opencode_icons__ARROW_RIGHT()
+
+export const opencode_icons__BUBBLE_5: Icon = $n.__C_opencode_icons__BUBBLE_5()
+
+export const opencode_icons__PROMPT: Icon = $n.__C_opencode_icons__PROMPT()
+
+export const opencode_icons__BRAIN: Icon = $n.__C_opencode_icons__BRAIN()
+
+export const opencode_icons__FORK: Icon = $n.__C_opencode_icons__FORK()
+
+export const opencode_icons__BULLET_LIST: Icon = $n.__C_opencode_icons__BULLET_LIST()
+
+export const opencode_icons__CHECK_SMALL: Icon = $n.__C_opencode_icons__CHECK_SMALL()
+
+export const opencode_icons__CHEVRON_LEFT: Icon = $n.__C_opencode_icons__CHEVRON_LEFT()
+
+export const opencode_icons__CHEVRON_RIGHT: Icon = $n.__C_opencode_icons__CHEVRON_RIGHT()
+
+export const opencode_icons__CHEVRON_GRABBER_VERTICAL: Icon = $n.__C_opencode_icons__CHEVRON_GRABBER_VERTICAL()
+
+export const opencode_icons__CHEVRON_DOUBLE_RIGHT: Icon = $n.__C_opencode_icons__CHEVRON_DOUBLE_RIGHT()
+
+export const opencode_icons__CIRCLE_X: Icon = $n.__C_opencode_icons__CIRCLE_X()
+
+export const opencode_icons__CLOSE_SMALL: Icon = $n.__C_opencode_icons__CLOSE_SMALL()
+
+export const opencode_icons__CHECKLIST: Icon = $n.__C_opencode_icons__CHECKLIST()
+
+export const opencode_icons__CONSOLE: Icon = $n.__C_opencode_icons__CONSOLE()
+
+export const opencode_icons__TERMINAL: Icon = $n.__C_opencode_icons__TERMINAL()
+
+export const opencode_icons__TERMINAL_ACTIVE: Icon = $n.__C_opencode_icons__TERMINAL_ACTIVE()
+
+export const opencode_icons__REVIEW_ACTIVE: Icon = $n.__C_opencode_icons__REVIEW_ACTIVE()
+
+export const opencode_icons__CODE: Icon = $n.__C_opencode_icons__CODE()
+
+export const opencode_icons__CODE_LINES: Icon = $n.__C_opencode_icons__CODE_LINES()
 
 export const opencode_icons__CIRCLE_BAN_SIGN: Icon = $n.__C_opencode_icons__CIRCLE_BAN_SIGN()
 
 export const opencode_icons__CIRCLE_BAN_SIGN_BOLD: Icon = $n.__C_opencode_icons__CIRCLE_BAN_SIGN_BOLD()
 
+export const opencode_icons__EDIT_SMALL_2: Icon = $n.__C_opencode_icons__EDIT_SMALL_2()
+
+export const opencode_icons__EYE: Icon = $n.__C_opencode_icons__EYE()
+
+export const opencode_icons__ENTER: Icon = $n.__C_opencode_icons__ENTER()
+
+export const opencode_icons__FILE_TREE: Icon = $n.__C_opencode_icons__FILE_TREE()
+
+export const opencode_icons__FILE_TREE_ACTIVE: Icon = $n.__C_opencode_icons__FILE_TREE_ACTIVE()
+
+export const opencode_icons__PLUS_SMALL: Icon = $n.__C_opencode_icons__PLUS_SMALL()
+
+export const opencode_icons__NEW_SESSION: Icon = $n.__C_opencode_icons__NEW_SESSION()
+
+export const opencode_icons__NEW_SESSION_ACTIVE: Icon = $n.__C_opencode_icons__NEW_SESSION_ACTIVE()
+
+export const opencode_icons__PENCIL_LINE: Icon = $n.__C_opencode_icons__PENCIL_LINE()
+
+export const opencode_icons__MCP: Icon = $n.__C_opencode_icons__MCP()
+
+export const opencode_icons__GLASSES: Icon = $n.__C_opencode_icons__GLASSES()
+
+export const opencode_icons__MAGNIFYING_GLASS_MENU: Icon = $n.__C_opencode_icons__MAGNIFYING_GLASS_MENU()
+
+export const opencode_icons__WINDOW_CURSOR: Icon = $n.__C_opencode_icons__WINDOW_CURSOR()
+
+export const opencode_icons__TASK: Icon = $n.__C_opencode_icons__TASK()
+
+export const opencode_icons__STOP: Icon = $n.__C_opencode_icons__STOP()
+
+export const opencode_icons__SIDEBAR: Icon = $n.__C_opencode_icons__SIDEBAR()
+
+export const opencode_icons__SIDEBAR_ACTIVE: Icon = $n.__C_opencode_icons__SIDEBAR_ACTIVE()
+
+export const opencode_icons__LAYOUT_LEFT: Icon = $n.__C_opencode_icons__LAYOUT_LEFT()
+
+export const opencode_icons__LAYOUT_LEFT_PARTIAL: Icon = $n.__C_opencode_icons__LAYOUT_LEFT_PARTIAL()
+
+export const opencode_icons__LAYOUT_LEFT_FULL: Icon = $n.__C_opencode_icons__LAYOUT_LEFT_FULL()
+
+export const opencode_icons__LAYOUT_RIGHT: Icon = $n.__C_opencode_icons__LAYOUT_RIGHT()
+
+export const opencode_icons__LAYOUT_RIGHT_PARTIAL: Icon = $n.__C_opencode_icons__LAYOUT_RIGHT_PARTIAL()
+
+export const opencode_icons__LAYOUT_RIGHT_FULL: Icon = $n.__C_opencode_icons__LAYOUT_RIGHT_FULL()
+
+export const opencode_icons__SQUARE_ARROW_TOP_RIGHT: Icon = $n.__C_opencode_icons__SQUARE_ARROW_TOP_RIGHT()
+
+export const opencode_icons__OPEN_FILE: Icon = $n.__C_opencode_icons__OPEN_FILE()
+
+export const opencode_icons__SPEECH_BUBBLE: Icon = $n.__C_opencode_icons__SPEECH_BUBBLE()
+
+export const opencode_icons__GITHUB: Icon = $n.__C_opencode_icons__GITHUB()
+
+export const opencode_icons__DISCORD: Icon = $n.__C_opencode_icons__DISCORD()
+
+export const opencode_icons__LAYOUT_BOTTOM: Icon = $n.__C_opencode_icons__LAYOUT_BOTTOM()
+
+export const opencode_icons__LAYOUT_BOTTOM_PARTIAL: Icon = $n.__C_opencode_icons__LAYOUT_BOTTOM_PARTIAL()
+
+export const opencode_icons__LAYOUT_BOTTOM_FULL: Icon = $n.__C_opencode_icons__LAYOUT_BOTTOM_FULL()
+
+export const opencode_icons__DOT_GRID: Icon = $n.__C_opencode_icons__DOT_GRID()
+
+export const opencode_icons__CIRCLE_CHECK: Icon = $n.__C_opencode_icons__CIRCLE_CHECK()
+
+export const opencode_icons__CIRCLE_CHECK_BOLD: Icon = $n.__C_opencode_icons__CIRCLE_CHECK_BOLD()
+
+export const opencode_icons__COPY: Icon = $n.__C_opencode_icons__COPY()
+
+export const opencode_icons__PHOTO: Icon = $n.__C_opencode_icons__PHOTO()
+
+export const opencode_icons__SHARE: Icon = $n.__C_opencode_icons__SHARE()
+
+export const opencode_icons__SHIELD: Icon = $n.__C_opencode_icons__SHIELD()
+
+export const opencode_icons__DOWNLOAD: Icon = $n.__C_opencode_icons__DOWNLOAD()
+
+export const opencode_icons__SERVER: Icon = $n.__C_opencode_icons__SERVER()
+
 export const opencode_icons__DASH: Icon = $n.__C_opencode_icons__DASH()
 
 export const opencode_icons__DASH_BOLD: Icon = $n.__C_opencode_icons__DASH_BOLD()
 
-export const opencode_icons__SUBAGENT: Icon = $n.__C_opencode_icons__SUBAGENT()
+export const opencode_icons__CLOUD_UPLOAD: Icon = $n.__C_opencode_icons__CLOUD_UPLOAD()
 
-export const opencode_icons__CHECKLIST: Icon = $n.__C_opencode_icons__CHECKLIST()
+export const opencode_icons__SLIDERS: Icon = $n.__C_opencode_icons__SLIDERS()
 
-export const opencode_icons__CODE_LINES: Icon = $n.__C_opencode_icons__CODE_LINES()
+export const opencode_icons__KEYBOARD: Icon = $n.__C_opencode_icons__KEYBOARD()
 
-export const opencode_icons__FILE_TREE: Icon = $n.__C_opencode_icons__FILE_TREE()
+export const opencode_icons__SELECTOR: Icon = $n.__C_opencode_icons__SELECTOR()
 
-export const opencode_icons__STOP: Icon = $n.__C_opencode_icons__STOP()
+export const opencode_icons__ARROW_DOWN_TO_LINE: Icon = $n.__C_opencode_icons__ARROW_DOWN_TO_LINE()
 
-export const opencode_icons__OUTLINE_WORKTREE: Icon = $n.__C_opencode_icons__OUTLINE_WORKTREE()
+export const opencode_icons__WARNING: Icon = $n.__C_opencode_icons__WARNING()
 
-export const opencode_icons__GRID_PLUS: Icon = $n.__C_opencode_icons__GRID_PLUS()
+export const opencode_icons__WARNING_BOLD: Icon = $n.__C_opencode_icons__WARNING_BOLD()
 
-export const opencode_icons__LAYOUT_LEFT: Icon = $n.__C_opencode_icons__LAYOUT_LEFT()
+export const opencode_icons__LINK: Icon = $n.__C_opencode_icons__LINK()
 
-export const opencode_icons__LAYOUT_LEFT_FULL: Icon = $n.__C_opencode_icons__LAYOUT_LEFT_FULL()
+export const opencode_icons__PROVIDERS: Icon = $n.__C_opencode_icons__PROVIDERS()
+
+export const opencode_icons__MODELS: Icon = $n.__C_opencode_icons__MODELS()
+
+export const opencode_icons__APPEARANCE: Icon = $n.__C_opencode_icons__APPEARANCE()
+
+export const opencode_icons__NOTIFICATIONS: Icon = $n.__C_opencode_icons__NOTIFICATIONS()
+
+export const opencode_icons__EXTENSIONS: Icon = $n.__C_opencode_icons__EXTENSIONS()
+
+export const opencode_icons__CUBE: Icon = $n.__C_opencode_icons__CUBE()
+
+export const opencode_icons__POST_SKILL: Icon = $n.__C_opencode_icons__POST_SKILL()
+
+export const opencode_icons__ARROW_UNDO_DOWN: Icon = $n.__C_opencode_icons__ARROW_UNDO_DOWN()
+
+/** Every icon by its catalog name, for a gallery or a name read from data. */
+export const opencode_icons__ALL: Icon[] = $n.__C_opencode_icons__ALL()
+
+/** The new artwork `icon` draws under New icons, if it has any yet (`getNewIcon`). */
+export const opencode_new_icons__new_icon: (icon: Icon) => Icon | null = $n.opencode_new_icons__new_icon
+
+/** Desktop's mark for provider `id`, if it ships one. */
+export const opencode_provider_icons__named: (id: string) => Icon | null = $n.opencode_provider_icons__named
 
 /** The providers that have a mark of their own, in `named`. */
 export const opencode_provider_icons__NAMES: string[] = $n.__C_opencode_provider_icons__NAMES()
+
+/** Desktop's stand-in for a provider with no mark of its own. */
+export const opencode_provider_icons__FALLBACK: Icon = $n.__C_opencode_provider_icons__FALLBACK()
+
+/** A folder row's disclosure (`outline-chevron-right`, 16 points), drawn 1 point low. */
+export const opencode_tree_icons__CHEVRON: Icon = $n.__C_opencode_tree_icons__CHEVRON()
+
+/**
+ * The icon for a file at `path` (`/` or `\` separated, or just a name): its whole name first
+ * (`bun.lock`, `Dockerfile`), then each dotted suffix from the first dot (`config.ts`, then `ts`),
+ * `.tsx` and `.jsx` as React and `.scss` and `.sass` as Sass, else the plain file.
+ */
+export const opencode_tree_icons__file: (path: string) => opencode_tree_icons__TreeIcon = $n.opencode_tree_icons__file
+
+/**
+ * Desktop's file tree rows (`pierre-tree.tsx` over `@pierre/trees`): 28 points tall with 8 at
+ * the ends, 6 between the chevron or icon and the name, 21.5 per level, 6-point corners, 12-point
+ * medium names in `text-muted` (`text-base` and the pressed overlay when selected, the hover
+ * overlay under the pointer), chevron-only folders with the chevron 1 point low, guides at 0.75
+ * only while the pointer is over the tree, and long names fading out over 16 points.
+ */
+export const opencode_tree_icons__style: (k: kit_Kit) => kit_TreeStyle = $n.opencode_tree_icons__style
+
+/**
+ * A file tree row as Desktop draws it under [`style`]: the name, and for a file its icon in
+ * `icon-muted`, or in its type's colour while selected. Folders show only the chevron.
+ */
+export const opencode_tree_icons__item: (name: string, path: string, folder: boolean, selected: boolean, dark: boolean) => kit_TreeItem = $n.opencode_tree_icons__item
+
+/** Every file type with an icon of its own, for a gallery. */
+export const opencode_tree_icons__all: () => opencode_tree_icons__TreeIcon[] = $n.opencode_tree_icons__all
 
 /** The theme as data: palette, light and dark tokens, computed shadows and numbers. */
 export const opencode_THEME: string = $n.__C_opencode_THEME()
@@ -13459,6 +15202,55 @@ export const opencode_scale: (name: string, dark: boolean, step: number) => Colo
 export const opencode_kit: (dark: boolean) => kit_Kit = $n.opencode_kit
 
 export const opencode_GLYPHS: kit_Glyphs = $n.__C_opencode_GLYPHS()
+
+/**
+ * Gives this process the app's identity. Call it first thing in `main`, before any window
+ * opens, so the taskbar groups the windows under it.
+ *
+ * Windows: sets the process's `AppUserModelID` and registers the name and icon for it under
+ * `HKEY_CURRENT_USER\Software\Classes\AppUserModelId\<id>`, the identity an app without a
+ * package or Start-menu shortcut posts toasts with, and the activation scheme, if any, under
+ * `HKEY_CURRENT_USER\Software\Classes\<scheme>`. macOS reads the identity from the bundle, so
+ * this does nothing there, nor elsewhere.
+ */
+export const notify_register: (identity: notify_Identity) => void = $n.notify_register
+
+/**
+ * Whether this process can post: on macOS it runs from a `.app` bundle with a bundle
+ * identifier; on Windows `register` gave it an identity.
+ */
+export const notify_available: () => boolean = $n.notify_available
+
+/**
+ * Posts `n` now (on macOS, asking for permission first if the person hasn't been asked).
+ * Returns false when the app can't post at all (not `available`), or Windows refused the toast.
+ */
+export const notify_post: (n: notify_Notification) => boolean = $n.notify_post
+
+/**
+ * Takes the app's delivered notifications with these ids out of Notification Center (on
+ * Windows, the notification center).
+ */
+export const notify_remove: (ids: string[]) => void = $n.notify_remove
+
+/**
+ * The click a notification link stands for, when `url` is one of this app's
+ * (`Identity::activation`); None for any other link. Windows only: elsewhere a click never
+ * arrives as a link.
+ */
+export const notify_click_from_url: (url: string) => notify_Click | null = $n.notify_click_from_url
+
+/**
+ * Whether the app is in front with one of its windows focused, the moment it matters to a
+ * notification: one that would show while the person is looking at the app is noise.
+ */
+export const notify_app_focused: () => boolean = $n.notify_app_focused
+
+/**
+ * Brings the app's main window forward and focuses it, restoring it if minimized (on macOS,
+ * out of the Dock). Call it on the main thread (from `poll`), say after a click.
+ */
+export const notify_bring_to_front: () => void = $n.notify_bring_to_front
 
 Object.defineProperty(motion_Anim, "INSTANT", { value: $n.__C_motion_Anim_INSTANT(), enumerable: true })
 Object.defineProperty(motion_Decay, "IOS_NORMAL", { value: $n.__C_motion_Decay_IOS_NORMAL(), enumerable: true })
@@ -13524,9 +15316,11 @@ Object.defineProperty(Titlebar, "CAPTION_BUTTON_WIDTH", { value: $n.__C_Titlebar
 Object.defineProperty(Chrome, "DEFAULT", { value: $n.__C_Chrome_DEFAULT(), enumerable: true })
 Object.defineProperty(Chrome, "TRAFFIC_LIGHT", { value: $n.__C_Chrome_TRAFFIC_LIGHT(), enumerable: true })
 Object.defineProperty(Chrome, "TRAFFIC_PITCH", { value: $n.__C_Chrome_TRAFFIC_PITCH(), enumerable: true })
-Object.defineProperty(kit_RollingText, "SPRING", { value: $n.__C_kit_RollingText_SPRING(), enumerable: true })
 Object.defineProperty(kit_PaneState, "MIN", { value: $n.__C_kit_PaneState_MIN(), enumerable: true })
 Object.defineProperty(kit_PaneState, "MAX", { value: $n.__C_kit_PaneState_MAX(), enumerable: true })
+Object.defineProperty(kit_shell__TabOverflow, "HORIZONTAL_DEFAULT", { value: $n.__C_kit_shell__TabOverflow_HORIZONTAL_DEFAULT(), enumerable: true })
+Object.defineProperty(kit_shell__TabOverflow, "VERTICAL_DEFAULT", { value: $n.__C_kit_shell__TabOverflow_VERTICAL_DEFAULT(), enumerable: true })
+Object.defineProperty(kit_RollingText, "SPRING", { value: $n.__C_kit_RollingText_SPRING(), enumerable: true })
 Object.defineProperty(fx_DitherParams, "PARAMS", { value: $n.__C_fx_DitherParams_PARAMS(), enumerable: true })
 Object.defineProperty(fx_DitherPattern, "CHOICES", { value: $n.__C_fx_DitherPattern_CHOICES(), enumerable: true })
 Object.defineProperty(fx_FillAnchor, "CHOICES", { value: $n.__C_fx_FillAnchor_CHOICES(), enumerable: true })

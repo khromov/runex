@@ -18,6 +18,12 @@ export interface CrateConfig {
   stateGenerics?: string[]
   /** Items to leave out: `Type`, `Type::method`, `module::function`, by public path. */
   deny?: string[]
+  /**
+   * Builders with a lifetime (`TabStrip<'a, S>`) bound as owned values at `'static` instead of
+   * lent to callbacks only: their methods' borrowed strings are owned (`Cow`) or interned
+   * (`&'a str`, leaked once per distinct string, as element roles are). By type name.
+   */
+  ownedLifetimes?: string[]
 }
 
 /**
@@ -65,6 +71,8 @@ export const crates: CrateConfig[] = [
       "SurfaceStats", "SurfaceCounts", "Pacing", "describe_gpu", "commit_generation", "SceneClock", "scene_clock",
       "OverlayHandle", "ConfiguredOverlay", "OverlaySpec", "Shortcut", "Tray", "TraySpec", "TrayIcon",
       "memo", "memo::memo", "memo::snapshot",
+      // Hand-written: src/manual/windows.rs (the window's functions), src/manual/icons.rs (a fn pointer).
+      "open_window", "windows::open_window", "text::set_icon_swap",
     ],
   },
   {
@@ -73,12 +81,17 @@ export const crates: CrateConfig[] = [
     prefix: "kit_",
     module: "kit",
     features: ["markdown", "mermaid"],
-    denyModules: ["css", "syntax", "diff", "shell", "notes", "mermaid", "markdown", "tree", "popover"],
-    deny: [],
+    denyModules: ["css", "syntax", "diff", "notes", "mermaid", "markdown", "tree", "popover"],
+    // Hand-written (src/manual/tree.rs, ts/tree.ts): the tree over the app's own node type.
+    deny: ["Tree", "TreeModel", "FileNode", "FileTree", "TreeItem::file"],
+    ownedLifetimes: ["TabStrip", "TabItem", "Note"],
   },
   { crate: "rune_fx", package: "rune-fx", prefix: "fx_", module: "fx" },
   { crate: "rune_light", package: "rune-light", prefix: "light_", module: "light" },
   // `panel`, as Cargo.toml builds it: without it rustdoc documents the stubs in its place.
   { crate: "rune_knobs", package: "rune-knobs", prefix: "knobs_", module: "knobs", features: ["panel"] },
   { crate: "rune_theme_opencode", package: "rune-theme-opencode", prefix: "opencode_", module: "theme_opencode" },
+  // System notifications (Windows toasts; macOS only from a signed .app bundle). `on_click`'s
+  // handler runs on another thread: hand-written in src/manual/notify.rs.
+  { crate: "rune_notify", package: "rune-notify", prefix: "notify_", module: "notify", deny: ["on_click"] },
 ]

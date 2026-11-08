@@ -1,7 +1,12 @@
 pub mod compose;
+pub mod frames;
 pub mod gradient;
+pub mod icons;
 pub mod live;
 pub mod motion;
+pub mod notify;
 pub mod overlay;
+pub mod tooling;
+pub mod tree;
 pub mod tuple;
 pub mod windows;

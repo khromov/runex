@@ -27,8 +27,9 @@ function link(name: string) {
 
 // Uses each entry point. A value or type an entry stops exporting fails tsc here, by name.
 const CONSUMER_TS = `
-import { AppSpec, Live, WindowSpec, col, el, run, run_windows, text, tok, type Compositor, type Cx, type El, type Frame, type LiveValue, type PerfStats } from "${pkg.name}"
-import { Button, type Kit } from "${pkg.name}/kit"
+import { AppSpec, Live, WindowSpec, col, el, instant_now, open_window, run, run_windows, set_icon_swap, text, tok, tooling, type Compositor, type Cx, type El, type Frame, type FrameEncoded, type HeadlessRun, type LiveValue, type PerfStats } from "${pkg.name}"
+import { Button, FileTree, TabStrip, Tree, TreeModel, shell, type Kit } from "${pkg.name}/kit"
+import { Notification, available, on_click } from "${pkg.name}/notify"
 import { Fx, run_with, type Plan } from "${pkg.name}/fx"
 import { Light, type Settings } from "${pkg.name}/light"
 import { Knobs, type Knob } from "${pkg.name}/knobs"
@@ -53,8 +54,8 @@ function view(s: State, _: Cx): El {
 export const spec = AppSpec.new<State>("Consumer", [320, 200], () => ({ on: false }), view)
 const options: RunexOptions = { entry: "./main.ts" }
 export const plugin: Plugin = runex(options)
-export const values = { run, run_windows, WindowSpec, Live, Button, Fx, run_with, Light, Knobs, Animated, Spring, FAMILIES, FONTS, icons }
-export type Types = [Compositor, Frame, PerfStats, LiveValue, Kit, Plan, Settings, Knob, Vec2]
+export const values = { run, run_windows, WindowSpec, Live, Button, Fx, run_with, Light, Knobs, Animated, Spring, FAMILIES, FONTS, icons, instant_now, open_window, set_icon_swap, tooling, FileTree, TabStrip, Tree, TreeModel, shell, Notification, available, on_click }
+export type Types = [Compositor, Frame, PerfStats, LiveValue, Kit, Plan, Settings, Knob, Vec2, FrameEncoded, HeadlessRun]
 `
 
 const TSCONFIG = {

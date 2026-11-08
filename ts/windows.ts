@@ -1,7 +1,8 @@
 // Several windows from one factory (`rune::run_windows`, `WindowSpec`).
 import native from "./native.js"
 import type * as N from "./native.js"
-import type { Chrome, ConfiguredWindowOptions, Display, FontSmoothing, Ime, Playground, RunOptions, Titlebar, Tx, WindowHandle, WindowOptions } from "./gen/types.js"
+import type { Chrome, ConfiguredWindowOptions, Display, FontSmoothing, Ime, Mods, Playground, RunOptions, Titlebar, Tx, WindowHandle, WindowOptions } from "./gen/types.js"
+import type { FrameEncoded } from "./app.js"
 import type { App, AppSpec } from "./app.js"
 import type { NativeApp } from "./native.js"
 import type { Compositor } from "./compose.js"
@@ -35,6 +36,14 @@ export interface WindowSpec<S = any> {
   on_ime(f: (s: S, ime: Ime, tx: Tx) => boolean): this
   on_reopen(f: (s: S, has_visible_windows: boolean, tx: Tx) => boolean): this
   on_open_url(f: (s: S, url: string, tx: Tx) => void): this
+  /** Runs whenever the held modifiers change (`WindowSpec::on_modifiers`). */
+  on_modifiers(f: (s: S, mods: Mods, tx: Tx) => void): this
+  /** Opens without taking focus from the window that has it (`WindowSpec::inactive`). */
+  inactive(): this
+  /** Opens maximized (`WindowSpec::maximized`). */
+  maximized(maximized: boolean): this
+  /** This window's frame reports (see `App.on_frame_encoded`). */
+  on_frame_encoded(f: (frame: FrameEncoded) => void): this
   playground(playground: Playground): this
   /** This window's compositor (see ts/compose.ts). */
   compositor(compositor: Compositor<S>): this
@@ -52,6 +61,17 @@ export interface WindowSpecStatic {
 }
 
 export const WindowSpec: WindowSpecStatic = native.WindowSpec as any
+
+/**
+ * Opens another window in the running app's event loop (`rune::open_window`), with its own state
+ * and functions: a second document window, or a tab dragged out of its strip. Call it from a
+ * handler, an update or `on_ready`; the window starts at the end of the turn and keeps the app
+ * running until it closes. Its key must differ from every open window's. Headless runs open
+ * nothing. The handle places, focuses and closes it.
+ */
+export function open_window<S>(spec: WindowSpec<S>): WindowHandle {
+  return native.open_window(spec as any) as WindowHandle
+}
 
 type Factory = (displays: Display[]) => Iterable<WindowSpec>
 

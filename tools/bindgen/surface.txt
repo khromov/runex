@@ -14,10 +14,12 @@ class DragItem
 class El
 class FileDialogError
 class FileDialogs
+class HelpLook
 class Icon
 class Image
 class ImageCache
 class ImageError
+class InlineIcon
 class Keybind
 class Link
 class LinkPaint
@@ -43,6 +45,7 @@ class PopupMenu
 class Pose
 class RadialRadius
 class RotateEvent
+class ScrollFade
 class SecretCopy
 class SelectedText
 class SelectionChange
@@ -104,18 +107,20 @@ class kit_Button
 class kit_Card
 class kit_Cell
 class kit_Checkbox
+class kit_CodeFrame
 class kit_Collapsible
 class kit_Combobox
 class kit_ComboboxState
 class kit_DiagramFrame
 class kit_Dialog
 class kit_Divider
+class kit_Elevation
 class kit_Field
-class kit_FileTree
 class kit_Glyphs
 class kit_Highlight
 class kit_HoverCard
 class kit_IconButton
+class kit_ImageFrame
 class kit_Keybind
 class kit_Kit
 class kit_List
@@ -148,6 +153,7 @@ class kit_SidebarSection
 class kit_Spinner
 class kit_SplitView
 class kit_Switch
+class kit_TabStrip
 class kit_Table
 class kit_TableColumn
 class kit_TableState
@@ -162,7 +168,15 @@ class kit_Tooltip
 class kit_TooltipStyle
 class kit_TreeItem
 class kit_TreeRow
+class kit_TreeStyle
 class kit_Type
+class kit_WindowTitlebar
+class kit_shell__PaneMotion
+class kit_shell__Reorder
+class kit_shell__SidebarPeek
+class kit_shell__SidebarToggle
+class kit_shell__TabDragState
+class kit_shell__TabItem
 class knobs_Action
 class knobs_Group
 class knobs_Knob
@@ -208,6 +222,9 @@ class native_surface__ByteFrame
 class native_surface__FrameTiming
 class native_surface__SurfaceDraw
 class native_surface__macos__PixelBuffer [cfg(target_os = "macos")]
+class notify_Identity
+class notify_Notification
+class opencode_tree_icons__TreeIcon
 class text__Atlas
 class text__AtlasPage
 class text__FamiliesGuard
@@ -310,6 +327,11 @@ const kit_glyphs__STAR: Icon
 const kit_glyphs__STAR_FILLED: Icon
 const kit_glyphs__TRIANGLE_DOWN: Icon
 const kit_glyphs__TRIANGLE_RIGHT: Icon
+const kit_shell__INDENT: number
+const kit_shell__INSPECTOR: Icon
+const kit_shell__ROW_HEIGHT: number
+const kit_shell__SIDEBAR: Icon
+const kit_shell__TOOLBAR_HEIGHT: number
 const knobs_FOLD_TIME: knobs_Knob
 const knobs_LAYOUT: knobs_Knob
 const knobs_SIDE_MAX: number
@@ -361,6 +383,7 @@ const motion_flags__ANIMATED: number
 const motion_flags__BLANK: number
 const motion_flags__CLIPPED: number
 const motion_flags__FILTERED: number
+const motion_flags__LOOPING: number
 const motion_flags__SCROLLING: number
 const motion_prop__BUILTIN_COUNT: number
 const motion_tokens__ALL: [string, motion_SpringPair][]
@@ -407,52 +430,180 @@ const opencode_FAMILIES: [string, string]
 const opencode_FONTS: Uint8Array[]
 const opencode_GLYPHS: kit_Glyphs
 const opencode_THEME: string
+const opencode_icons__ALIGN_RIGHT: Icon
+const opencode_icons__ALL: Icon[]
+const opencode_icons__APPEARANCE: Icon
+const opencode_icons__ARCHIVE: Icon
+const opencode_icons__ARROW_DOWN_TO_LINE: Icon
+const opencode_icons__ARROW_LEFT: Icon
+const opencode_icons__ARROW_RIGHT: Icon
+const opencode_icons__ARROW_UNDO_DOWN: Icon
 const opencode_icons__ARROW_UP: Icon
+const opencode_icons__ARROW_UP_RIGHT: Icon
 const opencode_icons__BRAIN: Icon
 const opencode_icons__BRANCH: Icon
+const opencode_icons__BRANCH_OUT: Icon
+const opencode_icons__BUBBLE_5: Icon
+const opencode_icons__BULLET_LIST: Icon
 const opencode_icons__CHECK: Icon
 const opencode_icons__CHECKLIST: Icon
 const opencode_icons__CHECK_SMALL: Icon
+const opencode_icons__CHEVRON_DOUBLE_RIGHT: Icon
 const opencode_icons__CHEVRON_DOWN: Icon
+const opencode_icons__CHEVRON_GRABBER_VERTICAL: Icon
+const opencode_icons__CHEVRON_LEFT: Icon
 const opencode_icons__CHEVRON_RIGHT: Icon
 const opencode_icons__CIRCLE_BAN_SIGN: Icon
 const opencode_icons__CIRCLE_BAN_SIGN_BOLD: Icon
 const opencode_icons__CIRCLE_CHECK: Icon
 const opencode_icons__CIRCLE_CHECK_BOLD: Icon
+const opencode_icons__CIRCLE_EXCLAMATION: Icon
 const opencode_icons__CIRCLE_X: Icon
+const opencode_icons__CIRCLE_XMARK: Icon
 const opencode_icons__CLOSE: Icon
+const opencode_icons__CLOSE_SMALL: Icon
+const opencode_icons__CLOUD_UPLOAD: Icon
+const opencode_icons__CODE: Icon
 const opencode_icons__CODE_LINES: Icon
+const opencode_icons__CODE_SLASH: Icon
+const opencode_icons__COLLAPSE: Icon
+const opencode_icons__COMMENT: Icon
 const opencode_icons__CONSOLE: Icon
 const opencode_icons__COPY: Icon
+const opencode_icons__CUBE: Icon
 const opencode_icons__DASH: Icon
 const opencode_icons__DASH_BOLD: Icon
+const opencode_icons__DISCORD: Icon
+const opencode_icons__DOT_GRID: Icon
+const opencode_icons__DOWNLOAD: Icon
 const opencode_icons__EDIT: Icon
+const opencode_icons__EDIT_SMALL_2: Icon
+const opencode_icons__ENTER: Icon
+const opencode_icons__EXPAND: Icon
+const opencode_icons__EXTENSIONS: Icon
+const opencode_icons__EYE: Icon
+const opencode_icons__FILETREE: Icon
+const opencode_icons__FILE_DOCUMENT: Icon
 const opencode_icons__FILE_TREE: Icon
+const opencode_icons__FILE_TREE_ACTIVE: Icon
 const opencode_icons__FILL_TRIANGLE_DOWN: Icon
+const opencode_icons__FLASK: Icon
 const opencode_icons__FOLDER: Icon
+const opencode_icons__FOLDER_ADD_LEFT: Icon
+const opencode_icons__FORK: Icon
+const opencode_icons__GITHUB: Icon
+const opencode_icons__GLASSES: Icon
 const opencode_icons__GLOBE: Icon
+const opencode_icons__GRADUATION_CAP: Icon
 const opencode_icons__GRID_PLUS: Icon
 const opencode_icons__HELP: Icon
 const opencode_icons__HELP_BOLD: Icon
 const opencode_icons__INFO: Icon
 const opencode_icons__KEYBOARD: Icon
+const opencode_icons__LAYOUT_BOTTOM: Icon
+const opencode_icons__LAYOUT_BOTTOM_FULL: Icon
+const opencode_icons__LAYOUT_BOTTOM_PARTIAL: Icon
 const opencode_icons__LAYOUT_LEFT: Icon
 const opencode_icons__LAYOUT_LEFT_FULL: Icon
+const opencode_icons__LAYOUT_LEFT_PARTIAL: Icon
+const opencode_icons__LAYOUT_RIGHT: Icon
+const opencode_icons__LAYOUT_RIGHT_FULL: Icon
+const opencode_icons__LAYOUT_RIGHT_PARTIAL: Icon
+const opencode_icons__LINK: Icon
+const opencode_icons__LOCK: Icon
 const opencode_icons__MAGNIFYING_GLASS: Icon
+const opencode_icons__MAGNIFYING_GLASS_MENU: Icon
+const opencode_icons__MCP: Icon
+const opencode_icons__MENU: Icon
+const opencode_icons__MINUS: Icon
+const opencode_icons__MODELS: Icon
+const opencode_icons__MONITOR: Icon
+const opencode_icons__NEW_SESSION: Icon
+const opencode_icons__NEW_SESSION_ACTIVE: Icon
+const opencode_icons__NOTIFICATIONS: Icon
+const opencode_icons__OPEN_FILE: Icon
+const opencode_icons__OUTLINE_ARROW_LEFT: Icon
+const opencode_icons__OUTLINE_ARROW_RIGHT: Icon
+const opencode_icons__OUTLINE_ARROW_TO_CORNER_TOP_RIGHT: Icon
+const opencode_icons__OUTLINE_ARROW_UP_RIGHT: Icon
+const opencode_icons__OUTLINE_AUDIO: Icon
+const opencode_icons__OUTLINE_BRAIN: Icon
+const opencode_icons__OUTLINE_BROWSER_ANNOTATE: Icon
+const opencode_icons__OUTLINE_CHEVRON_DOWN: Icon
+const opencode_icons__OUTLINE_CHEVRON_RIGHT: Icon
+const opencode_icons__OUTLINE_CODE_BRACKETS: Icon
+const opencode_icons__OUTLINE_CONSOLE: Icon
+const opencode_icons__OUTLINE_COOKIE: Icon
 const opencode_icons__OUTLINE_COPY: Icon
 const opencode_icons__OUTLINE_DOTS: Icon
+const opencode_icons__OUTLINE_EXPAND: Icon
+const opencode_icons__OUTLINE_EYE: Icon
+const opencode_icons__OUTLINE_EYE_SLASH: Icon
+const opencode_icons__OUTLINE_GLOBE: Icon
+const opencode_icons__OUTLINE_GLOBE_PLUS: Icon
+const opencode_icons__OUTLINE_HEXAGONAL_WARNING: Icon
+const opencode_icons__OUTLINE_LIST_CHANGELOG: Icon
+const opencode_icons__OUTLINE_MAGNIFIER_MINUS: Icon
+const opencode_icons__OUTLINE_MAGNIFIER_PLUS: Icon
+const opencode_icons__OUTLINE_PAIR: Icon
+const opencode_icons__OUTLINE_PHOTO: Icon
+const opencode_icons__OUTLINE_QUOTE: Icon
+const opencode_icons__OUTLINE_RESET: Icon
+const opencode_icons__OUTLINE_ROTATE_CLOCKWISE: Icon
+const opencode_icons__OUTLINE_SHARE: Icon
+const opencode_icons__OUTLINE_SLIDERS: Icon
+const opencode_icons__OUTLINE_SQUARE_ARROW: Icon
+const opencode_icons__OUTLINE_STEER: Icon
+const opencode_icons__OUTLINE_TEXT: Icon
+const opencode_icons__OUTLINE_TRASH: Icon
+const opencode_icons__OUTLINE_UNDO: Icon
+const opencode_icons__OUTLINE_VIDEO: Icon
+const opencode_icons__OUTLINE_WAVE_AUDIO: Icon
 const opencode_icons__OUTLINE_WORKTREE: Icon
+const opencode_icons__OUTLINE_XMARK: Icon
+const opencode_icons__PENCIL_LINE: Icon
+const opencode_icons__PHOTO: Icon
 const opencode_icons__PLUS: Icon
+const opencode_icons__PLUS_SMALL: Icon
+const opencode_icons__POST_SKILL: Icon
+const opencode_icons__PROMPT: Icon
+const opencode_icons__PROVIDERS: Icon
+const opencode_icons__REFRESH: Icon
+const opencode_icons__RESET: Icon
+const opencode_icons__REVIEW: Icon
+const opencode_icons__REVIEW_ACTIVE: Icon
+const opencode_icons__SELECTOR: Icon
+const opencode_icons__SELECT_ELEMENT: Icon
+const opencode_icons__SERVER: Icon
 const opencode_icons__SETTINGS_GEAR: Icon
+const opencode_icons__SHARE: Icon
+const opencode_icons__SHIELD: Icon
 const opencode_icons__SIDEBAR: Icon
+const opencode_icons__SIDEBAR_ACTIVE: Icon
+const opencode_icons__SLIDERS: Icon
+const opencode_icons__SPEECH_BUBBLE: Icon
+const opencode_icons__SPLIT: Icon
+const opencode_icons__SQUARE_ARROW_TOP_RIGHT: Icon
 const opencode_icons__STATUS: Icon
+const opencode_icons__STATUS_ACTIVE: Icon
 const opencode_icons__STOP: Icon
-const opencode_icons__SUBAGENT: Icon
+const opencode_icons__TASK: Icon
+const opencode_icons__TERMINAL: Icon
+const opencode_icons__TERMINAL_ACTIVE: Icon
 const opencode_icons__TRASH: Icon
+const opencode_icons__UNIFIED: Icon
 const opencode_icons__WARNING: Icon
 const opencode_icons__WARNING_BOLD: Icon
+const opencode_icons__WAVEFORM: Icon
+const opencode_icons__WINDOW_ANALYTICS: Icon
+const opencode_icons__WINDOW_CURSOR: Icon
+const opencode_icons__WORKSPACE: Icon
+const opencode_icons__WORKSPACE_ISOLATED: Icon
+const opencode_icons__WORKSPACE_NEW: Icon
 const opencode_icons__XMARK_SMALL: Icon
+const opencode_provider_icons__FALLBACK: Icon
 const opencode_provider_icons__NAMES: string[]
+const opencode_tree_icons__CHEVRON: Icon
 const shape__DRAW_RAMP: number
 const text__ATLAS_SIZE: number
 const text__ApplePipeline.SMOOTHED: text__ApplePipeline
@@ -471,7 +622,7 @@ const tok__type___LABEL: TextStyle
 const tok__type___MONO_CAPTION: TextStyle
 const tok__type___SECTION: TextStyle
 const tok__type___TITLE: TextStyle
-ctor Anchor(init?: { key: string; side: Side; align: Align; gap: number; fit: boolean; unscaled: boolean })
+ctor Anchor(init?: { key: string; side: Side; align: Align; gap: number; fit: boolean; unscaled: boolean; round: boolean })
 ctor Chrome(init?: { full_size_content?: boolean; traffic_lights?: [number, number] | null; drag_regions?: boolean })
 ctor ChromeInsets(init?: { leading?: number; trailing?: number; height?: number })
 ctor Color(init?: { r?: number; g?: number; b?: number; a?: number })
@@ -500,6 +651,7 @@ ctor Span(init: { start: number; end: number; weight: number | null; mono: boole
 ctor StreamEdge(init?: { name: string; mask_max: number; floor: number; shrink: number; catch_up: number; duration: number; clip: boolean; overflow: boolean; word_fade: number })
 ctor TextStyle(init: { size: number; weight: number; family: Family; line_height: number; tracking: number; variations: string; features: string; optical_size: OpticalSize; italic: boolean }): TextStyle
 ctor WindowOptions(init?: { transparent?: boolean; borderless?: boolean; click_through?: boolean; always_on_top?: boolean; visible?: boolean; position?: [number, number] | null; physical_size?: [number, number] | null; min_size?: [number, number] | null; max_size?: [number, number] | null; resizable?: boolean })
+ctor WindowPlacement(init?: { position?: [number, number]; content_position?: [number, number]; content_size?: [number, number]; scale?: number; maximized?: boolean; minimized?: boolean; full_screen?: boolean })
 ctor edit__EditOutcome(init?: { submit?: boolean; copy?: string | null; blur?: boolean })
 ctor fx_AuroraParams(init: { a: fx_Rgb; b: fx_Rgb; c: fx_Rgb; scale: number; speed: number; intensity: number; feather: number }): fx_AuroraParams
 ctor fx_Choice(init?: { id: string; name: string; rust: string })
@@ -535,15 +687,17 @@ ctor fx_VoronoiParams(init: { colors: fx_Stops; edge_color: fx_Rgb; scale: numbe
 ctor fx_WaveParams(init: { colors: fx_Stops; amplitude: number; frequency: number; speed: number; angle: number; softness: number }): fx_WaveParams
 ctor growth__FoldGlide(init?: { spring: motion_Spring; feather: number | null })
 ctor kit_ComboboxOption(init?: { id: string; label: string; detail: string; disabled: boolean })
-ctor kit_Elevation(init?: { raised?: Shadow[]; floating?: Shadow[]; overlay?: Shadow[]; button_neutral?: Shadow[]; button_contrast?: Shadow[]; elements?: Shadow[]; switch_off?: Shadow[]; switch_on?: Shadow[]; md?: Shadow[]; knob?: Shadow[] })
 ctor kit_Motion(init?: { control: motion_Spring; overlay: motion_Spring; disclosure: motion_Spring })
 ctor kit_Palette(init?: { page: Color; bg_base: Color; bg_deep: Color; layer_01: Color; layer_02: Color; layer_03: Color; layer_04: Color; bg_inverse: Color; bg_contrast: Color; bg_button_neutral: Color; bg_icon_button_contrast: Color; bg_accent: Color; submit_highlight: Color; submit_hover: Color; submit_fg: Color; submit_icon: Color; text_base: Color; text_muted: Color; text_faint: Color; text_inverse: Color; text_contrast: Color; text_accent: Color; icon_base: Color; icon_muted: Color; icon_faint: Color; icon_inverse: Color; icon_contrast: Color; icon_accent: Color; border_muted: Color; border_base: Color; border_strong: Color; border_focus: Color; hover: Color; pressed: Color; contrast_hover: Color; contrast_pressed: Color; scrim: Color; depth_top: Color; depth_bottom: Color; white: Color; black: Color; knob: Color; knob_on: Color; success: kit_StateColors; warning: kit_StateColors; danger: kit_StateColors; info: kit_StateColors; surface_base: Color; surface_weak: Color; surface_hover: Color; surface_raised: Color; surface_raised_base: Color; surface_raised_hover: Color; surface_float: Color; surface_disabled: Color; border_weak: Color; border_hover: Color; border_active: Color; border_disabled: Color; text_strong: Color; text_weak: Color; text_invert_strong: Color; icon_weaker: Color; std_border: Color; std_icon: Color; std_icon_invert: Color; std_icon_strong: Color; std_text: Color })
 ctor kit_PaletteSeed(init?: { bg: Color; fg: Color; accent: Color })
 ctor kit_Radius(init?: { xs: number; sm: number; md: number; lg: number; xl: number })
 ctor kit_StateColors(init?: { bg: Color; fg: Color; border: Color; icon: Color })
 ctor kit_TableStyle(init: { row_height: number; header_height: number; cell_pad: number; font: TextStyle; mono: TextStyle; header_font: TextStyle; text: Color; muted: Color; header_text: Color; rule: Color; selected: Color; stripe: Color }): kit_TableStyle
-ctor kit_TreeStyle(init?: { row_height: number; indent: number; padding: number; guides: boolean; guide: Color; selected: Color })
 ctor kit_Type(init: { ui: TextStyle; ui_medium: TextStyle; ui_compact: TextStyle; small: TextStyle; small_medium: TextStyle; body: TextStyle; body_medium: TextStyle; text_small: TextStyle; text_small_medium: TextStyle; text_xsmall: TextStyle; text_xsmall_medium: TextStyle; mono: TextStyle }): kit_Type
+ctor kit_shell__TabReorder(init?: { id: string; from: number; to: number })
+ctor kit_shell__TabTearMove(init?: { id: string; index: number; torn: boolean; grab: number[]; window_point: number[]; screen_point: [number, number] | null })
+ctor kit_shell__TabTearOut(init?: { id: string; index: number; offset: number[]; window_point: number[] | null; screen_point: [number, number] | null })
+ctor kit_shell__TearOutSpec(init?: { detach_distance?: number; reattach_distance?: number })
 ctor knobs_Knob(init: { name: string; label: string; min: number; max: number; default: number; step: number; labels: string[]; about: string; hints: string[] }): knobs_Knob
 ctor knobs_Note(init: { name: string; label: string; about: string; hints: [string, string][] }): knobs_Note
 ctor knobs_Preset(init?: { name: string; values: [string, number][] })
@@ -583,6 +737,7 @@ ctor motion_Vec2(init?: { x?: number; y?: number })
 ctor native_surface__ByteFrame(init: { width: number; height: number; format: native_surface__Format; color: native_surface__ColorInfo; planes: Uint8Array[] }): native_surface__ByteFrame
 ctor native_surface__ColorInfo(init?: { matrix?: native_surface__Matrix; transfer?: native_surface__Transfer })
 ctor native_surface__SurfaceDraw(init: { surface: NativeSurface; fit: SurfaceFit; before_instance: number; rect: number[]; radii: number[]; clip: number[]; fade: number[]; opacity: number }): native_surface__SurfaceDraw
+ctor notify_Click(init?: { id?: string; info?: [string, string][] })
 ctor text__ApplePipeline(init?: { dilate: boolean; flatten: boolean; hint: boolean })
 ctor text__Deco(init?: { rect: number[]; color: Color; radius: number })
 ctor text__GlyphQuad(init?: { rect: number[]; uv: number[]; ink: number; byte: number; color: number })
@@ -673,6 +828,13 @@ enum kit_SortDir
 enum kit_State
 enum kit_TooltipAppearance
 enum kit_TreeKey
+enum kit_shell__RowStatus
+enum kit_shell__TabDensity
+enum kit_shell__TabDragMode
+enum kit_shell__TabDragPhase
+enum kit_shell__TabItemStatus
+enum kit_shell__TabOrientation
+enum kit_shell__TabOverflow
 enum motion_Blend
 enum motion_Curve
 enum motion_Easing
@@ -768,6 +930,7 @@ export kit/Card = kit_Card
 export kit/Case = kit_Case
 export kit/Cell = kit_Cell
 export kit/Checkbox = kit_Checkbox
+export kit/CodeFrame = kit_CodeFrame
 export kit/Collapsible = kit_Collapsible
 export kit/Combobox = kit_Combobox
 export kit/ComboboxOption = kit_ComboboxOption
@@ -778,12 +941,12 @@ export kit/Dialog = kit_Dialog
 export kit/Divider = kit_Divider
 export kit/Elevation = kit_Elevation
 export kit/Field = kit_Field
-export kit/FileTree = kit_FileTree
 export kit/Glyphs = kit_Glyphs
 export kit/Highlight = kit_Highlight
 export kit/HoverCard = kit_HoverCard
 export kit/IconButton = kit_IconButton
 export kit/IconButtonVariant = kit_IconButtonVariant (type)
+export kit/ImageFrame = kit_ImageFrame
 export kit/Keybind = kit_Keybind
 export kit/KeybindVariant = kit_KeybindVariant (type)
 export kit/Kit = kit_Kit
@@ -828,6 +991,7 @@ export kit/SplitView = kit_SplitView
 export kit/State = kit_State (type)
 export kit/StateColors = kit_StateColors
 export kit/Switch = kit_Switch
+export kit/TabStrip = kit_TabStrip
 export kit/Table = kit_Table
 export kit/TableColumn = kit_TableColumn
 export kit/TableState = kit_TableState
@@ -846,8 +1010,10 @@ export kit/TreeKey = kit_TreeKey (type)
 export kit/TreeRow = kit_TreeRow
 export kit/TreeStyle = kit_TreeStyle
 export kit/Type = kit_Type
+export kit/WindowTitlebar = kit_WindowTitlebar
 export kit/body_text = kit_body_text
 export kit/context_menu = kit_context_menu
+export kit/file_icon = kit_file_icon
 export kit/glyphs/ARROW_RIGHT = kit_glyphs__ARROW_RIGHT
 export kit/glyphs/CARET_RIGHT = kit_glyphs__CARET_RIGHT
 export kit/glyphs/CHECK = kit_glyphs__CHECK
@@ -889,6 +1055,39 @@ export kit/overlay_text = kit_overlay_text
 export kit/root = kit_root
 export kit/scrim = kit_scrim
 export kit/scroll_bar = kit_scroll_bar
+export kit/shell/INDENT = kit_shell__INDENT
+export kit/shell/INSPECTOR = kit_shell__INSPECTOR
+export kit/shell/Page = kit_Page
+export kit/shell/PaneMotion = kit_shell__PaneMotion
+export kit/shell/PaneState = kit_PaneState
+export kit/shell/ROW_HEIGHT = kit_shell__ROW_HEIGHT
+export kit/shell/Reorder = kit_shell__Reorder
+export kit/shell/RowStatus = kit_shell__RowStatus (type)
+export kit/shell/SIDEBAR = kit_shell__SIDEBAR
+export kit/shell/Sidebar = kit_Sidebar
+export kit/shell/SidebarHeader = kit_SidebarHeader
+export kit/shell/SidebarPeek = kit_shell__SidebarPeek
+export kit/shell/SidebarRow = kit_SidebarRow
+export kit/shell/SidebarSection = kit_SidebarSection
+export kit/shell/SidebarToggle = kit_shell__SidebarToggle
+export kit/shell/SplitView = kit_SplitView
+export kit/shell/TOOLBAR_HEIGHT = kit_shell__TOOLBAR_HEIGHT
+export kit/shell/TabDensity = kit_shell__TabDensity (type)
+export kit/shell/TabDragMode = kit_shell__TabDragMode (type)
+export kit/shell/TabDragPhase = kit_shell__TabDragPhase (type)
+export kit/shell/TabDragState = kit_shell__TabDragState
+export kit/shell/TabItem = kit_shell__TabItem
+export kit/shell/TabItemStatus = kit_shell__TabItemStatus (type)
+export kit/shell/TabOrientation = kit_shell__TabOrientation (type)
+export kit/shell/TabOverflow = kit_shell__TabOverflow
+export kit/shell/TabReorder = kit_shell__TabReorder
+export kit/shell/TabStrip = kit_TabStrip
+export kit/shell/TabTearMove = kit_shell__TabTearMove
+export kit/shell/TabTearOut = kit_shell__TabTearOut
+export kit/shell/TearOutSpec = kit_shell__TearOutSpec
+export kit/shell/Toolbar = kit_Toolbar
+export kit/shell/WindowTitlebar = kit_WindowTitlebar
+export kit/shell/is_sidebar_toggle = kit_shell__is_sidebar_toggle
 export knobs/Action = knobs_Action
 export knobs/FOLD_TIME = knobs_FOLD_TIME
 export knobs/Group = knobs_Group
@@ -1006,6 +1205,7 @@ export motion/flags/ANIMATED = motion_flags__ANIMATED
 export motion/flags/BLANK = motion_flags__BLANK
 export motion/flags/CLIPPED = motion_flags__CLIPPED
 export motion/flags/FILTERED = motion_flags__FILTERED
+export motion/flags/LOOPING = motion_flags__LOOPING
 export motion/flags/SCROLLING = motion_flags__SCROLLING
 export motion/linear_to_oklab = motion_linear_to_oklab
 export motion/math/exp = motion_math__exp
@@ -1061,6 +1261,16 @@ export motion/tokens/swiftui/BOUNCY = motion_tokens__swiftui__BOUNCY
 export motion/tokens/swiftui/SMOOTH = motion_tokens__swiftui__SMOOTH
 export motion/tokens/swiftui/SNAPPY = motion_tokens__swiftui__SNAPPY
 export motion/tokens/swiftui/SPRING = motion_tokens__swiftui__SPRING
+export notify/Click = notify_Click
+export notify/Identity = notify_Identity
+export notify/Notification = notify_Notification
+export notify/app_focused = notify_app_focused
+export notify/available = notify_available
+export notify/bring_to_front = notify_bring_to_front
+export notify/click_from_url = notify_click_from_url
+export notify/post = notify_post
+export notify/register = notify_register
+export notify/remove = notify_remove
 export rune/AccessibilityLink = AccessibilityLink
 export rune/Align = Align (type)
 export rune/Anchor = Anchor
@@ -1112,11 +1322,13 @@ export rune/GROWTH = growth__GROWTH
 export rune/GesturePhase = GesturePhase (type)
 export rune/GpuBackend = GpuBackend (type)
 export rune/GrowthSpec = GrowthSpec
+export rune/HelpLook = HelpLook
 export rune/Icon = Icon
 export rune/Image = Image
 export rune/ImageCache = ImageCache
 export rune/ImageError = ImageError
 export rune/Ime = Ime (type)
+export rune/InlineIcon = InlineIcon
 export rune/Key = Key
 export rune/KeyEvent = KeyEvent
 export rune/KeyPlatform = KeyPlatform
@@ -1189,6 +1401,7 @@ export rune/RunOptions = RunOptions
 export rune/ScreenEdge = ScreenEdge (type)
 export rune/ScriptedFileDialog = ScriptedFileDialog
 export rune/ScrollBars = ScrollBars
+export rune/ScrollFade = ScrollFade
 export rune/ScrollPos = ScrollPos
 export rune/ScrollSpec = ScrollSpec
 export rune/SecretCopy = SecretCopy
@@ -1234,6 +1447,7 @@ export rune/Velocity = motion_Velocity (type)
 export rune/WheelEvent = WheelEvent
 export rune/WindowHandle = WindowHandle
 export rune/WindowOptions = WindowOptions
+export rune/WindowPlacement = WindowPlacement
 export rune/anchor_rect = el__anchor_rect
 export rune/auto_grow = el__auto_grow
 export rune/canvas = el__canvas
@@ -1286,6 +1500,7 @@ export rune/el/Cycle = motion_Cycle
 export rune/el/Drag = Drag
 export rune/el/El = El
 export rune/el/GrowthSpec = GrowthSpec
+export rune/el/InlineIcon = InlineIcon
 export rune/el/InputSpec = el__InputSpec
 export rune/el/LiveRegion = LiveRegion (type)
 export rune/el/Outline = Outline
@@ -1294,6 +1509,7 @@ export rune/el/PillStyle = PillStyle
 export rune/el/PointerEvent = PointerEvent
 export rune/el/PointerPress = PointerPress
 export rune/el/RadialRadius = RadialRadius
+export rune/el/ScrollFade = ScrollFade
 export rune/el/ScrollSpec = ScrollSpec
 export rune/el/Shadow = Shadow
 export rune/el/Shell = Shell (type)
@@ -1338,6 +1554,7 @@ export rune/image/ImageError = ImageError
 export rune/image/app_icon_rgba = image__app_icon_rgba
 export rune/memo/layout = memo__layout
 export rune/memo/layout_size = memo__layout_size
+export rune/memo/memo_with_hash = memo__memo_with_hash
 export rune/memo/window_layout = memo__window_layout
 export rune/modifier_keycaps = modifier_keycaps
 export rune/native_surface/ByteFrame = native_surface__ByteFrame
@@ -1369,6 +1586,7 @@ export rune/shape/DRAW_RAMP = shape__DRAW_RAMP
 export rune/shape/LineCap = LineCap (type)
 export rune/shape/Path = Path
 export rune/shape/Shape = Shape
+export rune/single_instance = single_instance
 export rune/spacer = el__spacer
 export rune/system_accent = system_accent
 export rune/system_scroll_bars = system_scroll_bars
@@ -1396,6 +1614,7 @@ export rune/text/TextHighlight = TextHighlight
 export rune/text/TextInk = text__TextInk
 export rune/text/TextSystem = text__TextSystem
 export rune/text/advance = text__advance
+export rune/text/content_widths = text__content_widths
 export rune/text/font_epoch = text__font_epoch
 export rune/text/icon_coverage = text__icon_coverage
 export rune/text/ink = text__ink
@@ -1472,65 +1691,206 @@ export rune/windows/Display = Display
 export rune/windows/MacWindowOptions = MacWindowOptions
 export rune/windows/RunOptions = RunOptions
 export rune/windows/WindowOptions = WindowOptions
+export rune/windows/WindowPlacement = WindowPlacement
 export theme_opencode/FAMILIES = opencode_FAMILIES
 export theme_opencode/FONTS = opencode_FONTS
 export theme_opencode/GLYPHS = opencode_GLYPHS
 export theme_opencode/THEME = opencode_THEME
+export theme_opencode/app_icons/named = opencode_app_icons__named
 export theme_opencode/brand = opencode_brand
 export theme_opencode/ember = opencode_ember
+export theme_opencode/file_icons/all = opencode_file_icons__all
+export theme_opencode/file_icons/file = opencode_file_icons__file
+export theme_opencode/file_icons/folder = opencode_file_icons__folder
+export theme_opencode/icons/ALIGN_RIGHT = opencode_icons__ALIGN_RIGHT
+export theme_opencode/icons/ALL = opencode_icons__ALL
+export theme_opencode/icons/APPEARANCE = opencode_icons__APPEARANCE
+export theme_opencode/icons/ARCHIVE = opencode_icons__ARCHIVE
+export theme_opencode/icons/ARROW_DOWN_TO_LINE = opencode_icons__ARROW_DOWN_TO_LINE
+export theme_opencode/icons/ARROW_LEFT = opencode_icons__ARROW_LEFT
+export theme_opencode/icons/ARROW_RIGHT = opencode_icons__ARROW_RIGHT
+export theme_opencode/icons/ARROW_UNDO_DOWN = opencode_icons__ARROW_UNDO_DOWN
 export theme_opencode/icons/ARROW_UP = opencode_icons__ARROW_UP
+export theme_opencode/icons/ARROW_UP_RIGHT = opencode_icons__ARROW_UP_RIGHT
 export theme_opencode/icons/BRAIN = opencode_icons__BRAIN
 export theme_opencode/icons/BRANCH = opencode_icons__BRANCH
+export theme_opencode/icons/BRANCH_OUT = opencode_icons__BRANCH_OUT
+export theme_opencode/icons/BUBBLE_5 = opencode_icons__BUBBLE_5
+export theme_opencode/icons/BULLET_LIST = opencode_icons__BULLET_LIST
 export theme_opencode/icons/CHECK = opencode_icons__CHECK
 export theme_opencode/icons/CHECKLIST = opencode_icons__CHECKLIST
 export theme_opencode/icons/CHECK_SMALL = opencode_icons__CHECK_SMALL
+export theme_opencode/icons/CHEVRON_DOUBLE_RIGHT = opencode_icons__CHEVRON_DOUBLE_RIGHT
 export theme_opencode/icons/CHEVRON_DOWN = opencode_icons__CHEVRON_DOWN
+export theme_opencode/icons/CHEVRON_GRABBER_VERTICAL = opencode_icons__CHEVRON_GRABBER_VERTICAL
+export theme_opencode/icons/CHEVRON_LEFT = opencode_icons__CHEVRON_LEFT
 export theme_opencode/icons/CHEVRON_RIGHT = opencode_icons__CHEVRON_RIGHT
 export theme_opencode/icons/CIRCLE_BAN_SIGN = opencode_icons__CIRCLE_BAN_SIGN
 export theme_opencode/icons/CIRCLE_BAN_SIGN_BOLD = opencode_icons__CIRCLE_BAN_SIGN_BOLD
 export theme_opencode/icons/CIRCLE_CHECK = opencode_icons__CIRCLE_CHECK
 export theme_opencode/icons/CIRCLE_CHECK_BOLD = opencode_icons__CIRCLE_CHECK_BOLD
+export theme_opencode/icons/CIRCLE_EXCLAMATION = opencode_icons__CIRCLE_EXCLAMATION
 export theme_opencode/icons/CIRCLE_X = opencode_icons__CIRCLE_X
+export theme_opencode/icons/CIRCLE_XMARK = opencode_icons__CIRCLE_XMARK
 export theme_opencode/icons/CLOSE = opencode_icons__CLOSE
+export theme_opencode/icons/CLOSE_SMALL = opencode_icons__CLOSE_SMALL
+export theme_opencode/icons/CLOUD_UPLOAD = opencode_icons__CLOUD_UPLOAD
+export theme_opencode/icons/CODE = opencode_icons__CODE
 export theme_opencode/icons/CODE_LINES = opencode_icons__CODE_LINES
+export theme_opencode/icons/CODE_SLASH = opencode_icons__CODE_SLASH
+export theme_opencode/icons/COLLAPSE = opencode_icons__COLLAPSE
+export theme_opencode/icons/COMMENT = opencode_icons__COMMENT
 export theme_opencode/icons/CONSOLE = opencode_icons__CONSOLE
 export theme_opencode/icons/COPY = opencode_icons__COPY
+export theme_opencode/icons/CUBE = opencode_icons__CUBE
 export theme_opencode/icons/DASH = opencode_icons__DASH
 export theme_opencode/icons/DASH_BOLD = opencode_icons__DASH_BOLD
+export theme_opencode/icons/DISCORD = opencode_icons__DISCORD
+export theme_opencode/icons/DOT_GRID = opencode_icons__DOT_GRID
+export theme_opencode/icons/DOWNLOAD = opencode_icons__DOWNLOAD
 export theme_opencode/icons/EDIT = opencode_icons__EDIT
+export theme_opencode/icons/EDIT_SMALL_2 = opencode_icons__EDIT_SMALL_2
+export theme_opencode/icons/ENTER = opencode_icons__ENTER
+export theme_opencode/icons/EXPAND = opencode_icons__EXPAND
+export theme_opencode/icons/EXTENSIONS = opencode_icons__EXTENSIONS
+export theme_opencode/icons/EYE = opencode_icons__EYE
+export theme_opencode/icons/FILETREE = opencode_icons__FILETREE
+export theme_opencode/icons/FILE_DOCUMENT = opencode_icons__FILE_DOCUMENT
 export theme_opencode/icons/FILE_TREE = opencode_icons__FILE_TREE
+export theme_opencode/icons/FILE_TREE_ACTIVE = opencode_icons__FILE_TREE_ACTIVE
 export theme_opencode/icons/FILL_TRIANGLE_DOWN = opencode_icons__FILL_TRIANGLE_DOWN
+export theme_opencode/icons/FLASK = opencode_icons__FLASK
 export theme_opencode/icons/FOLDER = opencode_icons__FOLDER
+export theme_opencode/icons/FOLDER_ADD_LEFT = opencode_icons__FOLDER_ADD_LEFT
+export theme_opencode/icons/FORK = opencode_icons__FORK
+export theme_opencode/icons/GITHUB = opencode_icons__GITHUB
+export theme_opencode/icons/GLASSES = opencode_icons__GLASSES
 export theme_opencode/icons/GLOBE = opencode_icons__GLOBE
+export theme_opencode/icons/GRADUATION_CAP = opencode_icons__GRADUATION_CAP
 export theme_opencode/icons/GRID_PLUS = opencode_icons__GRID_PLUS
 export theme_opencode/icons/HELP = opencode_icons__HELP
 export theme_opencode/icons/HELP_BOLD = opencode_icons__HELP_BOLD
 export theme_opencode/icons/INFO = opencode_icons__INFO
 export theme_opencode/icons/KEYBOARD = opencode_icons__KEYBOARD
+export theme_opencode/icons/LAYOUT_BOTTOM = opencode_icons__LAYOUT_BOTTOM
+export theme_opencode/icons/LAYOUT_BOTTOM_FULL = opencode_icons__LAYOUT_BOTTOM_FULL
+export theme_opencode/icons/LAYOUT_BOTTOM_PARTIAL = opencode_icons__LAYOUT_BOTTOM_PARTIAL
 export theme_opencode/icons/LAYOUT_LEFT = opencode_icons__LAYOUT_LEFT
 export theme_opencode/icons/LAYOUT_LEFT_FULL = opencode_icons__LAYOUT_LEFT_FULL
+export theme_opencode/icons/LAYOUT_LEFT_PARTIAL = opencode_icons__LAYOUT_LEFT_PARTIAL
+export theme_opencode/icons/LAYOUT_RIGHT = opencode_icons__LAYOUT_RIGHT
+export theme_opencode/icons/LAYOUT_RIGHT_FULL = opencode_icons__LAYOUT_RIGHT_FULL
+export theme_opencode/icons/LAYOUT_RIGHT_PARTIAL = opencode_icons__LAYOUT_RIGHT_PARTIAL
+export theme_opencode/icons/LINK = opencode_icons__LINK
+export theme_opencode/icons/LOCK = opencode_icons__LOCK
 export theme_opencode/icons/MAGNIFYING_GLASS = opencode_icons__MAGNIFYING_GLASS
+export theme_opencode/icons/MAGNIFYING_GLASS_MENU = opencode_icons__MAGNIFYING_GLASS_MENU
+export theme_opencode/icons/MCP = opencode_icons__MCP
+export theme_opencode/icons/MENU = opencode_icons__MENU
+export theme_opencode/icons/MINUS = opencode_icons__MINUS
+export theme_opencode/icons/MODELS = opencode_icons__MODELS
+export theme_opencode/icons/MONITOR = opencode_icons__MONITOR
+export theme_opencode/icons/NEW_SESSION = opencode_icons__NEW_SESSION
+export theme_opencode/icons/NEW_SESSION_ACTIVE = opencode_icons__NEW_SESSION_ACTIVE
+export theme_opencode/icons/NOTIFICATIONS = opencode_icons__NOTIFICATIONS
+export theme_opencode/icons/OPEN_FILE = opencode_icons__OPEN_FILE
+export theme_opencode/icons/OUTLINE_ARROW_LEFT = opencode_icons__OUTLINE_ARROW_LEFT
+export theme_opencode/icons/OUTLINE_ARROW_RIGHT = opencode_icons__OUTLINE_ARROW_RIGHT
+export theme_opencode/icons/OUTLINE_ARROW_TO_CORNER_TOP_RIGHT = opencode_icons__OUTLINE_ARROW_TO_CORNER_TOP_RIGHT
+export theme_opencode/icons/OUTLINE_ARROW_UP_RIGHT = opencode_icons__OUTLINE_ARROW_UP_RIGHT
+export theme_opencode/icons/OUTLINE_AUDIO = opencode_icons__OUTLINE_AUDIO
+export theme_opencode/icons/OUTLINE_BRAIN = opencode_icons__OUTLINE_BRAIN
+export theme_opencode/icons/OUTLINE_BROWSER_ANNOTATE = opencode_icons__OUTLINE_BROWSER_ANNOTATE
+export theme_opencode/icons/OUTLINE_CHEVRON_DOWN = opencode_icons__OUTLINE_CHEVRON_DOWN
+export theme_opencode/icons/OUTLINE_CHEVRON_RIGHT = opencode_icons__OUTLINE_CHEVRON_RIGHT
+export theme_opencode/icons/OUTLINE_CODE_BRACKETS = opencode_icons__OUTLINE_CODE_BRACKETS
+export theme_opencode/icons/OUTLINE_CONSOLE = opencode_icons__OUTLINE_CONSOLE
+export theme_opencode/icons/OUTLINE_COOKIE = opencode_icons__OUTLINE_COOKIE
 export theme_opencode/icons/OUTLINE_COPY = opencode_icons__OUTLINE_COPY
 export theme_opencode/icons/OUTLINE_DOTS = opencode_icons__OUTLINE_DOTS
+export theme_opencode/icons/OUTLINE_EXPAND = opencode_icons__OUTLINE_EXPAND
+export theme_opencode/icons/OUTLINE_EYE = opencode_icons__OUTLINE_EYE
+export theme_opencode/icons/OUTLINE_EYE_SLASH = opencode_icons__OUTLINE_EYE_SLASH
+export theme_opencode/icons/OUTLINE_GLOBE = opencode_icons__OUTLINE_GLOBE
+export theme_opencode/icons/OUTLINE_GLOBE_PLUS = opencode_icons__OUTLINE_GLOBE_PLUS
+export theme_opencode/icons/OUTLINE_HEXAGONAL_WARNING = opencode_icons__OUTLINE_HEXAGONAL_WARNING
+export theme_opencode/icons/OUTLINE_LIST_CHANGELOG = opencode_icons__OUTLINE_LIST_CHANGELOG
+export theme_opencode/icons/OUTLINE_MAGNIFIER_MINUS = opencode_icons__OUTLINE_MAGNIFIER_MINUS
+export theme_opencode/icons/OUTLINE_MAGNIFIER_PLUS = opencode_icons__OUTLINE_MAGNIFIER_PLUS
+export theme_opencode/icons/OUTLINE_PAIR = opencode_icons__OUTLINE_PAIR
+export theme_opencode/icons/OUTLINE_PHOTO = opencode_icons__OUTLINE_PHOTO
+export theme_opencode/icons/OUTLINE_QUOTE = opencode_icons__OUTLINE_QUOTE
+export theme_opencode/icons/OUTLINE_RESET = opencode_icons__OUTLINE_RESET
+export theme_opencode/icons/OUTLINE_ROTATE_CLOCKWISE = opencode_icons__OUTLINE_ROTATE_CLOCKWISE
+export theme_opencode/icons/OUTLINE_SHARE = opencode_icons__OUTLINE_SHARE
+export theme_opencode/icons/OUTLINE_SLIDERS = opencode_icons__OUTLINE_SLIDERS
+export theme_opencode/icons/OUTLINE_SQUARE_ARROW = opencode_icons__OUTLINE_SQUARE_ARROW
+export theme_opencode/icons/OUTLINE_STEER = opencode_icons__OUTLINE_STEER
+export theme_opencode/icons/OUTLINE_TEXT = opencode_icons__OUTLINE_TEXT
+export theme_opencode/icons/OUTLINE_TRASH = opencode_icons__OUTLINE_TRASH
+export theme_opencode/icons/OUTLINE_UNDO = opencode_icons__OUTLINE_UNDO
+export theme_opencode/icons/OUTLINE_VIDEO = opencode_icons__OUTLINE_VIDEO
+export theme_opencode/icons/OUTLINE_WAVE_AUDIO = opencode_icons__OUTLINE_WAVE_AUDIO
 export theme_opencode/icons/OUTLINE_WORKTREE = opencode_icons__OUTLINE_WORKTREE
+export theme_opencode/icons/OUTLINE_XMARK = opencode_icons__OUTLINE_XMARK
+export theme_opencode/icons/PENCIL_LINE = opencode_icons__PENCIL_LINE
+export theme_opencode/icons/PHOTO = opencode_icons__PHOTO
 export theme_opencode/icons/PLUS = opencode_icons__PLUS
+export theme_opencode/icons/PLUS_SMALL = opencode_icons__PLUS_SMALL
+export theme_opencode/icons/POST_SKILL = opencode_icons__POST_SKILL
+export theme_opencode/icons/PROMPT = opencode_icons__PROMPT
+export theme_opencode/icons/PROVIDERS = opencode_icons__PROVIDERS
+export theme_opencode/icons/REFRESH = opencode_icons__REFRESH
+export theme_opencode/icons/RESET = opencode_icons__RESET
+export theme_opencode/icons/REVIEW = opencode_icons__REVIEW
+export theme_opencode/icons/REVIEW_ACTIVE = opencode_icons__REVIEW_ACTIVE
+export theme_opencode/icons/SELECTOR = opencode_icons__SELECTOR
+export theme_opencode/icons/SELECT_ELEMENT = opencode_icons__SELECT_ELEMENT
+export theme_opencode/icons/SERVER = opencode_icons__SERVER
 export theme_opencode/icons/SETTINGS_GEAR = opencode_icons__SETTINGS_GEAR
+export theme_opencode/icons/SHARE = opencode_icons__SHARE
+export theme_opencode/icons/SHIELD = opencode_icons__SHIELD
 export theme_opencode/icons/SIDEBAR = opencode_icons__SIDEBAR
+export theme_opencode/icons/SIDEBAR_ACTIVE = opencode_icons__SIDEBAR_ACTIVE
+export theme_opencode/icons/SLIDERS = opencode_icons__SLIDERS
+export theme_opencode/icons/SPEECH_BUBBLE = opencode_icons__SPEECH_BUBBLE
+export theme_opencode/icons/SPLIT = opencode_icons__SPLIT
+export theme_opencode/icons/SQUARE_ARROW_TOP_RIGHT = opencode_icons__SQUARE_ARROW_TOP_RIGHT
 export theme_opencode/icons/STATUS = opencode_icons__STATUS
+export theme_opencode/icons/STATUS_ACTIVE = opencode_icons__STATUS_ACTIVE
 export theme_opencode/icons/STOP = opencode_icons__STOP
-export theme_opencode/icons/SUBAGENT = opencode_icons__SUBAGENT
+export theme_opencode/icons/TASK = opencode_icons__TASK
+export theme_opencode/icons/TERMINAL = opencode_icons__TERMINAL
+export theme_opencode/icons/TERMINAL_ACTIVE = opencode_icons__TERMINAL_ACTIVE
 export theme_opencode/icons/TRASH = opencode_icons__TRASH
+export theme_opencode/icons/UNIFIED = opencode_icons__UNIFIED
 export theme_opencode/icons/WARNING = opencode_icons__WARNING
 export theme_opencode/icons/WARNING_BOLD = opencode_icons__WARNING_BOLD
+export theme_opencode/icons/WAVEFORM = opencode_icons__WAVEFORM
+export theme_opencode/icons/WINDOW_ANALYTICS = opencode_icons__WINDOW_ANALYTICS
+export theme_opencode/icons/WINDOW_CURSOR = opencode_icons__WINDOW_CURSOR
+export theme_opencode/icons/WORKSPACE = opencode_icons__WORKSPACE
+export theme_opencode/icons/WORKSPACE_ISOLATED = opencode_icons__WORKSPACE_ISOLATED
+export theme_opencode/icons/WORKSPACE_NEW = opencode_icons__WORKSPACE_NEW
 export theme_opencode/icons/XMARK_SMALL = opencode_icons__XMARK_SMALL
 export theme_opencode/kit = opencode_kit
+export theme_opencode/new_icons/new_icon = opencode_new_icons__new_icon
+export theme_opencode/provider_icons/FALLBACK = opencode_provider_icons__FALLBACK
 export theme_opencode/provider_icons/NAMES = opencode_provider_icons__NAMES
+export theme_opencode/provider_icons/named = opencode_provider_icons__named
 export theme_opencode/scale = opencode_scale
 export theme_opencode/theme = opencode_theme
+export theme_opencode/tree_icons/CHEVRON = opencode_tree_icons__CHEVRON
+export theme_opencode/tree_icons/TreeIcon = opencode_tree_icons__TreeIcon
+export theme_opencode/tree_icons/all = opencode_tree_icons__all
+export theme_opencode/tree_icons/file = opencode_tree_icons__file
+export theme_opencode/tree_icons/item = opencode_tree_icons__item
+export theme_opencode/tree_icons/style = opencode_tree_icons__style
 field Anchor.align: Align
 field Anchor.fit: boolean
 field Anchor.gap: number
 field Anchor.key: string
+field Anchor.round: boolean
 field Anchor.side: Side
 field Anchor.unscaled: boolean
 field Chrome.drag_regions: boolean
@@ -1669,6 +2029,13 @@ field WindowOptions.position: [number, number] | null
 field WindowOptions.resizable: boolean
 field WindowOptions.transparent: boolean
 field WindowOptions.visible: boolean
+field WindowPlacement.content_position: [number, number]
+field WindowPlacement.content_size: [number, number]
+field WindowPlacement.full_screen: boolean
+field WindowPlacement.maximized: boolean
+field WindowPlacement.minimized: boolean
+field WindowPlacement.position: [number, number]
+field WindowPlacement.scale: number
 field edit__EditOutcome.blur: boolean
 field edit__EditOutcome.copy: string | null
 field edit__EditOutcome.submit: boolean
@@ -1722,16 +2089,6 @@ field kit_ComboboxOption.detail: string
 field kit_ComboboxOption.disabled: boolean
 field kit_ComboboxOption.id: string
 field kit_ComboboxOption.label: string
-field kit_Elevation.button_contrast: Shadow[]
-field kit_Elevation.button_neutral: Shadow[]
-field kit_Elevation.elements: Shadow[]
-field kit_Elevation.floating: Shadow[]
-field kit_Elevation.knob: Shadow[]
-field kit_Elevation.md: Shadow[]
-field kit_Elevation.overlay: Shadow[]
-field kit_Elevation.raised: Shadow[]
-field kit_Elevation.switch_off: Shadow[]
-field kit_Elevation.switch_on: Shadow[]
 field kit_Motion.control: motion_Spring
 field kit_Motion.disclosure: motion_Spring
 field kit_Motion.overlay: motion_Spring
@@ -1815,12 +2172,22 @@ field kit_StateColors.bg: Color
 field kit_StateColors.border: Color
 field kit_StateColors.fg: Color
 field kit_StateColors.icon: Color
-field kit_TreeStyle.guide: Color
-field kit_TreeStyle.guides: boolean
-field kit_TreeStyle.indent: number
-field kit_TreeStyle.padding: number
-field kit_TreeStyle.row_height: number
-field kit_TreeStyle.selected: Color
+field kit_shell__TabReorder.from: number
+field kit_shell__TabReorder.id: string
+field kit_shell__TabReorder.to: number
+field kit_shell__TabTearMove.grab: number[]
+field kit_shell__TabTearMove.id: string
+field kit_shell__TabTearMove.index: number
+field kit_shell__TabTearMove.screen_point: [number, number] | null
+field kit_shell__TabTearMove.torn: boolean
+field kit_shell__TabTearMove.window_point: number[]
+field kit_shell__TabTearOut.id: string
+field kit_shell__TabTearOut.index: number
+field kit_shell__TabTearOut.offset: number[]
+field kit_shell__TabTearOut.screen_point: [number, number] | null
+field kit_shell__TabTearOut.window_point: number[] | null
+field kit_shell__TearOutSpec.detach_distance: number
+field kit_shell__TearOutSpec.reattach_distance: number
 field knobs_Preset.name: string
 field knobs_Preset.values: [string, number][]
 field knobs_Style.bg: Color
@@ -1925,6 +2292,8 @@ field motion_Vec2.x: number
 field motion_Vec2.y: number
 field native_surface__ColorInfo.matrix: native_surface__Matrix
 field native_surface__ColorInfo.transfer: native_surface__Transfer
+field notify_Click.id: string
+field notify_Click.info: [string, string][]
 field text__ApplePipeline.dilate: boolean
 field text__ApplePipeline.flatten: boolean
 field text__ApplePipeline.hint: boolean
@@ -1980,10 +2349,12 @@ fn fx_rgb(hex: number): fx_Rgb
 fn image__app_icon_rgba(path: string, px: number): [number, number, Uint8Array]
 fn kit_body_text(k: kit_Kit, s: string): El
 fn kit_context_menu(key: string, trigger: El, point: PointerPress | null): kit_Menu
+fn kit_file_icon(name: string): Icon
 fn kit_overlay_text(k: kit_Kit, s: string): El
 fn kit_root(base: El, overlays: El[]): El
 fn kit_scrim<S = any>(key: string, close: (s: S) => S | void): El
 fn kit_scroll_bar(k: kit_Kit, area: string, key: string, viewport: El): El
+fn kit_shell__is_sidebar_toggle(ev: KeyEvent): boolean
 fn knobs_actions(st: knobs_Style, items: knobs_Action[]): El
 fn knobs_describe(notes: knobs_Note[]): void
 fn knobs_inline<S = any>(k: knobs_Knobs, groups: knobs_Group[], st: knobs_Style, lens: (s0: S) => knobs_Knobs, active: boolean): El
@@ -1996,6 +2367,7 @@ fn light_cpu__ground_truth(prims: light_Prim[], light: light_Light, p: number[],
 fn light_cpu__scene_sd(prims: light_Prim[], q: number[]): number
 fn memo__layout(key: string): number[] | null
 fn memo__layout_size(key: string): number[] | null
+fn memo__memo_with_hash(id: string, version: number, build: () => El): El
 fn memo__window_layout(key: string): number[] | null
 fn modifier_keycaps(mods: Mods): string[]
 fn motion_linear_to_oklab(r: number, g: number, b: number): number[]
@@ -2014,20 +2386,39 @@ fn motion_tokens__follow_trail(): motion_Spring
 fn native_surface__linear(x: number, transfer: native_surface__Transfer): number
 fn native_surface__nv12_reference(y: number, cb: number, cr: number, format: native_surface__Format, color: native_surface__ColorInfo): number[]
 fn native_surface__synthetic(width: number, height: number, phase: number): native_surface__ByteFrame
+fn notify_app_focused(): boolean
+fn notify_available(): boolean
+fn notify_bring_to_front(): void
+fn notify_click_from_url(url: string): notify_Click | null
+fn notify_post(n: notify_Notification): boolean
+fn notify_register(identity: notify_Identity): void
+fn notify_remove(ids: string[]): void
+fn opencode_app_icons__named(id: string, dark: boolean): Icon | null
 fn opencode_brand(dark: boolean): Color
 fn opencode_ember(dark: boolean, step: number): Color
+fn opencode_file_icons__all(): Icon[]
+fn opencode_file_icons__file(path: string): Icon
+fn opencode_file_icons__folder(path: string, expanded: boolean): Icon
 fn opencode_kit(dark: boolean): kit_Kit
+fn opencode_new_icons__new_icon(icon: Icon): Icon | null
+fn opencode_provider_icons__named(id: string): Icon | null
 fn opencode_scale(name: string, dark: boolean, step: number): Color
 fn opencode_theme(dark: boolean): Theme
+fn opencode_tree_icons__all(): opencode_tree_icons__TreeIcon[]
+fn opencode_tree_icons__file(path: string): opencode_tree_icons__TreeIcon
+fn opencode_tree_icons__item(name: string, path: string, folder: boolean, selected: boolean, dark: boolean): kit_TreeItem
+fn opencode_tree_icons__style(k: kit_Kit): kit_TreeStyle
 fn playground__slug(path: string): string
 fn popup_menu_supported(): boolean
 fn set_app_icon(bytes: Uint8Array): void
 fn set_app_id(id: string): void
+fn single_instance(id: string): boolean
 fn system_accent(): SystemAccent
 fn system_scroll_bars(): ScrollBars
 fn system_scroller_jumps(): boolean
 fn system_scroller_overlay(): boolean
 fn text__advance(text: string, style: TextStyle): number
+fn text__content_widths(text: string, spans: Span[], style: TextStyle): [number, number]
 fn text__font_epoch(): number
 fn text__icon_coverage(icon: Icon, px: number): Uint8Array
 fn text__ink(text: string, style: TextStyle): text__TextInk | null
@@ -2043,8 +2434,12 @@ fn tok__accent(i: number, dark: boolean): Color
 fn tok__theme(dark: boolean): tok__Theme
 get fx_FxFrame.scale: number
 get fx_FxFrame.viewport: number[]
+get kit_CodeFrame.index: number
+get kit_CodeFrame.open: boolean
+get kit_CodeFrame.source: string
 get kit_DiagramFrame.index: number
 get kit_DiagramFrame.open: boolean
+get kit_DiagramFrame.source: string
 get kit_Glyphs.caret_right: Icon
 get kit_Glyphs.check: Icon
 get kit_Glyphs.check_small: Icon
@@ -2061,9 +2456,14 @@ get kit_Glyphs.lock: Icon
 get kit_Glyphs.search: Icon
 get kit_Glyphs.triangle_down: Icon
 get kit_Glyphs.triangle_right: Icon
+get kit_ImageFrame.alt: string
+get kit_ImageFrame.src: string
 get kit_TreeRow.cursor: boolean
 get kit_TreeRow.depth: number
+get kit_TreeRow.expanded: boolean | null
+get kit_TreeRow.id: string
 get kit_TreeRow.matched: boolean
+get kit_TreeRow.selected: boolean
 get light_Inspect.field_size: [number, number]
 get light_Inspect.gi_size: [number, number]
 get light_Inspect.texel: number
@@ -2077,7 +2477,9 @@ method Chord.keycaps_on(platform: KeyPlatform): string[]
 method Chord.label(): string
 method Chord.label_on(platform: KeyPlatform): string
 method Chord.matches(ev: KeyEvent): boolean
+method Chord.matches_on(ev: KeyEvent, platform: KeyPlatform): boolean
 method Chord.matches_tx(ev: KeyEvent, tx: Tx): boolean
+method Chord.matches_tx_on(ev: KeyEvent, tx: Tx, platform: KeyPlatform): boolean
 method Chord.mods_on(platform: KeyPlatform): ChordMod[]
 method Chord.same_keys(other: Chord, platform: KeyPlatform): boolean
 method Chord.with(m: ChordMod): Chord
@@ -2111,23 +2513,30 @@ method Color.to_oklab(): number[]
 method ConfiguredWindowOptions.clone(): ConfiguredWindowOptions
 method ConfiguredWindowOptions.macos(amend: (mac_window_options: MacWindowOptions) => MacWindowOptions): this
 method CursorImage.clone(): CursorImage
+method Cx.absorb(other: Cx): void
 method Cx.accent(): Color
 method Cx.caption_color(color: Color): void
 method Cx.caret(key: string): number[] | null
 method Cx.chrome_insets(): ChromeInsets
 method Cx.env(): Env
 method Cx.focus_color(): Color
+method Cx.focus_ring(width: number, offset: number, color: Color): void
+method Cx.foreground(color: Color): void
+method Cx.help_look(look: HelpLook): void
 method Cx.is_reduced_motion(): boolean
 method Cx.layout(key: string): number[] | null
 method Cx.layout_size(key: string): number[] | null
 method Cx.overlay_scroll_bars(): boolean
 method Cx.reduced_motion(on: boolean): void
+method Cx.retype(): Cx
 method Cx.safe_area(): number[]
 method Cx.scroll_bars(): ScrollBars
 method Cx.selection_rects(): number[][]
+method Cx.set_titlebar(titlebar: Titlebar): void
 method Cx.system_dark(): boolean
 method Cx.system_reduced_motion(): boolean
 method Cx.time_scale(scale: number): void
+method Cx.titlebar_height(points: number): void
 method Cx.titlebar_inset(): number
 method Cx.window_layout(key: string): number[] | null
 method Display.native_bounds(): number[]
@@ -2136,6 +2545,8 @@ method DisplayId.clone(): DisplayId
 method DisplayId.native_id(): NativeDisplayId | null
 method Drag.cancelled(): boolean
 method Drag.clone(): Drag
+method Drag.screen_point(): [number, number] | null
+method Drag.window_point(): number[]
 method DragImage.clone(): DragImage
 method DragImage.over_element(): this
 method DragImage.png_data(): Uint8Array
@@ -2168,6 +2579,7 @@ method El.advance_in(run: text__Run, at: number): this
 method El.align(a: Align): this
 method El.anchored(key: string, side: Side, align: Align, gap: number): this
 method El.anchored_fit(key: string, side: Side, align: Align, gap: number): this
+method El.anchored_round(): this
 method El.anchored_unscaled(): this
 method El.animate_edit_layout(): this
 method El.animate_layout(): this
@@ -2181,6 +2593,8 @@ method El.border(width: number, c: Color): this
 method El.border_dash(dash: number, gap: number): this
 method El.border_dash_phase(phase: number): this
 method El.border_gradient(width: number, top: Color, bottom: Color): this
+method El.border_layout(): this
+method El.border_sides(widths: number[], c: Color): this
 method El.box_shadow(s: Shadow): this
 method El.cache(): this
 method El.cache_key(key: number): this
@@ -2202,6 +2616,7 @@ method El.color(c: Color): this
 method El.continuous_corners(): this
 method El.corners(r: number[]): this
 method El.cursor(cursor: Cursor): this
+method El.cutout_circle(center: number[], inner: number, outer: number): this
 method El.cycle(c: motion_Cycle): this
 method El.decorations(spans: Span[]): this
 method El.default_button(): this
@@ -2217,6 +2632,7 @@ method El.effect_bleed(pt: number): this
 method El.effect_data(data: number[]): this
 method El.enter_delay(seconds: number): this
 method El.equal_columns(n: number): this
+method El.exact_lines(): this
 method El.expanded(open: boolean): this
 method El.fill(c: Color): this
 method El.flex_wrap(): this
@@ -2226,6 +2642,8 @@ method El.focus_highlight(color: Color): this
 method El.focus_return(trigger: string): this
 method El.focus_ring(width: number, offset: number, color: Color): this
 method El.focus_selected(selected: boolean): this
+method El.focus_within_flat(): this
+method El.focus_within_ring(width: number, offset: number, color: Color): this
 method El.focusable(enabled: boolean): this
 method El.fold_feather(pt: number): this
 method El.fold_glide(spring: motion_Spring): this
@@ -2241,19 +2659,26 @@ method El.growth(spec: GrowthSpec): this
 method El.h(h: number): this
 method El.h_full(): this
 method El.help(text: string): this
+method El.help_above(): this
+method El.help_keys(keys: string[]): this
 method El.help_when_truncated(text: string): this
 method El.hit(): this
+method El.hold_landing_width(): this
 method El.hover(c: Color): this
 method El.hover_alone(): this
 method El.hover_delays(enter: number, leave: number): this
 method El.hover_group(): this
+method El.hover_group_focus(): this
+method El.hover_group_shared(key: string): this
 method El.hover_motion(enter: motion_Anim, exit: motion_Anim): this
 method El.hover_motion_within(enter: motion_Anim, exit: motion_Anim): this
 method El.hover_within_curves(): [motion_Anim, motion_Anim] | null
 method El.href(url: string): this
+method El.icon_one_color(): this
 method El.icon_rotation(radians: number): this
 method El.ime_cursor(): this
 method El.inert(): this
+method El.inline_icon(at: number, icon: InlineIcon): this
 method El.instant_changes(): this
 method El.invalid(invalid: boolean): this
 method El.items_center(): this
@@ -2270,6 +2695,7 @@ method El.justify_start(): this
 method El.keeps_text_selection(): this
 method El.key(key: string): this
 method El.label(label: string): this
+method El.layer_opacity(alpha: number): this
 method El.lead(lead: motion_Spring, trail: motion_Spring): this
 method El.level(level: number): this
 method El.link(link: Link): this
@@ -2278,6 +2704,7 @@ method El.live_region(live: LiveRegion): this
 method El.looping(spec: motion_LoopSpec): this
 method El.mark(mark: number): this
 method El.matched(id: string): this
+method El.matched_crop(): this
 method El.max_h(h: number): this
 method El.max_lines(lines: number): this
 method El.max_w(w: number): this
@@ -2295,6 +2722,7 @@ method El.mx(m: number): this
 method El.my(m: number): this
 method El.native_surface(surface: NativeSurface, fit: SurfaceFit): this
 method El.no_focus_ring(): this
+method El.no_window_drag(): this
 method El.offset(x: number, y: number): this
 method El.offset_motion(anim: motion_Anim): this
 method El.on_at_bottom<S = any>(f: (s: S, v1: boolean) => S | void): this
@@ -2341,6 +2769,7 @@ method El.on_secondary_press<S = any>(f: (s: S, pointer_press: PointerPress, tx:
 method El.on_secondary_press_local<S = any>(f: (s: S, pointer_event: PointerEvent, tx: Tx) => S | void): this
 method El.on_selection_change<S = any>(f: (s: S, selection_change: SelectionChange, tx: Tx) => S | void): this
 method El.on_smart_magnify<S = any>(f: (s: S, v1: number, v2: number, tx: Tx) => boolean): this
+method El.on_spellcheck<S = any>(on: boolean, f: (s: S, v1: boolean, tx: Tx) => S | void): this
 method El.on_step<S = any>(f: (s: S, v1: number, tx: Tx) => S | void): this
 method El.on_step_limit<S = any>(f: (s: S, v1: boolean, tx: Tx) => S | void): this
 method El.on_submit<S = any>(f: (s: S, tx: Tx) => S | void): this
@@ -2386,13 +2815,16 @@ method El.ride_trailing(): this
 method El.role(role: string): this
 method El.rotate(radians: number): this
 method El.rotate_motion(anim: motion_Anim): this
+method El.rounded_lines(): this
 method El.scale(k: number): this
 method El.scale_motion(anim: motion_Anim): this
 method El.scroll(spec: ScrollSpec): this
 method El.scroll_anchor(): this
 method El.scroll_bar(k: kit_Kit): this
+method El.scroll_bar_hover(viewport_key: string): this
 method El.scroll_bar_styled(style: kit_ScrollBarStyle): this
 method El.scroll_edge_fade(width: number): this
+method El.scroll_fade(fade: ScrollFade): this
 method El.scroll_margin(pts: number): this
 method El.scroll_x(): this
 method El.scroll_xy(): this
@@ -2416,6 +2848,7 @@ method El.sorted(ascending: boolean | null): this
 method El.span_ring(start: number, end: number, color: Color, width: number): this
 method El.span_rings(rings: ([number, number, Color, number])[]): this
 method El.spans(spans: Span[]): this
+method El.spellcheck(on: boolean): this
 method El.sticky_bottom(inset: number): this
 method El.sticky_left(inset: number): this
 method El.sticky_top(inset: number): this
@@ -2423,6 +2856,7 @@ method El.sticky_top_showing(show: number): this
 method El.streaming(on: boolean): this
 method El.strike(start: number, end: number, color: Color | null): this
 method El.strikes(strikes: ([number, number, Color | null])[]): this
+method El.stuck_fade(lead: number, span: number): this
 method El.stuck_shadow(shadow: Shadow): this
 method El.surface_anchor(horizontal: Align, vertical: Align): this
 method El.surface_unscaled(unscaled: boolean): this
@@ -2455,6 +2889,21 @@ method El.wraps(): boolean
 method FileDialogError.clone(): FileDialogError
 method FileDialogOptions.filter(name: string, extensions: string[]): FileDialogOptions
 method FileDialogs.clone(): FileDialogs
+method HelpLook.clone(): HelpLook
+method HelpLook.delay(secs: number): HelpLook
+method HelpLook.fill(c: Color): HelpLook
+method HelpLook.font(f: TextStyle): HelpLook
+method HelpLook.gap(g: number): HelpLook
+method HelpLook.ink(c: Color): HelpLook
+method HelpLook.keycap_shape(height: number, pad_x: number, radius: number, gap: number, lead: number): HelpLook
+method HelpLook.keycaps(fill: Color, ink: Color, font: TextStyle, upper: boolean): HelpLook
+method HelpLook.margin(m: number): HelpLook
+method HelpLook.max_width(w: number | null): HelpLook
+method HelpLook.padding(x: number, y: number): HelpLook
+method HelpLook.radius(r: number): HelpLook
+method HelpLook.ring(width: number, c: Color): HelpLook
+method HelpLook.shadows(layers: Shadow[]): HelpLook
+method HelpLook.skip_delay(secs: number): HelpLook
 method Image.clone(): Image
 method Image.error(): ImageError | null
 method Image.id(): number[]
@@ -2472,6 +2921,11 @@ method ImageCache.svg(bytes: Uint8Array, size_pt: number, scale: number): Image
 method ImageCache.url(url: string, size_pt: number, scale: number): Image
 method ImageCache.url_set(sources: ([string, number])[], size_pt: number, scale: number): Image
 method ImageError.clone(): ImageError
+method InlineIcon.clone(): InlineIcon
+method InlineIcon.color(c: Color): this
+method InlineIcon.gap(points: number): this
+method InlineIcon.radius(points: number): this
+method InlineIcon.size(points: number): this
 method KeyEvent.is_command(c: string): boolean
 method Keybind.chords(): Chord[]
 method Keybind.chords_on(platform: KeyPlatform): Chord[]
@@ -2479,8 +2933,12 @@ method Keybind.clone(): Keybind
 method Keybind.label(): string
 method Keybind.label_on(platform: KeyPlatform): string
 method Keybind.matches(ev: KeyEvent): boolean
+method Keybind.matches_on(ev: KeyEvent, platform: KeyPlatform): boolean
 method Keybind.matches_tx(ev: KeyEvent, tx: Tx): boolean
+method Keybind.matches_tx_on(ev: KeyEvent, tx: Tx, platform: KeyPlatform): boolean
 method Keybind.on(platform: KeyPlatform, spec: string): this
+method Keybind.on_chords(platform: KeyPlatform, chords: Chord[]): this
+method Keybind.spec_on(platform: KeyPlatform): string
 method Link.clone(): Link
 method Link.focused(paint: LinkPaint): this
 method Link.help(text: string): this
@@ -2581,6 +3039,7 @@ method Play.fly_text(source: string, destination: string): void
 method Play.focused(): string | null
 method Play.follow_edge(): void
 method Play.instant(): void
+method Play.invalidate_memos_by_prefix(prefix: string): void
 method Play.keep_on_screen(key: string): void
 method Play.keep_playground(): void
 method Play.key_base(): string | null
@@ -2624,17 +3083,20 @@ method Play.scroll_to_x(key: string, x: number): void
 method Play.scroll_to_y(key: string, y: number): void
 method Play.select_all_text(key: string): void
 method Play.select_text(key: string, range: { start: number; end: number }): void
+method Play.send_key(ev: KeyEvent): void
 method Play.set_font_families(sans: string, mono: string): void
 method Play.set_font_smoothing(mode: FontSmoothing): void
 method Play.set_srgb_blend(enabled: boolean): void
 method Play.set_title(title: string): void
 method Play.settle(): void
 method Play.text_selection(): TextSelection | null
+method Play.toggle_full_screen(): void
 method Play.toggle_maximized(): void
 method Play.toggle_playground(): void
 method Play.trace_channel(name: string, kind: string, value: number): void
 method Play.trace_event(event: string): void
 method Play.tracing(): boolean
+method Play.unclipped_flights(): void
 method Play.wake_after(duration: number): void
 method Player.clone(): Player
 method Player.duration(): number | null
@@ -2702,6 +3164,11 @@ method RadialRadius.clone(): RadialRadius
 method RotateEvent.at(x: number, y: number): RotateEvent
 method RotateEvent.clone(): RotateEvent
 method RotateEvent.phase(phase: GesturePhase): RotateEvent
+method ScrollFade.below_sticky(): ScrollFade
+method ScrollFade.clone(): ScrollFade
+method ScrollFade.end_only(): ScrollFade
+method ScrollFade.full_at(points: number): ScrollFade
+method ScrollFade.linear(): ScrollFade
 method SecretCopy.clear_now(): void
 method SecretCopy.clone(): SecretCopy
 method SecretCopy.holds(): boolean
@@ -2840,6 +3307,8 @@ method Theme.num(name: string): number
 method Theme.try_color(name: string): Color | null
 method Titlebar.clone(): Titlebar
 method Titlebar.height(): number
+method Titlebar.traffic_lights(x: number, y: number): Titlebar
+method Titlebar.traffic_lights_origin(): [number, number] | null
 method Tx.activation_token(): string | null
 method Tx.animated(): void
 method Tx.blur(): void
@@ -2865,6 +3334,7 @@ method Tx.fly_text(source: string, destination: string): void
 method Tx.focused(): string | null
 method Tx.follow_edge(): void
 method Tx.instant(): void
+method Tx.invalidate_memos_by_prefix(prefix: string): void
 method Tx.keep_on_screen(key: string): void
 method Tx.keep_playground(): void
 method Tx.key_base(): string | null
@@ -2906,17 +3376,20 @@ method Tx.scroll_to_x(key: string, x: number): void
 method Tx.scroll_to_y(key: string, y: number): void
 method Tx.select_all_text(key: string): void
 method Tx.select_text(key: string, range: { start: number; end: number }): void
+method Tx.send_key(ev: KeyEvent): void
 method Tx.set_font_families(sans: string, mono: string): void
 method Tx.set_font_smoothing(mode: FontSmoothing): void
 method Tx.set_srgb_blend(enabled: boolean): void
 method Tx.set_title(title: string): void
 method Tx.settle(): void
 method Tx.text_selection(): TextSelection | null
+method Tx.toggle_full_screen(): void
 method Tx.toggle_maximized(): void
 method Tx.toggle_playground(): void
 method Tx.trace_channel(name: string, kind: string, value: number): void
 method Tx.trace_event(event: string): void
 method Tx.tracing(): boolean
+method Tx.unclipped_flights(): void
 method Tx.wake_after(duration: number): void
 method WheelEvent.at(x: number, y: number): WheelEvent
 method WheelEvent.clone(): WheelEvent
@@ -2932,6 +3405,7 @@ method WindowHandle.is_ready(): boolean
 method WindowHandle.key(): string
 method WindowHandle.open(): void
 method WindowHandle.place(display: DisplayTarget, placement: OverlayPlacement): void
+method WindowHandle.placement(): WindowPlacement | null
 method WindowHandle.resize(size: [number, number]): void
 method WindowHandle.resize_instant(size: [number, number]): void
 method WindowHandle.set_always_on_top(on: boolean): void
@@ -3127,15 +3601,15 @@ method kit_Dialog.on_close<S = any>(f: (s: S) => S | void): this
 method kit_Dialog.open(open: boolean): this
 method kit_Dialog.width(width: number): this
 method kit_Divider.build(k: kit_Kit): El
+method kit_Elevation.clone(): kit_Elevation
+method kit_Elevation.input(): Shadow[]
+method kit_Elevation.with_input(layers: Shadow[]): this
 method kit_Field.build(k: kit_Kit): El
 method kit_Field.control(c: El): this
 method kit_Field.info(): this
 method kit_Field.label(l: string): this
 method kit_Field.prefix(p: string): this
 method kit_Field.suffix(s: string): this
-method kit_FileTree.compact_folders(on: boolean): this
-method kit_FileTree.dirs_first(on: boolean): this
-method kit_FileTree.key(key: string): this
 method kit_Glyphs.clone(): kit_Glyphs
 method kit_Highlight.bg(c: Color): this
 method kit_Highlight.clone(): kit_Highlight
@@ -3188,11 +3662,16 @@ method kit_ListItem.group(g: string): this
 method kit_ListItem.on_select<S = any>(f: (s: S, tx: Tx) => S | void): this
 method kit_ListItem.selected(s: boolean): this
 method kit_Loader.build(k: kit_Kit): El
+method kit_Loader.color(c: Color): this
 method kit_Loader.size(s: number): this
 method kit_Markdown.autolink(on: boolean): this
 method kit_Markdown.build(k: kit_Kit): El
+method kit_Markdown.code_frame(f: (el: El, code_frame: kit_CodeFrame) => El): this
 method kit_Markdown.copy_source(on: boolean): this
 method kit_Markdown.diagram_frame(f: (el: El, diagram_frame: kit_DiagramFrame) => El): this
+method kit_Markdown.image_frame(f: (el: El, image_frame: kit_ImageFrame) => El): this
+method kit_Markdown.images(f: (s0: string) => Image | null): this
+method kit_Markdown.link_favicon(f: (s0: string) => Pixels | null): this
 method kit_Markdown.link_help(f: (s0: string) => string | null): this
 method kit_Markdown.link_ring(f: (s0: string) => [Color, number] | null): this
 method kit_Markdown.link_style(f: (s0: string) => [Span, LinkPaint] | null): this
@@ -3213,6 +3692,7 @@ method kit_MarkdownStyle.clone(): kit_MarkdownStyle
 method kit_MarkdownStyle.code_block(fill: Color, border: Color): this
 method kit_MarkdownStyle.code_block_font(f: TextStyle): this
 method kit_MarkdownStyle.code_block_padding(x: number, y: number): this
+method kit_MarkdownStyle.code_block_text(c: Color): this
 method kit_MarkdownStyle.diagram(node_fill: Color, node_border: Color, line: Color): this
 method kit_MarkdownStyle.diagram_font(f: TextStyle): this
 method kit_MarkdownStyle.diagram_hover(color: Color, neighbours: boolean): this
@@ -3235,18 +3715,25 @@ method kit_MarkdownStyle.inline_code_bg(c: Color): this
 method kit_MarkdownStyle.inline_code_font(scale: number, weight: number): this
 method kit_MarkdownStyle.inline_code_pad(pad: number): this
 method kit_MarkdownStyle.link(c: Color): this
+method kit_MarkdownStyle.link_hover(c: Color): this
+method kit_MarkdownStyle.link_icons(size: number, gap: number): this
 method kit_MarkdownStyle.link_underline(c: Color): this
 method kit_MarkdownStyle.list(indent: number, gap: number): this
+method kit_MarkdownStyle.list_markers_outside(on: boolean): this
+method kit_MarkdownStyle.list_nested_indent(bullets: number, numbers: number): this
 method kit_MarkdownStyle.muted(c: Color): this
+method kit_MarkdownStyle.quote(rule: Color, width: number, pad: number, text: Color): this
 method kit_MarkdownStyle.quote_rule(c: Color): this
 method kit_MarkdownStyle.rule(c: Color): this
 method kit_MarkdownStyle.selection(c: Color): this
+method kit_MarkdownStyle.shell_code(fill: Color, border: Color, text: Color): this
 method kit_MarkdownStyle.strong_weight(w: number): this
 method kit_MarkdownStyle.syntax_highlight(on: boolean): this
 method kit_MarkdownStyle.table(border: Color, header_fill: Color): this
 method kit_MarkdownStyle.table_body(fill: Color, radius: number, shadows: Shadow[]): this
 method kit_MarkdownStyle.table_card(k: kit_Kit): this
 method kit_MarkdownStyle.table_cell_padding(x: number, y: number): this
+method kit_MarkdownStyle.table_column_align(on: boolean): this
 method kit_MarkdownStyle.table_flush_left(on: boolean): this
 method kit_MarkdownStyle.table_font(f: TextStyle): this
 method kit_MarkdownStyle.table_frame(fill: Color, ring: Color, pad: number): this
@@ -3261,8 +3748,12 @@ method kit_MarkdownStyle.table_margin(top: number, bottom: number): this
 method kit_MarkdownStyle.table_min_column(points: number): this
 method kit_MarkdownStyle.table_outline(outline: Color | null): this
 method kit_MarkdownStyle.table_rules(c: Color): this
+method kit_MarkdownStyle.table_scroll_bar(thumb: Color, thumb_hover: Color): this
 method kit_MarkdownStyle.table_tabular_figures(on: boolean): this
+method kit_MarkdownStyle.task_checkbox(size: number, radius: number, left: number, top: number | null, fill_on: Color, mark: Color, fill_off: Color, border_off: Color): this
 method kit_MarkdownStyle.text(c: Color): this
+method kit_MarkdownStyle.text_width(points: number): this
+method kit_MarkdownStyle.wide_fade(points: number): this
 method kit_Menu.at(x: number, y: number): this
 method kit_Menu.build(k: kit_Kit, layer: El[]): El
 method kit_Menu.group_label(l: string): this
@@ -3288,6 +3779,8 @@ method kit_MenuItem.shortcut(s: string): this
 method kit_MenuItem.state(s: kit_State): this
 method kit_MenuItem.submenu(entries: kit_MenuEntry[], open: boolean): this
 method kit_Note.build(k: kit_Kit): El
+method kit_Note.gap(gap: number): this
+method kit_Note.key(key: string): this
 method kit_Page.build(k: kit_Kit): El
 method kit_Page.center(e: El): this
 method kit_Page.frame_inset(points: number): this
@@ -3383,9 +3876,14 @@ method kit_RollingText.spring(spring: motion_Spring): this
 method kit_RollingText.trailing(): this
 method kit_RollingText.value(value: number): this
 method kit_ScrollBarStyle.clone(): kit_ScrollBarStyle
+method kit_ScrollBarStyle.horizontal(): kit_ScrollBarStyle
+method kit_ScrollBarStyle.hover_target(): kit_ScrollBarStyle
 method kit_ScrollBarStyle.hover_width(w: number): kit_ScrollBarStyle
+method kit_ScrollBarStyle.inside(): kit_ScrollBarStyle
+method kit_ScrollBarStyle.strip(): number
 method kit_ScrollBarStyle.thumb(c: Color): kit_ScrollBarStyle
 method kit_ScrollBarStyle.thumb_hover(c: Color): kit_ScrollBarStyle
+method kit_ScrollBarStyle.track_offset(top: number, end: number): kit_ScrollBarStyle
 method kit_ScrollBarStyle.width(w: number): kit_ScrollBarStyle
 method kit_SegmentedControl.build(k: kit_Kit): El
 method kit_SegmentedControl.fit(): this
@@ -3448,8 +3946,10 @@ method kit_SidebarRow.on_close<S = any>(f: (s: S, tx: Tx) => S | void): this
 method kit_SidebarRow.on_double_click<S = any>(f: (s: S, tx: Tx) => S | void): this
 method kit_SidebarRow.on_select<S = any>(f: (s: S, tx: Tx) => S | void): this
 method kit_SidebarRow.renaming<S = any>(edit: TextEdit, access: (s0: S) => TextEdit, commit: (s: S, tx: Tx) => S | void, cancel: (s: S, tx: Tx) => S | void): this
+method kit_SidebarRow.reorder<S = any>(state: kit_shell__Reorder, index: number, count: number, access: (s0: S) => kit_shell__Reorder, drop: (s: S, v1: number, v2: number) => S | void): this
 method kit_SidebarRow.select_only(): this
 method kit_SidebarRow.selected(s: boolean): this
+method kit_SidebarRow.status(s: kit_shell__RowStatus): this
 method kit_SidebarRow.subtitle(s: string): this
 method kit_SidebarRow.subtitle_color(color: Color): this
 method kit_SidebarRow.subtitle_style(style: TextStyle): this
@@ -3470,9 +3970,12 @@ method kit_SplitView.build(k: kit_Kit): El
 method kit_SplitView.frame_inset(points: number): this
 method kit_SplitView.hide_sidebar_toggle(): this
 method kit_SplitView.inspector<S = any>(state: kit_PaneState, access: (s0: S) => kit_PaneState, content: El): this
+method kit_SplitView.pane_motion(m: kit_shell__PaneMotion): this
 method kit_SplitView.reduced_motion(reduced: boolean): this
 method kit_SplitView.sidebar<S = any>(state: kit_PaneState, access: (s0: S) => kit_PaneState, content: El): this
 method kit_SplitView.sidebar_padding(start: number, end: number): this
+method kit_SplitView.sidebar_peek(p: kit_shell__SidebarPeek): this
+method kit_SplitView.sidebar_toggle(t: kit_shell__SidebarToggle): this
 method kit_SplitView.titlebar_inset(points: number): this
 method kit_SplitView.toolbar(t: kit_Toolbar): this
 method kit_SplitView.toolbar_in_panel(): this
@@ -3486,6 +3989,34 @@ method kit_Switch.on_toggle<S = any>(f: (s: S) => S | void): this
 method kit_Switch.on_toggle_tx<S = any>(f: (s: S, tx: Tx) => S | void): this
 method kit_Switch.standard(): this
 method kit_Switch.state(s: kit_State): this
+method kit_Switch.web(): this
+method kit_TabStrip.active(active_id: string | null): this
+method kit_TabStrip.build(k: kit_Kit): El
+method kit_TabStrip.build_layered(k: kit_Kit, layer: El[]): El
+method kit_TabStrip.busy_indicator(f: (kit0: kit_Kit) => El): this
+method kit_TabStrip.close_icon(icon: Icon): this
+method kit_TabStrip.drag_state<S = any>(state: kit_shell__TabDragState, access: (s0: S) => kit_shell__TabDragState): this
+method kit_TabStrip.fill(color: Color): this
+method kit_TabStrip.gap(points: number): this
+method kit_TabStrip.label(label: string): this
+method kit_TabStrip.matched_prefix(prefix: string | null): this
+method kit_TabStrip.on_close<S = any>(f: (s: S, s1: string, tx: Tx) => S | void): this
+method kit_TabStrip.on_double_click<S = any>(f: (s: S, s1: string, tx: Tx) => S | void): this
+method kit_TabStrip.on_hover<S = any>(f: (s: S, s1: string, v2: boolean, tx: Tx) => S | void): this
+method kit_TabStrip.on_reorder<S = any>(f: (s: S, tab_reorder: kit_shell__TabReorder, tx: Tx) => S | void): this
+method kit_TabStrip.on_select<S = any>(f: (s: S, s1: string, tx: Tx) => S | void): this
+method kit_TabStrip.on_tear_move<S = any>(f: (s: S, tab_tear_move: kit_shell__TabTearMove, tx: Tx) => S | void): this
+method kit_TabStrip.on_tear_out<S = any>(f: (s: S, tab_tear_out: kit_shell__TabTearOut, tx: Tx) => S | void): this
+method kit_TabStrip.overflow(policy: kit_shell__TabOverflow): this
+method kit_TabStrip.reorder_spring(spring: motion_Spring): this
+method kit_TabStrip.row_height(points: number): this
+method kit_TabStrip.select_on_drag_start(on: boolean): this
+method kit_TabStrip.tabs(tabs: kit_shell__TabItem[]): this
+method kit_TabStrip.tear_out(spec: kit_shell__TearOutSpec | null): this
+method kit_TabStrip.trailing_action(action: El): this
+method kit_TabStrip.trailing_width(points: number): this
+method kit_TabStrip.viewport_width(width: number | null): this
+method kit_TabStrip.zoom(zoom: number): this
 method kit_Table.column(c: kit_TableColumn): this
 method kit_Table.name(n: string): this
 method kit_Table.on_open<S = any>(f: (s: S, s1: string, tx: Tx) => S | void): this
@@ -3540,6 +4071,7 @@ method kit_TextArea.rich_style(style: RichStyle): this
 method kit_TextArea.rows(r: number): this
 method kit_TextArea.secure(): this
 method kit_TextArea.spans(spans: Span[]): this
+method kit_TextArea.spellcheck(on: boolean): this
 method kit_TextArea.state(s: kit_State): this
 method kit_TextArea.width(w: number | null): this
 method kit_TextArea.wrap_anywhere(): this
@@ -3584,6 +4116,7 @@ method kit_TextInput.revealed(revealed: boolean): this
 method kit_TextInput.rich_style(style: RichStyle): this
 method kit_TextInput.secure(): this
 method kit_TextInput.spans(spans: Span[]): this
+method kit_TextInput.spellcheck(on: boolean): this
 method kit_TextInput.state(s: kit_State): this
 method kit_TextInput.text_style(style: TextStyle): this
 method kit_TextInput.trailing(e: El): this
@@ -3618,6 +4151,7 @@ method kit_TooltipStyle.border(width: number, c: Color): this
 method kit_TooltipStyle.clone(): kit_TooltipStyle
 method kit_TooltipStyle.fill(c: Color): this
 method kit_TooltipStyle.font(f: TextStyle): this
+method kit_TooltipStyle.help_look(): HelpLook
 method kit_TooltipStyle.ink(c: Color): this
 method kit_TooltipStyle.max_width(w: number): this
 method kit_TooltipStyle.motion(s: motion_Spring): this
@@ -3634,8 +4168,72 @@ method kit_TreeItem.icon(i: Icon): this
 method kit_TreeItem.icon_color(c: Color): this
 method kit_TreeItem.label_color(c: Color): this
 method kit_TreeItem.trailing(e: El): this
+method kit_TreeStyle.chevron(glyph: Icon): kit_TreeStyle
+method kit_TreeStyle.chevron_colors(rest: Color, selected: Color): kit_TreeStyle
+method kit_TreeStyle.chevron_nudge(dy: number): kit_TreeStyle
+method kit_TreeStyle.chevron_only_folders(on: boolean): kit_TreeStyle
+method kit_TreeStyle.clone(): kit_TreeStyle
+method kit_TreeStyle.fade_long_labels(width: number): kit_TreeStyle
+method kit_TreeStyle.gap(gap: number): kit_TreeStyle
+method kit_TreeStyle.guides_on_hover(opacity: number): kit_TreeStyle
+method kit_TreeStyle.hover(c: Color): kit_TreeStyle
+method kit_TreeStyle.label(font: TextStyle, rest: Color, selected: Color): kit_TreeStyle
+method kit_TreeStyle.radius(r: number): kit_TreeStyle
 method kit_Type.caption(): TextStyle
 method kit_Type.clone(): kit_Type
+method kit_WindowTitlebar.build(k: kit_Kit): El
+method kit_WindowTitlebar.fill(color: Color): this
+method kit_WindowTitlebar.gap(points: number): this
+method kit_WindowTitlebar.height(logical_height: number): this
+method kit_WindowTitlebar.key(key: string): this
+method kit_WindowTitlebar.leading(el: El): this
+method kit_WindowTitlebar.leading_padding(points: number): this
+method kit_WindowTitlebar.tabs(strip: El): this
+method kit_WindowTitlebar.top_padding(points: number): this
+method kit_WindowTitlebar.trailing(el: El): this
+method kit_WindowTitlebar.trailing_padding(points: number): this
+method kit_shell__PaneMotion.clone(): kit_shell__PaneMotion
+method kit_shell__PaneMotion.fade_tail(fraction: number): kit_shell__PaneMotion
+method kit_shell__PaneMotion.reduced_motion_fade(seconds: number): kit_shell__PaneMotion
+method kit_shell__PaneMotion.scale_with_width(reference: number, min: number, max: number): kit_shell__PaneMotion
+method kit_shell__PaneMotion.spring(s: motion_Spring): kit_shell__PaneMotion
+method kit_shell__PaneMotion.spring_for(k: kit_Kit, width: number): motion_Spring
+method kit_shell__Reorder.clone(): kit_shell__Reorder
+method kit_shell__Reorder.dragging(): number | null
+method kit_shell__Reorder.gap(points: number): kit_shell__Reorder
+method kit_shell__Reorder.target(): number | null
+method kit_shell__SidebarPeek.below(y: number): kit_shell__SidebarPeek
+method kit_shell__SidebarPeek.clone(): kit_shell__SidebarPeek
+method kit_shell__SidebarPeek.edge(width: number, delay: number): kit_shell__SidebarPeek
+method kit_shell__SidebarPeek.hold(margin: number, grace: number): kit_shell__SidebarPeek
+method kit_shell__SidebarPeek.reduced_motion_fade(seconds: number): kit_shell__SidebarPeek
+method kit_shell__SidebarPeek.spring(s: motion_Spring): kit_shell__SidebarPeek
+method kit_shell__SidebarPeek.toggle_delay(delay: number): kit_shell__SidebarPeek
+method kit_shell__SidebarToggle.clone(): kit_shell__SidebarToggle
+method kit_shell__SidebarToggle.edge(points: number): kit_shell__SidebarToggle
+method kit_shell__SidebarToggle.gap(points: number): kit_shell__SidebarToggle
+method kit_shell__SidebarToggle.in_header(): kit_shell__SidebarToggle
+method kit_shell__SidebarToggle.past_lights(points: number): kit_shell__SidebarToggle
+method kit_shell__SidebarToggle.shortcut(shortcut: string): kit_shell__SidebarToggle
+method kit_shell__SidebarToggle.size(s: kit_ControlSize): kit_shell__SidebarToggle
+method kit_shell__SidebarToggle.unread(unread: boolean): kit_shell__SidebarToggle
+method kit_shell__TabDragState.cancel(): void
+method kit_shell__TabDragState.clone(): kit_shell__TabDragState
+method kit_shell__TabDragState.dragging(): number | null
+method kit_shell__TabDragState.hand_off(): void
+method kit_shell__TabDragState.handed_off(): boolean
+method kit_shell__TabDragState.hovered(): string | null
+method kit_shell__TabDragState.torn_out(): boolean
+method kit_shell__TabItem.avatar(avatar: El): this
+method kit_shell__TabItem.closable(closable: boolean): this
+method kit_shell__TabItem.decorate(f: (el: El, tab_density: kit_shell__TabDensity) => El): this
+method kit_shell__TabItem.editor(field: El): this
+method kit_shell__TabItem.icon(icon: Icon): this
+method kit_shell__TabItem.marked(marked: boolean): this
+method kit_shell__TabItem.pinned(pinned: boolean): this
+method kit_shell__TabItem.pulse(seq: number): this
+method kit_shell__TabItem.status(status: kit_shell__TabItemStatus | null): this
+method kit_shell__TabItem.subtitle(subtitle: string): this
 method knobs_Group.clone(): knobs_Group
 method knobs_Group.default_label(label: string): knobs_Group
 method knobs_Group.page(): string
@@ -3929,6 +4527,17 @@ method motion_Transition.springs(springs: motion_SpringPair): motion_Transition
 method native_surface__FrameTiming.clone(): native_surface__FrameTiming
 method native_surface__SurfaceDraw.clone(): native_surface__SurfaceDraw
 method native_surface__macos__PixelBuffer.clone(): native_surface__macos__PixelBuffer [cfg(target_os = "macos")]
+method notify_Click.get(key: string): string | null
+method notify_Identity.activation(scheme: string): this
+method notify_Identity.clone(): notify_Identity
+method notify_Identity.icon(path: string): this
+method notify_Notification.body(body: string): this
+method notify_Notification.clone(): notify_Notification
+method notify_Notification.info(key: string, value: string): this
+method opencode_tree_icons__TreeIcon.clone(): opencode_tree_icons__TreeIcon
+method opencode_tree_icons__TreeIcon.color(dark: boolean): Color
+method opencode_tree_icons__TreeIcon.icon(): Icon
+method opencode_tree_icons__TreeIcon.token(): string
 method text__Atlas.invalidate(): void
 method text__Atlas.page_count(): number
 method text__Atlas.rasterized(): number
@@ -3947,6 +4556,8 @@ method text__TextInk.optical(pull: number): number[]
 method text__TextSystem.apple_pipeline(): text__ApplePipeline
 method text__TextSystem.begin_frame(): void
 method text__TextSystem.color_glyph(color: number): Pixels
+method text__TextSystem.color_icon(icon: Icon, px: number, color: Color, one: boolean): Pixels | null
+method text__TextSystem.coverage_exponent(fill: number[]): number
 method text__TextSystem.end_commit(): void
 method text__TextSystem.families(): [string, string]
 method text__TextSystem.font_smoothing(): FontSmoothing
@@ -4259,6 +4870,16 @@ prop growth__GrowTrack.whole: boolean
 prop kit_ComboboxState.active: string | null
 prop kit_ComboboxState.open: boolean
 prop kit_ComboboxState.search: TextEdit
+prop kit_Elevation.button_contrast: Shadow[]
+prop kit_Elevation.button_neutral: Shadow[]
+prop kit_Elevation.elements: Shadow[]
+prop kit_Elevation.floating: Shadow[]
+prop kit_Elevation.knob: Shadow[]
+prop kit_Elevation.md: Shadow[]
+prop kit_Elevation.overlay: Shadow[]
+prop kit_Elevation.raised: Shadow[]
+prop kit_Elevation.switch_off: Shadow[]
+prop kit_Elevation.switch_on: Shadow[]
 prop kit_Kit.blend_over: Color | null
 prop kit_Kit.c: kit_Palette
 prop kit_Kit.dark: boolean
@@ -4280,6 +4901,12 @@ prop kit_TableStyle.rule: Color
 prop kit_TableStyle.selected: Color
 prop kit_TableStyle.stripe: Color
 prop kit_TableStyle.text: Color
+prop kit_TreeStyle.guide: Color
+prop kit_TreeStyle.guides: boolean
+prop kit_TreeStyle.indent: number
+prop kit_TreeStyle.padding: number
+prop kit_TreeStyle.row_height: number
+prop kit_TreeStyle.selected: Color
 prop kit_Type.body: TextStyle
 prop kit_Type.body_medium: TextStyle
 prop kit_Type.mono: TextStyle
@@ -4292,6 +4919,9 @@ prop kit_Type.text_xsmall_medium: TextStyle
 prop kit_Type.ui: TextStyle
 prop kit_Type.ui_compact: TextStyle
 prop kit_Type.ui_medium: TextStyle
+prop kit_shell__TabDragState.phase: kit_shell__TabDragPhase
+prop kit_shell__TabDragState.suppress_click: boolean
+prop kit_shell__TabDragState.width_lock: number | null
 prop knobs_Action.cap: string
 prop knobs_Action.label: string
 prop knobs_Group.name: string
@@ -4321,6 +4951,7 @@ prop light_Light.axis: number[]
 prop light_Light.extra: number[]
 prop light_Light.pos: number[]
 prop light_LightRenderer.height: number
+prop light_LightRenderer.inspect: boolean
 prop light_LightRenderer.width: number
 prop light_Prim.emit: number[]
 prop light_Prim.mat: number[]
@@ -4406,6 +5037,7 @@ record ScrollSpec
 record Shadow
 record StreamEdge
 record WindowOptions
+record WindowPlacement
 record edit__EditOutcome
 record fx_Choice
 record fx_FxCost
@@ -4421,13 +5053,15 @@ record fx_Shape
 record fx_Source
 record growth__FoldGlide
 record kit_ComboboxOption
-record kit_Elevation
 record kit_Motion
 record kit_Palette
 record kit_PaletteSeed
 record kit_Radius
 record kit_StateColors
-record kit_TreeStyle
+record kit_shell__TabReorder
+record kit_shell__TabTearMove
+record kit_shell__TabTearOut
+record kit_shell__TearOutSpec
 record knobs_Preset
 record knobs_Style
 record light_Gi
@@ -4452,6 +5086,7 @@ record motion_TraceHeader
 record motion_Transform
 record motion_Vec2
 record native_surface__ColorInfo
+record notify_Click
 record text__ApplePipeline
 record text__Deco
 record text__GlyphQuad
@@ -4463,6 +5098,7 @@ static Block.is_list(self: Block): boolean
 static Block.list_level(self: Block): number | null
 static Block.same_kind(self: Block, other: Block): boolean
 static Block.with_level(self: Block, level: number): Block
+static Chord.from(value: Chord): Chord
 static Chord.new(key: ChordKey): Chord
 static Chord.parse(s: string): Chord
 static ClipboardContent.default(): ClipboardContent
@@ -4481,11 +5117,15 @@ static ElementInfo.stub(key: string): ElementInfo
 static Env.new(system_dark: boolean, scale: number): Env
 static FileDialogs.scripted(responses: ScriptedFileDialog[]): FileDialogs
 static FontSmoothing.pipeline(self: FontSmoothing): text__ApplePipeline
+static HelpLook.system(dark: boolean): HelpLook
 static ImageCache.new(waker: Waker): ImageCache
+static InlineIcon.glyph(icon: Icon): InlineIcon
+static InlineIcon.image(pixels: Pixels): InlineIcon
 static Key.from(value: Key): Key
 static KeyEvent.from(value: Key): KeyEvent
 static KeyPlatform.current(): KeyPlatform
 static Keybind.default(): Keybind
+static Keybind.from(value: Chord): Keybind
 static Keybind.new(spec: string): Keybind
 static Link.new(range: { start: number; end: number }, id: string): Link
 static LinkPaint.default(): LinkPaint
@@ -4538,6 +5178,8 @@ static RadialRadius.from_f32(value: number): RadialRadius
 static RotateEvent.default(): RotateEvent
 static RotateEvent.new(degrees: number): RotateEvent
 static ScrollBars.is_overlay(self: ScrollBars, scroller_overlay: boolean): boolean
+static ScrollFade.feather(max: number): ScrollFade
+static ScrollFade.strength(width: number): ScrollFade
 static SecretCopy.pending(): SecretCopy
 static Shadow.core_animation(x: number, y: number, radius: number, color: Color): Shadow
 static Shape.default(): Shape
@@ -4713,10 +5355,9 @@ static kit_ComboboxState.default(): kit_ComboboxState
 static kit_Dialog.new(key: string, title: string): kit_Dialog
 static kit_Divider.horizontal(): kit_Divider
 static kit_Divider.vertical(): kit_Divider
+static kit_Elevation.default(): kit_Elevation
 static kit_Field.default(): kit_Field
 static kit_Field.new(): kit_Field
-static kit_FileTree.default(): kit_FileTree
-static kit_FileTree.new(): kit_FileTree
 static kit_Highlight.active(): kit_Highlight
 static kit_Highlight.current(): kit_Highlight
 static kit_Highlight.default(): kit_Highlight
@@ -4740,6 +5381,7 @@ static kit_MarkdownStyle.neutral(dark: boolean): kit_MarkdownStyle
 static kit_Menu.new(key: string): kit_Menu
 static kit_MenuEntry.item(i: kit_MenuItem): kit_MenuEntry
 static kit_MenuItem.new(label: string): kit_MenuItem
+static kit_Note.new(source: string): kit_Note
 static kit_Page.new(main: El): kit_Page
 static kit_PaneState.default(): kit_PaneState
 static kit_PaneState.new(width: number): kit_PaneState
@@ -4754,7 +5396,10 @@ static kit_RadioGroup.new(): kit_RadioGroup
 static kit_RadioItem.new(label: string, checked: boolean): kit_RadioItem
 static kit_RollingText.new(key: string, text: string): kit_RollingText
 static kit_ScrollBarStyle.from_kit(k: kit_Kit): kit_ScrollBarStyle
+static kit_ScrollBarStyle.menu_scroll(thumb: Color, thumb_hover: Color): kit_ScrollBarStyle
+static kit_ScrollBarStyle.native(thumb: Color, thumb_hover: Color): kit_ScrollBarStyle
 static kit_ScrollBarStyle.neutral(dark: boolean): kit_ScrollBarStyle
+static kit_ScrollBarStyle.scroll_view(k: kit_Kit): kit_ScrollBarStyle
 static kit_SegmentedControl.new(labels: string[], selected: number | null): kit_SegmentedControl
 static kit_Select.grouped(key: string, options: [string, string][]): kit_Select
 static kit_Select.new(key: string, options: string[]): kit_Select
@@ -4770,6 +5415,7 @@ static kit_Spinner.default(): kit_Spinner
 static kit_Spinner.new(): kit_Spinner
 static kit_SplitView.new(main: El): kit_SplitView
 static kit_Switch.new(checked: boolean): kit_Switch
+static kit_TabStrip.new(key: string, orientation: kit_shell__TabOrientation): kit_TabStrip
 static kit_TableColumn.new(id: string, title: string): kit_TableColumn
 static kit_TableState.default(): kit_TableState
 static kit_TableState.new(): kit_TableState
@@ -4787,6 +5433,22 @@ static kit_TooltipStyle.from_kit(k: kit_Kit, appearance: kit_TooltipAppearance):
 static kit_TooltipStyle.neutral(dark: boolean): kit_TooltipStyle
 static kit_TreeItem.new(label: string): kit_TreeItem
 static kit_TreeStyle.from_kit(k: kit_Kit): kit_TreeStyle
+static kit_WindowTitlebar.from_insets(insets: ChromeInsets, zoom: number): kit_WindowTitlebar
+static kit_shell__PaneMotion.default(): kit_shell__PaneMotion
+static kit_shell__PaneMotion.new(): kit_shell__PaneMotion
+static kit_shell__Reorder.default(): kit_shell__Reorder
+static kit_shell__Reorder.new(): kit_shell__Reorder
+static kit_shell__SidebarPeek.default(): kit_shell__SidebarPeek
+static kit_shell__SidebarPeek.new(): kit_shell__SidebarPeek
+static kit_shell__SidebarToggle.default(): kit_shell__SidebarToggle
+static kit_shell__SidebarToggle.new(): kit_shell__SidebarToggle
+static kit_shell__TabDragState.default(): kit_shell__TabDragState
+static kit_shell__TabDragState.new(): kit_shell__TabDragState
+static kit_shell__TabItem.new(id: string, title: string): kit_shell__TabItem
+static kit_shell__TabOverflow.HORIZONTAL_DEFAULT: kit_shell__TabOverflow
+static kit_shell__TabOverflow.VERTICAL_DEFAULT: kit_shell__TabOverflow
+static kit_shell__TabOverflow.density_for(width: number): kit_shell__TabDensity
+static kit_shell__TabOverflow.tab_width(self: kit_shell__TabOverflow, available: number, unpinned: number, pinned: number, gap: number): number
 static knobs_Group.new(name: string, region: string, knobs: knobs_Knob[]): knobs_Group
 static knobs_Knob.choice(name: string, labels: string[], default_: number): knobs_Knob
 static knobs_Knob.new(name: string, min: number, max: number, default_: number): knobs_Knob
@@ -4912,9 +5574,14 @@ static motion_Transition.scale_anchor(scale: number, anchor: motion_Vec2): motio
 static motion_Transition.slide(): motion_Transition
 static motion_Vec2.new(x: number, y: number): motion_Vec2
 static native_surface__macos__PixelBuffer.from_bytes(frame: native_surface__ByteFrame): native_surface__macos__PixelBuffer [cfg(target_os = "macos")]
+static notify_Identity.default(): notify_Identity
+static notify_Identity.new(id: string, name: string): notify_Identity
+static notify_Notification.default(): notify_Notification
+static notify_Notification.new(id: string, title: string): notify_Notification
 static text__Ink.default(): text__Ink
 static text__RichLayoutOptions.default(): text__RichLayoutOptions
 static text__RichLayoutOptions.new(): text__RichLayoutOptions
+static text__Run.new(text: string): text__Run
 static text__TextSystem.default(): text__TextSystem
 static text__TextSystem.new(fonts: Uint8Array[], families: [string, string]): text__TextSystem
 variant Align.Center
@@ -4942,7 +5609,10 @@ variant ChordKey.Insert
 variant ChordKey.Left
 variant ChordKey.PageDown
 variant ChordKey.PageUp
+variant ChordKey.Pause
+variant ChordKey.PrintScreen
 variant ChordKey.Right
+variant ChordKey.ScrollLock
 variant ChordKey.Tab
 variant ChordKey.Up
 variant ChordMod.Alt
@@ -4980,6 +5650,7 @@ variant Family.SystemMono
 variant FileDialogKind.Folder
 variant FileDialogKind.Open
 variant FileDialogKind.Save
+variant FontSmoothing.DirectWrite
 variant FontSmoothing.Off
 variant FontSmoothing.On
 variant GesturePhase.Began
@@ -5133,7 +5804,6 @@ variant TextCase.Lowercase
 variant TextCase.Uppercase
 variant TitlebarAction.DoubleClick
 variant TitlebarAction.Drag
-variant TitlebarAction.SystemMenu
 variant TouchPhase.Cancelled
 variant TouchPhase.Ended
 variant TouchPhase.Moved
@@ -5293,6 +5963,27 @@ variant kit_TooltipAppearance.Standard
 variant kit_TreeKey.Handled
 variant kit_TreeKey.Ignored
 variant kit_TreeKey.Open: string
+variant kit_shell__RowStatus.Attention
+variant kit_shell__RowStatus.Busy
+variant kit_shell__RowStatus.Other: El
+variant kit_shell__RowStatus.Unread
+variant kit_shell__TabDensity.Compact
+variant kit_shell__TabDensity.Full
+variant kit_shell__TabDensity.IconOnly
+variant kit_shell__TabDragMode.Reorder: { from: number; to: number; delta: number; pitch: number; pinned: boolean }
+variant kit_shell__TabDragMode.TearOut: { from: number; offset: number[] }
+variant kit_shell__TabDragPhase.Dragging: kit_shell__TabDragMode
+variant kit_shell__TabDragPhase.Dropping: { from: number; to: number }
+variant kit_shell__TabDragPhase.Idle
+variant kit_shell__TabDragPhase.Pressed: { index: number; pinned: boolean; tab_pitch: number }
+variant kit_shell__TabItemStatus.Attention
+variant kit_shell__TabItemStatus.Busy
+variant kit_shell__TabItemStatus.Failed
+variant kit_shell__TabItemStatus.Unread
+variant kit_shell__TabOrientation.Horizontal
+variant kit_shell__TabOrientation.Vertical
+variant kit_shell__TabOverflow.Scroll: { fade_width: number }
+variant kit_shell__TabOverflow.ShrinkThenScroll: { min_width: number; max_width: number; pinned_width: number; fade_width: number }
 variant motion_Blend.Additive
 variant motion_Blend.Auto
 variant motion_Blend.Merge

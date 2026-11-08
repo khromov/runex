@@ -198,6 +198,14 @@ macro_rules! app_builder_for {
                 self.map(|a| Ok(a.on_open_url($crate::state::on_open_url)))?;
                 Ok(this)
             }
+            /// Runs `f(state, mods, tx)` whenever the held modifiers change (`App::on_modifiers`),
+            /// for an Alt-hold reveal; a script's `hold` event holds them.
+            #[napi(js_name = "on_modifiers", ts_args_type = "f: (s: any, mods: Mods, tx: Tx) => void", ts_return_type = "this")]
+            pub fn on_modifiers<'t>(&mut self, this: napi::bindgen_prelude::This<'t>, f: napi::bindgen_prelude::Function<'_, napi::bindgen_prelude::Unknown<'_>, napi::bindgen_prelude::Unknown<'_>>) -> napi::Result<napi::bindgen_prelude::This<'t>> {
+                *self.fns.on_modifiers.borrow_mut() = Some($crate::app::keep(&f));
+                self.map(|a| Ok(a.on_modifiers($crate::state::on_modifiers)))?;
+                Ok(this)
+            }
             /// Runs `f(handle)` once the window's first frame is ready, once per native creation.
             #[napi(js_name = "on_ready", ts_args_type = "f: (window: WindowHandle) => void", ts_return_type = "this")]
             pub fn on_ready<'t>(&mut self, this: napi::bindgen_prelude::This<'t>, f: napi::bindgen_prelude::Function<'_, napi::bindgen_prelude::Unknown<'_>, napi::bindgen_prelude::Unknown<'_>>) -> napi::Result<napi::bindgen_prelude::This<'t>> {
@@ -302,6 +310,25 @@ impl NativeApp {
     pub fn on_close(&mut self, f: Function<'_, Unknown<'_>, Unknown<'_>>) -> napi::Result<()> {
         *self.fns.on_close.borrow_mut() = Some(keep(&f));
         self.map(|a| Ok(a.on_close(state::on_close)))
+    }
+    /// The first open leaves focus where it is (`App::open_inactive`).
+    #[napi(js_name = "open_inactive")]
+    pub fn open_inactive(&mut self) -> napi::Result<()> {
+        self.map(|a| Ok(a.open_inactive()))
+    }
+    /// Opens the window maximized (`App::maximized`).
+    #[napi(js_name = "maximized")]
+    pub fn maximized(&mut self, maximized: bool) -> napi::Result<()> {
+        self.map(|a| Ok(a.maximized(maximized)))
+    }
+    /// Calls `f(frame)` with what each of the window's frames came to (`App::on_frame_encoded`):
+    /// drawn, unchanged or skipped, when, and its update and encode times. Headless runs report
+    /// their frames too. Shares Rune's one hook with the performance overlay.
+    #[napi(js_name = "on_frame_encoded", ts_args_type = "f: (frame: FrameEncoded) => void")]
+    pub fn on_frame_encoded(&mut self, f: Function<'_, Unknown<'_>, Unknown<'_>>) -> napi::Result<()> {
+        *self.fns.on_frame_encoded.borrow_mut() = Some(keep(&f));
+        let fns = self.fns.clone();
+        self.map(move |a| Ok(state::frame_hook(a, &fns)))
     }
     /// Runs `f(handle)` after each native window creation.
     #[napi(js_name = "on_window", ts_args_type = "f: (window: any) => void")]
@@ -425,6 +452,20 @@ pub struct Pump {
     turns: u64,
 }
 
+thread_local! {
+    /// The running app's windows (`Pump::windows`), for windows `open_window` adds later.
+    static RUNNING_WINDOWS: std::cell::RefCell<std::rc::Weak<std::cell::RefCell<Vec<(String, Rc<AppFns>)>>>> = std::cell::RefCell::new(std::rc::Weak::new());
+}
+
+/// Records a window `open_window` started, so a hot reload finds its functions by its key.
+pub(crate) fn register_window(key: String, fns: Rc<AppFns>) {
+    RUNNING_WINDOWS.with(|w| {
+        if let Some(windows) = w.borrow().upgrade() {
+            windows.borrow_mut().push((key, fns));
+        }
+    });
+}
+
 /// An idle app still turns the loop this often, in case something queued work the idle check
 /// can't see.
 const SAFETY_TURN: Duration = Duration::from_millis(1000);
@@ -434,6 +475,7 @@ impl Pump {
         Pump::shared(pump, Rc::new(std::cell::RefCell::new(windows)))
     }
     pub(crate) fn shared(pump: rune::Pump, windows: Rc<std::cell::RefCell<Vec<(String, Rc<AppFns>)>>>) -> Pump {
+        RUNNING_WINDOWS.with(|w| *w.borrow_mut() = Rc::downgrade(&windows));
         Pump { pump: Some(pump), windows, wake: None, deadline: None, last_turn: Instant::now(), last_busy: Instant::now(), turns: 0 }
     }
 }

@@ -4,9 +4,143 @@ use napi::bindgen_prelude::This;
 use napi_derive::napi;
 use crate::conv::{self, Class, FromJs, Raw, ToJs};
 
-#[napi(js_name = "__C_opencode_icons__PLUS", skip_typescript)]
-pub fn c_opencode_icons__PLUS() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::PLUS))) }?)))
+/// A file's icon in a file tree and its type (`typescript`, `json`, `default`).
+#[napi(js_name = "opencode_tree_icons__TreeIcon")]
+pub struct W_opencode_tree_icons__TreeIcon {
+    pub(crate) slot: conv::Slot<rune_theme_opencode::tree_icons::TreeIcon>,
+}
+impl Class for W_opencode_tree_icons__TreeIcon {
+    type Inner = rune_theme_opencode::tree_icons::TreeIcon;
+    const NAME: &'static str = "TreeIcon";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_opencode_tree_icons__TreeIcon { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune_theme_opencode::tree_icons::TreeIcon {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_opencode_tree_icons__TreeIcon>(v)
+    }
+}
+impl ToJs for rune_theme_opencode::tree_icons::TreeIcon {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_opencode_tree_icons__TreeIcon>(self)
+    }
+}
+#[napi]
+impl W_opencode_tree_icons__TreeIcon {
+    #[napi(js_name = "icon", skip_typescript)]
+    pub fn m_icon(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("TreeIcon")?;
+            let out = conv::static_ref::<crate::gen::rune::W_Icon>(me.icon())?;
+            Ok(Raw(out))
+        })
+    }
+/// The file type, as `@pierre/trees` names it (`data-icon-token`).
+    #[napi(js_name = "token", skip_typescript)]
+    pub fn m_token(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("TreeIcon")?;
+            let out = conv::ToJs::to_js(me.token().to_owned())?;
+            Ok(Raw(out))
+        })
+    }
+/// The type's colour for one appearance (`--trees-file-icon-color-<token>`), which a selected
+/// row draws its icon in.
+    #[napi(js_name = "color", skip_typescript)]
+    pub fn m_color(&mut self, a_dark: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_dark: bool = conv::arg(a_dark.0, "dark")?;
+            let me = self.slot.get("TreeIcon")?;
+            let out = conv::ToJs::to_js(me.color(a_dark))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_opencode_tree_icons__TreeIcon>(self.slot.get("TreeIcon")?.clone())?)))
+    }
+}
+
+/// Desktop's mark for app `id` (`AppIcon`'s ids: "vscode", "file-explorer", ...), in the
+/// variant for a dark or light appearance; None for the marks Desktop draws from PNGs.
+#[napi(js_name = "opencode_app_icons__named", skip_typescript)]
+pub fn f_opencode_app_icons__named(a_id: Raw, a_dark: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_id: String = conv::arg(a_id.0, "id")?;
+        let a_dark: bool = conv::arg(a_dark.0, "dark")?;
+        let out = match rune_theme_opencode::app_icons::named(&a_id, a_dark) { Some(v) => conv::static_ref::<crate::gen::rune::W_Icon>(v), None => Ok(conv::null()) }?;
+        Ok(Raw(out))
+    })
+}
+
+/// The badge for a file at `path` (`/` or `\` separated, or just a name): its whole name first
+/// (`package.json`, `Dockerfile`), then its dotted suffixes longest first (`d.ts` before `ts`), else
+/// the plain document.
+#[napi(js_name = "opencode_file_icons__file", skip_typescript)]
+pub fn f_opencode_file_icons__file(a_path: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_path: String = conv::arg(a_path.0, "path")?;
+        let out = conv::static_ref::<crate::gen::rune::W_Icon>(rune_theme_opencode::file_icons::file(&a_path))?;
+        Ok(Raw(out))
+    })
+}
+
+/// The icon for a folder at `path`, open or closed: by its name as written, or with a leading
+/// `.` or `_`, or wrapped in `__` (`src`, `.github`, `__tests__`), else the plain folder.
+#[napi(js_name = "opencode_file_icons__folder", skip_typescript)]
+pub fn f_opencode_file_icons__folder(a_path: Raw, a_expanded: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_path: String = conv::arg(a_path.0, "path")?;
+        let a_expanded: bool = conv::arg(a_expanded.0, "expanded")?;
+        let out = conv::static_ref::<crate::gen::rune::W_Icon>(rune_theme_opencode::file_icons::folder(&a_path, a_expanded))?;
+        Ok(Raw(out))
+    })
+}
+
+/// Every badge and folder icon, for a gallery.
+#[napi(js_name = "opencode_file_icons__all", skip_typescript)]
+pub fn f_opencode_file_icons__all() -> napi::Result<Raw> {
+    conv::guard(|| {
+        
+        let out = conv::static_refs::<crate::gen::rune::W_Icon>(rune_theme_opencode::file_icons::all().iter().copied())?;
+        Ok(Raw(out))
+    })
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_LIST_CHANGELOG", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_LIST_CHANGELOG() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_LIST_CHANGELOG))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_PAIR", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_PAIR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_PAIR))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LOCK", skip_typescript)]
+pub fn c_opencode_icons__LOCK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LOCK))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__GLOBE", skip_typescript)]
+pub fn c_opencode_icons__GLOBE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::GLOBE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SELECT_ELEMENT", skip_typescript)]
+pub fn c_opencode_icons__SELECT_ELEMENT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SELECT_ELEMENT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__FLASK", skip_typescript)]
+pub fn c_opencode_icons__FLASK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FLASK))) }?)))
 }
 
 #[napi(js_name = "__C_opencode_icons__EDIT", skip_typescript)]
@@ -14,74 +148,29 @@ pub fn c_opencode_icons__EDIT() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::EDIT))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__CHECK", skip_typescript)]
-pub fn c_opencode_icons__CHECK() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHECK))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__CHECK_SMALL", skip_typescript)]
-pub fn c_opencode_icons__CHECK_SMALL() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHECK_SMALL))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__CHEVRON_DOWN", skip_typescript)]
-pub fn c_opencode_icons__CHEVRON_DOWN() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHEVRON_DOWN))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__CHEVRON_RIGHT", skip_typescript)]
-pub fn c_opencode_icons__CHEVRON_RIGHT() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHEVRON_RIGHT))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__CLOSE", skip_typescript)]
-pub fn c_opencode_icons__CLOSE() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CLOSE))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__XMARK_SMALL", skip_typescript)]
-pub fn c_opencode_icons__XMARK_SMALL() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::XMARK_SMALL))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__COPY", skip_typescript)]
-pub fn c_opencode_icons__COPY() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::COPY))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__MAGNIFYING_GLASS", skip_typescript)]
-pub fn c_opencode_icons__MAGNIFYING_GLASS() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MAGNIFYING_GLASS))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__CIRCLE_X", skip_typescript)]
-pub fn c_opencode_icons__CIRCLE_X() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_X))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__TRASH", skip_typescript)]
-pub fn c_opencode_icons__TRASH() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::TRASH))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__SETTINGS_GEAR", skip_typescript)]
-pub fn c_opencode_icons__SETTINGS_GEAR() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SETTINGS_GEAR))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__ARROW_UP", skip_typescript)]
-pub fn c_opencode_icons__ARROW_UP() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARROW_UP))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__FILL_TRIANGLE_DOWN", skip_typescript)]
-pub fn c_opencode_icons__FILL_TRIANGLE_DOWN() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FILL_TRIANGLE_DOWN))) }?)))
+#[napi(js_name = "__C_opencode_icons__FOLDER_ADD_LEFT", skip_typescript)]
+pub fn c_opencode_icons__FOLDER_ADD_LEFT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FOLDER_ADD_LEFT))) }?)))
 }
 
 #[napi(js_name = "__C_opencode_icons__FOLDER", skip_typescript)]
 pub fn c_opencode_icons__FOLDER() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FOLDER))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__BRANCH", skip_typescript)]
+pub fn c_opencode_icons__BRANCH() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::BRANCH))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__BRANCH_OUT", skip_typescript)]
+pub fn c_opencode_icons__BRANCH_OUT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::BRANCH_OUT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__GRID_PLUS", skip_typescript)]
+pub fn c_opencode_icons__GRID_PLUS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::GRID_PLUS))) }?)))
 }
 
 #[napi(js_name = "__C_opencode_icons__HELP", skip_typescript)]
@@ -94,24 +183,19 @@ pub fn c_opencode_icons__HELP_BOLD() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::HELP_BOLD))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__OUTLINE_DOTS", skip_typescript)]
-pub fn c_opencode_icons__OUTLINE_DOTS() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_DOTS))) }?)))
+#[napi(js_name = "__C_opencode_icons__INFO", skip_typescript)]
+pub fn c_opencode_icons__INFO() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::INFO))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__BRANCH", skip_typescript)]
-pub fn c_opencode_icons__BRANCH() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::BRANCH))) }?)))
+#[napi(js_name = "__C_opencode_icons__CIRCLE_EXCLAMATION", skip_typescript)]
+pub fn c_opencode_icons__CIRCLE_EXCLAMATION() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_EXCLAMATION))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__BRAIN", skip_typescript)]
-pub fn c_opencode_icons__BRAIN() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::BRAIN))) }?)))
-}
-
-#[napi(js_name = "__C_opencode_icons__CONSOLE", skip_typescript)]
-pub fn c_opencode_icons__CONSOLE() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CONSOLE))) }?)))
+#[napi(js_name = "__C_opencode_icons__CIRCLE_XMARK", skip_typescript)]
+pub fn c_opencode_icons__CIRCLE_XMARK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_XMARK))) }?)))
 }
 
 #[napi(js_name = "__C_opencode_icons__STATUS", skip_typescript)]
@@ -119,9 +203,179 @@ pub fn c_opencode_icons__STATUS() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::STATUS))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__SIDEBAR", skip_typescript)]
-pub fn c_opencode_icons__SIDEBAR() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SIDEBAR))) }?)))
+#[napi(js_name = "__C_opencode_icons__STATUS_ACTIVE", skip_typescript)]
+pub fn c_opencode_icons__STATUS_ACTIVE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::STATUS_ACTIVE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__MAGNIFYING_GLASS", skip_typescript)]
+pub fn c_opencode_icons__MAGNIFYING_GLASS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MAGNIFYING_GLASS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_MAGNIFIER_MINUS", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_MAGNIFIER_MINUS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_MAGNIFIER_MINUS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_MAGNIFIER_PLUS", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_MAGNIFIER_PLUS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_MAGNIFIER_PLUS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__MENU", skip_typescript)]
+pub fn c_opencode_icons__MENU() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MENU))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__MINUS", skip_typescript)]
+pub fn c_opencode_icons__MINUS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MINUS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__PLUS", skip_typescript)]
+pub fn c_opencode_icons__PLUS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::PLUS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SETTINGS_GEAR", skip_typescript)]
+pub fn c_opencode_icons__SETTINGS_GEAR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SETTINGS_GEAR))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHEVRON_DOWN", skip_typescript)]
+pub fn c_opencode_icons__CHEVRON_DOWN() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHEVRON_DOWN))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__COLLAPSE", skip_typescript)]
+pub fn c_opencode_icons__COLLAPSE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::COLLAPSE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHECK", skip_typescript)]
+pub fn c_opencode_icons__CHECK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHECK))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__MONITOR", skip_typescript)]
+pub fn c_opencode_icons__MONITOR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MONITOR))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__WORKSPACE_NEW", skip_typescript)]
+pub fn c_opencode_icons__WORKSPACE_NEW() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WORKSPACE_NEW))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__WORKSPACE_ISOLATED", skip_typescript)]
+pub fn c_opencode_icons__WORKSPACE_ISOLATED() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WORKSPACE_ISOLATED))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__WORKSPACE", skip_typescript)]
+pub fn c_opencode_icons__WORKSPACE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WORKSPACE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_WORKTREE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_WORKTREE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_WORKTREE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_TRASH", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_TRASH() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_TRASH))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CLOSE", skip_typescript)]
+pub fn c_opencode_icons__CLOSE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CLOSE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__XMARK_SMALL", skip_typescript)]
+pub fn c_opencode_icons__XMARK_SMALL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::XMARK_SMALL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_XMARK", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_XMARK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_XMARK))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_CHEVRON_DOWN", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_CHEVRON_DOWN() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_CHEVRON_DOWN))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_CHEVRON_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_CHEVRON_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_CHEVRON_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_DOTS", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_DOTS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_DOTS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__EXPAND", skip_typescript)]
+pub fn c_opencode_icons__EXPAND() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::EXPAND))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_EXPAND", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_EXPAND() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_EXPAND))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__FILETREE", skip_typescript)]
+pub fn c_opencode_icons__FILETREE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FILETREE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SPLIT", skip_typescript)]
+pub fn c_opencode_icons__SPLIT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SPLIT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__UNIFIED", skip_typescript)]
+pub fn c_opencode_icons__UNIFIED() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::UNIFIED))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__REVIEW", skip_typescript)]
+pub fn c_opencode_icons__REVIEW() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::REVIEW))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__WINDOW_ANALYTICS", skip_typescript)]
+pub fn c_opencode_icons__WINDOW_ANALYTICS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WINDOW_ANALYTICS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__GRADUATION_CAP", skip_typescript)]
+pub fn c_opencode_icons__GRADUATION_CAP() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::GRADUATION_CAP))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CODE_SLASH", skip_typescript)]
+pub fn c_opencode_icons__CODE_SLASH() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CODE_SLASH))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_CODE_BRACKETS", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_CODE_BRACKETS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_CODE_BRACKETS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__TRASH", skip_typescript)]
+pub fn c_opencode_icons__TRASH() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::TRASH))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_SLIDERS", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_SLIDERS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_SLIDERS))) }?)))
 }
 
 #[napi(js_name = "__C_opencode_icons__OUTLINE_COPY", skip_typescript)]
@@ -129,39 +383,284 @@ pub fn c_opencode_icons__OUTLINE_COPY() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_COPY))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__WARNING", skip_typescript)]
-pub fn c_opencode_icons__WARNING() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WARNING))) }?)))
+#[napi(js_name = "__C_opencode_icons__OUTLINE_QUOTE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_QUOTE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_QUOTE))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__WARNING_BOLD", skip_typescript)]
-pub fn c_opencode_icons__WARNING_BOLD() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WARNING_BOLD))) }?)))
+#[napi(js_name = "__C_opencode_icons__OUTLINE_ARROW_LEFT", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_ARROW_LEFT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_ARROW_LEFT))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__CIRCLE_CHECK", skip_typescript)]
-pub fn c_opencode_icons__CIRCLE_CHECK() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_CHECK))) }?)))
+#[napi(js_name = "__C_opencode_icons__OUTLINE_ARROW_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_ARROW_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_ARROW_RIGHT))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__CIRCLE_CHECK_BOLD", skip_typescript)]
-pub fn c_opencode_icons__CIRCLE_CHECK_BOLD() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_CHECK_BOLD))) }?)))
+#[napi(js_name = "__C_opencode_icons__OUTLINE_ARROW_UP_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_ARROW_UP_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_ARROW_UP_RIGHT))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__INFO", skip_typescript)]
-pub fn c_opencode_icons__INFO() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::INFO))) }?)))
+#[napi(js_name = "__C_opencode_icons__OUTLINE_ROTATE_CLOCKWISE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_ROTATE_CLOCKWISE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_ROTATE_CLOCKWISE))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__KEYBOARD", skip_typescript)]
-pub fn c_opencode_icons__KEYBOARD() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::KEYBOARD))) }?)))
+#[napi(js_name = "__C_opencode_icons__OUTLINE_GLOBE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_GLOBE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_GLOBE))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__GLOBE", skip_typescript)]
-pub fn c_opencode_icons__GLOBE() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::GLOBE))) }?)))
+#[napi(js_name = "__C_opencode_icons__OUTLINE_GLOBE_PLUS", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_GLOBE_PLUS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_GLOBE_PLUS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_COOKIE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_COOKIE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_COOKIE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_BROWSER_ANNOTATE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_BROWSER_ANNOTATE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_BROWSER_ANNOTATE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ARROW_UP_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__ARROW_UP_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARROW_UP_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_SQUARE_ARROW", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_SQUARE_ARROW() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_SQUARE_ARROW))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_ARROW_TO_CORNER_TOP_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_ARROW_TO_CORNER_TOP_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_ARROW_TO_CORNER_TOP_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_HEXAGONAL_WARNING", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_HEXAGONAL_WARNING() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_HEXAGONAL_WARNING))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_SHARE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_SHARE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_SHARE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_EYE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_EYE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_EYE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_EYE_SLASH", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_EYE_SLASH() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_EYE_SLASH))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__REFRESH", skip_typescript)]
+pub fn c_opencode_icons__REFRESH() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::REFRESH))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__RESET", skip_typescript)]
+pub fn c_opencode_icons__RESET() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::RESET))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_UNDO", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_UNDO() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_UNDO))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_RESET", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_RESET() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_RESET))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__FILL_TRIANGLE_DOWN", skip_typescript)]
+pub fn c_opencode_icons__FILL_TRIANGLE_DOWN() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FILL_TRIANGLE_DOWN))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__WAVEFORM", skip_typescript)]
+pub fn c_opencode_icons__WAVEFORM() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WAVEFORM))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_STEER", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_STEER() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_STEER))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_WAVE_AUDIO", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_WAVE_AUDIO() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_WAVE_AUDIO))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__COMMENT", skip_typescript)]
+pub fn c_opencode_icons__COMMENT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::COMMENT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ARCHIVE", skip_typescript)]
+pub fn c_opencode_icons__ARCHIVE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARCHIVE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_TEXT", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_TEXT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_TEXT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_PHOTO", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_PHOTO() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_PHOTO))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__FILE_DOCUMENT", skip_typescript)]
+pub fn c_opencode_icons__FILE_DOCUMENT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FILE_DOCUMENT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_AUDIO", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_AUDIO() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_AUDIO))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_VIDEO", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_VIDEO() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_VIDEO))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_BRAIN", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_BRAIN() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_BRAIN))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OUTLINE_CONSOLE", skip_typescript)]
+pub fn c_opencode_icons__OUTLINE_CONSOLE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_CONSOLE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ALIGN_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__ALIGN_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ALIGN_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ARROW_UP", skip_typescript)]
+pub fn c_opencode_icons__ARROW_UP() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARROW_UP))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ARROW_LEFT", skip_typescript)]
+pub fn c_opencode_icons__ARROW_LEFT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARROW_LEFT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ARROW_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__ARROW_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARROW_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__BUBBLE_5", skip_typescript)]
+pub fn c_opencode_icons__BUBBLE_5() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::BUBBLE_5))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__PROMPT", skip_typescript)]
+pub fn c_opencode_icons__PROMPT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::PROMPT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__BRAIN", skip_typescript)]
+pub fn c_opencode_icons__BRAIN() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::BRAIN))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__FORK", skip_typescript)]
+pub fn c_opencode_icons__FORK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FORK))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__BULLET_LIST", skip_typescript)]
+pub fn c_opencode_icons__BULLET_LIST() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::BULLET_LIST))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHECK_SMALL", skip_typescript)]
+pub fn c_opencode_icons__CHECK_SMALL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHECK_SMALL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHEVRON_LEFT", skip_typescript)]
+pub fn c_opencode_icons__CHEVRON_LEFT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHEVRON_LEFT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHEVRON_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__CHEVRON_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHEVRON_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHEVRON_GRABBER_VERTICAL", skip_typescript)]
+pub fn c_opencode_icons__CHEVRON_GRABBER_VERTICAL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHEVRON_GRABBER_VERTICAL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHEVRON_DOUBLE_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__CHEVRON_DOUBLE_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHEVRON_DOUBLE_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CIRCLE_X", skip_typescript)]
+pub fn c_opencode_icons__CIRCLE_X() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_X))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CLOSE_SMALL", skip_typescript)]
+pub fn c_opencode_icons__CLOSE_SMALL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CLOSE_SMALL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CHECKLIST", skip_typescript)]
+pub fn c_opencode_icons__CHECKLIST() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHECKLIST))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CONSOLE", skip_typescript)]
+pub fn c_opencode_icons__CONSOLE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CONSOLE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__TERMINAL", skip_typescript)]
+pub fn c_opencode_icons__TERMINAL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::TERMINAL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__TERMINAL_ACTIVE", skip_typescript)]
+pub fn c_opencode_icons__TERMINAL_ACTIVE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::TERMINAL_ACTIVE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__REVIEW_ACTIVE", skip_typescript)]
+pub fn c_opencode_icons__REVIEW_ACTIVE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::REVIEW_ACTIVE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CODE", skip_typescript)]
+pub fn c_opencode_icons__CODE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CODE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CODE_LINES", skip_typescript)]
+pub fn c_opencode_icons__CODE_LINES() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CODE_LINES))) }?)))
 }
 
 #[napi(js_name = "__C_opencode_icons__CIRCLE_BAN_SIGN", skip_typescript)]
@@ -174,6 +673,206 @@ pub fn c_opencode_icons__CIRCLE_BAN_SIGN_BOLD() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_BAN_SIGN_BOLD))) }?)))
 }
 
+#[napi(js_name = "__C_opencode_icons__EDIT_SMALL_2", skip_typescript)]
+pub fn c_opencode_icons__EDIT_SMALL_2() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::EDIT_SMALL_2))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__EYE", skip_typescript)]
+pub fn c_opencode_icons__EYE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::EYE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ENTER", skip_typescript)]
+pub fn c_opencode_icons__ENTER() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ENTER))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__FILE_TREE", skip_typescript)]
+pub fn c_opencode_icons__FILE_TREE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FILE_TREE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__FILE_TREE_ACTIVE", skip_typescript)]
+pub fn c_opencode_icons__FILE_TREE_ACTIVE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FILE_TREE_ACTIVE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__PLUS_SMALL", skip_typescript)]
+pub fn c_opencode_icons__PLUS_SMALL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::PLUS_SMALL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__NEW_SESSION", skip_typescript)]
+pub fn c_opencode_icons__NEW_SESSION() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::NEW_SESSION))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__NEW_SESSION_ACTIVE", skip_typescript)]
+pub fn c_opencode_icons__NEW_SESSION_ACTIVE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::NEW_SESSION_ACTIVE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__PENCIL_LINE", skip_typescript)]
+pub fn c_opencode_icons__PENCIL_LINE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::PENCIL_LINE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__MCP", skip_typescript)]
+pub fn c_opencode_icons__MCP() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MCP))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__GLASSES", skip_typescript)]
+pub fn c_opencode_icons__GLASSES() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::GLASSES))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__MAGNIFYING_GLASS_MENU", skip_typescript)]
+pub fn c_opencode_icons__MAGNIFYING_GLASS_MENU() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MAGNIFYING_GLASS_MENU))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__WINDOW_CURSOR", skip_typescript)]
+pub fn c_opencode_icons__WINDOW_CURSOR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WINDOW_CURSOR))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__TASK", skip_typescript)]
+pub fn c_opencode_icons__TASK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::TASK))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__STOP", skip_typescript)]
+pub fn c_opencode_icons__STOP() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::STOP))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SIDEBAR", skip_typescript)]
+pub fn c_opencode_icons__SIDEBAR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SIDEBAR))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SIDEBAR_ACTIVE", skip_typescript)]
+pub fn c_opencode_icons__SIDEBAR_ACTIVE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SIDEBAR_ACTIVE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_LEFT", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_LEFT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_LEFT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_LEFT_PARTIAL", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_LEFT_PARTIAL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_LEFT_PARTIAL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_LEFT_FULL", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_LEFT_FULL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_LEFT_FULL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_RIGHT_PARTIAL", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_RIGHT_PARTIAL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_RIGHT_PARTIAL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_RIGHT_FULL", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_RIGHT_FULL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_RIGHT_FULL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SQUARE_ARROW_TOP_RIGHT", skip_typescript)]
+pub fn c_opencode_icons__SQUARE_ARROW_TOP_RIGHT() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SQUARE_ARROW_TOP_RIGHT))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__OPEN_FILE", skip_typescript)]
+pub fn c_opencode_icons__OPEN_FILE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OPEN_FILE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SPEECH_BUBBLE", skip_typescript)]
+pub fn c_opencode_icons__SPEECH_BUBBLE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SPEECH_BUBBLE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__GITHUB", skip_typescript)]
+pub fn c_opencode_icons__GITHUB() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::GITHUB))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__DISCORD", skip_typescript)]
+pub fn c_opencode_icons__DISCORD() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::DISCORD))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_BOTTOM", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_BOTTOM() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_BOTTOM))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_BOTTOM_PARTIAL", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_BOTTOM_PARTIAL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_BOTTOM_PARTIAL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__LAYOUT_BOTTOM_FULL", skip_typescript)]
+pub fn c_opencode_icons__LAYOUT_BOTTOM_FULL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_BOTTOM_FULL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__DOT_GRID", skip_typescript)]
+pub fn c_opencode_icons__DOT_GRID() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::DOT_GRID))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CIRCLE_CHECK", skip_typescript)]
+pub fn c_opencode_icons__CIRCLE_CHECK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_CHECK))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CIRCLE_CHECK_BOLD", skip_typescript)]
+pub fn c_opencode_icons__CIRCLE_CHECK_BOLD() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CIRCLE_CHECK_BOLD))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__COPY", skip_typescript)]
+pub fn c_opencode_icons__COPY() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::COPY))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__PHOTO", skip_typescript)]
+pub fn c_opencode_icons__PHOTO() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::PHOTO))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SHARE", skip_typescript)]
+pub fn c_opencode_icons__SHARE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SHARE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SHIELD", skip_typescript)]
+pub fn c_opencode_icons__SHIELD() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SHIELD))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__DOWNLOAD", skip_typescript)]
+pub fn c_opencode_icons__DOWNLOAD() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::DOWNLOAD))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__SERVER", skip_typescript)]
+pub fn c_opencode_icons__SERVER() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SERVER))) }?)))
+}
+
 #[napi(js_name = "__C_opencode_icons__DASH", skip_typescript)]
 pub fn c_opencode_icons__DASH() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::DASH))) }?)))
@@ -184,54 +883,177 @@ pub fn c_opencode_icons__DASH_BOLD() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::DASH_BOLD))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__SUBAGENT", skip_typescript)]
-pub fn c_opencode_icons__SUBAGENT() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SUBAGENT))) }?)))
+#[napi(js_name = "__C_opencode_icons__CLOUD_UPLOAD", skip_typescript)]
+pub fn c_opencode_icons__CLOUD_UPLOAD() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CLOUD_UPLOAD))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__CHECKLIST", skip_typescript)]
-pub fn c_opencode_icons__CHECKLIST() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CHECKLIST))) }?)))
+#[napi(js_name = "__C_opencode_icons__SLIDERS", skip_typescript)]
+pub fn c_opencode_icons__SLIDERS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SLIDERS))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__CODE_LINES", skip_typescript)]
-pub fn c_opencode_icons__CODE_LINES() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CODE_LINES))) }?)))
+#[napi(js_name = "__C_opencode_icons__KEYBOARD", skip_typescript)]
+pub fn c_opencode_icons__KEYBOARD() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::KEYBOARD))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__FILE_TREE", skip_typescript)]
-pub fn c_opencode_icons__FILE_TREE() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::FILE_TREE))) }?)))
+#[napi(js_name = "__C_opencode_icons__SELECTOR", skip_typescript)]
+pub fn c_opencode_icons__SELECTOR() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::SELECTOR))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__STOP", skip_typescript)]
-pub fn c_opencode_icons__STOP() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::STOP))) }?)))
+#[napi(js_name = "__C_opencode_icons__ARROW_DOWN_TO_LINE", skip_typescript)]
+pub fn c_opencode_icons__ARROW_DOWN_TO_LINE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARROW_DOWN_TO_LINE))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__OUTLINE_WORKTREE", skip_typescript)]
-pub fn c_opencode_icons__OUTLINE_WORKTREE() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::OUTLINE_WORKTREE))) }?)))
+#[napi(js_name = "__C_opencode_icons__WARNING", skip_typescript)]
+pub fn c_opencode_icons__WARNING() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WARNING))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__GRID_PLUS", skip_typescript)]
-pub fn c_opencode_icons__GRID_PLUS() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::GRID_PLUS))) }?)))
+#[napi(js_name = "__C_opencode_icons__WARNING_BOLD", skip_typescript)]
+pub fn c_opencode_icons__WARNING_BOLD() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::WARNING_BOLD))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__LAYOUT_LEFT", skip_typescript)]
-pub fn c_opencode_icons__LAYOUT_LEFT() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_LEFT))) }?)))
+#[napi(js_name = "__C_opencode_icons__LINK", skip_typescript)]
+pub fn c_opencode_icons__LINK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LINK))) }?)))
 }
 
-#[napi(js_name = "__C_opencode_icons__LAYOUT_LEFT_FULL", skip_typescript)]
-pub fn c_opencode_icons__LAYOUT_LEFT_FULL() -> napi::Result<Raw> {
-    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::LAYOUT_LEFT_FULL))) }?)))
+#[napi(js_name = "__C_opencode_icons__PROVIDERS", skip_typescript)]
+pub fn c_opencode_icons__PROVIDERS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::PROVIDERS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__MODELS", skip_typescript)]
+pub fn c_opencode_icons__MODELS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::MODELS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__APPEARANCE", skip_typescript)]
+pub fn c_opencode_icons__APPEARANCE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::APPEARANCE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__NOTIFICATIONS", skip_typescript)]
+pub fn c_opencode_icons__NOTIFICATIONS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::NOTIFICATIONS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__EXTENSIONS", skip_typescript)]
+pub fn c_opencode_icons__EXTENSIONS() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::EXTENSIONS))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__CUBE", skip_typescript)]
+pub fn c_opencode_icons__CUBE() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::CUBE))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__POST_SKILL", skip_typescript)]
+pub fn c_opencode_icons__POST_SKILL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::POST_SKILL))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ARROW_UNDO_DOWN", skip_typescript)]
+pub fn c_opencode_icons__ARROW_UNDO_DOWN() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(unsafe { <crate::gen::rune::W_Icon as napi::bindgen_prelude::ToNapiValue>::to_napi_value(crate::js::env(), <crate::gen::rune::W_Icon as Class>::wrap(conv::Slot::Static(&rune_theme_opencode::icons::ARROW_UNDO_DOWN))) }?)))
+}
+
+#[napi(js_name = "__C_opencode_icons__ALL", skip_typescript)]
+pub fn c_opencode_icons__ALL() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::static_refs::<crate::gen::rune::W_Icon>(rune_theme_opencode::icons::ALL.iter().copied())?)))
+}
+
+/// The new artwork `icon` draws under New icons, if it has any yet (`getNewIcon`).
+#[napi(js_name = "opencode_new_icons__new_icon", skip_typescript)]
+pub fn f_opencode_new_icons__new_icon(a_icon: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let mut a_icon_i = conv::instance::<crate::gen::rune::W_Icon>(a_icon.0).map_err(|e| conv::err(format!("{}: {}", "icon", e.reason)))?;
+        let a_icon = a_icon_i.slot().get("Icon")?;
+        let out = match rune_theme_opencode::new_icons::new_icon(a_icon) { Some(v) => conv::static_ref::<crate::gen::rune::W_Icon>(v), None => Ok(conv::null()) }?;
+        Ok(Raw(out))
+    })
+}
+
+/// Desktop's mark for provider `id`, if it ships one.
+#[napi(js_name = "opencode_provider_icons__named", skip_typescript)]
+pub fn f_opencode_provider_icons__named(a_id: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_id: String = conv::arg(a_id.0, "id")?;
+        let out = match rune_theme_opencode::provider_icons::named(&a_id) { Some(v) => conv::static_ref::<crate::gen::rune::W_Icon>(v), None => Ok(conv::null()) }?;
+        Ok(Raw(out))
+    })
 }
 
 #[napi(js_name = "__C_opencode_provider_icons__NAMES", skip_typescript)]
 pub fn c_opencode_provider_icons__NAMES() -> napi::Result<Raw> {
     conv::guard(|| Ok(Raw(conv::ToJs::to_js(rune_theme_opencode::provider_icons::NAMES.to_vec())?)))
+}
+
+#[napi(js_name = "__C_opencode_provider_icons__FALLBACK", skip_typescript)]
+pub fn c_opencode_provider_icons__FALLBACK() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::static_ref::<crate::gen::rune::W_Icon>(rune_theme_opencode::provider_icons::FALLBACK)?)))
+}
+
+#[napi(js_name = "__C_opencode_tree_icons__CHEVRON", skip_typescript)]
+pub fn c_opencode_tree_icons__CHEVRON() -> napi::Result<Raw> {
+    conv::guard(|| Ok(Raw(conv::static_ref::<crate::gen::rune::W_Icon>(rune_theme_opencode::tree_icons::CHEVRON)?)))
+}
+
+/// The icon for a file at `path` (`/` or `\` separated, or just a name): its whole name first
+/// (`bun.lock`, `Dockerfile`), then each dotted suffix from the first dot (`config.ts`, then `ts`),
+/// `.tsx` and `.jsx` as React and `.scss` and `.sass` as Sass, else the plain file.
+#[napi(js_name = "opencode_tree_icons__file", skip_typescript)]
+pub fn f_opencode_tree_icons__file(a_path: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_path: String = conv::arg(a_path.0, "path")?;
+        let out = conv::ToJs::to_js(rune_theme_opencode::tree_icons::file(&a_path))?;
+        Ok(Raw(out))
+    })
+}
+
+/// Desktop's file tree rows (`pierre-tree.tsx` over `@pierre/trees`): 28 points tall with 8 at
+/// the ends, 6 between the chevron or icon and the name, 21.5 per level, 6-point corners, 12-point
+/// medium names in `text-muted` (`text-base` and the pressed overlay when selected, the hover
+/// overlay under the pointer), chevron-only folders with the chevron 1 point low, guides at 0.75
+/// only while the pointer is over the tree, and long names fading out over 16 points.
+#[napi(js_name = "opencode_tree_icons__style", skip_typescript)]
+pub fn f_opencode_tree_icons__style(a_k: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let mut a_k_i = conv::instance::<crate::gen::kit::W_kit_Kit>(a_k.0).map_err(|e| conv::err(format!("{}: {}", "k", e.reason)))?;
+        let a_k = a_k_i.slot().get("Kit")?;
+        let out = conv::ToJs::to_js(rune_theme_opencode::tree_icons::style(a_k))?;
+        Ok(Raw(out))
+    })
+}
+
+/// A file tree row as Desktop draws it under [`style`]: the name, and for a file its icon in
+/// `icon-muted`, or in its type's colour while selected. Folders show only the chevron.
+#[napi(js_name = "opencode_tree_icons__item", skip_typescript)]
+pub fn f_opencode_tree_icons__item(a_name: Raw, a_path: Raw, a_folder: Raw, a_selected: Raw, a_dark: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_name: String = conv::arg(a_name.0, "name")?;
+        let a_path: String = conv::arg(a_path.0, "path")?;
+        let a_folder: bool = conv::arg(a_folder.0, "folder")?;
+        let a_selected: bool = conv::arg(a_selected.0, "selected")?;
+        let a_dark: bool = conv::arg(a_dark.0, "dark")?;
+        let out = conv::ToJs::to_js(rune_theme_opencode::tree_icons::item(&a_name, &a_path, a_folder, a_selected, a_dark))?;
+        Ok(Raw(out))
+    })
+}
+
+/// Every file type with an icon of its own, for a gallery.
+#[napi(js_name = "opencode_tree_icons__all", skip_typescript)]
+pub fn f_opencode_tree_icons__all() -> napi::Result<Raw> {
+    conv::guard(|| {
+        
+        let out = conv::ToJs::to_js(rune_theme_opencode::tree_icons::all().collect::<Vec<_>>())?;
+        Ok(Raw(out))
+    })
 }
 
 #[napi(js_name = "__C_opencode_THEME", skip_typescript)]

@@ -19,6 +19,7 @@ rune-fx = { path = "vendor/rune/crates/rune-fx" }
 rune-light = { path = "vendor/rune/crates/rune-light" }
 rune-knobs = { path = "vendor/rune/crates/rune-knobs", features = ["panel"] }
 rune-theme-opencode = { path = "vendor/rune/themes/opencode" }
+rune-notify = { path = "vendor/rune/crates/rune-notify" }
 # Memory for the performance overlay (src/perf.rs); Rune's own process-stats crate.
 procwatch = { path = "vendor/rune/crates/procwatch" }
 # The fx compositor's own passes (src/manual/compose). Rune's version and features, so wgpu

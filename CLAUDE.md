@@ -66,9 +66,11 @@ skipped) and `tools/bindgen/surface.txt` (the API surface). Never hand-edit thes
 or the generator and run `bun tools/bindgen/main.ts` instead (`--rustdoc` refreshes the JSON, macOS only, since
 `docTarget` is `aarch64-apple-darwin`). Platform-gated items get `#[cfg]`s through `tools/bindgen/cfg.ts`. The
 hand-written parts are `src/app.rs` (apps and `Pump`), `src/state.rs`, `src/js.rs`, `src/conv.rs`, `src/idle.rs`,
-`src/perf.rs` and `src/manual/` (windows, overlays, live values, motion, the compositor). On the TS side they are
-`ts/app.ts`, `windows.ts`, `overlay.ts`, `live.ts`, `compose.ts`, `loop.ts`, `perf.ts` and `vite.ts`. The entry
-points (`ts/index.ts`, `kit.ts`, `fx.ts`, ...) mostly re-export `ts/gen/<crate>`.
+`src/perf.rs` and `src/manual/` (windows, overlays, live values, motion, the compositor, frame reports, `tooling`,
+the kit's `Tree`/`TreeModel`, the icon swap, notify's `on_click`). On the TS side they are `ts/app.ts`, `windows.ts`,
+`overlay.ts`, `live.ts`, `compose.ts`, `loop.ts`, `perf.ts`, `tooling.ts`, `tree.ts`, `icons.ts`, `notify-click.ts`
+and `vite.ts`. The entry points (`ts/index.ts`, `kit.ts`, `fx.ts`, `notify.ts`, ...) mostly re-export
+`ts/gen/<crate>`.
 
 **Pumped event loop.** Rune's `App::run` blocks the main thread, and JavaScript needs that thread.
 `patches/0001-pump-event-loop.patch` adds `App::start() -> Pump` (winit `pump_app_events`) and a pump wake hook.

@@ -2866,6 +2866,19 @@ impl W_Tx {
             Ok(Raw(out))
         })
     }
+/// The `El::matched` flights this change starts draw outside every clip until they land, as
+/// a [`Tx::launch`] does, rather than inside their destinations' clips: for elements that
+/// move between parts of the window that clip them, as tabs moving from a titlebar's strip
+/// into a sidebar that opens as they land, where a clip would hide them for most of the way.
+    #[napi(js_name = "unclipped_flights", skip_typescript)]
+    pub fn m_unclipped_flights(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("Tx")?;
+            let out = { me.unclipped_flights(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
 /// In `on_press` and `on_drag`, the button that drove it, which is
 /// [`PointerButton::Primary`] unless the element opted in to others with
 /// [`El::pointer_buttons`]. Other handlers see `Primary`.
@@ -3380,6 +3393,18 @@ impl W_Tx {
             Ok(Raw(out))
         })
     }
+/// [`Runtime::invalidate_memos_by_prefix`](crate::Runtime::invalidate_memos_by_prefix) on
+/// this window, from a handler or `poll`: e.g. a plugin host evicting the subtrees an
+/// unloading library built.
+    #[napi(js_name = "invalidate_memos_by_prefix", skip_typescript)]
+    pub fn m_invalidate_memos_by_prefix(&mut self, a_prefix: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_prefix: String = conv::arg(a_prefix.0, "prefix")?;
+            let me = self.slot.get_mut("Tx")?;
+            let out = { me.invalidate_memos_by_prefix(a_prefix); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
 /// Whether this runtime has an attached motion or tooling trace.
     #[napi(js_name = "tracing", skip_typescript)]
     pub fn m_tracing(&mut self) -> napi::Result<Raw> {
@@ -3477,6 +3502,32 @@ impl W_Tx {
             
             let me = self.slot.get_mut("Tx")?;
             let out = { me.toggle_maximized(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Take this window full screen after this handler, or bring it back, as macOS's green
+/// button and Electron's `setFullScreen` do: on Windows and Linux a borderless window over
+/// its display, which hides a custom titlebar's caption buttons (`Cx::chrome_insets`).
+/// Does nothing for overlays and headless runs.
+    #[napi(js_name = "toggle_full_screen", skip_typescript)]
+    pub fn m_toggle_full_screen(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("Tx")?;
+            let out = { me.toggle_full_screen(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Deliver `ev` once this handler is done, as if it were typed: to the focused field, then
+/// the key handlers, as the keyboard routes it. For a menu the app draws itself, whose Edit
+/// items send Ctrl+C (⌘C) and the rest to the field that has focus, as AppKit's standard
+/// Edit items do. Keys sent in one handler arrive in order.
+    #[napi(js_name = "send_key", skip_typescript)]
+    pub fn m_send_key(&mut self, a_ev: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_ev: rune::KeyEvent = conv::arg(a_ev.0, "ev")?;
+            let me = self.slot.get_mut("Tx")?;
+            let out = { me.send_key(a_ev); conv::Result::Ok(conv::undefined()) }?;
             Ok(Raw(out))
         })
     }
@@ -4009,6 +4060,30 @@ impl W_Drag {
             
             let me = self.slot.get("Drag")?;
             let out = conv::ToJs::to_js(me.cancelled())?;
+            Ok(Raw(out))
+        })
+    }
+/// The pointer in window points from the window's top-left, whatever scale the element
+/// draws at.
+    #[napi(js_name = "window_point", skip_typescript)]
+    pub fn m_window_point(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("Drag")?;
+            let out = conv::ToJs::to_js(me.window_point())?;
+            Ok(Raw(out))
+        })
+    }
+/// The pointer in physical desktop pixels, the space `WindowOptions::position` and
+/// `WindowHandle::set_position` take: for opening a window under the pointer, as a tab
+/// dragged out of its strip does. `None` without a native window (headless runs, the web)
+/// and where the system hides window positions (Wayland).
+    #[napi(js_name = "screen_point", skip_typescript)]
+    pub fn m_screen_point(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("Drag")?;
+            let out = conv::ToJs::to_js(me.screen_point())?;
             Ok(Raw(out))
         })
     }
@@ -4784,6 +4859,7 @@ impl FromJs for rune::Anchor {
             gap: conv::field::<f32>(v, "Anchor", "gap")?,
             fit: conv::field::<bool>(v, "Anchor", "fit")?,
             unscaled: conv::field::<bool>(v, "Anchor", "unscaled")?,
+            round: conv::field::<bool>(v, "Anchor", "round")?,
         })
     }
 }
@@ -4796,6 +4872,7 @@ impl ToJs for rune::Anchor {
         conv::set(o, "gap", self.gap.clone().to_js()?);
         conv::set(o, "fit", self.fit.clone().to_js()?);
         conv::set(o, "unscaled", self.unscaled.clone().to_js()?);
+        conv::set(o, "round", self.round.clone().to_js()?);
         Ok(o)
     }
 }
@@ -4807,6 +4884,7 @@ impl conv::Record for rune::Anchor {
         conv::set(o, "gap", self.gap.clone().to_js()?);
         conv::set(o, "fit", self.fit.clone().to_js()?);
         conv::set(o, "unscaled", self.unscaled.clone().to_js()?);
+        conv::set(o, "round", self.round.clone().to_js()?);
         Ok(())
     }
 }
@@ -4833,6 +4911,112 @@ impl ToJs for rune::Side {
             rune::Side::Right => conv::ToJs::to_js("Right"),
             _ => Ok(conv::undefined()),
         }
+    }
+}
+
+/// How a scroll viewport's edges fade with the content hidden under them ([`El::scroll_fade`]).
+#[napi(js_name = "ScrollFade")]
+pub struct W_ScrollFade {
+    pub(crate) slot: conv::Slot<rune::ScrollFade>,
+}
+impl Class for W_ScrollFade {
+    type Inner = rune::ScrollFade;
+    const NAME: &'static str = "ScrollFade";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_ScrollFade { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune::ScrollFade {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_ScrollFade>(v)
+    }
+}
+impl ToJs for rune::ScrollFade {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_ScrollFade>(self)
+    }
+}
+#[napi]
+impl W_ScrollFade {
+/// Each edge fades over `width` points (16-32 reads well) at a strength that follows the
+/// content hidden under it, full once 15 points are hidden: the edge itself shows
+/// `1 - strength`. A viewport at its top (or bottom, or stuck to it) shows that edge hard.
+/// Desktop's search lists fade so (`search-list.tsx`).
+    #[napi(js_name = "strength", skip_typescript)]
+    pub fn s_strength(a_width: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let out = conv::owned::<W_ScrollFade>(rune::ScrollFade::strength(a_width))?;
+            Ok(Raw(out))
+        })
+    }
+/// Each edge feathers by as much as is hidden under it, up to `max` points, on a linear ramp
+/// from nothing at the edge: CSS `mask-image: linear-gradient(transparent, black
+/// min(max, scrollTop))`, as Desktop's vertical tabs do. It appears and leaves without a jump.
+    #[napi(js_name = "feather", skip_typescript)]
+    pub fn s_feather(a_max: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_max: f32 = conv::arg(a_max.0, "max")?;
+            let out = conv::owned::<W_ScrollFade>(rune::ScrollFade::feather(a_max))?;
+            Ok(Raw(out))
+        })
+    }
+/// A [`Self::strength`] fade is full once `points` are hidden, rather than 15: a small value
+/// shows the whole fade as soon as anything is hidden, as a mask a scroll listener toggles
+/// on and off does (Desktop's projects list).
+    #[napi(js_name = "full_at", skip_typescript)]
+    pub fn m_full_at(&mut self, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.get("ScrollFade")?.clone();
+            let out = conv::owned::<W_ScrollFade>(me.full_at(a_points))?;
+            Ok(Raw(out))
+        })
+    }
+/// Only the end the content runs on past (the bottom, or the right of a sideways viewport)
+/// follows the scroll; the start keeps the viewport's own [`El::clip_fade`] or
+/// [`El::clip_fade_linear`], such as a fixed fade over a field's top padding.
+    #[napi(js_name = "end_only", skip_typescript)]
+    pub fn m_end_only(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("ScrollFade")?.clone();
+            let out = conv::owned::<W_ScrollFade>(me.end_only())?;
+            Ok(Raw(out))
+        })
+    }
+/// Ramps alpha linearly across the fade, as a CSS `linear-gradient` mask does, rather than
+/// on smoothstep.
+    #[napi(js_name = "linear", skip_typescript)]
+    pub fn m_linear(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("ScrollFade")?.clone();
+            let out = conv::owned::<W_ScrollFade>(me.linear())?;
+            Ok(Raw(out))
+        })
+    }
+/// The top fade starts under the [`El::sticky_top`] header stuck at the viewport's top, for
+/// the rows of that header's section (the header's later siblings), at the strength of what
+/// the section hides under the header; a header being pushed away by the next leaves the
+/// rows clear, and the incoming one starts clear. With no header stuck, the viewport's own
+/// top fades. Desktop's palettes fade their sections so (`search-list.css`), drawing the
+/// fade over the rows in the list's surface colour.
+    #[napi(js_name = "below_sticky", skip_typescript)]
+    pub fn m_below_sticky(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("ScrollFade")?.clone();
+            let out = conv::owned::<W_ScrollFade>(me.below_sticky())?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_ScrollFade>(self.slot.get("ScrollFade")?.clone())?)))
     }
 }
 
@@ -4997,6 +5181,115 @@ impl W_el__TextSpec {
     #[napi(js_name = "clone", skip_typescript)]
     pub fn m___clone(&self) -> napi::Result<Raw> {
         conv::guard(|| Ok(Raw(conv::owned::<W_el__TextSpec>(self.slot.get("TextSpec")?.clone())?)))
+    }
+}
+
+/// An icon set inline in text by [`El::inline_icon`]: a glyph or an image, `size` points square
+/// (14 by default), `gap` points before the text after it (4).
+#[napi(js_name = "InlineIcon")]
+pub struct W_InlineIcon {
+    pub(crate) slot: conv::Slot<rune::InlineIcon>,
+}
+impl Class for W_InlineIcon {
+    type Inner = rune::InlineIcon;
+    const NAME: &'static str = "InlineIcon";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_InlineIcon { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune::InlineIcon {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::take_or_clone::<W_InlineIcon>(v)
+    }
+}
+impl ToJs for rune::InlineIcon {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_InlineIcon>(self)
+    }
+}
+#[napi]
+impl W_InlineIcon {
+/// `icon`, drawn in [`Self::color`] or the element's text colour.
+    #[napi(js_name = "glyph", skip_typescript)]
+    pub fn s_glyph(a_icon: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_icon_i = conv::instance::<crate::gen::rune::W_Icon>(a_icon.0).map_err(|e| conv::err(format!("{}: {}", "icon", e.reason)))?;
+            let a_icon = a_icon_i.slot().leak("Icon")?;
+            let out = conv::owned::<W_InlineIcon>(rune::InlineIcon::glyph(a_icon))?;
+            Ok(Raw(out))
+        })
+    }
+/// An image (decoded pixels, such as a site's favicon), scaled to fit the square.
+    #[napi(js_name = "image", skip_typescript)]
+    pub fn s_image(a_pixels: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_pixels: rune::Pixels = conv::arg(a_pixels.0, "pixels")?;
+            let out = conv::owned::<W_InlineIcon>(rune::InlineIcon::image(a_pixels))?;
+            Ok(Raw(out))
+        })
+    }
+/// Its side in points.
+    #[napi(js_name = "size", skip_typescript)]
+    pub fn m_size<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_InlineIcon>(v.clone().size(a_points))?));
+            }
+            let me = self.slot.take("InlineIcon")?;
+            self.slot.put(me.size(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Its room after it, before the text, in points.
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_InlineIcon>(v.clone().gap(a_points))?));
+            }
+            let me = self.slot.take("InlineIcon")?;
+            self.slot.put(me.gap(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// An image's corner radius in points.
+    #[napi(js_name = "radius", skip_typescript)]
+    pub fn m_radius<'t>(&mut self, this: This<'t>, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_InlineIcon>(v.clone().radius(a_points))?));
+            }
+            let me = self.slot.take("InlineIcon")?;
+            self.slot.put(me.radius(a_points));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// A glyph's colour.
+    #[napi(js_name = "color", skip_typescript)]
+    pub fn m_color<'t>(&mut self, this: This<'t>, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_InlineIcon>(v.clone().color(a_c))?));
+            }
+            let me = self.slot.take("InlineIcon")?;
+            self.slot.put(me.color(a_c));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_InlineIcon>(self.slot.get("InlineIcon")?.clone())?)))
     }
 }
 
@@ -5563,6 +5856,22 @@ impl W_El {
             }
             let me = self.slot.take("El")?;
             self.slot.put(me.anchored_unscaled());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Put this [`El::anchored`] overlay at whole points, rounding where it goes as Kobalte's
+/// popper rounds Floating UI's position (`Math.round` on x and y), so a menu under a trigger
+/// at half a point lands where a web menu does. Call it after `anchored`.
+    #[napi(js_name = "anchored_round", skip_typescript)]
+    pub fn m_anchored_round<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().anchored_round())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.anchored_round());
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -6916,6 +7225,24 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// A part of a `.window_drag()` band that keeps its presses: a press, double press or
+/// secondary click on it, or on a bare child of it, neither moves, zooms nor opens the menu
+/// of the window. Controls (`on_press`, `on_drag`, focusable elements, text fields) already
+/// keep theirs; this is for the parts between them, such as the gaps of a toolbar group.
+/// Like any hit target, it takes presses from what lies under it.
+    #[napi(js_name = "no_window_drag", skip_typescript)]
+    pub fn m_no_window_drag<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().no_window_drag())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.no_window_drag());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// The caret of an editor the app draws itself rather than with `text_input`: while this
 /// element is drawn and no text field has focus, the window turns its input method on (dead
 /// keys, CJK, the emoji picker, dictation), places the candidate window at this element's
@@ -7479,6 +7806,44 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// While this [`matched`](Self::matched) element flies, its children keep their final
+/// layout at their own size, from the moving frame's leading edge and centred on its
+/// height, cropped to it, rather than scaled to cover it: for a row whose width changes as
+/// it flies, as a tab moving between a titlebar's strip and a sidebar, whose avatar and title
+/// would otherwise scale up or slide off its leading edge.
+    #[napi(js_name = "matched_crop", skip_typescript)]
+    pub fn m_matched_crop<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().matched_crop())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.matched_crop());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// When an animated commit changes this element's width (a side panel springing open
+/// beside a column of text), it and everything in it take the layout they land at in
+/// that frame, so text wraps once rather than on every frame of the travel, and the whole
+/// slides as one: its first child that drew last frame starts where it was drawn and
+/// glides to its new place on this element's spring. Heights its growth rows change land
+/// with it. Motion checks take that frame's re-layout as designed. A window resize, an
+/// instant commit and Reduce Motion land as they otherwise would.
+    #[napi(js_name = "hold_landing_width", skip_typescript)]
+    pub fn m_hold_landing_width<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().hold_landing_width())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.hold_landing_width());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// Draws bytes `range` of a [`text`](crate::text) or [`rich`](crate::rich) element as a
 /// pill: a rounded chip in `style`'s colour (default: the rich style's link colour at 20%,
 /// or [`El::pill_colors`]) with its label in `style`'s text colour and its icon before it,
@@ -7516,6 +7881,30 @@ impl W_El {
             }
             let me = self.slot.take("El")?;
             self.slot.put(me.pills(a_pills));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Sets `icon` inline in a [`text`](crate::text) or [`rich`](crate::rich) element, before
+/// byte `at` (a char boundary), in room of its own that moves the text after it aside. It
+/// stays on the line of the word that follows it, as an icon before a link does on a web
+/// page, and sits centred on that word's letters. Its glyph takes `icon`'s colour or the
+/// element's; an image (a site's favicon) draws as it is. Selection and copy skip it. With no
+/// word after `at`, or over a pill, it draws nothing.
+///
+/// ```ignore
+/// rich("see the docs", spans).inline_icon(8, InlineIcon::glyph(&GLOBE).size(14.0).gap(4.0))
+/// ```
+    #[napi(js_name = "inline_icon", skip_typescript)]
+    pub fn m_inline_icon<'t>(&mut self, this: This<'t>, a_at: Raw, a_icon: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_at: usize = conv::arg(a_at.0, "at")?;
+            let a_icon: rune::InlineIcon = conv::arg(a_icon.0, "icon")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().inline_icon(a_at, a_icon))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.inline_icon(a_at, a_icon));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -7693,6 +8082,24 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// On a scroll viewport, fade its edges with the content hidden under them, as `fade`
+/// describes: [`ScrollFade::strength`] (as [`El::scroll_edge_fade`]), a
+/// [`ScrollFade::feather`] as wide as what's hidden, linear ramps, or a top fade under the
+/// header stuck there. Everything [`El::scroll_edge_fade`] says of sticky elements, explicit
+/// masks and [`El::scroll_margin`] applies.
+    #[napi(js_name = "scroll_fade", skip_typescript)]
+    pub fn m_scroll_fade<'t>(&mut self, this: This<'t>, a_fade: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_fade: rune::ScrollFade = conv::arg(a_fade.0, "fade")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().scroll_fade(a_fade))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.scroll_fade(a_fade));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// On a scroll viewport, the space [`Tx::scroll_into_view`] leaves between a revealed row and
 /// the edge it scrolls to, like CSS `scroll-padding`. The content's own ends still stop flush.
     #[napi(js_name = "scroll_margin", skip_typescript)]
@@ -7829,6 +8236,60 @@ impl W_El {
             }
             let me = self.slot.take("El")?;
             self.slot.put(me.stuck_shadow(a_shadow));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Fades this [`El::sticky_top`] element's children, not its own fill, as the next
+/// sticky-top sibling rises to it: whole while that sibling's top is `lead + span` points or
+/// more below this one's drawn top, gone once it's `lead` below, linearly between, frame by
+/// frame with the scroll. Desktop's Home fades a stuck day header's title so as the next day
+/// comes up (`home/scroll.ts`), its fill still covering the rows under it until the next
+/// header, a later sibling drawn over it, takes its place. A header with no sticky sibling
+/// after it stays whole.
+    #[napi(js_name = "stuck_fade", skip_typescript)]
+    pub fn m_stuck_fade<'t>(&mut self, this: This<'t>, a_lead: Raw, a_span: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_lead: f32 = conv::arg(a_lead.0, "lead")?;
+            let a_span: f32 = conv::arg(a_span.0, "span")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().stuck_fade(a_lead, a_span))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.stuck_fade(a_lead, a_span));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Keeps this text's height its lines' own, unrounded (22.4 points for a line at a 22.4
+/// line height, 24.375 device pixels for a 19.5 point line at 1.25x), as a browser lays out
+/// a paragraph: a stack of texts lands where a web page's does rather than gaining up to a
+/// pixel per text. Every text does this unless it asks for [`El::rounded_lines`].
+    #[napi(js_name = "exact_lines", skip_typescript)]
+    pub fn m_exact_lines<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().exact_lines())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.exact_lines());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Rounds this text's height up to whole device pixels instead of keeping its lines' own
+/// ([`El::exact_lines`]), as Rune laid out every text before: a box sized by one text keeps
+/// its edges on the pixel grid at any scale.
+    #[napi(js_name = "rounded_lines", skip_typescript)]
+    pub fn m_rounded_lines<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().rounded_lines())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.rounded_lines());
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -8247,6 +8708,23 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// Mark this text field's misspelled words, as a browser's `spellcheck` does: the platform's
+/// checker (Windows' spell checking API, AppKit's `NSSpellChecker`; none on Linux or the
+/// web) puts a red marker under each word the caret has left, and the field's menu offers its
+/// suggestions and Learn Spelling. Off by default; a secure field never checks.
+    #[napi(js_name = "spellcheck", skip_typescript)]
+    pub fn m_spellcheck<'t>(&mut self, this: This<'t>, a_on: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().spellcheck(a_on))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.spellcheck(a_on));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
     #[napi(js_name = "placeholder", skip_typescript)]
     pub fn m_placeholder<'t>(&mut self, this: This<'t>, a_s: Raw, a_c: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -8583,10 +9061,14 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
-/// A ring `width` points wide just inside the border box, following the corner radii. It
-/// takes no layout space and replaces the fill under it rather than drawing over it, so a
-/// translucent ring shows what's behind the element. For a stroke over the fill (SwiftUI's
-/// `strokeBorder`), put the border on an unfilled child the same size.
+/// A ring `width` points wide just inside the border box, following the corner radii, as a
+/// CSS `border` draws with `box-sizing: border-box`. It takes no layout space and draws over
+/// the fill, which runs under it to the outer edge, so a translucent border on a filled box
+/// shows the fill through it, as in CSS. Inset [`Self::box_shadow`]s draw between the two,
+/// inside the ring. The width snaps to device pixels as a CSS border's does: under one pixel
+/// it draws one, above that it floors to whole pixels. For a ring at its exact fractional
+/// width, as CSS `box-shadow: inset 0 0 0 0.5px` draws, use an inset [`Self::box_shadow`]
+/// with that spread.
     #[napi(js_name = "border", skip_typescript)]
     pub fn m_border<'t>(&mut self, this: This<'t>, a_width: Raw, a_c: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -8601,9 +9083,66 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// A border with its own width on each side, `[top, right, bottom, left]` points, in one
+/// colour, as CSS `border-top`, `border-right`, `border-bottom` and `border-left` draw: a
+/// zero side draws nothing, and the ring follows the corner radii, narrowing round a corner
+/// from one side's width to the other's. Drawn like [`Self::border`], over the fill and
+/// taking no layout space, with each width snapped to device pixels the same way. So a
+/// `border-bottom: 0.5px` hairline is `.border_sides([0.0, 0.0, 0.5, 0.0], c)`, its one
+/// device pixel the box's last row. Dashes and gradients draw the widest side all round.
+/// Replaces any `border`, and `border` replaces it.
+    #[napi(js_name = "border_sides", skip_typescript)]
+    pub fn m_border_sides<'t>(&mut self, this: This<'t>, a_widths: Raw, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_widths: [f32; 4] = conv::arg(a_widths.0, "widths")?;
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().border_sides(a_widths, a_c))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.border_sides(a_widths, a_c));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Makes this element's [`Self::border`] or [`Self::border_sides`] take room in layout, as a
+/// CSS border does: its padding and content lay out inside it, each side as wide as it
+/// draws, snapped as Chromium snaps a border width to device pixels. So a
+/// `border-bottom: 0.5px` row is one whole device pixel taller at any scale (0.8 points at
+/// 1.25x), and a stack of them ends where a web page's does.
+    #[napi(js_name = "border_layout", skip_typescript)]
+    pub fn m_border_layout<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().border_layout())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.border_layout());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Draws a colour icon (one whose body names its own colours, such as a file-type badge) as
+/// its silhouette in this element's colour, as an SVG mask of the icon filled with
+/// `currentColor` draws it (`@opencode/ui` FileIcon's `mono`): a file tab's badge in one
+/// colour until the tab is selected or hovered. A monochrome icon draws as it always does.
+    #[napi(js_name = "icon_one_color", skip_typescript)]
+    pub fn m_icon_one_color<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().icon_one_color())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.icon_one_color());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// A border whose colour runs from `top` at the top edge to `bottom` at the bottom edge,
-/// e.g. a top-lit hairline rim. Drawn like [`El::border`], inside the box in place of the
-/// fill. Replaces any `border`, and `border` replaces it.
+/// e.g. a top-lit hairline rim. Drawn like [`El::border`], inside the box over the fill.
+/// Replaces any `border`, and `border` replaces it.
     #[napi(js_name = "border_gradient", skip_typescript)]
     pub fn m_border_gradient<'t>(&mut self, this: This<'t>, a_width: Raw, a_top: Raw, a_bottom: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -8623,8 +9162,8 @@ impl W_El {
 /// with butt ends, along the ring's centre line, round the corners too. The pattern starts
 /// with a dash where the top edge leaves the top-left corner and runs clockwise. The period
 /// stretches or shrinks a little so a whole number of dashes fits, and the last gap meets the
-/// first dash cleanly. Unlike a solid border, the fill shows through the gaps and the dashes
-/// draw over it. A zero `dash` or `gap` keeps the border solid.
+/// first dash cleanly. The fill shows through the gaps, and the dashes draw over it as a
+/// solid border does. A zero `dash` or `gap` keeps the border solid.
     #[napi(js_name = "border_dash", skip_typescript)]
     pub fn m_border_dash<'t>(&mut self, this: This<'t>, a_dash: Raw, a_gap: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -8757,7 +9296,8 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
-/// A ring `offset` points outside the border box (CSS `outline` + `outline-offset`).
+/// A ring `offset` points outside the border box (CSS `outline` + `outline-offset`). Width
+/// and offset snap to device pixels as [`Self::border`]'s width does.
     #[napi(js_name = "outline", skip_typescript)]
     pub fn m_outline<'t>(&mut self, this: This<'t>, a_width: Raw, a_offset: Raw, a_color: Raw) -> napi::Result<Raw> {
         conv::guard(move || {
@@ -8831,6 +9371,25 @@ impl W_El {
             }
             let me = self.slot.take("El")?;
             self.slot.put(me.dim(a_alpha));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Fade the whole subtree as one composited layer, like CSS `opacity`: a label over its
+/// button's fill shows the fill as it is, not faded through, and overlapping children don't
+/// show through each other. Static, as [`Self::dim`] is: a change lands at once, and
+/// animation and hit-test opacity still belong to `opacity` / `live_opacity`. Only an
+/// element below 1 whose paint overlaps (children, or more than one paint of its own) draws
+/// offscreen; anything else just takes the alpha. Repeated calls multiply.
+    #[napi(js_name = "layer_opacity", skip_typescript)]
+    pub fn m_layer_opacity<'t>(&mut self, this: This<'t>, a_alpha: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_alpha: f32 = conv::arg(a_alpha.0, "alpha")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().layer_opacity(a_alpha))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.layer_opacity(a_alpha));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -9109,6 +9668,28 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// Punch a round hole through this element and everything it and its descendants draw: clear
+/// within `inner` points of `center` (points from the element's top-left, which may lie
+/// outside it), whole from `outer` points, and ramping linearly between, as CSS
+/// `mask-image: radial-gradient(circle at x y, transparent inner, black outer)` does. Equal
+/// radii cut an anti-aliased edge. Room for a badge over an avatar's corner:
+/// `.cutout_circle([16.0, 0.0], 4.0, 5.0)` under a 6 point dot at the corner. The subtree
+/// draws in an isolated layer, whose composite cuts the hole; hit testing ignores it.
+    #[napi(js_name = "cutout_circle", skip_typescript)]
+    pub fn m_cutout_circle<'t>(&mut self, this: This<'t>, a_center: Raw, a_inner: Raw, a_outer: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_center: [f32; 2] = conv::arg(a_center.0, "center")?;
+            let a_inner: f32 = conv::arg(a_inner.0, "inner")?;
+            let a_outer: f32 = conv::arg(a_outer.0, "outer")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().cutout_circle(a_center, a_inner, a_outer))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.cutout_circle(a_center, a_inner, a_outer));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// Soft clip with a fade width per side (left, top, right, bottom).
     #[napi(js_name = "clip_fade", skip_typescript)]
     pub fn m_clip_fade<'t>(&mut self, this: This<'t>, a_left: Raw, a_top: Raw, a_right: Raw, a_bottom: Raw) -> napi::Result<Raw> {
@@ -9156,6 +9737,38 @@ impl W_El {
             }
             let me = self.slot.take("El")?;
             self.slot.put(me.hover_group());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// [`Self::hover_group`], shared by every element on screen with the same `key`: the pointer
+/// over any of them hovers them all, so one group can span elements that don't nest, such as
+/// a reply's text and the footer under it in separate rows of a virtual list.
+    #[napi(js_name = "hover_group_shared", skip_typescript)]
+    pub fn m_hover_group_shared<'t>(&mut self, this: This<'t>, a_key: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_key: std::rc::Rc<str> = conv::arg(a_key.0, "key")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().hover_group_shared(a_key))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.hover_group_shared(a_key));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// [`Self::hover_group`] that also counts as hovered while keyboard focus is on it or
+/// anywhere inside it, as CSS `:is(:hover, :has(:focus-visible))` does: a tab whose close
+/// button and hover wash show when Tab reaches it, as under the pointer.
+    #[napi(js_name = "hover_group_focus", skip_typescript)]
+    pub fn m_hover_group_focus<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().hover_group_focus())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.hover_group_focus());
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -9280,6 +9893,25 @@ impl W_El {
             }
             let me = self.slot.take("El")?;
             self.slot.put(me.on_window_focus(a_f));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// On the root or around text fields: the app's spell checking setting, `on`, which the
+/// fields' menus show as a Spellcheck item with a check mark, as a browser's do. Picking it
+/// calls `f` with the setting flipped; the app keeps it and passes it to its fields'
+/// [`El::spellcheck`].
+    #[napi(js_name = "on_spellcheck", skip_typescript)]
+    pub fn m_on_spellcheck<'t>(&mut self, this: This<'t>, a_on: Raw, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_on: bool = conv::arg(a_on.0, "on")?;
+            let a_f_h = conv::arg::<conv::JsFn>(a_f.0, "f")?.0;
+            let a_f = move |c0: &mut crate::state::JsState, c1: bool, c2: &mut rune::Tx| -> () { crate::js::scope(|| { { let v0 = c0.value(); { let v1 = conv::arg_js(c1); conv::lend::<crate::gen::rune::W_Tx, _>(c2, |v2| { let r = a_f_h.call(&[v0, v1, v2]); crate::state::replace_from(c0, r); () }) } } }) };
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().on_spellcheck(a_on, a_f))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.on_spellcheck(a_on, a_f));
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -9804,13 +10436,50 @@ impl W_El {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// A ring drawn while focus is on this element or anywhere inside it, whether the pointer or
+/// the keyboard put it there, as CSS `:focus-within` draws a text field's box: e.g.
+/// `focus_within_ring(1.0, -1.0, c)` for `outline: 1px solid; outline-offset: -1px`, a ring
+/// just inside the border box. It isn't a Tab stop by itself.
+    #[napi(js_name = "focus_within_ring", skip_typescript)]
+    pub fn m_focus_within_ring<'t>(&mut self, this: This<'t>, a_width: Raw, a_offset: Raw, a_color: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let a_offset: f32 = conv::arg(a_offset.0, "offset")?;
+            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().focus_within_ring(a_width, a_offset, a_color))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.focus_within_ring(a_width, a_offset, a_color));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// While focus is on this element or anywhere inside it, from the pointer or the keyboard,
+/// it draws none of its [`El::box_shadow`]s and no [`El::hover`] fill, as a CSS field whose
+/// `:focus-within` rule sets `box-shadow: none` and whose hover rule is
+/// `:not(:focus-within)`: the [`El::focus_within_ring`] stands in for its raised edge.
+    #[napi(js_name = "focus_within_flat", skip_typescript)]
+    pub fn m_focus_within_flat<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().focus_within_flat())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.focus_within_flat());
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// No focus ring: not the default one, and not one set with [`El::focus_ring`]. A control
 /// that shows focus its own way (a fill, an outline it animates) sets it on itself or on
 /// the child that would draw the ring.
 ///
-/// Without it, a `focusable` element focused from the keyboard draws AppKit's ring when
-/// neither it nor a child (short of another focusable) sets `focus_ring`: 3 points wide
-/// in [`Cx::focus_color`](crate::Cx::focus_color), just outside its border box, following
+/// Without it, a `focusable` element focused from the keyboard draws the default ring when
+/// neither it nor a child (short of another focusable) sets `focus_ring`: the view's
+/// [`Cx::focus_ring`](crate::Cx::focus_ring), else AppKit's, 3 points wide in
+/// [`Cx::focus_color`](crate::Cx::focus_color), just outside its border box, following
 /// its corner radii. Text fields, focused links, `focus_highlight` rows and the items of a `menu`,
 /// `listbox`, `list`, `tree` or `grid` group draw none, as in AppKit: their caret,
 /// highlight or selection shows focus.
@@ -10009,6 +10678,38 @@ impl W_El {
             }
             let me = self.slot.take("El")?;
             self.slot.put(me.help_when_truncated(a_text));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Keycaps drawn after this element's [`El::help`] text, as a web tooltip shows its
+/// command's keybind: `.help("Toggle review").help_keys(["Ctrl", "Shift", "R"])`. Call it
+/// after `help`, which replaces them. The element tree and assistive technology read them
+/// after the text, a space apart.
+    #[napi(js_name = "help_keys", skip_typescript)]
+    pub fn m_help_keys<'t>(&mut self, this: This<'t>, a_keys: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_keys: Vec<String> = conv::arg(a_keys.0, "keys")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().help_keys(a_keys))?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.help_keys(a_keys));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
+/// Shows this element's [`El::help`] tooltip above it, 4 points clear, and below only when
+/// there's no room above, as a web page's `placement="top"` tooltip sits over its button.
+    #[napi(js_name = "help_above", skip_typescript)]
+    pub fn m_help_above<'t>(&mut self, this: This<'t>) -> napi::Result<Raw> {
+        conv::guard(move || {
+            
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_El>(v.clone().help_above())?));
+            }
+            let me = self.slot.take("El")?;
+            self.slot.put(me.help_above());
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
@@ -11574,6 +12275,19 @@ impl W_Play {
             Ok(Raw(out))
         })
     }
+/// The `El::matched` flights this change starts draw outside every clip until they land, as
+/// a [`Tx::launch`] does, rather than inside their destinations' clips: for elements that
+/// move between parts of the window that clip them, as tabs moving from a titlebar's strip
+/// into a sidebar that opens as they land, where a clip would hide them for most of the way.
+    #[napi(js_name = "unclipped_flights", skip_typescript)]
+    pub fn m_unclipped_flights(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("Play")?;
+            let out = { me.unclipped_flights(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
 /// In `on_press` and `on_drag`, the button that drove it, which is
 /// [`PointerButton::Primary`] unless the element opted in to others with
 /// [`El::pointer_buttons`]. Other handlers see `Primary`.
@@ -12088,6 +12802,18 @@ impl W_Play {
             Ok(Raw(out))
         })
     }
+/// [`Runtime::invalidate_memos_by_prefix`](crate::Runtime::invalidate_memos_by_prefix) on
+/// this window, from a handler or `poll`: e.g. a plugin host evicting the subtrees an
+/// unloading library built.
+    #[napi(js_name = "invalidate_memos_by_prefix", skip_typescript)]
+    pub fn m_invalidate_memos_by_prefix(&mut self, a_prefix: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_prefix: String = conv::arg(a_prefix.0, "prefix")?;
+            let me = self.slot.get_mut("Play")?;
+            let out = { me.invalidate_memos_by_prefix(a_prefix); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
 /// Whether this runtime has an attached motion or tooling trace.
     #[napi(js_name = "tracing", skip_typescript)]
     pub fn m_tracing(&mut self) -> napi::Result<Raw> {
@@ -12185,6 +12911,32 @@ impl W_Play {
             
             let me = self.slot.get_mut("Play")?;
             let out = { me.toggle_maximized(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Take this window full screen after this handler, or bring it back, as macOS's green
+/// button and Electron's `setFullScreen` do: on Windows and Linux a borderless window over
+/// its display, which hides a custom titlebar's caption buttons (`Cx::chrome_insets`).
+/// Does nothing for overlays and headless runs.
+    #[napi(js_name = "toggle_full_screen", skip_typescript)]
+    pub fn m_toggle_full_screen(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get_mut("Play")?;
+            let out = { me.toggle_full_screen(); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// Deliver `ev` once this handler is done, as if it were typed: to the focused field, then
+/// the key handlers, as the keyboard routes it. For a menu the app draws itself, whose Edit
+/// items send Ctrl+C (⌘C) and the rest to the field that has focus, as AppKit's standard
+/// Edit items do. Keys sent in one handler arrive in order.
+    #[napi(js_name = "send_key", skip_typescript)]
+    pub fn m_send_key(&mut self, a_ev: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_ev: rune::KeyEvent = conv::arg(a_ev.0, "ev")?;
+            let me = self.slot.get_mut("Play")?;
+            let out = { me.send_key(a_ev); conv::Result::Ok(conv::undefined()) }?;
             Ok(Raw(out))
         })
     }
@@ -13572,6 +14324,7 @@ impl FromJs for rune::FontSmoothing {
         match (tag.as_str(), payload) {
             ("On", _) => Ok(rune::FontSmoothing::On),
             ("Off", _) => Ok(rune::FontSmoothing::Off),
+            ("DirectWrite", _) => Ok(rune::FontSmoothing::DirectWrite),
             (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "FontSmoothing"))),
         }
     }
@@ -13582,13 +14335,14 @@ impl ToJs for rune::FontSmoothing {
         match self {
             rune::FontSmoothing::On => conv::ToJs::to_js("On"),
             rune::FontSmoothing::Off => conv::ToJs::to_js("Off"),
+            rune::FontSmoothing::DirectWrite => conv::ToJs::to_js("DirectWrite"),
             _ => Ok(conv::undefined()),
         }
     }
 }
 
 /// The CoreGraphics stages glyphs rasterise with: all of them for `On`, all but the
-/// dilation for `Off`.
+/// dilation for `Off` (and for `DirectWrite` where DirectWrite can't draw a glyph).
 #[napi(js_name = "__E_FontSmoothing_pipeline", skip_typescript)]
 pub fn __e_fontsmoothing_pipeline(a_self: Raw) -> napi::Result<Raw> {
     conv::guard(|| {
@@ -13831,6 +14585,14 @@ impl ToJs for rune::text::Run {
 }
 #[napi]
 impl W_text__Run {
+    #[napi(js_name = "new", skip_typescript)]
+    pub fn s_new(a_text: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_text: std::rc::Rc<str> = conv::arg(a_text.0, "text")?;
+            let out = conv::owned::<W_text__Run>(rune::text::Run::new(a_text))?;
+            Ok(Raw(out))
+        })
+    }
     #[napi(js_name = "as_str", skip_typescript)]
     pub fn m_as_str(&mut self) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -13898,7 +14660,9 @@ impl W_text__RunLayout {
     }
 }
 
-/// An SVG icon body as found in `@opencode/ui`'s catalog: elements inside a square viewBox.
+/// An SVG icon body as found in `@opencode/ui`'s catalog: elements inside a square viewBox,
+/// drawn in its element's colour. A body that names its own colours (`fill="#…"`, gradients),
+/// such as a file-type badge, draws in them instead, as full SVG (`use`, clips, gradients).
 #[napi(js_name = "Icon")]
 pub struct W_Icon {
     pub(crate) slot: conv::Slot<rune::Icon>,
@@ -14822,6 +15586,26 @@ impl ToJs for rune::text::TextSystem {
 }
 #[napi]
 impl W_text__TextSystem {
+/// The colour image of `icon` at `px` device pixels square when its body names its own
+/// colours, its `currentColor` parts in `color`; None for a monochrome icon, which draws
+/// from the alpha atlas ([`Self::icon_quad`]). Without Rune's `svg` feature every icon draws
+/// monochrome.
+///
+/// With `one` (`El::icon_one_color`) the image is the icon's silhouette in `color`: its own
+/// colours drawn as their coverage only, as an SVG mask filled with `currentColor` draws it.
+    #[napi(js_name = "color_icon", skip_typescript)]
+    pub fn m_color_icon(&mut self, a_icon: Raw, a_px: Raw, a_color: Raw, a_one: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let mut a_icon_i = conv::instance::<crate::gen::rune::W_Icon>(a_icon.0).map_err(|e| conv::err(format!("{}: {}", "icon", e.reason)))?;
+            let a_icon = a_icon_i.slot().leak("Icon")?;
+            let a_px: u32 = conv::arg(a_px.0, "px")?;
+            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
+            let a_one: bool = conv::arg(a_one.0, "one")?;
+            let me = self.slot.get_mut("TextSystem")?;
+            let out = conv::ToJs::to_js(me.color_icon(a_icon, a_px, a_color, a_one).cloned())?;
+            Ok(Raw(out))
+        })
+    }
 /// The sans and mono slots' families (CSS lists), as [`TextSystem::new`] or
 /// [`Self::set_families`] named them.
     #[napi(js_name = "families", skip_typescript)]
@@ -14918,7 +15702,8 @@ impl W_text__TextSystem {
         })
     }
 /// The colours the next glyphs draw in (`spans` by `Ink`). On macOS they choose each
-/// glyph's dilation, so glyphs in light and dark inks rasterize separately.
+/// glyph's dilation and on Windows its gamma table, so glyphs in light and dark inks
+/// rasterize separately.
     #[napi(js_name = "set_glyph_inks", skip_typescript)]
     pub fn m_set_glyph_inks(&mut self, a_element: Raw, a_spans: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -14936,6 +15721,21 @@ impl W_text__TextSystem {
             
             let me = self.slot.get("TextSystem")?;
             let out = conv::ToJs::to_js(me.font_smoothing())?;
+            Ok(Raw(out))
+        })
+    }
+/// The exponent a glyph's coverage is raised to when drawn in premultiplied `fill`. With
+/// smoothing off (the default on Linux and the web) it stands in for the text gamma a browser's
+/// grayscale antialiasing applies there: light text on a dark page draws heavier and dark
+/// text on a light one a little lighter than coverage blended as is, keyed by the text's
+/// luminance. With smoothing on, CoreText's dilation does that job, and with DirectWrite Skia's
+/// gamma tables do; coverage is drawn as is.
+    #[napi(js_name = "coverage_exponent", skip_typescript)]
+    pub fn m_coverage_exponent(&mut self, a_fill: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_fill: [f32; 4] = conv::arg(a_fill.0, "fill")?;
+            let me = self.slot.get("TextSystem")?;
+            let out = conv::ToJs::to_js(me.coverage_exponent(a_fill))?;
             Ok(Raw(out))
         })
     }
@@ -16082,6 +16882,49 @@ impl W_ConfiguredWindowOptions {
     }
 }
 
+impl FromJs for rune::WindowPlacement {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        if conv::kind(v) != napi::sys::ValueType::napi_object {
+            return Err(conv::err(concat!("expected a ", "WindowPlacement", " object")));
+        }
+        let d = <rune::WindowPlacement as Default>::default();
+        Ok(rune::WindowPlacement {
+            position: conv::field_or::<(i32, i32,)>(v, "WindowPlacement", "position", || d.position.clone())?,
+            content_position: conv::field_or::<(i32, i32,)>(v, "WindowPlacement", "content_position", || d.content_position.clone())?,
+            content_size: conv::field_or::<(u32, u32,)>(v, "WindowPlacement", "content_size", || d.content_size.clone())?,
+            scale: conv::field_or::<f64>(v, "WindowPlacement", "scale", || d.scale.clone())?,
+            maximized: conv::field_or::<bool>(v, "WindowPlacement", "maximized", || d.maximized.clone())?,
+            minimized: conv::field_or::<bool>(v, "WindowPlacement", "minimized", || d.minimized.clone())?,
+            full_screen: conv::field_or::<bool>(v, "WindowPlacement", "full_screen", || d.full_screen.clone())?,
+        })
+    }
+}
+impl ToJs for rune::WindowPlacement {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        let o = conv::records::new("WindowPlacement");
+        conv::set(o, "position", self.position.clone().to_js()?);
+        conv::set(o, "content_position", self.content_position.clone().to_js()?);
+        conv::set(o, "content_size", self.content_size.clone().to_js()?);
+        conv::set(o, "scale", self.scale.clone().to_js()?);
+        conv::set(o, "maximized", self.maximized.clone().to_js()?);
+        conv::set(o, "minimized", self.minimized.clone().to_js()?);
+        conv::set(o, "full_screen", self.full_screen.clone().to_js()?);
+        Ok(o)
+    }
+}
+impl conv::Record for rune::WindowPlacement {
+    fn write_back(self, o: conv::Value) -> conv::Result<()> {
+        conv::set(o, "position", self.position.clone().to_js()?);
+        conv::set(o, "content_position", self.content_position.clone().to_js()?);
+        conv::set(o, "content_size", self.content_size.clone().to_js()?);
+        conv::set(o, "scale", self.scale.clone().to_js()?);
+        conv::set(o, "maximized", self.maximized.clone().to_js()?);
+        conv::set(o, "minimized", self.minimized.clone().to_js()?);
+        conv::set(o, "full_screen", self.full_screen.clone().to_js()?);
+        Ok(())
+    }
+}
+
 /// The platform-free half of a surface's adapter: what its handlers heard, and whether the
 /// runtime's tree has been sent through it. A runtime outlives its surfaces (a window closed and
 /// opened again gets a new adapter), and its tree only diffs against what the adapter it last
@@ -16594,13 +17437,16 @@ impl W_WheelEvent {
 }
 
 /// A key with modifiers, as an app binds it: `Chord::parse("mod+shift+t")`. Parsing is
-/// case-insensitive; modifiers are `mod` (alias `primary`), `ctrl` (`control`), `alt`
-/// (`option`, `opt`), `shift` and `super` (`cmd`, `command`, `meta`, `win`, `logo`: the
-/// literal ⌘ or logo key, which is rarely what a cross-platform binding wants). Keys are a
-/// character or a name: `enter` (`return`), `tab`, `escape` (`esc`), `backspace`, `delete`
-/// (`del`), `insert`, `home`, `end`, `pageup`, `pagedown`, `left`/`right`/`up`/`down`
-/// (`arrowleft`, …), `space`, `plus`, `comma`, `f1`–`f24`, `contextmenu` (`menu`).
-/// `Display` writes the canonical form back ("mod+shift+t"), for settings files.
+/// case-insensitive and ignores spaces around each "+"; modifiers are `mod` (alias `primary`),
+/// `ctrl` (`control`), `alt` (`option`, `opt`), `shift` and `super` (`cmd`, `command`, `meta`,
+/// `win`, `logo`: the literal ⌘ or logo key, which is rarely what a cross-platform binding
+/// wants). Keys are a character or a name: `enter` (`return`), `tab`, `escape` (`esc`),
+/// `backspace`, `delete` (`del`), `insert`, `home`, `end`, `pageup`, `pagedown`,
+/// `left`/`right`/`up`/`down` (`arrowleft`, …), `space`, `plus` (or a trailing "+":
+/// "mod++"), `comma`, the punctuation names (`minus`, `bracketleft`, …), `f1`–`f24`,
+/// `contextmenu` (`menu`), `printscreen`, `scrolllock` and `pause`. "{" and "}" read as Shift
+/// with "[" and "]", the keys that type them on a US layout. `Display` writes the canonical
+/// form back ("mod+shift+t"), for settings files.
 #[napi(js_name = "Chord")]
 pub struct W_Chord {
     pub(crate) slot: conv::Slot<rune::Chord>,
@@ -16627,7 +17473,9 @@ impl ToJs for rune::Chord {
 }
 #[napi]
 impl W_Chord {
-/// The key alone; add modifiers with `with`.
+/// The key alone; add modifiers with `with`. The key is stored as parsing would write it:
+/// a character lowercased, '{' and '}' as Shift with '[' and ']', a tab, newline, escape,
+/// backspace or delete character as that key, and a function key within F1–F24.
     #[napi(js_name = "new", skip_typescript)]
     pub fn s_new(a_key: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -16654,6 +17502,7 @@ impl W_Chord {
             Ok(Raw(out))
         })
     }
+/// The key, a character lowercased.
     #[napi(js_name = "key", skip_typescript)]
     pub fn m_key(&mut self) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -16688,7 +17537,9 @@ impl W_Chord {
     }
 /// `matches`, also comparing a character chord with `tx.key_base()`, the character the
 /// key types with no modifiers under the current layout (⌥B types "∫" on a Mac, ⇧[ types
-/// "{"), so the binding follows the layout as the menu bar's does.
+/// "{"), so the binding follows the layout as the menu bar's does. Where neither that
+/// character nor the typed one is ASCII (a Cyrillic or Greek layout, "ü" on German) an
+/// ASCII chord falls back to `tx.physical_key()`, the key in that place on a US layout.
     #[napi(js_name = "matches_tx", skip_typescript)]
     pub fn m_matches_tx(&mut self, a_ev: Raw, a_tx: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -16697,6 +17548,31 @@ impl W_Chord {
             let a_tx = a_tx_i.slot().get("Tx")?;
             let me = self.slot.get("Chord")?;
             let out = conv::ToJs::to_js(me.matches_tx(&a_ev, a_tx))?;
+            Ok(Raw(out))
+        })
+    }
+/// `matches`, resolving the chord with `platform`'s conventions: for tests, or an app that
+/// lets the user pick a keymap. `ev.mods` reads as this build reports them.
+    #[napi(js_name = "matches_on", skip_typescript)]
+    pub fn m_matches_on(&mut self, a_ev: Raw, a_platform: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_ev: rune::KeyEvent = conv::arg(a_ev.0, "ev")?;
+            let a_platform: rune::KeyPlatform = conv::arg(a_platform.0, "platform")?;
+            let me = self.slot.get("Chord")?;
+            let out = conv::ToJs::to_js(me.matches_on(&a_ev, a_platform))?;
+            Ok(Raw(out))
+        })
+    }
+/// `matches_tx` with `platform`'s conventions; see `matches_on`.
+    #[napi(js_name = "matches_tx_on", skip_typescript)]
+    pub fn m_matches_tx_on(&mut self, a_ev: Raw, a_tx: Raw, a_platform: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_ev: rune::KeyEvent = conv::arg(a_ev.0, "ev")?;
+            let mut a_tx_i = conv::instance::<crate::gen::rune::W_Tx>(a_tx.0).map_err(|e| conv::err(format!("{}: {}", "tx", e.reason)))?;
+            let a_tx = a_tx_i.slot().get("Tx")?;
+            let a_platform: rune::KeyPlatform = conv::arg(a_platform.0, "platform")?;
+            let me = self.slot.get("Chord")?;
+            let out = conv::ToJs::to_js(me.matches_tx_on(&a_ev, a_tx, a_platform))?;
             Ok(Raw(out))
         })
     }
@@ -16754,6 +17630,10 @@ impl W_Chord {
             let out = conv::ToJs::to_js(me.keycaps_on(a_platform))?;
             Ok(Raw(out))
         })
+    }
+    #[napi(js_name = "from", skip_typescript)]
+    pub fn s_from_Chord(a_value: Raw) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_Chord>(<rune::Chord as From<rune::Chord>>::from(conv::arg::<rune::Chord>(a_value.0, "value")?))?)))
     }
     #[napi(js_name = "clone", skip_typescript)]
     pub fn m___clone(&self) -> napi::Result<Raw> {
@@ -16815,6 +17695,9 @@ impl FromJs for rune::ChordKey {
             ("Down", _) => Ok(rune::ChordKey::Down),
             ("Function", Some(p)) => Ok(rune::ChordKey::Function(conv::arg::<u8>(p, "ChordKey.Function")?)),
             ("ContextMenu", _) => Ok(rune::ChordKey::ContextMenu),
+            ("PrintScreen", _) => Ok(rune::ChordKey::PrintScreen),
+            ("ScrollLock", _) => Ok(rune::ChordKey::ScrollLock),
+            ("Pause", _) => Ok(rune::ChordKey::Pause),
             (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "ChordKey"))),
         }
     }
@@ -16840,6 +17723,9 @@ impl ToJs for rune::ChordKey {
             rune::ChordKey::Down => conv::ToJs::to_js("Down"),
             rune::ChordKey::Function(a) => Ok(conv::tagged("Function", a.to_js()?)),
             rune::ChordKey::ContextMenu => conv::ToJs::to_js("ContextMenu"),
+            rune::ChordKey::PrintScreen => conv::ToJs::to_js("PrintScreen"),
+            rune::ChordKey::ScrollLock => conv::ToJs::to_js("ScrollLock"),
+            rune::ChordKey::Pause => conv::ToJs::to_js("Pause"),
             _ => Ok(conv::undefined()),
         }
     }
@@ -16960,6 +17846,21 @@ impl W_Keybind {
             Ok(Raw(napi::JsValue::value(&this).value))
         })
     }
+/// `chords` instead on `platform`: `on` for chords built as data.
+    #[napi(js_name = "on_chords", skip_typescript)]
+    pub fn m_on_chords<'t>(&mut self, this: This<'t>, a_platform: Raw, a_chords: Raw) -> napi::Result<Raw> {
+        conv::guard(move || {
+            let a_platform: rune::KeyPlatform = conv::arg(a_platform.0, "platform")?;
+            let a_chords: Vec<rune::Chord> = conv::arg(a_chords.0, "chords")?;
+            // A shared constant stays as it is: the builder works on a copy.
+            if let conv::Slot::Shared(v) = &self.slot {
+                return Ok(Raw(conv::owned::<W_Keybind>(v.clone().on_chords(a_platform, &a_chords))?));
+            }
+            let me = self.slot.take("Keybind")?;
+            self.slot.put(me.on_chords(a_platform, &a_chords));
+            Ok(Raw(napi::JsValue::value(&this).value))
+        })
+    }
 /// The chords that apply on `platform`.
     #[napi(js_name = "chords_on", skip_typescript)]
     pub fn m_chords_on(&mut self, a_platform: Raw) -> napi::Result<Raw> {
@@ -17002,6 +17903,30 @@ impl W_Keybind {
             Ok(Raw(out))
         })
     }
+/// Whether `ev` is any of `platform`'s chords; see `Chord::matches_on`.
+    #[napi(js_name = "matches_on", skip_typescript)]
+    pub fn m_matches_on(&mut self, a_ev: Raw, a_platform: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_ev: rune::KeyEvent = conv::arg(a_ev.0, "ev")?;
+            let a_platform: rune::KeyPlatform = conv::arg(a_platform.0, "platform")?;
+            let me = self.slot.get("Keybind")?;
+            let out = conv::ToJs::to_js(me.matches_on(&a_ev, a_platform))?;
+            Ok(Raw(out))
+        })
+    }
+/// Whether `ev` is any of `platform`'s chords; see `Chord::matches_tx_on`.
+    #[napi(js_name = "matches_tx_on", skip_typescript)]
+    pub fn m_matches_tx_on(&mut self, a_ev: Raw, a_tx: Raw, a_platform: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_ev: rune::KeyEvent = conv::arg(a_ev.0, "ev")?;
+            let mut a_tx_i = conv::instance::<crate::gen::rune::W_Tx>(a_tx.0).map_err(|e| conv::err(format!("{}: {}", "tx", e.reason)))?;
+            let a_tx = a_tx_i.slot().get("Tx")?;
+            let a_platform: rune::KeyPlatform = conv::arg(a_platform.0, "platform")?;
+            let me = self.slot.get("Keybind")?;
+            let out = conv::ToJs::to_js(me.matches_tx_on(&a_ev, a_tx, a_platform))?;
+            Ok(Raw(out))
+        })
+    }
 /// The first chord's label here ("⇧⌘T", "Ctrl+Shift+T"), or "" when nothing is bound.
     #[napi(js_name = "label", skip_typescript)]
     pub fn m_label(&mut self) -> napi::Result<Raw> {
@@ -17021,6 +17946,20 @@ impl W_Keybind {
             let out = conv::ToJs::to_js(me.label_on(a_platform))?;
             Ok(Raw(out))
         })
+    }
+/// The string `parse` reads back as `platform`'s chords: "mod+t, mod+n", or "none".
+    #[napi(js_name = "spec_on", skip_typescript)]
+    pub fn m_spec_on(&mut self, a_platform: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_platform: rune::KeyPlatform = conv::arg(a_platform.0, "platform")?;
+            let me = self.slot.get("Keybind")?;
+            let out = conv::ToJs::to_js(me.spec_on(a_platform))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "from", skip_typescript)]
+    pub fn s_from_Keybind(a_value: Raw) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_Keybind>(<rune::Keybind as From<rune::Chord>>::from(conv::arg::<rune::Chord>(a_value.0, "value")?))?)))
     }
     #[napi(js_name = "clone", skip_typescript)]
     pub fn m___clone(&self) -> napi::Result<Raw> {
@@ -18246,6 +19185,31 @@ impl W_Cx {
             Ok(Raw(out))
         })
     }
+/// A copy of this context for a sub-view over another state type, or a scratch run of
+/// the same view: environment, settings and the reads made so far. Pass it back with
+/// [`Self::absorb`] to keep what the sub-view did, or drop it to discard that, as a host
+/// does for a sub-view (a plugin's panel) that panicked partway.
+    #[napi(js_name = "retype", skip_typescript)]
+    pub fn m_retype(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("Cx")?;
+            let out = conv::owned::<W_Cx>(me.retype())?;
+            Ok(Raw(out))
+        })
+    }
+/// Takes back a [`Self::retype`]d context a nested view ran with: its overrides, and the
+/// caret and layout reads it added. The window's chrome stays the outer view's: a staged
+/// story's `caption_color` or titlebar isn't the window's.
+    #[napi(js_name = "absorb", skip_typescript)]
+    pub fn m_absorb(&mut self, a_other: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_other: rune::Cx<crate::state::JsState> = conv::arg(a_other.0, "other")?;
+            let me = self.slot.get_mut("Cx")?;
+            let out = { me.absorb(a_other); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
     #[napi(js_name = "env", skip_typescript)]
     pub fn m_env(&mut self) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -18303,6 +19267,83 @@ impl W_Cx {
             let a_color: rune::Color = conv::arg(a_color.0, "color")?;
             let me = self.slot.get_mut("Cx")?;
             let out = { me.caption_color(a_color); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// The theme's text colour, as CSS `color` on the page: text, icons and text fields that
+/// aren't given a colour (`El::color`, `El::placeholder`, `El::caret`) draw in it, the
+/// placeholder at 40% and the selection at 20%, so a field left uncoloured stays readable in
+/// a light theme. Without it they draw white. Set it on every run of the view; a `memo`
+/// whose text takes it rebuilds when it changes.
+    #[napi(js_name = "foreground", skip_typescript)]
+    pub fn m_foreground(&mut self, a_color: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
+            let me = self.slot.get_mut("Cx")?;
+            let out = { me.foreground(a_color); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// The keyboard focus ring a focusable element draws when it doesn't set its own
+/// ([`El::focus_ring`](crate::El::focus_ring)), in place of AppKit's: `width` points wide,
+/// `offset` points outside its border box, following its corner radii, e.g. `2.0, 2.5` for
+/// CSS `outline: 2px solid; outline-offset: 2.5px`. It shows only for keyboard focus, as
+/// `:focus-visible` does. Set it on every run of the view.
+    #[napi(js_name = "focus_ring", skip_typescript)]
+    pub fn m_focus_ring(&mut self, a_width: Raw, a_offset: Raw, a_color: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let a_offset: f32 = conv::arg(a_offset.0, "offset")?;
+            let a_color: rune::Color = conv::arg(a_color.0, "color")?;
+            let me = self.slot.get_mut("Cx")?;
+            let out = { me.focus_ring(a_width, a_offset, a_color); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// How [`El::help`](crate::El::help) tooltips look, where they sit and how long they wait,
+/// in place of the system's ([`HelpLook::system`](crate::HelpLook::system)): a design
+/// system's own tooltip, as a web page draws one. Rune then draws it on macOS too, instead
+/// of AppKit's. Set it on every run of the view.
+    #[napi(js_name = "help_look", skip_typescript)]
+    pub fn m_help_look(&mut self, a_look: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_look: rune::HelpLook = conv::arg(a_look.0, "look")?;
+            let me = self.slot.get_mut("Cx")?;
+            let out = { me.help_look(a_look); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// The height of the titlebar the app draws (`App::titlebar`), in window points, in place of
+/// `Titlebar::new`'s while the view keeps setting it: a band that scales with the app's UI
+/// zoom, as Electron's `setTitleBarOverlay({ height })` does. The Windows caption buttons
+/// take it (their width stays), macOS centres the traffic lights in it unless
+/// `Titlebar::traffic_lights` or `Chrome::traffic_lights` places them, and
+/// [`Self::chrome_insets`] reports it from the next frame on, so the buttons line up with
+/// the app's row at every zoom: for a 44 point row, `cx.titlebar_height(44.0 * zoom.max(1.0))`
+/// keeps the row 44 points tall zoomed out, as Electron apps size their `titleBarOverlay`.
+/// Insets are window points: a view that scales its content by a zoom divides them by it.
+/// Over [`Self::set_titlebar`], it sets that titlebar's height.
+    #[napi(js_name = "titlebar_height", skip_typescript)]
+    pub fn m_titlebar_height(&mut self, a_points: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_points: f32 = conv::arg(a_points.0, "points")?;
+            let me = self.slot.get_mut("Cx")?;
+            let out = { me.titlebar_height(a_points); conv::Result::Ok(conv::undefined()) }?;
+            Ok(Raw(out))
+        })
+    }
+/// The titlebar the app draws (`App::titlebar`), in place of the app's while the view keeps
+/// setting it: its height and, on macOS, where the traffic lights sit
+/// (`Titlebar::traffic_lights`), for a switch between layouts whose titlebars differ. The
+/// window moves the traffic lights and resizes the Windows caption buttons to it, and
+/// [`Self::chrome_insets`] and [`Self::titlebar_inset`] report the new controls from the
+/// next frame on. A window without `App::titlebar` keeps its native frame.
+    #[napi(js_name = "set_titlebar", skip_typescript)]
+    pub fn m_set_titlebar(&mut self, a_titlebar: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_titlebar: rune::Titlebar = conv::arg(a_titlebar.0, "titlebar")?;
+            let me = self.slot.get_mut("Cx")?;
+            let out = { me.set_titlebar(a_titlebar); conv::Result::Ok(conv::undefined()) }?;
             Ok(Raw(out))
         })
     }
@@ -18615,6 +19656,203 @@ pub fn __r_env_new(a_system_dark: Raw, a_scale: Raw) -> napi::Result<Raw> {
         let out = conv::ToJs::to_js(rune::Env::new(a_system_dark, a_scale))?;
         Ok(Raw(out))
     })
+}
+
+/// A tooltip's surface, type, placement and timing. [`HelpLook::system`] is Rune's own look;
+/// each builder overrides one thing, e.g. a design system's compact tooltip:
+/// `HelpLook::system(dark).fill(layer).ink(text).radius(4.0).padding(6.0, 5.0).font(small).gap(4.0).delay(0.4)`.
+#[napi(js_name = "HelpLook")]
+pub struct W_HelpLook {
+    pub(crate) slot: conv::Slot<rune::HelpLook>,
+}
+impl Class for W_HelpLook {
+    type Inner = rune::HelpLook;
+    const NAME: &'static str = "HelpLook";
+    fn wrap(slot: conv::Slot<Self::Inner>) -> Self {
+        W_HelpLook { slot }
+    }
+    fn slot(&mut self) -> &mut conv::Slot<Self::Inner> {
+        &mut self.slot
+    }
+}
+impl FromJs for rune::HelpLook {
+    fn from_js(v: conv::Value) -> conv::Result<Self> {
+        conv::cloned::<W_HelpLook>(v)
+    }
+}
+impl ToJs for rune::HelpLook {
+    fn to_js(self) -> conv::Result<conv::Value> {
+        conv::owned::<W_HelpLook>(self)
+    }
+}
+#[napi]
+impl W_HelpLook {
+/// Rune's own tooltip for a light or dark window: a pale or dark grey card with a hairline
+/// edge, 12 pt text, under its element 6 pt clear (over it 4 pt clear), after the
+/// runtime's `help_delay`.
+    #[napi(js_name = "system", skip_typescript)]
+    pub fn s_system(a_dark: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_dark: bool = conv::arg(a_dark.0, "dark")?;
+            let out = conv::owned::<W_HelpLook>(rune::HelpLook::system(a_dark))?;
+            Ok(Raw(out))
+        })
+    }
+/// Keycaps ([`El::help_keys`](crate::El::help_keys)) on `fill`, their labels in `font` and
+/// `ink`, uppercased when `upper`.
+    #[napi(js_name = "keycaps", skip_typescript)]
+    pub fn m_keycaps(&mut self, a_fill: Raw, a_ink: Raw, a_font: Raw, a_upper: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_fill: rune::Color = conv::arg(a_fill.0, "fill")?;
+            let a_ink: rune::Color = conv::arg(a_ink.0, "ink")?;
+            let a_font: rune::TextStyle = conv::arg(a_font.0, "font")?;
+            let a_upper: bool = conv::arg(a_upper.0, "upper")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.keycaps(a_fill, a_ink, a_font, a_upper))?;
+            Ok(Raw(out))
+        })
+    }
+/// A keycap's height, inner padding either side (its least width is its height) and corner
+/// radius, `gap` points between two and `lead` points after the text.
+    #[napi(js_name = "keycap_shape", skip_typescript)]
+    pub fn m_keycap_shape(&mut self, a_height: Raw, a_pad_x: Raw, a_radius: Raw, a_gap: Raw, a_lead: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_height: f32 = conv::arg(a_height.0, "height")?;
+            let a_pad_x: f32 = conv::arg(a_pad_x.0, "pad_x")?;
+            let a_radius: f32 = conv::arg(a_radius.0, "radius")?;
+            let a_gap: f32 = conv::arg(a_gap.0, "gap")?;
+            let a_lead: f32 = conv::arg(a_lead.0, "lead")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.keycap_shape(a_height, a_pad_x, a_radius, a_gap, a_lead))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "fill", skip_typescript)]
+    pub fn m_fill(&mut self, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.fill(a_c))?;
+            Ok(Raw(out))
+        })
+    }
+/// The text colour.
+    #[napi(js_name = "ink", skip_typescript)]
+    pub fn m_ink(&mut self, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.ink(a_c))?;
+            Ok(Raw(out))
+        })
+    }
+/// A border `width` points wide inside the edge; 0 removes it.
+    #[napi(js_name = "ring", skip_typescript)]
+    pub fn m_ring(&mut self, a_width: Raw, a_c: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_width: f32 = conv::arg(a_width.0, "width")?;
+            let a_c: rune::Color = conv::arg(a_c.0, "c")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.ring(a_width, a_c))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "radius", skip_typescript)]
+    pub fn m_radius(&mut self, a_r: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_r: f32 = conv::arg(a_r.0, "r")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.radius(a_r))?;
+            Ok(Raw(out))
+        })
+    }
+/// Horizontal and vertical padding around the text.
+    #[napi(js_name = "padding", skip_typescript)]
+    pub fn m_padding(&mut self, a_x: Raw, a_y: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_x: f32 = conv::arg(a_x.0, "x")?;
+            let a_y: f32 = conv::arg(a_y.0, "y")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.padding(a_x, a_y))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "font", skip_typescript)]
+    pub fn m_font(&mut self, a_f: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_f: rune::TextStyle = conv::arg(a_f.0, "f")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.font(a_f))?;
+            Ok(Raw(out))
+        })
+    }
+/// The widest the tooltip grows before its text wraps; `None` for the window's width.
+    #[napi(js_name = "max_width", skip_typescript)]
+    pub fn m_max_width(&mut self, a_w: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_w: Option<f32> = conv::arg(a_w.0, "w")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.max_width(a_w))?;
+            Ok(Raw(out))
+        })
+    }
+/// Points between the element and its tooltip, under it or over it (Kobalte's `gutter`).
+    #[napi(js_name = "gap", skip_typescript)]
+    pub fn m_gap(&mut self, a_g: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_g: f32 = conv::arg(a_g.0, "g")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.gap(a_g))?;
+            Ok(Raw(out))
+        })
+    }
+/// How far the tooltip keeps inside the window's edges (a popper's overflow padding).
+    #[napi(js_name = "margin", skip_typescript)]
+    pub fn m_margin(&mut self, a_m: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_m: f32 = conv::arg(a_m.0, "m")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.margin(a_m))?;
+            Ok(Raw(out))
+        })
+    }
+/// Seconds the pointer rests on an element before its tooltip shows, in place of the
+/// runtime's `help_delay`.
+    #[napi(js_name = "delay", skip_typescript)]
+    pub fn m_delay(&mut self, a_secs: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_secs: f64 = conv::arg(a_secs.0, "secs")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.delay(a_secs))?;
+            Ok(Raw(out))
+        })
+    }
+/// For this long (seconds) after a tooltip hides, the next element's shows at once, as
+/// a web tooltip's `skipDelayDuration` does when the pointer moves along a toolbar.
+    #[napi(js_name = "skip_delay", skip_typescript)]
+    pub fn m_skip_delay(&mut self, a_secs: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_secs: f64 = conv::arg(a_secs.0, "secs")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.skip_delay(a_secs))?;
+            Ok(Raw(out))
+        })
+    }
+/// Box-shadow layers, painted in order (the first four); empty for none. Inset shadows
+/// are skipped.
+    #[napi(js_name = "shadows", skip_typescript)]
+    pub fn m_shadows(&mut self, a_layers: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_layers: Vec<rune::Shadow> = conv::arg(a_layers.0, "layers")?;
+            let me = self.slot.get("HelpLook")?.clone();
+            let out = conv::owned::<W_HelpLook>(me.shadows(a_layers))?;
+            Ok(Raw(out))
+        })
+    }
+    #[napi(js_name = "clone", skip_typescript)]
+    pub fn m___clone(&self) -> napi::Result<Raw> {
+        conv::guard(|| Ok(Raw(conv::owned::<W_HelpLook>(self.slot.get("HelpLook")?.clone())?)))
+    }
 }
 
 #[napi(js_name = "__C_MotionElement_EXITING", skip_typescript)]
@@ -19267,7 +20505,6 @@ impl FromJs for rune::TitlebarAction {
         match (tag.as_str(), payload) {
             ("Drag", _) => Ok(rune::TitlebarAction::Drag),
             ("DoubleClick", _) => Ok(rune::TitlebarAction::DoubleClick),
-            ("SystemMenu", _) => Ok(rune::TitlebarAction::SystemMenu),
             (other, _) => Err(conv::err(format!("{other:?} isn't a {} variant (or lacks its value)", "TitlebarAction"))),
         }
     }
@@ -19278,7 +20515,6 @@ impl ToJs for rune::TitlebarAction {
         match self {
             rune::TitlebarAction::Drag => conv::ToJs::to_js("Drag"),
             rune::TitlebarAction::DoubleClick => conv::ToJs::to_js("DoubleClick"),
-            rune::TitlebarAction::SystemMenu => conv::ToJs::to_js("SystemMenu"),
             _ => Ok(conv::undefined()),
         }
     }
@@ -19442,7 +20678,9 @@ pub fn c_Titlebar_CAPTION_BUTTON_WIDTH() -> napi::Result<Raw> {
 ///   the trailing edge at the band's height, as Electron's `titleBarOverlay` does.
 /// - **Elsewhere:** the native frame stays and [`ChromeInsets`] is zero.
 ///
-/// A borderless window has no titlebar to replace, and ignores it.
+/// `Cx::titlebar_height` changes the height while the app runs, as a UI zoom does, and
+/// `Cx::set_titlebar` the whole titlebar, as a switch between layouts does. A borderless window
+/// has no titlebar to replace, and ignores it.
 #[napi(js_name = "Titlebar")]
 pub struct W_Titlebar {
     pub(crate) slot: conv::Slot<rune::Titlebar>,
@@ -19477,12 +20715,35 @@ impl W_Titlebar {
             Ok(Raw(out))
         })
     }
+/// macOS: the close button's top-left, in points from the window's top-left, for this
+/// titlebar (Electron's `trafficLightPosition`), in place of `Chrome::traffic_lights` and
+/// the band's middle. Ignored elsewhere and in full screen.
+    #[napi(js_name = "traffic_lights", skip_typescript)]
+    pub fn m_traffic_lights(&mut self, a_x: Raw, a_y: Raw) -> napi::Result<Raw> {
+        conv::guard(|| {
+            let a_x: f32 = conv::arg(a_x.0, "x")?;
+            let a_y: f32 = conv::arg(a_y.0, "y")?;
+            let me = self.slot.get("Titlebar")?.clone();
+            let out = conv::owned::<W_Titlebar>(me.traffic_lights(a_x, a_y))?;
+            Ok(Raw(out))
+        })
+    }
     #[napi(js_name = "height", skip_typescript)]
     pub fn m_height(&mut self) -> napi::Result<Raw> {
         conv::guard(|| {
             
             let me = self.slot.get("Titlebar")?;
             let out = conv::ToJs::to_js(me.height())?;
+            Ok(Raw(out))
+        })
+    }
+/// Where [`Self::traffic_lights`] put the close button, if it did.
+    #[napi(js_name = "traffic_lights_origin", skip_typescript)]
+    pub fn m_traffic_lights_origin(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("Titlebar")?;
+            let out = conv::ToJs::to_js(me.traffic_lights_origin())?;
             Ok(Raw(out))
         })
     }
@@ -20047,6 +21308,18 @@ impl W_WindowHandle {
             Ok(Raw(out))
         })
     }
+/// Where the window is on the desktop and whether it's maximized, minimized or full screen,
+/// to save and reopen it there. None while it's closed, and on Wayland, which hides window
+/// positions. Call it on the UI thread.
+    #[napi(js_name = "placement", skip_typescript)]
+    pub fn m_placement(&mut self) -> napi::Result<Raw> {
+        conv::guard(|| {
+            
+            let me = self.slot.get("WindowHandle")?;
+            let out = conv::ToJs::to_js(me.placement())?;
+            Ok(Raw(out))
+        })
+    }
     #[napi(js_name = "set_click_through", skip_typescript)]
     pub fn m_set_click_through(&mut self, a_click_through: Raw) -> napi::Result<Raw> {
         conv::guard(|| {
@@ -20519,6 +21792,21 @@ pub fn f_memo__window_layout(a_key: Raw) -> napi::Result<Raw> {
     })
 }
 
+/// [`memo`] with a version already hashed to a `u64`, for a caller that keeps its own
+/// hashes (a plugin across a C ABI, where `impl Hash` can't cross). The window's environment
+/// still joins it, as it does `memo`'s.
+#[napi(js_name = "memo__memo_with_hash", skip_typescript)]
+pub fn f_memo__memo_with_hash(a_id: Raw, a_version: Raw, a_build: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_id: String = conv::arg(a_id.0, "id")?;
+        let a_version: u64 = conv::arg(a_version.0, "version")?;
+        let a_build_h = conv::arg::<conv::JsFn>(a_build.0, "build")?.0;
+        let a_build = move || -> rune::El { crate::js::scope(|| { let r = a_build_h.call(&[]); conv::ret_el(r) }) };
+        let out = conv::ToJs::to_js(rune::memo::memo_with_hash(a_id, a_version, a_build))?;
+        Ok(Raw(out))
+    })
+}
+
 /// Independent scalar colour oracle: encoded YCbCr -> linear RGB.
 #[napi(js_name = "native_surface__nv12_reference", skip_typescript)]
 pub fn f_native_surface__nv12_reference(a_y: Raw, a_cb: Raw, a_cr: Raw, a_format: Raw, a_color: Raw) -> napi::Result<Raw> {
@@ -20616,6 +21904,20 @@ pub fn f_text__advance(a_text: Raw, a_style: Raw) -> napi::Result<Raw> {
     })
 }
 
+/// CSS's min-content and max-content widths of `text` (with `spans`) in `style`, in points and
+/// unrounded, as a browser's automatic table layout reads a cell: its widest unbreakable run,
+/// and its width on one line, neither counting the spaces that end a line.
+#[napi(js_name = "text__content_widths", skip_typescript)]
+pub fn f_text__content_widths(a_text: Raw, a_spans: Raw, a_style: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_text: String = conv::arg(a_text.0, "text")?;
+        let a_spans: Vec<rune::Span> = conv::arg(a_spans.0, "spans")?;
+        let a_style: rune::TextStyle = conv::arg(a_style.0, "style")?;
+        let out = conv::ToJs::to_js(rune::text::content_widths(&a_text, &a_spans, a_style))?;
+        Ok(Raw(out))
+    })
+}
+
 /// Changes whenever the fonts or families [`measure`] uses change, as when an app calls
 /// `Tx::set_font_families`. A cache of measured sizes mixes it into its key.
 ///
@@ -20645,7 +21947,8 @@ pub fn f_text__ink(a_text: Raw, a_style: Raw) -> napi::Result<Raw> {
 
 /// The size in points of `text` (with `spans`, as [`crate::rich`] takes them) set in `style`,
 /// wrapped at `max_width` points when given, as the runtime will lay it out. Widths round up
-/// to whole points. `max_width: Some(0.0)` gives the widest unbreakable run (CSS min-content).
+/// to whole points; heights are the lines' own, as a text lays out unless it asks for
+/// [`El::rounded_lines`](crate::El::rounded_lines). `max_width: Some(0.0)` gives the widest unbreakable run (CSS min-content).
 ///
 /// The first call on a thread loads the fonts (a few milliseconds); later calls cost a hash
 /// lookup when the same text was measured recently, or one shaping pass when not.
@@ -20860,6 +22163,25 @@ pub fn f_tok__accent(a_i: Raw, a_dark: Raw) -> napi::Result<Raw> {
     })
 }
 
+/// Makes this process the app's only running one, before it opens a window (Windows).
+///
+/// Returns false when another process of the app already runs: this launch's links went to
+/// its `App::on_open_url`, or, without links, it brought its front window forward, so return
+/// from `main` without opening a window. Returns true when this is the first process, which
+/// from now on receives the launches that follow, and also when the first can't be reached
+/// (it hangs or is exiting), so the launch still opens a window. `id` names the app (its
+/// reverse-DNS identifier); builds that should run side by side use different ids.
+///
+/// macOS and other platforms: always true. macOS already reaches the running app.
+#[napi(js_name = "single_instance", skip_typescript)]
+pub fn f_single_instance(a_id: Raw) -> napi::Result<Raw> {
+    conv::guard(|| {
+        let a_id: String = conv::arg(a_id.0, "id")?;
+        let out = conv::ToJs::to_js(rune::single_instance(&a_id))?;
+        Ok(Raw(out))
+    })
+}
+
 /// The user's accent and focus ring colours. On macOS, the accent picked in System Settings
 /// (`NSColor.controlAccentColor` and `keyboardFocusIndicatorColor`), read on the main thread
 /// and kept up to date while a window is open; elsewhere [`SystemAccent::DEFAULT`].
@@ -20872,11 +22194,16 @@ pub fn f_system_accent() -> napi::Result<Raw> {
     })
 }
 
-/// macOS: shows `bytes` (an `.icns`, PNG, TIFF or anything else `NSImage` reads) as the app's
-/// Dock and app-switcher icon while it runs, in place of the bundle's. Call it from any thread,
-/// before `run` or after: before, Rune sets it once the app finishes launching; a later call
-/// replaces it. A headless run sets nothing. Fails when the bytes aren't an image. Does nothing
-/// elsewhere. (`AppHandle::set_dock_icon` shows or hides the Dock icon instead.)
+/// The app's icon while it runs, in place of the bundle's or executable's. Call it from any
+/// thread. A headless run sets nothing. Fails when the bytes aren't an image.
+///
+/// - **macOS:** `bytes` is an `.icns`, PNG, TIFF or anything else `NSImage` reads, shown as the
+///   Dock and app-switcher icon. Before `run`, Rune sets it once the app finishes launching; a
+///   later call replaces it. (`AppHandle::set_dock_icon` shows or hides the Dock icon instead.)
+/// - **Windows:** `bytes` is a PNG or JPEG, best square and 256 px or more. Each window opened
+///   after the call shows it in its title bar, on the taskbar and in Alt+Tab, so call it before
+///   `run`.
+/// - Does nothing elsewhere.
 #[napi(js_name = "set_app_icon", skip_typescript)]
 pub fn f_set_app_icon(a_bytes: Raw) -> napi::Result<Raw> {
     conv::guard(|| {

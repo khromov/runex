@@ -145,13 +145,13 @@ describe("headless runs", () => {
     expect(JSON.stringify(off)).not.toContain("runex-perf")
   })
 
-  test("a stats callback alone measures without drawing, and isn't called headless", async () => {
-    // Stats arrive once a second from a window's frames; a headless run draws one frame, so the
-    // callback never runs here (test/windowed checks delivery).
+  test("a stats callback alone measures without drawing; a headless run reports its frame once", async () => {
+    // Stats arrive at the first drawn frame, then once a second. Rune reports a headless run's
+    // frames to on_frame_encoded too, and this one draws one (test/windowed checks a window's).
     let calls = 0
     const tree = await treeOf(App.new(AppSpec.new("Perf", [200, 120], () => ({}), () => text("app"))).perf("none", () => { calls++ }), [], tmp)
     expect(JSON.stringify(tree)).not.toContain("runex-perf")
     expect(texts(tree)).toEqual(["app"])
-    expect(calls).toBe(0)
+    expect(calls).toBe(1)
   })
 })

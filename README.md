@@ -53,6 +53,7 @@ documentation as JSDoc.
 | `rune_fx`, `rune_light` (effects) | `runex-js/fx`, `runex-js/light` |
 | `rune_motion` | `runex-js/motion` (and `runex-js` for what `rune` re-exports) |
 | `rune_knobs`, `rune_theme_opencode` | `runex-js/knobs`, `runex-js/theme-opencode` |
+| `rune_notify` (system notifications) | `runex-js/notify` |
 
 How Rust maps to TypeScript, in short ([docs/porting.md](docs/porting.md) has the whole guide):
 
