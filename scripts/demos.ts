@@ -28,8 +28,8 @@
 // bench.ts is a benchmark, not a demo, so it isn't included.
 import { spawn, type ChildProcess } from "node:child_process"
 import { existsSync, readdirSync, readFileSync } from "node:fs"
-import { homedir } from "node:os"
 import { join, relative } from "node:path"
+import { runeCargoEnv } from "./lib/cargo.ts"
 
 const ROOT = join(import.meta.dirname, "..")
 const RUNE = join(ROOT, "vendor", "rune")
@@ -223,8 +223,8 @@ if (list) {
 // ---------------------------------------------------------------------------------------------
 // Running
 
-const env: NodeJS.ProcessEnv = { ...process.env }
-if (rust) env.PATH = `${join(homedir(), ".cargo", "bin")}:${process.env.PATH ?? ""}`
+// Rust demos build Rune without incremental caches or debug info (scripts/lib/cargo.ts).
+const env: NodeJS.ProcessEnv = rust ? runeCargoEnv() : { ...process.env }
 if (perf !== null) env.RUNEX_PERF = perf
 if (titlebar) env.RUNEX_TITLEBAR = "native"
 let child: ChildProcess | null = null

@@ -12,6 +12,8 @@
 #   run       CMD in the built copy, without a terminal (run.log): e.g.
 #             run bash -c 'RUNEX_PERF=1 node examples/todo/main.ts --tree /out/todo.json'
 #   shell     an interactive shell in the built copy
+#   clean     remove this prefix's volumes and image (and those an earlier default prefix, runex,
+#             left), and the results in --out; the next run starts cold
 #
 # The tree (--tree, default this checkout) is copied into a Docker volume first, without .git,
 # target/, node_modules/, out/, dist/ and *.node: nothing builds in, or writes to, the source
@@ -39,15 +41,28 @@ done
 cmd=${1:-build}
 [ $# -gt 0 ] && shift
 case $cmd in
-  build | smoke | test | compare | shell) ;;
+  build | smoke | test | compare | shell | clean) ;;
   run) [ $# -gt 0 ] || { echo "run: name a command (see --help)" >&2; exit 2; } ;;
   *) echo "unknown command: $cmd (see --help)" >&2; exit 2 ;;
 esac
 out=${out:-$tree/out/linux}
+p=${RUNEX_DOCKER_PREFIX:-runexlx}
+
+if [ "$cmd" = clean ]; then
+  for v in "$p-work" "$p-target" "$p-bun" "$p-cargo-registry" "$p-cargo-git" runex-work runex-target runex-cargo runex-work-jammy runex-target-jammy; do
+    docker volume rm "$v" >/dev/null 2>&1 && echo "removed volume $v"
+  done
+  for i in $(docker images --format '{{.Repository}}:{{.Tag}}' | grep -E "^($p-linux|runex-linux-arm64|runex-linux-arm64-jammy):" || true); do
+    docker rmi "$i" >/dev/null 2>&1 && echo "removed image $i"
+  done
+  rm -rf "$out" && echo "removed $out"
+  exit 0
+fi
+
 mkdir -p "$out"
 out=$(cd "$out" && pwd)
-
-p=${RUNEX_DOCKER_PREFIX:-runexlx}
+# Rune's pinned revision: when it moves, the container's target volume drops the old one's builds.
+rune_rev=$(git -C "$tree" rev-parse HEAD:vendor/rune 2>/dev/null || echo unknown)
 rust=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' "$tree/rust-toolchain.toml")
 image=$p-linux:rust-$rust
 echo "image $image (the first build takes a few minutes)"
@@ -73,6 +88,11 @@ step() { printf '\n== %s\n' "$*"; }
 
 step "patches"; node scripts/prepare-rune.mjs --check
 step "bun install"; bun install --frozen-lockfile
+if [ "$RUNE_REV" != unknown ] && [ "$(cat /target/rune-rev 2>/dev/null)" != "$RUNE_REV" ]; then
+  step "sweep the previous Rune's builds (scripts/lib/cargo.ts)"
+  bun -e 'const { cleanRuneCrates } = await import("./scripts/lib/cargo.ts"); for (const c of [...cleanRuneCrates(".", "vendor/rune", "/target/runex"), ...cleanRuneCrates("vendor/rune", "vendor/rune", "/target/rune")]) console.log(`${c.cmd}: exit ${c.code}`)'
+  echo "$RUNE_REV" > /target/rune-rev
+fi
 step "build:native (CARGO_BUILD_JOBS=$CARGO_BUILD_JOBS)"
 start=$(date +%s)
 CARGO_TARGET_DIR=/target/runex bun run build:native 2>&1 | tee /out/build.log
@@ -119,5 +139,5 @@ docker run --rm --init $tty --name "$p-run-$$" \
   -v "$p-work:/work" -v "$p-target:/target" -v "$p-bun:/root/.bun/install/cache" \
   -v "$p-cargo-registry:/opt/cargo/registry" -v "$p-cargo-git:/opt/cargo/git" -v "$out:/out" \
   -e CARGO_BUILD_JOBS="${CARGO_BUILD_JOBS:-4}" -e CARGO_INCREMENTAL=0 -e CARGO_TERM_COLOR=never \
-  -e HOST_UID="$(id -u)" -e HOST_GID="$(id -g)" -w /work/src \
+  -e HOST_UID="$(id -u)" -e HOST_GID="$(id -g)" -e RUNE_REV="$rune_rev" -w /work/src \
   "$image" bash -c "$inner" inner "$cmd" "$@"

@@ -18,7 +18,12 @@ bun scripts/compare.ts hello -- --theme light --at 0.5 --scale 1   # Rune flags 
 Options: `--runtime bun|node|bun,node`, `--json FILE`, `--strict` (unported fails),
 `--scene NAME` / `--window KEY` (repeatable filters), `--no-tree`, `--no-build`, `--release`,
 `--self-check` (render the Rust side twice to catch nondeterminism), `--jobs N`,
-`--timeout S`, `--max-diffs N`, `--out DIR`. `--help` lists them.
+`--timeout S`, `--max-diffs N`, `--out DIR`, `--keep` (keep passing scenes' renders). `--help`
+lists them.
+
+It builds Rune without incremental caches or debug info (`scripts/lib/cargo.ts`, also used by
+demos.ts and update-rune.ts): runex never edits Rune, and on macOS a debug build's debug info keeps
+every object file, about 30 GB across the examples.
 
 For each example it:
 
@@ -40,9 +45,10 @@ For each example it:
    field; the first differences are printed as paths such as
    `elements[3]<#0/switch>.rect[0]: rust 141, port 140`.
 
-It prints a table, writes everything to `out/compare/<name>/` (`_none.*` is the render without
+It prints a table, writes the renders to `out/compare/<name>/` (`_none.*` is the render without
 `--scene`; `*.rust.png`, `*.bun.png`, `*.node.png`, `*.diff.png`, `*.json`, `*.log` for failed
-processes) and exits 1 on any failure. A missing port is "not ported", not a failure, unless
+processes), deletes each scene's once all its comparisons pass (`--keep` keeps them), so what
+stays is what needs a look, and exits 1 on any failure. A missing port is "not ported", not a failure, unless
 `--strict`.
 
 Statuses: `pass` (identical), `close` (within a configured tolerance), `fail`, `error` (a
@@ -158,13 +164,17 @@ scripts/linux-docker.sh compare --all              # compare.ts --runtime bun,no
 scripts/linux-docker.sh compare --self-check lab   # examples and options pass through
 scripts/linux-docker.sh run bash -c 'RUNEX_PERF=1 node examples/todo/main.ts --tree /out/todo.json'
 scripts/linux-docker.sh shell                      # an interactive shell in the built copy
+scripts/linux-docker.sh clean                      # remove the volumes, the image and out/linux
 ```
 
 The first run builds the image (a few minutes) and every crate; Cargo's caches, Bun's and the
 copy's node_modules stay in volumes, so later runs rebuild in seconds. `compare --all` builds the
 Rust examples too (about 10 minutes the first time, with the default `CARGO_BUILD_JOBS=4`) and
 renders all 184 window × scene pairs on three sides in 2 to 4 minutes. Runs share one work
-volume, so run one at a time (`RUNEX_DOCKER_PREFIX` names a separate set of volumes).
+volume, so run one at a time (`RUNEX_DOCKER_PREFIX` names a separate set of volumes). When
+vendor/rune moves, the next run removes the old revision's builds of Rune's crates from the target
+volume first (third-party crates stay cached); `clean` removes everything, including the volumes an
+earlier default prefix (`runex`) left.
 
 On Linux every compared render but one is byte-identical to the Rust example's (shapes' first
 frame differs by one pixel: glibc's `sinf`, see compare.config.ts), and lavapipe renders

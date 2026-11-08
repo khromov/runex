@@ -7,17 +7,20 @@
 // and each window's scenes (`--list-scenes`, falling back to the `scenes:` arrays in the Rust
 // source), renders every (window, scene) plus the no-scene default with the Rust binary and with
 // `bun|node examples/<name>/main.ts`, both with `--snap` and `--tree`, and compares the PNGs
-// (bytes, then pixels) and the element trees. Writes everything under out/compare/<name>/.
+// (bytes, then pixels) and the element trees. Writes the renders under out/compare/<name>/ and
+// deletes each scene's once all its comparisons pass (`--keep` keeps them), so what's left there is
+// what failed. Cargo builds Rune without incremental caches or debug info (scripts/lib/cargo.ts).
 // A window whose scenes all render the same bytes fails too: Rune ignored `--scene`, and both
 // sides would collapse alike. The process, PNG, tree and listing helpers live in scripts/lib/
 // (shared with scripts/golden.ts). See scripts/README.md.
 
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs"
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs"
 import { availableParallelism, homedir } from "node:os"
-import { dirname, join, relative, resolve } from "node:path"
+import { basename, dirname, join, relative, resolve } from "node:path"
 import defaultConfig from "./compare.config.ts"
 import { fileStem, listingLines, NO_SCENE, portedExamples, portPath, rustExamples, scenesFromSource } from "./lib/discover.ts"
 import { comparePng, type PngResult, sha256, type Tolerance } from "./lib/png.ts"
+import { runeCargoEnv } from "./lib/cargo.ts"
 import { availableRuntimes, exec, failure, pool, ROOT, RUNE, type Runtime, tail, tsCommand } from "./lib/proc.ts"
 import { render as renderSide, type Render, type Side } from "./lib/render.ts"
 import { compareTrees, type TreeDiff, type TreeResult } from "./lib/tree.ts"
@@ -90,6 +93,8 @@ export type Options = {
   /** Render the Rust side twice and flag scenes whose own output varies. */
   selfCheck: boolean
   out: string
+  /** Keep every render under `out`; by default a scene's files go once all its comparisons pass. */
+  keep: boolean
   scenes: string[]
   windows: string[]
   /** Rune arguments appended to every render on both sides (after `--`). */
@@ -112,6 +117,7 @@ export function defaultOptions(over: Partial<Options> = {}): Options {
     timeout: 120,
     selfCheck: false,
     out: join(ROOT, "out", "compare"),
+    keep: false,
     scenes: [],
     windows: [],
     extraArgs: [],
@@ -191,9 +197,7 @@ function cargo(): string {
 }
 
 function cargoEnv(): Record<string, string> {
-  const env = { ...process.env } as Record<string, string>
-  env.PATH = `${join(homedir(), ".cargo", "bin")}:${env.PATH ?? ""}`
-  return env
+  return runeCargoEnv()
 }
 
 type Target = { package: string; bins: string[] }
@@ -501,10 +505,36 @@ export async function compareExample(ctx: Prepared, name: string): Promise<Examp
       }
     })
   }
+  if (!opts.keep) prunePassing(jobs, result.rows, dir)
   const failed = result.problems.length > 0 || result.rows.some((r) => failingRow(r.status))
   const allSkipped = result.rows.length > 0 && result.rows.every((r) => r.status === "skip")
   if (failed) return done("fail")
   return allSkipped ? done("skip", "every scene is skipped in compare.config.ts") : done("pass")
+}
+
+/**
+ * Deletes the renders, trees, logs and diffs of every scene whose comparisons all passed, then the
+ * example's folder if nothing is left: what stays under `out` is what needs looking at. Those rows
+ * keep their results but no file paths.
+ */
+function prunePassing(jobs: { window: string; scene: string; stem: string }[], rows: Row[], dir: string) {
+  for (const j of jobs) {
+    const mine = rows.filter((r) => r.window === j.window && r.scene === j.scene)
+    if (!mine.length || !mine.every((r) => r.status === "pass" || r.status === "skip")) continue
+    const folder = dirname(j.stem)
+    const prefix = `${basename(j.stem)}.`
+    for (const f of existsSync(folder) ? readdirSync(folder) : []) if (f.startsWith(prefix)) rmSync(join(folder, f), { force: true })
+    for (const r of mine) r.files = { logs: [] }
+  }
+  removeEmpty(dir)
+}
+
+/** Removes `dir` and its subfolders when they hold no files. */
+function removeEmpty(dir: string): boolean {
+  if (!existsSync(dir)) return true
+  const empty = readdirSync(dir, { withFileTypes: true }).every((e) => e.isDirectory() && removeEmpty(join(dir, e.name)))
+  if (empty) rmSync(dir, { recursive: true, force: true })
+  return empty
 }
 
 /** Builds and compares every example in `opts.examples`. */
@@ -649,7 +679,8 @@ element trees. With no examples, compares every ported one (examples/*/main.ts).
   --jobs N            renders at once (default ${defaultOptions().jobs})
   --timeout S         seconds per render or listing (default 120)
   --max-diffs N       tree differences kept per comparison (default 8)
-  --out DIR           scratch directory (default out/compare)
+  --out DIR           scratch directory (default out/compare): what failed, and the report
+  --keep              keep every render there, not only the scenes that didn't pass
   -- ARGS             Rune arguments for both sides, e.g. -- --theme light --at 1.5 --scale 1
 
 Skips, tolerances and per-example arguments live in scripts/compare.config.ts.`
@@ -681,6 +712,7 @@ export function parseArgs(argv: string[]): { opts: Partial<Options>; all: boolea
       case "--no-build": opts.build = false; break
       case "--release": opts.release = true; break
       case "--self-check": opts.selfCheck = true; break
+      case "--keep": opts.keep = true; break
       case "--jobs": opts.jobs = Math.max(1, Number(val()) || 1); break
       case "--timeout": opts.timeout = Number(val()) || 120; break
       case "--max-diffs": opts.maxDiffs = Math.max(1, Number(val()) || 1); break
